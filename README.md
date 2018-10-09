@@ -1,2 +1,2 @@
 # Sistemi-Dinamici
-Appunti per il corso di Sistemi Dinamici del secondo anno SNS
+Appunti del il corso di Sistemi Dinamici del secondo anno SNS
