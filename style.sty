@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesPackage{style-sd}[09/10/2018 File di style per Sistemi-Dinamici]
+\ProvidesPackage{style}[09/10/2018 File di style per Sistemi-Dinamici]
 %
 \usepackage[T1]{fontenc}
 \usepackage[italian]{babel}
@@ -19,6 +19,7 @@
 \usepackage{cancel}
 \usepackage{framed}
 \usepackage{commath} 	% Comandi per derivate (differenziale: \dif{x}, derivata liebeniz: \od[n]{f}{x}, derivata parziale: \pd[n]{f}{x}, mixed partial derivative: \md{f}{5}{x}{2}{y}{3})
+\usepackage{faktor} 	% Per quoziente
 
 % Permette di specificare nelle matrici la formattazione come nelle tabelle
 \makeatletter	
@@ -48,6 +49,8 @@
 \newcommand{\R}{\mathbb{R}}				% Numeri reali
 \newcommand{\C}{\mathbb{C}}				% Numeri complessi
 \newcommand{\K}{\mathbb{K}}				% Campo K generico
+\renewcommand{\S}{\mathbb{S}}			% Sfera
+\newcommand{\T}{\mathbb{T}}				% Toro
 \renewcommand{\P}{\mathscr{P}}			% Insieme delle parti
 \renewcommand{\emptyset}{\varnothing}	% Insieme vuoto
 \newcommand{\Rel}{\mathcal{R}}			% Relazione
@@ -58,7 +61,7 @@
 \newcommand{\touf}{\rightrightarrows}	% Converge uniformemente
 
 % FUNZIONI DI PIU' VARIABILI
-%\renewcommand{\vec}[1]{\boldsymbol{#1}}	% Vettore in grassetto corsivo
+\renewcommand{\vec}[1]{\mathbf{#1}}	% Vettore in grassetto corsivo
 \DeclareMathOperator{\grad}{\nabla}			% Gradiente
 \DeclareMathOperator{\jac}{\mathit{J}}		% Jacobiano
 \DeclareMathOperator{\hess}{\mathit{H}}		% Hessiana
@@ -73,6 +76,7 @@
 \DeclareMathOperator{\ker}{Ker}				% Nucleo o Kernel
 \DeclareMathOperator{\im}{Im}				% Immagine
 \DeclareMathOperator{\End}{End}				% Endomorfismi
+\DeclareMathOperator{\Aut}{Aut}				% Auto<omorfismi
 \DeclareMathOperator{\tr}{tr}				% Traccia
 \DeclareMathOperator{\rg}{rg}				% Rango
 \DeclareMathOperator{\sgn}{sgn}				% Segno
