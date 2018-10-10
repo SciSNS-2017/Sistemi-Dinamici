@@ -12,6 +12,6 @@ Attualmente i file sono:
 * `main.tex`: è il file principale della repository. Vengono importati tutti pacchetti necessari e ci sono le impostazioni generali del progetto. 
 * `style.sty`: contiene tutte le impostazioni di stile del progetto. 
 * `bibliografia.bib`: contiene la bibliografia.
-* `lezione[anno]_[mese]_[giorno].tex`: è il vero contenuto di ogni lezione.
+* `Lezioni/lezione[anno]_[mese]_[giorno].tex`: è il vero contenuto di ogni lezione.
 
 ### Come scrivere una lezione
