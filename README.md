@@ -1,5 +1,5 @@
 # Sistemi Dinamici
-Appunti del il corso _Introduzione ai Sistemi Dinamici_, raccolti durante l'anno accademico 2018-2019. I docenti del corso sono:
+Appunti del corso _Introduzione ai Sistemi Dinamici_, raccolti durante l'anno accademico 2018-2019. I docenti del corso sono:
 * Stefano Marmi
 * Daniele Tantari
 * Fracensco Grotto
