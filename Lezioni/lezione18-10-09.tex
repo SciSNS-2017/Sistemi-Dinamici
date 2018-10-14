@@ -10,7 +10,7 @@
 	Se non ci sono ambiguità circa l'operazione definita su $ G $ indicheremo più semplicemente il gruppo $ \mathcal{G} $ facendo riferimento al solo insieme $ G $. 
 \end{definition}
 
-\begin{definition}[sistema dinamico]
+\begin{definition}[sistema dinamico] \label{def:sistema-dinamico}
 	Un sistema dinamico è una terna $ (\mathcal{G}, \mathcal{X}, \Phi) $ dove $ {\mathcal{G} \coloneqq (G, \star)} $ è un (semi-)gruppo\footnote{Per \emph{semigruppo} si intende una coppia $ (G,\star) $ dove $ \star $ è associativa.}, $ \mathcal{X} $ è uno spazio, cioè un insieme $ X $ dotato di una qualche struttura (per esempio una topologia), e 
 	\begin{align*}
 		\Phi \colon G \times X & \to X \\
@@ -41,7 +41,7 @@ Se prendiamo $ f \in \Aut{(X)} $ possiamo considerare la stessa costruzione usan
 Prendiamo come gruppo $ \R $ o $ [0, +\infty) $. In tale caso data l'applicazione $ \Phi_t(x) = \Phi(t, x) $ prende il nome di \emph{flusso} o \emph{semi-flusso} rispettivamente. \\
 
 Un esempio di sistema dinamico a tempo continuo è dato da un'equazione differenziale ordinaria (ODE) del primo ordine\footnote{Di seguito considereremo quasi solo ODE del primo ordine in quanto equazioni differenziali di ordine superiore possono essere ricondotte a questa con il solito cambio di variabile a sistemi di ODE del primo ordine.} autonoma
-\begin{equation}
+\begin{equation} \label{eqn:ode-I-ordine}
 	\begin{cases}
 		\dot{x} = v(x) \\
 		x(0) = x_0
@@ -63,4 +63,47 @@ si può scrivere nella forma
 	Le orbite definiscono una naturale relazione di equivalenza $ x \sim y \iff \exists n \in \Z : y = f^n(x) \iff y \in \mathcal{O}^f(x) \iff x \in \mathcal{O}^f(y) $. Chiamiamo lo spazio quoziente $ \faktor{X}{\sim} $ spazio delle orbite. \texttt{Topologia quoziente?}
 \end{definition}
 
-Pendolo semplice...
+\subsection{Flussi vs tempo discreto: il pendolo semplice e la mappa standard}
+Solitamente siamo interessati al comportamento asintotico dell'azione di $ \Phi $ e pertanto più essere utile rendere discreto un flusso continuo. Dato un flusso $ \Phi_t $ con $ t \in \R $ possiamo considerare la funzione $ f = \Phi_{\tau} $ con $ \tau > 0 $ e la mappa $ \Phi_n^f \coloneqq f^{n/\tau} $ con $ n \in \tau \Z $ che è un sistema dinamico a tempo discreto. Tuttavia bisogna osservare che la \emph{discretizzazione} di un sistema dinamico non è un mero artificio algebrico ma il sistema ottenuto può differire in modo significativo da quello a tempo continuo. 
+
+\begin{example}[pendolo semplice]
+	Consideriamo il sistema dinamico descritto dall'equazione differenziale del pendolo semplice ($ g = 1 $)
+	\[
+		\ddot{x} = \sin{x}
+	\]
+	che può essere portato nella forma della \eqref{eqn:ode-I-ordine} ponendo $ y = \dot{x} $ da cui 
+	\[
+		\begin{cases}
+			\dot{x} = y \\
+			\dot{y} = \sin{x}
+		\end{cases}
+		\quad \rightarrow \quad
+		\begin{pmatrix}
+			\dot{x} \\ \dot{y}
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			y \\ \sin{x}
+		\end{pmatrix}
+	\]
+	dove $ v(x, y) = (y, \sin{x}) $. Nel linguaggio della Definizione \ref{def:sistema-dinamico}, $ G \coloneqq \R $, $ X \coloneqq \S^1 \times \R  $ e $ {\Phi(t, (x, y)) \coloneqq (\phi(t), \phi'(t))} $ dove $ \phi \colon \R \to \R $ è una soluzione dell'equazione differenziale. \\
+	\texttt{$ E = \frac{1}{2}y^2 + \cos{x} $ integrale primo del moto e spazio  delle fasi?} \\
+	A fissato \emph{step} $ \mu $ trasformiamo l'equazione differenziale del secondo ordine in \footnote{%
+		\[
+			\ddot{x}(t) \approx \frac{\dot{x}(t) - \dot{x}(t - \mu)}{\mu} \approx \frac{\frac{x(t + \mu) - x(t)}{\mu} - \frac{x(t) - x(t - \mu)}{\mu}}{\mu} = \frac{x(t + \mu) - 2x(t) + x(t - \mu)}{\mu^2}
+		\]
+	}
+	\[
+		x(t + \mu) - 2 x(t) + x(t - \mu) = \mu^2 \sin(x(t)).
+	\]
+	Posto ora $ \epsilon = \mu^2 $, $ x = x(t) $, $ x' = x(t + \mu) $, $ y = x(t) - x(t - \mu) $ e $ y' = x(t + \mu) - x(t) $ otteniamo il seguente sistema 
+	\[
+		\begin{cases}
+			x' = x + y' \\
+			y' = \epsilon \sin{x} + y 
+		\end{cases}
+	\]
+	che è la \emph{mappa standard}. \\
+	\texttt{Commenti...}
+	
+\end{example}
