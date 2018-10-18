@@ -14,4 +14,13 @@ Attualmente i file sono:
 * `bibliografia.bib`: contiene la bibliografia.
 * `Lezioni/lezione[anno]_[mese]_[giorno].tex`: è il vero contenuto di ogni lezione.
 
+### Chi scrive cosa
+|**Giorno** |**Docente**|**Tipo**     |**Scrittore**            |
+|-----------|:---------:|-------------| ------------------------|
+| 9 ottobre |Marmi      |Lezione      | @alepiazza              |
+| 10 ottobre|Grotto     |Esercitazione| In attesa delle dispense|
+| 16 ottobre|Marmi      |Lezione      | @arn4                   |
+| 17 ottobre|Grotto     |Esercitazione| In attesa delle dispense|
+
+
 ### Come scrivere una lezione
