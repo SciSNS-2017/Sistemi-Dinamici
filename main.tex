@@ -1,20 +1,13 @@
 \documentclass[a4paper]{scrbook}
 
-%\usepackage[a4paper, margin = 3cm]{geometry}
 \usepackage{fullpage}
 \usepackage{style}
 
-\usepackage{graphics}
-
-% TIKZ
-\usepackage{pgf,tikz,pgfplots}
-\pgfplotsset{compat=1.15}
-\usepackage{mathrsfs}
-\usetikzlibrary{arrows}
+\newif\iffigureon
+\figureonfalse
 
 
 % THEOREM ENVIORMMENT e.g. \newtheorem{comando}{nome}[numerazione]
-
 \theoremstyle{definition}
 \newtheorem{definition}{Definizione}[chapter]
 \newtheorem{example}{Esempio}[chapter]
@@ -32,9 +25,11 @@
 \maketitle
 
 Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale. Per leggere una copia della licenza visita il sito web Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale. Per leggere una copia della licenza visita il sito web \url{http://creativecommons.org/licenses/by-nc-sa/4.0/}.
+\iffigureon
 \begin{center}
-	\href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[scale = 0.8]{by-nc-sa}}
-\end{center}	
+	\href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[scale = 0.8]{img/by-nc-sa}}
+\end{center}
+\fi	
 
 
 \tableofcontents
@@ -54,7 +49,7 @@ Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Cond
 
 \backmatter
 
-\bibliography{bibliografia}
+%\bibliography{bibliografia}
 
 
 \end{document}

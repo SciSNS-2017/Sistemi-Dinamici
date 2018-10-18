@@ -10,8 +10,8 @@
 	Se non ci sono ambiguità circa l'operazione definita su $ G $ indicheremo più semplicemente il gruppo $ \mathcal{G} $ facendo riferimento al solo insieme $ G $. 
 \end{definition}
 
-\begin{definition}[sistema dinamico]
-	Un sistema dinamico è una terna $ (\mathcal{G}, \mathcal{X}, \Phi) $ dove $ {\mathcal{G} \coloneqq (G, \star)} $ è un (semi-)gruppo\footnote{Per \emph{semigruppo} si intende una coppia $ (G,\star) $ dove $ \star $ è associativa.}, $ \mathcal{X} $ è uno spazio, cioè un insieme $ X $ dotato di una qualche struttura (per esempio una topologia), e 
+\begin{definition}[sistema dinamico] \label{def:sistema-dinamico}
+	Un sistema dinamico è una terna $ (\mathcal{G}, \mathcal{X}, \Phi) $ dove $ {\mathcal{G} \coloneqq (G, \star)} $ è un (semi-)gruppo\footnote{Per \emph{semigruppo} si intende una coppia $ (G,\star) $ dove $ \star $ è associativa.}, $ \mathcal{X} $ è uno spazio, cioè un insieme $ X $ dotato di una qualche struttura, e 
 	\begin{align*}
 		\Phi \colon G \times X & \to X \\
 		(g, x) & \mapsto \Phi(g, x) = \Phi_g(x)
@@ -24,24 +24,30 @@
 	Più brevemente diciamo che un sistema dinamico è l'\emph{azione} di un gruppo $ G $ su uno spazio $ X $ definita da una mappa $ \Phi $. 
 \end{definition}
 
-Nella maggior parte dei casi useremo come gruppo insiemi numerici $ \N $, $ \Z $ e $ \R $ con le usuali operazioni. Nei primi due casi parleremo di sistemi a \emph{tempo discreto} mentre nell'ultimo di sistemi a \emph{tempo continuo}. Come spazio $ \mathcal{X} $ useremo spesso uno \emph{spazio metrico compatto} (e.g. la sfera $ \S^d $, il toro $ \T^d $ o un intervallo chiuso $ [a, b] $), uno \emph{spazio di misura} o gli insiemi $ \R^d $ e $ \C $ con le usuali strutture. \\
+Nella maggior parte dei casi useremo come gruppo insiemi numerici $ \N $, $ \Z $ e $ \R $ con le usuali operazioni. Nei primi due casi parleremo di sistemi a \emph{tempo discreto} mentre nell'ultimo di sistemi a \emph{tempo continuo}. Come spazio $ \mathcal{X} $ useremo spesso uno \emph{spazio metrico compatto} (e.g. la sfera $ \S^d $, il toro $ \T^d $ o un intervallo chiuso $ [a, b] $), uno \emph{spazio di misura} o gli insiemi $ \R^d $ e $ \C $ con le usuali strutture. Se non ci sono ambiguità circa la struttura definita su $ X $ indicheremo più semplicemente lo spazio $ \mathcal{X} $ facendo rifermento al solo insieme $ G $. \\
 
 Per quanto riguarda la mappa $ \Phi $ osserviamo che per definizione $ \Phi_g \in \End{(X)} $ ovvero è un \emph{endomorfismo} su $ X $. Tuttavia spesso penseremo a $ \Phi_g \in \Aut{(X)} $ ovvero un \emph{automorfismo} cioè un endomorfismo invertibile. \\
 
-\begin{example}
-Sia $ f \in \End{(X)} $. Dato $ n \in \N $ poniamo $ f^n \coloneqq f \circ \cdots \circ f $ ($ f $ composta $ n $ volte) con la convenzione che $ f^1 = f $ e $ f^0 = \Id_X $. Se consideriamo $ \N $ con l'operazione di addizione, l'applicazione $ \Phi^f $ data da $ \Phi_n^f(x) \coloneqq f^n(x) $ definisce un sistema dinamico. \\
-Se prendiamo $ f \in \Aut{(X)} $ possiamo considerare la stessa costruzione usando come gruppo $ \Z $ e definendo $ f^{-n} $ come l'inversa di $ f^n $. 
-\end{example}
+Una tipo di sistema dinamico a tempo discreto di uso frequente è l'iterazione di una mappa da $ X $ in sé. Data $ f \in \End{(X)} $, per ogni $ n \in \N $ poniamo $ f^n \coloneqq f \circ \cdots \circ f $ ($ f $ composta $ n $ volte) con la convenzione che $ f^1 = f $ e $ f^0 = \Id_X $. Se consideriamo $ \N $ con l'operazione di addizione, l'applicazione $ \Phi^f $ data da $ \Phi_n^f(x) \coloneqq f^n(x) $ definisce un sistema dinamico. \\
+Se prendiamo $ f \in \Aut{(X)} $ possiamo considerare la stessa costruzione usando come gruppo $ \Z $ e definendo $ f^{-n} $ come l'inversa di $ f^n $. \\
+Nel seguito quando diremo che $ f \colon X \to X $ è un sistema dinamico sottintenderemo la costruzione appena data nell'esempio seguente a meno di ulteriori precisazioni. 
+
 
 \begin{example}
-	Partendo dalla costruzione appena data possiamo prendere $ X = [0, 1] $ e per $ \alpha \in \R $ la funzione $ f(x) \coloneqq x + \alpha \pmod{1} $. Osserviamo che essendo $ f $ invertibile possiamo definire come sopra l'applicazione $ \Phi $ su $ \Z $. Il sistema così definito è un prototipo di \emph{sistema periodico} se $ \alpha \in \Q $ e di \emph{sistema quasi-periodico} se $ \alpha \notin \Q $. \\
-	\input{sd1.tikz} \texttt{Completare questo schifo.}
+	Partendo dalla costruzione appena data possiamo prendere $ X = [0, 1] $ e per $ \alpha \in \R $ la funzione $ f(x) \coloneqq x + \alpha \pmod{1} $. Osserviamo che essendo $ f $ invertibile possiamo definire come sopra l'applicazione $ \Phi $ su $ \Z $. Il sistema così definito è un prototipo di \emph{sistema periodico} se $ \alpha \in \Q $ e di \emph{sistema quasi-periodico} se $ \alpha \notin \Q $. 
+	\iffigureon
+	\begin{figure}[h!]
+		\centering
+		\input{img/sd1.tikz}
+		\caption{\texttt{Completare questo schifo.}}
+	\end{figure}
+	\fi
 \end{example}
 
 Prendiamo come gruppo $ \R $ o $ [0, +\infty) $. In tale caso data l'applicazione $ \Phi_t(x) = \Phi(t, x) $ prende il nome di \emph{flusso} o \emph{semi-flusso} rispettivamente. \\
 
 Un esempio di sistema dinamico a tempo continuo è dato da un'equazione differenziale ordinaria (ODE) del primo ordine\footnote{Di seguito considereremo quasi solo ODE del primo ordine in quanto equazioni differenziali di ordine superiore possono essere ricondotte a questa con il solito cambio di variabile a sistemi di ODE del primo ordine.} autonoma
-\begin{equation}
+\begin{equation} \label{eqn:ode-I-ordine}
 	\begin{cases}
 		\dot{x} = v(x) \\
 		x(0) = x_0
@@ -63,4 +69,80 @@ si può scrivere nella forma
 	Le orbite definiscono una naturale relazione di equivalenza $ x \sim y \iff \exists n \in \Z : y = f^n(x) \iff y \in \mathcal{O}^f(x) \iff x \in \mathcal{O}^f(y) $. Chiamiamo lo spazio quoziente $ \faktor{X}{\sim} $ spazio delle orbite. \texttt{Topologia quoziente?}
 \end{definition}
 
-Pendolo semplice...
+\subsection{Flussi vs tempo discreto: il pendolo semplice e la mappa standard}
+Solitamente siamo interessati al comportamento asintotico dell'azione di $ \Phi $ e pertanto più essere utile rendere discreto un flusso continuo. Dato un flusso $ \Phi_t $ con $ t \in \R $ possiamo considerare la funzione $ f = \Phi_{\tau} $ con $ \tau > 0 $ e la mappa $ \Phi_n^f \coloneqq f^{n/\tau} $ con $ n \in \tau \Z $ che è un sistema dinamico a tempo discreto. Tuttavia bisogna osservare che la \emph{discretizzazione} dell'equazione differenziale che definisce un sistema dinamico continuo non è un mero artificio algebrico e il sistema a tempo discreto ottenuto può differire in modo significativo dal \emph{fotografare} un sistema continuo a tempi discreti. 
+
+\begin{example}[pendolo semplice]
+	Consideriamo il sistema dinamico descritto dall'equazione differenziale del pendolo semplice ($ g = 1 $)
+	\[
+		\ddot{x} = \sin{x}
+	\]
+	che può essere portato nella forma della \eqref{eqn:ode-I-ordine} ponendo $ y = \dot{x} $ da cui 
+	\[
+		\begin{cases}
+			\dot{x} = y \\
+			\dot{y} = \sin{x}
+		\end{cases}
+		\quad \rightarrow \quad
+		\begin{pmatrix}
+			\dot{x} \\ \dot{y}
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			y \\ \sin{x}
+		\end{pmatrix}
+	\]
+	dove $ v(x, y) = (y, \sin{x}) $. Nel linguaggio della Definizione \ref{def:sistema-dinamico}, $ G \coloneqq \R $, $ X \coloneqq \S^1 \times \R  $ e $ {\Phi(t, (x, y)) \coloneqq (\phi(t), \phi'(t))} $ dove $ \phi \colon \R \to \R $ è una soluzione dell'equazione differenziale. \\
+	\texttt{$ E = \frac{1}{2}y^2 + \cos{x} $ integrale primo del moto e spazio  delle fasi?} \\
+	A fissato \emph{step} $ \mu $ trasformiamo l'equazione differenziale del secondo ordine in \footnote{%
+		\[
+			\ddot{x}(t) \approx \frac{\dot{x}(t) - \dot{x}(t - \mu)}{\mu} \approx \frac{\frac{x(t + \mu) - x(t)}{\mu} - \frac{x(t) - x(t - \mu)}{\mu}}{\mu} = \frac{x(t + \mu) - 2x(t) + x(t - \mu)}{\mu^2}
+		\]
+	}
+	\[
+		x(t + \mu) - 2 x(t) + x(t - \mu) = \mu^2 \sin(x(t)).
+	\]
+	Posto ora $ \epsilon = \mu^2 $, $ x = x(t) $, $ x' = x(t + \mu) $, $ y = x(t) - x(t - \mu) $ e $ y' = x(t + \mu) - x(t) $ otteniamo il seguente sistema 
+	\[
+		\begin{cases}
+			x' = x + y' \\
+			y' = \epsilon \sin{x} + y 
+		\end{cases}
+	\]
+	che è la \emph{mappa standard}. \\
+	\texttt{Commenti...}
+	
+	\iffigureon
+	\begin{figure}
+		\centering
+		\includegraphics{img/standard-map/fase-pendolo}
+		\caption{Ritratto di fase del pendolo semplice}
+		\label{fig:pendolo-fase}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\subfloat{%
+			\includegraphics[width=0.5\textwidth]{img/standard-map/sm0}%
+		} 
+		\subfloat{%
+			\includegraphics[width=0.5\textwidth]{img/standard-map/sm1}%
+		} \hfill
+		\subfloat{%
+			\includegraphics[width=0.5\textwidth]{img/standard-map/sm2}%
+		} 
+		\subfloat{%
+			\includegraphics[width=0.5\textwidth]{img/standard-map/sm3}%
+		} \hfill
+		\subfloat{%
+			\includegraphics[width=0.5\textwidth]{img/standard-map/sm4}%
+		} 
+		\subfloat{%
+			\includegraphics[width=0.5\textwidth]{img/standard-map/sm5}%
+		} \hfill
+		\caption{Equazione del pendolo discretizzazione per diversi valori di $ \epsilon $}
+		\label{fig:pendolo-ode-num}
+	\end{figure}
+	\fi
+	
+\end{example}

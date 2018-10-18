@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesPackage{style}[09/10/2018 File di style per Sistemi-Dinamici]
+\ProvidesPackage{style}[09/10/2018 File di stile per Sistemi-Dinamici]
 %
 \usepackage[T1]{fontenc}
 \usepackage[italian]{babel}
@@ -20,6 +20,16 @@
 \usepackage{framed}
 \usepackage{commath} 	% Comandi per derivate (differenziale: \dif{x}, derivata liebeniz: \od[n]{f}{x}, derivata parziale: \pd[n]{f}{x}, mixed partial derivative: \md{f}{5}{x}{2}{y}{3})
 \usepackage{faktor} 	% Per quoziente
+
+% IMMAGINI 
+\usepackage{graphics}
+\usepackage{subfig}
+
+% TIKZ
+\usepackage{pgf,tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
 
 % Permette di specificare nelle matrici la formattazione come nelle tabelle
 \makeatletter	

@@ -24,3 +24,4 @@ Attualmente i file sono:
 
 
 ### Come scrivere una lezione
+A casua delle immagini il tempo di compilazione di `main.tex` può essere molto lungo. Quando includi un'immagine scrivi `\iffigureon` prima di `\begin{figure}` e `\fi` dopo `\end{figure}`. Se nel preambolo di `main.tex` scrivi `\figureontrue` dopo `\newif\iffigureon` le figure verranno include; se invece scrivi `\figureontflase` le immagini non compariranno nel pdf e la compilazione sarà più veloce.
