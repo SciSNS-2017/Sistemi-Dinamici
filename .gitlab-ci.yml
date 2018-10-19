@@ -1,7 +1,9 @@
 compile_pdf:
   image: aergus/latex
   script:
-    - pdflatex -interaction=nonstopmode main.tex
+    - sed -i 's/\\figureonfalse/\\figureontrue/' main.tex
+    - latexmk -pdf main.tex
+    - mv main.pdf Sistemi-Dinamici.pdf
   artifacts:
     paths:
-      - main.pdf
+      - Sistemi-Dinamici.pdf
