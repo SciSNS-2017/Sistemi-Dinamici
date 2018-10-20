@@ -5,6 +5,8 @@ Appunti del corso _Introduzione ai Sistemi Dinamici_, raccolti durante l'anno ac
 * Fracensco Grotto
 * Ugo Bindini
 
+Il PDF più recente si può scaricare [qui](https://gitlab.com/marco-venuti/sistemi-dinamici/-/jobs/artifacts/master/raw/Sistemi-Dinamici.pdf?job=compile_pdf).
+
 ## Struttura del progetto
 Per ora l'idea è di trascrivere in TeX le lezioni separatamente e pensare più avanti ad una struttura più precisa degli argomenti.
 
