@@ -21,6 +21,6 @@ for e in np.linspace(0.01, 1, num=6):
     plt.title(r'$ \varepsilon = %.2f $' %e)
     plt.xlabel('$ x $')
     plt.ylabel('$ y $')
-    plt.savefig('sm'+str(j)+'.png', dpi=1200)
+    plt.savefig('sm'+str(j)+'.png', dpi=300)
     plt.close()
     j += 1
