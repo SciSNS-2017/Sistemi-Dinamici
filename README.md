@@ -23,6 +23,8 @@ Attualmente i file sono:
 | 10 ottobre|Grotto     |Esercitazione| In attesa delle dispense|
 | 16 ottobre|Marmi      |Lezione      | @arn4                   |
 | 17 ottobre|Grotto     |Esercitazione| In attesa delle dispense|
+| 23 ottobre|Bindini    |Esercitazione|                         |
+| 24 ottobre|Marmi      |Lezione      | @alepiazza              |
 
 
 ### Come scrivere una lezione
