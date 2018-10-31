@@ -42,6 +42,7 @@ Sia $X$ un insieme, $\mathscr{P}(X)$ l'insieme delle parti di X.
 	Se $\mu$ è additiva, $\mu(\varnothing)=\mu(\varnothing)+\mu(\varnothing)$ da cui $\mu(\varnothing)=0$.
 \end{oss}
 
+\subsection{Spazi di misura}
 \begin{definition}
 	Si chiama \emph{spazio di misura} una terna $(X,\mathcal{F}, \mu)$ dove $X$ è un insieme, ${\mathcal{F}\subseteq \mathscr{P}(X)}$ una $\sigma$-algebra e $\mu\colon\mathcal{F} \to [0,+\infty]$ è $\sigma$-additiva. $\mu$ viene detta \emph{misura} e gli insiemi di $\mathcal{F}$ vengono detti \emph{misurabili}.
 	Inoltre:
@@ -175,4 +176,46 @@ Dunque la misura sui Boreliani $\big(\R^d, \mathcal{B}, \lambda\big)$ si estende
 	In ZF senza l'assioma della scelta, esiste un modello in cui $\mathcal{M}=\mathscr{P}(\R^d)$, ovvero tutti gli insiemi sono Lebesgue-misurabili.
 \end{exercise}
 
-{\large\color{red} FUNZIONI MISURABILI}
+\subsection{Funzioni misurabili}
+\begin{definition}
+	Siano $ (X,\mathcal{E},\mu) $ e $ (Y,\mathcal{F},\nu) $ spazi di misura e sia $ f\colon X\to Y $.
+	Diciamo che $ f $ è \emph{$ \mathcal{E} $-misurabile} se:
+	\[ \forall F \in \mathcal{F}, \ f^{-1}(F) \in \mathcal{E} \]
+	(controimmagini di misurabili sono misurabili).
+\end{definition}
+\begin{exercise}
+	$ \chi_A \colon X \to \{0,1\} $ è misurabile se \textcolor{red}{e solo se} $ A $ è misurabile.
+\end{exercise}
+\begin{oss}
+	La funzione vuota è misurabile.
+\end{oss}
+
+\begin{definition}[Funzione semplice]
+	Sia $ \phi\colon (X,\mathcal{E}) \to (\R \cup \{\pm\infty\}, \mathcal{B}) $. Diciamo che $ \phi $ è \emph{semplice} se si può scrivere come:
+	\[ \phi(x) = \sum_{i=0}^N a_i \chi_{A_i}(x) \]
+	con $ a_i \in (-\infty, +\infty] $ e $ A_i \in \mathcal{E} $. \textcolor{red}{Non sono sicuro sugli infiniti.}
+\end{definition}
+\begin{oss}
+	Funzioni semplici sono misurabili.
+\end{oss}
+\begin{proposition}
+	Sia $ f\colon (X,\mathcal{E}) \to [0, +\infty] $ misurabile. Allora
+	\[ \exists (\phi_n)_{n\in\N},\ \phi_n \text{ semplici },\ \phi_n \nearrow f \]
+	cioè ogni funzione misurabile $ f $ si può approssimare con una successione di funzioni semplici $ \phi_n $ crescenti in $ n $ e che tendono puntualmente a $ f $.
+	Inoltre, se $ f\colon (X,\mathcal{E}) \to [0,+\infty) $, si può avere $ \phi_n \rightrightarrows f $.
+\end{proposition}
+\begin{proof}
+	\[ \phi_n \coloneqq 
+		\begin{cases}
+			\frac{1}{2^n} & \text{se } cose \\
+			n             & \text{se } cose
+		\end{cases}	
+	 \]
+\end{proof}
+\begin{proposition}[Criterio di Doob]
+	content
+\end{proposition}
+\begin{proof}
+	content
+\end{proof}
+
