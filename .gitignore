@@ -8,3 +8,5 @@
 *.toc
 *.lnk
 *.pdf
+*.fls
+*.fdb_latexmk
