@@ -1,6 +1,178 @@
-\section{Lezione del 10/10/2018}
+\section{Lezione del 10/10/2018 [Grotto]}
 \subsection{Introduzione}
-La Teoria della Misura nasce a inizio '900 per formalizzare la probabilità e per cercare di fondare una teoria dell'integrazione che risulti più efficace di quella di Riemann. Per alcuni sottoinsiemi di $\R$, in particolare per gli intervalli limitati, abbiamo un concetto intuitivo di "misura", ovvero la lunghezza dell'intervallo:
-\[\lambda\left([a,b]\right) = b-a.\]
+La Teoria della Misura nasce a inizio '900 per formalizzare la probabilità e per cercare di fondare una teoria dell'integrazione che risulti più efficace di quella di Riemann. Per alcuni sottoinsiemi di $\R$, in particolare per gli intervalli limitati, abbiamo un concetto intuitivo di ``misura'', ovvero la lunghezza dell'intervallo:
+\[ \lambda\left([a,b]\right) = b-a. \]
 L'obiettivo della teoria della misura è estendere questa nozione ad altri sottoinsiemi di $\R$ in modo coerente, ovvero in modo da rispettare, ad esempio, la proprietà di additività:
-\[A \cap B = \emptyset \implies \lambda(A\cup B) = \lambda(A) + \lambda(B)\]
+\[ A \cap B = \emptyset \Rightarrow \lambda(A\cup B) = \lambda(A) + \lambda(B) \]
+
+Sia $X$ un insieme, $\mathscr{P}(X)$ l'insieme delle parti di X.
+
+\begin{definition}
+	$\mathcal{A} \subseteq \mathscr{P}(X)$ è detto \emph{anello} se è chiuso per intersezione, unione e differenza:
+	\[ \forall A, B \in \mathcal A \quad A\cup B,\ A\cap B,\ A\smallsetminus B \in \mathcal{A} \]
+\end{definition}
+
+\begin{definition}
+	$\mathcal{A}$ è un'\emph{algebra} se $X\in \mathcal{A}$.
+\end{definition}
+
+\begin{definition}
+	$\mathcal{F} $ è una \emph{$\sigma$-algebra} se è un'algebra ed è chiusa per unione numerabile:
+	\[ \forall (A_n)_{n\in\N}\subseteq \mathcal{F},\ \bigcup_{n\in \N} A_n \in \mathcal{F} \]
+\end{definition}
+
+\begin{exercise}
+	Dimostrare che intersezioni di anelli, algebre, $\sigma$-algebre sono ancora rispettivamente anelli, algebre e $\sigma$-algebre.
+\end{exercise}
+
+\begin{definition}
+	Dato $C\subseteq \mathscr{P}(X)$, la $\sigma$-algebra generata da $C$ è:
+	\[ \sigma(C)= \left\{\bigcap \mathcal{F}: \mathcal{F} \text{ è una $\sigma$-algebra} \wedge C\subseteq \mathcal{F} \right\} \]
+\end{definition}
+
+\begin{definition}
+	Sia $\mathcal{A}$ anello e sia data una funzione $\mu:\mathcal{A} \rightarrow[0,+\infty]$. Allora:
+	\begin{itemize}
+		\item $\mu$ è \emph{additiva} se $\forall A,B \in \mathcal{A}, A\cap B=\varnothing,\ \mu( A\cup B)=\mu(A)+\mu(B)$;
+		\item $\mu$ è \emph{$\sigma$-additiva} se $\forall (A_n)_{n\in\N}\subseteq \mathcal{A}, \forall i\neq j \in \N \ A_i\cap A_j =\varnothing$, allora chiamato $ A=\bigcup\limits_{n\in\N}A_n$ si ha $\mu(A)=\sum\limits_{n\in\N} \mu(A_n)$.
+	\end{itemize}
+\end{definition}
+
+\begin{oss}
+	Se $\mu$ è additiva, $\mu(\varnothing)=\mu(\varnothing)+\mu(\varnothing)$ da cui $\mu(\varnothing)=0$.
+\end{oss}
+
+\begin{definition}
+	Si chiama \emph{spazio di misura} una terna $(X,\mathcal{F}, \mu)$ dove $X$ è un insieme, ${\mathcal{F}\subseteq \mathscr{P}(X)}$ una $\sigma$-algebra e $\mu\colon\mathcal{F} \to [0,+\infty]$ è $\sigma$-additiva. $\mu$ viene detta \emph{misura} e gli insiemi di $\mathcal{F}$ vengono detti \emph{misurabili}.
+	Inoltre:
+	\begin{itemize}
+		\item Se $\mu(X)<+\infty$, allora $\mu$ viene detta \emph{misura finita}. Questo implica che $\forall A \in \mathcal{F}, {\mu(A) < +\infty} $;
+		\item Se $\mu(X)=1$ allora $\mu$ viene detta \emph{probabilità};
+		\item Se $\exists (A_n)_{n\in\N}\subseteq\mathcal{F} : \bigcup\limits_{n\in\N}A_n=X$ e $\forall n \in\N \ \mu(A_n) <+\infty$, allora $\mu$ si dice \emph{$\sigma$-finita}.
+	\end{itemize}
+\end{definition}
+Introduciamo le seguenti notazioni:
+\[ A_n \uparrow   A \text{ se } \forall n \in\N \ A_n \subseteq A_{n+1} \text{ e } \bigcup\limits_{n\in \N}A_n = A \]
+\[ A_n \downarrow A \text{ se } \forall n \in\N \ A_n \supseteq A_{n+1} \text{ e } \bigcap\limits_{n\in \N}A_n = A \]
+Dato $(A_n)_{n\in\N}$, si definiscono $\underset{n\to+\infty}{\liminf}A_n \coloneqq\underset{n\in\N}{\bigcap}\underset{k\geq n}{\bigcup}A_k$ l'insieme di tutti gli elementi che appaiono frequentemente tra gli $A_n$, e $\underset{n\to +\infty}{\limsup}A_n\coloneqq\underset{n\in\N}{\bigcup}\underset{k\geq n}{\bigcap}A_k$ l'insieme di tutti gli elementi che appaiono definitivamente tra gli $A_n$.
+
+\begin{exercise}
+	Data $\mu$ additiva su $\mathcal{A}$ anello, $\mu$ è $\sigma$-additiva se e soltanto se $\forall A_n \uparrow A$ con $\forall n\; A_n,A \in \mathcal{A}$ $\mu(A)=\lim_{n\to +\infty} \mu(A_n)$.
+\end{exercise}
+\begin{exercise}
+	Data $\mu$ $\sigma$-additiva su $\mathcal{A}$ anello, allora $\forall A_n \downarrow A$ con $\forall n\; A_n,A \in \mathcal{A}$ e $\mu(A_n) < + \infty$ definitivamente, vale $\mu(A)=\lim_{n\rightarrow +\infty} \mu(A_n)$.
+\end{exercise}
+\begin{exercise}
+	Dato $(X,\mathcal{F}, \mu)$ spazio di misura, $\forall (A_n)_{n\in\N}\subseteq\mathcal{F}$  si ha $\mu\left(\underset{n\rightarrow +\infty}{\liminf} A_n\right) \leq \underset{n\rightarrow +\infty}{\liminf} \mu (A_n)$. Inoltre se $\mu\left(\underset{n\in\N}{\bigcup} A_n <+\infty\right)$, allora $\mu\left(\underset{n\rightarrow +\infty}{\limsup} A_n\right) \leq \underset{n\rightarrow +\infty}{\limsup} \mu (A_n)$.
+\end{exercise}
+\begin{exercise}[Borel-Cantelli]
+	Se $\sum\limits_{n\in\N} \mu(A_n) < +\infty$, allora $\mu\left(\underset{n\rightarrow +\infty}{\limsup} A_n\right)=0$.
+\end{exercise}
+\begin{example}
+	Dato $X$ insieme, $\mathcal{F}\subseteq \mathscr{P}(X)$ una $\sigma$-algebra, sono esempi di misure:
+	\begin{itemize}
+		\item \emph{Misura finita}: se $A$ è finito allora $\mu(A)=\card{A}$, altrimenti $\mu(A)=+\infty$;
+		\item \emph{Misura di Dirac}: Dato $x\in X$, se $x\in A$ allora $\delta_x(A)=1$, altrimenti $\delta_x(A)=0$;
+		\item Definita la \emph{$\sigma$-algebra dei singoletti} di $ X $ come:
+		\[ \mathcal{F} \coloneqq \sigma\left( \left\{ \{x\} : x\in X \right\} \right) = \left\{ A\subseteq X : A \text{ o } X\smallsetminus A \text{ è al più numerabile} \right\} \]
+		Supponiamo $ X $ sia più che numerabile. Poniamo: $ \mu(A) = 0 $ se $ A $ è al massimo numerabile, $ \mu(A) = +\infty $ altrimenti. 
+		Allora per ogni sequenza $(A_n)_{n\in\N}\subseteq\mathcal{F},\ \bigcup_{n\in\N} A_n=X$, almeno uno degli $A_n$ deve essere più che numerabile, quindi la sua misura è $+\infty$ e pertanto $ \mu $ è una misura non $ \sigma $-finita.
+	\end{itemize}
+\end{example}
+\begin{example}
+	Prendendo $X=\N,\ \mathcal{F} =\mathscr{P}(\N)$, si possono definire le distribuzioni di probabilità discrete e le relative misure. Data una funzione di probabilità $p: \N \rightarrow [0,+\infty)$ che soddisfi $\sum_{n\in\N} p(n)=1$, questa induce una misura $\mu$ definita come $\mu(A)=\sum_{n\in A} p(n)$. Esempi sono:
+	\begin{itemize}
+	\item Distribuzione di Bernoulli di parametro $0<q<1$: $p(0)=1-q$, $p(1)=q$, $p(n)=0$ per $n\geq 2$;
+	\item Distribuzione Binomiale di parametro $0<q<1$: $\displaystyle p(k)=\binom{n}{k} q^k (1-q)^{n-k}$;
+	\item Distribuzione di Poisson di parametro $\lambda\in\R$: $\displaystyle p(n)=\frac{\lambda^ne^{-\lambda}}{n!}$.
+	\end{itemize}
+\end{example}
+\begin{proposition}
+	Sia $(X,\mathcal{F}, \mu)$ uno spazio di misura e sia $\mathcal{E} \subseteq \mathcal{F}$ una sotto-$\sigma$-algebra, allora $\mu\lvert_{\mathcal{E}}$ è una misura di $(X,\mathcal{E})$.
+\end{proposition}
+\begin{definition}
+	Se $Y\subseteq X$, la \emph{sotto $\sigma$-algebra di sottoinsiemi} di $Y$ è $\mathcal{E}_Y=\{A\in \mathcal{F} : A \subseteq Y\}$.
+\end{definition}
+\begin{exercise}
+	$\mu\lvert_{Y}(A)=\mu\lvert_{\mathcal{E}_Y}(A)$. Inoltre se $Y$ è misurabile (cioè $Y\in \mathcal{F}$), allora questo è uguale a $\mu(A\cap Y)$.
+\end{exercise}
+\begin{definition}
+	Dato $(X,\mathcal{F}, \mu)$ uno spazio di misura, se per $A\in \mathcal{F}$ vale $\mu(A)=0$ allora $A$ si dice \emph{trascurabile}. L'insieme $\mathscr{N}=\left\{A\in \mathcal{F} : \mu(A)=0 \right\}$ è l'insieme di tutti i punti trascurabili. Se una certa proprietà vale $\forall x \in X\smallsetminus \mathscr{N}$ si dice che vale \emph{quasi ovunque} (o \emph{quasi certamente} se $ \mu $ è una probabilità).
+\end{definition}
+
+\begin{thm}[Coincidenza delle misure]
+	Sia $X$ insieme, $\mathcal{F}$ una $\sigma$-algebra e $\mu, \nu$ due misure su $(X,\mathcal{F})$. Sia $K\subseteq \mathcal{F}, K\neq \varnothing$ con le seguenti proprietà:
+	\begin{enumerate}[label=(\roman*)]
+	\item $\forall A \in K, \mu(A)=\nu(A)$, cioé $\mu$ e $\nu$ coincidono su tutto $K$;
+	\item $K$ è chiuso per intersezioni;
+	\item $\sigma(K)=\mathcal{F}$;
+	\item\label{th:coin:cusumano} $\exists (X_n)_{n\in \N}\subseteq K, \; X_n \uparrow X$ e $\forall n\; \mu(X_n)=\nu(X_n)<+\infty$.
+	\end{enumerate}
+Allora $\mu$ e $\nu$ coincidono su tutto $\mathcal{F}$.
+\end{thm}
+\begin{exercise}
+	Trovare un controesempio al teorema se non vale il punto \ref{th:coin:cusumano}, ovvero $X, \mathcal{F} \supseteq K$ e due misure $\mu,\nu$ che coincidano su $K$ ma non su tutto $\mathcal{F}$.
+\end{exercise}
+\begin{thm}[Estensione di Carathéodory]
+	Sia $X$ insieme e $\mathcal{A}\subseteq \mathscr{P}(X)$ un anello. Se $\mu\colon\mathcal{A}\to[0,+\infty]$ è $\sigma$-additiva, esiste un'estensione di $\mu$ ad una misura $\tilde\mu$ su $\sigma(\mathcal{A})$. Inoltre se l'estensione $\tilde\mu$ è $\sigma$-finita, allora essa è unica.
+\end{thm}
+\begin{example}
+	Siano $ X = \R $ e $ \mathcal{A} $ l'anello generato dagli intervalli della forma $[a,b)$. Sia:
+	\[ \mu\left( \bigcup_{i=1}^N [a_i,b_i) \right) \coloneqq \sum_{i=1}^N (b_i-a_i) \]
+	Per il teorema di Carathéodory, esiste una misura $\lambda$ su $\sigma(\mathcal{A})=\sigma(\tau)$\footnote{Data una topologia $ \tau $, $ \mathcal{B} \coloneqq \sigma(\tau) $ è detta \emph{$ \sigma $-algebra dei Boreliani}.} che estende $\mu$.
+\end{example}
+
+\begin{definition}
+	Dato $(X,\tau)$ spazio topologico, $\sigma(\tau)$ è la $\sigma$-algebra dei Boreliani $\mathcal{B}$.
+\end{definition}
+\begin{exercise}
+	Preso $ (\R,\tau_{\text{eu}}) $, $\card{\mathcal{B}} = |2^{\N}| $.
+	\textcolor{red}{Hint: facile per induzione transfinita.}
+\end{exercise} 
+\begin{exercise}
+	Dato $(\R^d, \mathcal{B}, \mu)$ spazio di misura sulla $\sigma$-algebra dei Boreliani, con $\mu$ misura finita sui compatti e invariante per traslazione (ovvero $\forall x \in \R^d,\ \forall A \in \mathcal{B},\ \mu(x+A)=\mu(A)$), allora $\exists c > 0 : \mu=c\lambda$ dove $\lambda$ è la misura di Lebesgue.
+\end{exercise}
+\begin{exercise}
+	È possibile non solo traslare lo spazio, ma anche trasformarlo tramite applicazioni lineari. Sia $T\in\mathrm{GL}(d,\R),\ \phi\colon\R^d \to \R^d,\ \phi(x)=Tx$. Allora $\forall A \in \mathcal{B}$, $ {\lambda(\phi(A))=\lambda(A)\abs{\det T} }$.
+	Hint:
+	\begin{enumerate}
+		\item $\mu([0,1]^d)=c\Rightarrow \mu([0, \frac{1}{k}]^d)=\frac{c}{k^d}\Rightarrow \mu=c\lambda$ su $\mathcal{A}$, usare il teorema sopra {\color{red}[NOTA: quale dei due?]};
+		\item Se $\mathbb{T} \in Gl(n,\R)$, allora esistono $P_1, P_2$ ortogonali e $D$ diagonale tali che $\mathbb{T}=P_1DP_2$.
+	\end{enumerate}
+\end{exercise}
+
+\begin{definition}[$ \sigma $-ideale]
+	Sia $ (X,\mathcal{F},\mu) $ uno spazio di misura. Diciamo che $ I\subseteq\mathcal{F} $ è un \emph{$ \sigma $-ideale} di $ \mathcal{F} $ se sono soddisfatte le seguenti proprietà:
+	\begin{enumerate}[label=(\roman*)]
+		\item $ \emptyset\in I $;
+		\item $ \forall N\in I,\ A\subseteq N \Rightarrow A \in I $;
+		\item $ \left\{A_n \right\}_{n\in\mathbb{N}} \subseteq I \Rightarrow \bigcup\limits_{n\in\mathbb{N}} A_n\in I $.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	Una misura è \emph{completa} se $ \mathscr{N} $ è $ \sigma $-ideale di $ \mathscr{P}(X) $.
+\end{definition}
+
+\begin{thm}[Completamento di Misura]
+	Sia $ (X,\mathcal{F},\mu) $ uno spazio di misura. Allora $ \mu $ si estende a una misura completa massimale su:
+	\[ \overline{\mathcal{F}} \coloneqq \left\{ A = E \cup N : E\in \mathcal{F},\ N\subseteq N' \in \mathscr{N} \right\} \]
+	\textcolor{red}{Siamo sicuri?}
+\end{thm}
+Dunque la misura sui Boreliani $\big(\R^d, \mathcal{B}, \lambda\big)$ si estende a $\big(\R^d, \mathcal{M}, \tilde\lambda \big)$ con $\tilde\lambda$ completa su \(\mathcal{M}\) insieme dei Lebesgue-misurabili.
+
+\begin{exercise}
+	$\card{\mathcal{M}}=|2^{\R}|$.
+	Hint: Prendere i sottoinsiemi dell'insieme di Cantor. \textcolor{red}{Difficile per induzione transfinita.}
+\end{exercise}
+\begin{exercise}[Insieme di Vitali]
+	Esiste $V\subseteq \R$, $V\not\in \mathcal{M}$, ovvero non misurabile secondo Lebesgue.
+\end{exercise}
+\begin{exercise}
+	Esiste un'estensione propria di $(\R^d, \mathcal{M}, \lambda)$ invariante per traslazione.
+\end{exercise}
+\begin{exercise}
+	In ZF senza l'assioma della scelta, esiste un modello in cui $\mathcal{M}=\mathscr{P}(\R^d)$, ovvero tutti gli insiemi sono Lebesgue-misurabili.
+\end{exercise}
+
+{\large\color{red} FUNZIONI MISURABILI}
