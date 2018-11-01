@@ -42,6 +42,7 @@ Sia $X$ un insieme, $\mathscr{P}(X)$ l'insieme delle parti di X.
 	Se $\mu$ è additiva, $\mu(\varnothing)=\mu(\varnothing)+\mu(\varnothing)$ da cui $\mu(\varnothing)=0$.
 \end{oss}
 
+\subsection{Spazi di misura}
 \begin{definition}
 	Si chiama \emph{spazio di misura} una terna $(X,\mathcal{F}, \mu)$ dove $X$ è un insieme, ${\mathcal{F}\subseteq \mathscr{P}(X)}$ una $\sigma$-algebra e $\mu\colon\mathcal{F} \to [0,+\infty]$ è $\sigma$-additiva. $\mu$ viene detta \emph{misura} e gli insiemi di $\mathcal{F}$ vengono detti \emph{misurabili}.
 	Inoltre:
@@ -136,8 +137,8 @@ Allora $\mu$ e $\nu$ coincidono su tutto $\mathcal{F}$.
 	È possibile non solo traslare lo spazio, ma anche trasformarlo tramite applicazioni lineari. Sia $T\in\mathrm{GL}(d,\R),\ \phi\colon\R^d \to \R^d,\ \phi(x)=Tx$. Allora $\forall A \in \mathcal{B}$, $ {\lambda(\phi(A))=\lambda(A)\abs{\det T} }$.
 	Hint:
 	\begin{enumerate}
-		\item $\mu([0,1]^d)=c\Rightarrow \mu([0, \frac{1}{k}]^d)=\frac{c}{k^d}\Rightarrow \mu=c\lambda$ su $\mathcal{A}$, usare il teorema sopra {\color{red}[NOTA: quale dei due?]};
-		\item Se $\mathbb{T} \in Gl(n,\R)$, allora esistono $P_1, P_2$ ortogonali e $D$ diagonale tali che $\mathbb{T}=P_1DP_2$.
+		\item $\mu\left ([0,1]^d\right )=c\Rightarrow \mu\left ([0, \frac{1}{k}]^d\right )=\frac{c}{k^d}\Rightarrow \mu=c\lambda$ su $\mathcal{A}$, usare il teorema sopra {\color{red}[NOTA: quale dei due?]};
+		\item Se $\mathbb{T} \in \mathrm{GL}(n,\R)$, allora esistono $P_1, P_2$ ortogonali e $D$ diagonale tali che $\mathbb{T}=P_1DP_2$.
 	\end{enumerate}
 \end{exercise}
 
@@ -175,4 +176,85 @@ Dunque la misura sui Boreliani $\big(\R^d, \mathcal{B}, \lambda\big)$ si estende
 	In ZF senza l'assioma della scelta, esiste un modello in cui $\mathcal{M}=\mathscr{P}(\R^d)$, ovvero tutti gli insiemi sono Lebesgue-misurabili.
 \end{exercise}
 
-{\large\color{red} FUNZIONI MISURABILI}
+\subsection{Funzioni misurabili}
+\begin{definition}
+	Siano $ (X,\mathcal{E},\mu) $ e $ (Y,\mathcal{F},\nu) $ spazi di misura e sia $ f\colon X\to Y $.
+	Diciamo che $ f $ è \emph{$ \mathcal{E} $-misurabile} se:
+	\[ \forall F \in \mathcal{F}, \ f^{-1}(F) \in \mathcal{E} \]
+	(controimmagini di misurabili sono misurabili).
+\end{definition}
+\begin{exercise}
+	$ \chi_A \colon X \to \{0,1\} $ è misurabile se \textcolor{red}{e solo se} $ A $ è misurabile.
+\end{exercise}
+\begin{oss}
+	La funzione vuota è misurabile.
+\end{oss}
+
+\begin{definition}[Funzione semplice]
+	Sia $ \phi\colon (X,\mathcal{E}) \to (\R \cup \{\pm\infty\}, \mathcal{B}) $. Diciamo che $ \phi $ è \emph{semplice} se si può scrivere come:
+	\[ \phi(x) = \sum_{i=0}^N a_i \chi_{A_i}(x) \]
+	con $ a_i \in (-\infty, +\infty] $ e $ A_i \in \mathcal{E} $. \textcolor{red}{Non sono sicuro sugli infiniti.}
+\end{definition}
+\begin{oss}
+	Funzioni semplici sono misurabili.
+\end{oss}
+\begin{proposition}
+	Sia $ f\colon (X,\mathcal{E}) \to [0, +\infty] $ misurabile. Allora
+	\[ \exists (\phi_n)_{n\in\N},\ \phi_n \text{ semplici},\ \phi_n \nearrow f \]
+	cioè ogni funzione misurabile $ f $ si può approssimare con una successione di funzioni semplici $ \phi_n $ crescenti in $ n $ e che tendono puntualmente a $ f $.
+	Inoltre, se $ f\colon (X,\mathcal{E}) \to [0,+\infty) $, si può avere $ \phi_n \rightrightarrows f $.
+\end{proposition}
+\begin{proof}
+	Poniamo:
+	\[ \phi_n (x) \coloneqq
+    \begin{cases}
+			\frac{k}{2^n} & \text{se } x \in f^{-1}\left( \left[\frac{k}{2^n}, \frac{k+1}{2^n} \right)  \right) \quad\text{per } k=0,\cdots,n2^n-1\\
+			n             & \text{se } x \in f^{-1}\left( [n, +\infty] \right)
+		\end{cases}
+	 \]
+	Questa è una funzione semplice ben definita in quanto è costante su insiemi misurabili (le controimmagini tramite $ f $), $ \phi_n $ è non decrescente ed ovviamente vale $ \phi_n(x) \leq f(x)\ \forall x\in X $.
+	Fissiamo $ x\in X $. Se $ f(x)<+\infty $ fissiamo $ \epsilon > 0 $ e prendiamo $ \bar n > \max\{ f(x), -\log_2(\epsilon) \} $. Allora $ \exists k : x\in f^{-1}\left( \left[\dfrac{k}{2^{\bar n} }, \dfrac{k+1}{2^{\bar n} } \right) \right) $ e quindi $ \forall n\ge \bar{n}\ \abs{\phi_n(x) - f(x)} \leq \abs{\phi_{\bar{n}}(x) - f(x)} \leq \dfrac{1}{2^{\bar n}} < \epsilon $.
+
+	Se invece $ f(x) = +\infty $ allora $ \forall n\ x\in f^{-1}\left( [n, +\infty] \right) $ e quindi $ \phi_n(x) = n \to +\infty = f(x) $. Questo dimostra la convergenza puntuale.
+
+	\textcolor{red}{Convergenza uniforme?}
+\end{proof}
+\begin{proposition}[Criterio di Doob]
+	Date $ f $ e $ g $ misurabili come da diagramma, esiste $ h $ misurabile tale che $ g=h\circ f $:
+	\begin{center}
+		\begin{tikzcd}
+			(X,\mathcal{E}) \arrow[r, "g \text{ mis.}"] \arrow[d, "f \text{ mis.}" left] & (\R,\mathcal{B}) \\
+			(Y,\mathcal{F}) \arrow[ru, dashed, "\exists h \text{ mis.}" below right]
+		\end{tikzcd}
+	\end{center}
+\end{proposition}
+\begin{proof}
+	\textcolor{red}{content}
+\end{proof}
+
+\begin{definition}[Misura immagine]
+	Sia $ f\colon (X,\mathcal{E}) \to (Y,\mathcal{F}) $ e sia $ \mu $ una misura su $ (X,\mathcal{E}) $. Chiamiamo \emph{misura immagine di $ \mu $ tramite $ f $} la misura così definita:
+	\begin{align*}
+		f_\sharp \mu\colon \mathcal{F} & \to [0,+\infty]                      \\
+		A                              & \mapsto \mu \left( f^{-1}(A) \right)
+	\end{align*}
+	Inoltre, se $ (X,\mathcal{E}) = (Y,\mathcal{F}) $ e $ f_\sharp\mu = \mu $ diciamo che $ \mu $ è $ f $-invariante.
+\end{definition}
+\begin{example}
+	Sia $ X = [0,1] $ con la misura di Lebesgue $ \lambda $ (che in questo caso è una probabilità). Sia $ f\colon X\to X $.
+	\begin{itemize}
+		\item Se $ f(x) \equiv 0 $, allora $ f_\sharp \lambda = \delta_0 $.
+		\item \emph{Lancio della moneta}: se $ f(x) = \chi_{[0,\frac{1}{2}]}(x) $, allora $ f_\sharp \lambda (A) =
+		\begin{cases}
+			1	& \text{se } 0\in A \wedge 1 \in A \\
+			1/2 & \text{se } 0\in A \veebar 1\in A \\
+			0			& \text{altrimenti}
+		\end{cases} $
+	\end{itemize}
+\end{example}
+\begin{example}
+	Sia $ \tau_x\colon \R^d\to\R^d $ la traslazione di $ x\in\R^d $: $ \tau_x(y) \coloneqq x+y $.
+	Allora $ (\tau_x)_\sharp\lambda = \lambda $, cioè la misura di Lebesgue è invariante per traslazioni.
+
+	Consideriamo invece $ \phi_A\colon\R^d\to\R^d $ definita come $ \phi(x) \coloneqq Ax $ con $ A \in\mathrm{GL}(d,\R) $. Allora $ (\phi_A)_\sharp\lambda = \lambda\abs{\det A}^{-1} $.
+\end{example}
