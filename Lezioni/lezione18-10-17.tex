@@ -1,0 +1,34 @@
+\section{Lezione del 17/10/2018 [Grotto]}
+\subsection{Integrali}
+\begin{definition}[Integrale di una funzione semplice]
+    Sia $ (X,\mathcal{F},\mu) $ uno spazio di misura e sia $ \phi\colon X\to [0,+\infty] $ una funzione semplice $ \phi(x) \coloneqq \sum_{i=1}^N a_i\chi_{A_i}(x)$ con $ a_i\in[0,+\infty] $. Definiamo l'integrale di $ \phi $ come:
+    \[ \int_X \phi(x)\dif\mu(x) \coloneqq \sum_{i=1}^{N} a_i \mu(A_i) \]
+\end{definition}
+\begin{definition}[Integrale di funzioni non negative]
+    Sia $ f\colon X\to [0,+\infty] $ una funzione misurabile. Definiamo il suo integrale come:
+    \[ \int_X f(x)\dif\mu(x) \coloneqq \sup\left\{ \int_X \phi(x)\dif\mu(x) : 0 \leq \phi(x) \leq f(x) \text{ con $\phi$ semplice} \right\} \]
+    Se l'integrale di $ f $ è finito, questa si dirà \emph{integrabile} o \emph{sommabile}.
+\end{definition}
+\begin{definition}[Integrale]
+    Data $ f\colon X\to\R $ e dette $ f^+(x) = \max\left\{f(x),0\right\} $ e $ f^-(x) = \max\left\{-f(x), 0\right\} $, $ f $ si dice \emph{integrabile} o \emph{sommabile} se lo sono $ f^+ $ e $ f^- $ e in tal caso si pone:
+    \[ \int_X f(x)\dif\mu(x) \coloneqq \int_X f^+(x)\dif\mu(x) - \int_X f^-(x)\dif\mu(x) \]
+    Se infine $ f\colon X\to\C $ si pone:
+    \[ \int_X f(x)\dif\mu(x) \coloneqq \int_X\Re[f(x)]\dif\mu(x) + i\int_X\Im[f(x)]\dif\mu(x) \]
+\end{definition}
+Elenchiamo alcune proprietà dell'integrale di una funzione $ f\colon X\to \R $:
+\begin{itemize}
+    \item \emph{Monotonia}: $ 0 \leq g \leq f \Rightarrow \int\! g\dif\mu \leq \int\! f\dif\mu $;
+    \item Se $ f=g $ quasi ovunque, allora $ \int f\dif\mu = \int g\dif\mu $;
+    \item L'integrale è lineare rispetto all'integranda;
+    \item $ f $ è misurabile se e solo se $ \abs{f} $ è integrabile e in tal caso vale:
+    \[ \abs{ \int_X f(x)\dif\mu(x)} \leq \int_X \abs{f(x)}\dif\mu(x) \]
+    \item I seguenti fatti sono equivalenti:
+    \begin{enumerate}[label=(\roman*)]
+        \item $ \int_X \abs{f(x)}\dif\mu(x) = 0$;
+        \item $ f = 0 $ quasi ovunque;
+        \item $ \int_A f(x)\dif\mu(x) $ \textcolor{red}{Boh...} $ \forall A\in\mathcal{F} $ \footnote{Si pone $ \int_A f(x)\dif\mu(x) \coloneqq \int_A f\rvert_A(x) \dif\mu\rvert_A(x) $}
+    \end{enumerate}
+\end{itemize}
+\begin{exercise}[Disuguaglianza di Markov]
+    content
+\end{exercise}
