@@ -18,5 +18,5 @@ plt.rcParams['contour.negative_linestyle'] = 'solid'
 plt.contour(x, y, E(x, y),  60, colors='b', linewidths=0.3)
 plt.xlabel('$ x $')
 plt.ylabel('$ y $')
-plt.savefig('fase-pendolo.png', dpi=1200)
+plt.savefig('fase-pendolo.png', dpi=300)
 plt.close()

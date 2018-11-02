@@ -11,7 +11,7 @@ j = 0
 for e in np.linspace(0.01, 1, num=6):
     for y0 in np.linspace(-0.4, 0.4, num=20):
         print('y0 = %.2f' %y0)
-        for x0 in np.linspace(0., 2*np.pi, num=200):
+        for x0 in np.linspace(0., 2*np.pi, num=100):
             x = [x0]
             y = [y0]
             for i in range(n):
@@ -21,6 +21,6 @@ for e in np.linspace(0.01, 1, num=6):
     plt.title(r'$ \varepsilon = %.2f $' %e)
     plt.xlabel('$ x $')
     plt.ylabel('$ y $')
-    plt.savefig('sm'+str(j)+'.png', dpi=1200)
+    plt.savefig('sm'+str(j)+'.png', dpi=300)
     plt.close()
     j += 1
