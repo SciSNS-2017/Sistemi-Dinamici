@@ -27,7 +27,7 @@ Elenchiamo alcune proprietà dell'integrale di una funzione $ f\colon X\to \R $:
     \begin{enumerate}[label=(\roman*)]
         \item $ \int_X \abs{f(x)}\dif\mu(x) = 0$;
         \item $ f = 0 $ quasi ovunque;
-        \item $ \int_A f(x)\dif\mu(x) $ \textcolor{red}{Boh...} $ \forall A\in\mathcal{F} $ \footnote{Si pone $ \int_A f(x)\dif\mu(x) \coloneqq \int_A f\rvert_A(x) \dif\mu\rvert_A(x) $}.
+        \item $ \int_A f(x)\dif\mu(x) = 0 \quad \forall A\in\mathcal{F} $ \footnote{Si pone $ \int_A f(x)\dif\mu(x) \coloneqq \int_A f\rvert_A(x) \dif\mu\rvert_A(x) $}.
     \end{enumerate}
 \end{enumerate}
 \begin{definition}
@@ -88,3 +88,55 @@ Abbiamo dunque:
 La \emph{quasi-norma} passa al quoziente per la proprietà \eqref{it:quasi_ovunque} e diventa una vera norma.
 
 Notiamo che gli elementi di $ L^p $ sono \emph{classi di equivalenza} di funzioni, ma d'ora in poi, per semplicità, diremo che sono semplicemente \emph{funzioni}, sottintendendo che si sta scegliendo un rappresentante della classe di equivalenza in questione.
+
+\subsection{Misure prodotto e integrali multipli}
+Siano $ (X,\mathcal{E},\mu) $ e $ (Y,\mathcal{F},\nu) $ spazi di misura $ \sigma $-finiti. Definiamo:
+\[ \mathcal{E} \otimes \mathcal{F} \coloneqq \left\{ E\times F : E \in \mathcal{E}, F \in \mathcal{F} \right\} \]
+Dato $ A \in \mathcal{E}\otimes\mathcal{F} $, $ \pi_x(A) $ e $ \pi_y(A) $ (\textcolor{red}{sezioni di A a $ x $ o $ y $ fissate}) sono $ \mathcal{F} $- e $ \mathcal{E} $-misurabili rispettivamente.
+Esiste unica una misura $ \mu\otimes\nu $ su $ (X\times Y, \mathcal{E}\otimes\mathcal{F}) $ che estende
+\[ (\mu\otimes\nu)(E\times F) = \mu(E)\mu(F) \qquad \forall E\in\mathcal{E}\ \forall F\in\mathcal{F} \]
+\[ (\mu\otimes\nu)(A) = \int_X \nu(\pi_x A)\dif\mu(x) = \int_Y \mu(\pi_y A)\dif\nu(y) \]
+\begin{thm}[Tonelli]\label{thm:Tonelli}
+    Sia $ f\colon X\times Y \to [0,+\infty] $ misurabile su $ (X\times Y,\mathcal{E}\otimes\mathcal{F}) $. Allora:
+    \[ \int_{X\times Y} f(x,y)\dif(\mu\otimes\nu)(x,y) = \int_X \left( \int_Y f(x,y) \dif\nu(y) \right) \dif\mu(x) = \int_Y \left( \int_X f(x,y) \dif\mu(x) \right) \dif\nu(y) \]
+\end{thm}
+\begin{thm}[Fubini]
+    Sia $ f \in L^1(X\times Y,\mathcal{E}\otimes\mathcal{Y},\mu\otimes\nu) $. Allora vale la tesi del teorema \ref{thm:Tonelli} per funzioni a valori di segno qualsiasi.
+\end{thm}
+
+\subsection{Cambi di variabili}
+Dato $ (X,\mathcal{F},\mu) $ $ \sigma $-finito, $ f\colon X\to[0,+\infty] $ misurabile, chiamiamo \emph{misura con densità} una del tipo:
+\[ \nu(A) \coloneqq \int_A f(x)\dif\mu(x) \]
+Se $ f $ è anche integrabile, allora la misura con densità è una misura finita.
+\begin{example}[Gaussiana su $ \R $]
+    \[ \dif\mu(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp{\left (-\frac{x^2}{2\sigma}\right )} \dif x \]
+\end{example}
+\begin{example}[Distribuzione di Cauchy]
+    \[ \dif\mu(x) = \frac{1}{\pi(1+x^2)}\dif x \]
+\end{example}
+
+\begin{definition}[Assoluta continuità delle misure]
+    Date due misure $ \mu $ e $ \nu $ diciamo che $ \nu $ è \emph{assolutamente continua} rispetto a $ \mu $ ($ \nu \ll \mu $) se vale $ \mu(A) = 0 \Rightarrow \nu(A) = 0\ \forall A $
+\end{definition}
+\begin{thm}[Radon-Nicodym]
+    Se $ \nu \ll \mu $, allora $ \exists f\colon X\to [0,+\infty] $ misurabile tale che $ \nu(A) = \int_A f(x)\dif\mu(x) $.
+\end{thm}
+
+\begin{thm}[Cambio di variabile per funzioni lisce]
+    Sia $ V \subseteq\R^d $ aperto, $ W\subseteq\R^d $ aperto limitato e $ T\colon V\subseteq \R^d \to W \subseteq \R^d $ differenziabile, invertibile con inversa continua. Allora $ \forall f\in L^1(W) $
+    \[ \int_W f(y)\dif y = \int_V f(T(x)) \abs{\det{\jac{T}(x)}} \dif x \]
+\end{thm}
+\begin{oss}
+    Data $ \dif\mu(x) = \rho(x)\dif x $, $ \dif(T_\sharp\mu)(y) = \rho(T^{-1}(y)) \abs{\det{\jac T}(T^{-1}(y))}^{-1} \dif y $.
+\end{oss}
+
+\textcolor{red}{Cose su misure invarianti.}
+
+\begin{exercise}[Mappa logistica]
+    Sia $ Q\colon [0,1] \to [0,1] $ definita come $ Q(x) = 4x(1-x) $; una misura invariante è:
+    \[ \dif\mu(x) = \frac{\dif x}{\pi\sqrt{x(1-x)}} \]
+\end{exercise}
+\begin{exercise}
+    Sia $ N\colon \R\to\R $ definita come $ N(x) = \frac{1}{2} \left( x-\frac{1}{x} \right) $; una misura invariante è:
+    \[ \dif y(x) = \frac{\dif x}{\pi(1+x^2)} \]
+\end{exercise}
