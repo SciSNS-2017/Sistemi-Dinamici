@@ -1,0 +1,9 @@
+compile_pdf:
+  image: aergus/latex
+  script:
+    - sed -i 's/\\figureonfalse/\\figureontrue/' main.tex
+    - latexmk -pdf main.tex
+    - mv main.pdf Sistemi-Dinamici.pdf
+  artifacts:
+    paths:
+      - Sistemi-Dinamici.pdf

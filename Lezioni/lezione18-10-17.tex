@@ -1,0 +1,90 @@
+\section{Lezione del 17/10/2018 [Grotto]}
+\subsection{Integrali}
+\begin{definition}[Integrale di una funzione semplice]
+    Sia $ (X,\mathcal{F},\mu) $ uno spazio di misura e sia $ \phi\colon X\to [0,+\infty] $ una funzione semplice $ \phi(x) \coloneqq \sum_{i=1}^N a_i\chi_{A_i}(x)$ con $ a_i\in[0,+\infty] $. Definiamo l'integrale di $ \phi $ come:
+    \[ \int_X \phi(x)\dif\mu(x) \coloneqq \sum_{i=1}^{N} a_i \mu(A_i) \]
+\end{definition}
+\begin{definition}[Integrale di funzioni non negative]
+    Sia $ f\colon X\to [0,+\infty] $ una funzione misurabile. Definiamo il suo integrale come:
+    \[ \int_X f(x)\dif\mu(x) \coloneqq \sup\left\{ \int_X \phi(x)\dif\mu(x) : 0 \leq \phi(x) \leq f(x) \text{ con $\phi$ semplice} \right\} \]
+    Se l'integrale di $ f $ è finito, questa si dirà \emph{integrabile} o \emph{sommabile}.
+\end{definition}
+\begin{definition}[Integrale]
+    Data $ f\colon X\to\R $ e dette $ f^+(x) = \max\left\{f(x),0\right\} $ e $ f^-(x) = \max\left\{-f(x), 0\right\} $, $ f $ si dice \emph{integrabile} o \emph{sommabile} se lo sono $ f^+ $ e $ f^- $ e in tal caso si pone:
+    \[ \int_X f(x)\dif\mu(x) \coloneqq \int_X f^+(x)\dif\mu(x) - \int_X f^-(x)\dif\mu(x) \]
+    Se infine $ f\colon X\to\C $ si pone:
+    \[ \int_X f(x)\dif\mu(x) \coloneqq \int_X\Re[f(x)]\dif\mu(x) + i\int_X\Im[f(x)]\dif\mu(x) \]
+\end{definition}
+Elenchiamo alcune proprietà dell'integrale di una funzione $ f\colon X\to \R $:
+\begin{enumerate}
+    \item \emph{Monotonia}: $ 0 \leq g \leq f \Rightarrow \int\! g\dif\mu \leq \int\! f\dif\mu $;
+    \item \label{it:quasi_ovunque}Se $ f=g $ quasi ovunque, allora $ \int f\dif\mu = \int g\dif\mu $;
+    \item Sia $ \mu $ una misura su $ X $ e $ \bar{\mu} $ il suo completamento. Allora $ \int_X f\dif\mu = \int_X f\dif\bar{\mu} $;
+    \item L'integrale è lineare rispetto all'integranda;
+    \item $ f $ è misurabile se e solo se $ \abs{f} $ è integrabile e in tal caso vale:
+    \[ \abs{ \int_X f(x)\dif\mu(x)} \leq \int_X \abs{f(x)}\dif\mu(x) \]
+    \item I seguenti fatti sono equivalenti:
+    \begin{enumerate}[label=(\roman*)]
+        \item $ \int_X \abs{f(x)}\dif\mu(x) = 0$;
+        \item $ f = 0 $ quasi ovunque;
+        \item $ \int_A f(x)\dif\mu(x) $ \textcolor{red}{Boh...} $ \forall A\in\mathcal{F} $ \footnote{Si pone $ \int_A f(x)\dif\mu(x) \coloneqq \int_A f\rvert_A(x) \dif\mu\rvert_A(x) $}.
+    \end{enumerate}
+\end{enumerate}
+\begin{definition}
+    Chiamiamo $ \mathscr{L}^1(X,\mathcal{F},\mu) $ lo spazio delle funzioni (misurabili) integrabili.
+\end{definition}
+\begin{exercise}[Disuguaglianza di Markov]
+    Sia $ f\in\mathscr{L}^1(X,\mathcal{F},\mu) $ con $ f\geq 0 $ e sia $ \lambda > 0 $. Allora:
+    \[ \mu\left( \left\{ x\in X : f(x) \ge \lambda \right\}  \right) \leq \frac{1}{\lambda}\int_X f(x)\dif\mu(x) \]
+\end{exercise}
+\begin{proof}
+    $ \lambda\mu\left( \{ f \geq \lambda \} \right) = \int_X \chi_{ \{f\geq\lambda \} } \lambda \dif\mu = \int_{ \{ f \geq \lambda \} } \lambda \dif\mu \leq \int_{ \{ f \geq \lambda \} } f\dif\mu \leq \int_X f\dif\mu $
+\end{proof}
+\begin{thm}[Beppo Levi o Convergenza Monotona]
+    Sia $ (f_n)_{n\in\N} $ una successione di funzioni misurabili con $ f_n \geq 0 $ e sia $ f\colon X\to[0,+\infty] $ tale che $ f_n\nearrow f $ quasi ovunque. Allora $ f $ è misurabile e vale:
+    \[ \int_X f(x)\dif\mu(x) = \lim_{n\to+\infty} \int_X f_n(x)\dif\mu(x) \]
+\end{thm}
+\begin{proof}
+    \textcolor{red}{content}
+\end{proof}
+\begin{exercise}[Assoluta continuità]
+    Dimostrare che per ogni $ f \in \mathscr{L}^1(X,\mathcal{F},\mu) $ vale:
+    \[ \quad \forall\epsilon > 0\ \exists \delta > 0 : \forall A\in\mathcal{F}\ \mu(A) < \delta \Rightarrow \int_A \abs{f(x)} \dif\mu(x) < \epsilon \]
+\end{exercise}
+\begin{exercise}[Lemma di Fatou]
+    Siano $ (f_n) $ con $ f_n\colon X\to[0,+\infty] $ misurabili. Allora:
+    \[ \int_X \liminf_{n\to +\infty}f_n(x)\dif\mu(x) \leq \liminf_{n\to +\infty} \int_X f_n(x)\dif\mu(x) \]
+\end{exercise}
+\begin{exercise}[Convergenza dominata]
+    Siano $ f, f_n\colon X\to\R $ tali che $ f_n\to f $ quasi ovunque. Sia $ g\in\mathscr{L}^1(X) $ con:
+    \[ \abs{f_n(x)} \leq g(x) \text{ quasi ovunque} \]
+    Allora $ f $ è integrabile e vale:
+    \[ \int_X f(x)\dif\mu(x) = \lim_{n\to +\infty}\int_X f_n(x)\dif\mu(x) \]
+\end{exercise}
+\begin{exercise}[Disuguaglianza di Jensen]
+    Sia $ \mu $ una misura di probabilità su $ X $, $ f\in\mathscr{L}^1(X) $, $ \phi\colon \R\to\R $ convessa. Allora:
+    \[ \phi\left(\int_X f(x)\dif\mu(x) \right) \leq \int_X (\phi\circ f)(x)\dif\mu(x) \]
+\end{exercise}
+\subsection{Spazi $ L^p $}
+\begin{definition}[Spazi $ \mathscr{L}^p $]
+    Sia $ (X,\mathcal{F},\mu) $ uno spazio di misura e $ p\in[0,+\infty) $. Definiamo:
+    \[ \mathscr{L}^p(X,\mathcal{F},\mu) \coloneqq \left\{ f\colon X\to \R : \int_X \abs{f(x)}^p \dif\mu(x) < +\infty \right\}  \]
+    Su tale spazio definiamo una \emph{semi-norma}:\footnote{Ossia una ``norma'' per cui non vale $ \norm{v} = 0 \Rightarrow v=0 $.}
+    \[ \norm{f}_p \coloneqq \left( \int_X \abs{f(x)}^p\dif\mu(x) \right)^{\frac{1}{p}} \]
+\end{definition}
+\begin{exercise}[Disuguaglianza di Hölder]
+    Siano $ p, q \in [1,+\infty) $ con $ \frac{1}{p} + \frac{1}{q} = 1 $. Allora $ \forall f,g \in \mathscr{L}^1 $ vale:
+    \[ \norm{fg}_{1} \leq \norm{f}_p\norm{g}_q \]
+\end{exercise}
+\begin{exercise}[Disuguaglianza di Minkowski]
+    Sia $ p\in[1,+\infty) $ e siano $ f,g \in\mathscr{L}^p$. Allora $ f+g \in\mathscr{L}^p $ e vale:
+    \[ \norm{f+g}_p \leq \norm{f}_p + \norm{g}_p \]
+\end{exercise}
+
+Al fine di ottenere un vero spazio normato, quozientiamo $ \mathscr{L}^p $ per un'opportuna relazione di equivalenza, definita come:
+\[ f \sim g \iff f = g \text{ quasi ovunque} \]
+Abbiamo dunque:
+\[ L^p(X,\mathcal{F},\mu) \coloneqq \faktor{\mathscr{L}^p(X,\mathcal{F},\mu)}{\sim} \]
+La \emph{quasi-norma} passa al quoziente per la proprietà \eqref{it:quasi_ovunque} e diventa una vera norma.
+
+Notiamo che gli elementi di $ L^p $ sono \emph{classi di equivalenza} di funzioni, ma d'ora in poi, per semplicità, diremo che sono semplicemente \emph{funzioni}, sottintendendo che si sta scegliendo un rappresentante della classe di equivalenza in questione.

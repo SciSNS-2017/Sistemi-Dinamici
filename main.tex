@@ -2,6 +2,8 @@
 
 \usepackage{fullpage}
 \usepackage{style}
+\usepackage{tikz-cd}
+
 \newif\iffigureon
 \figureonfalse
 
@@ -12,8 +14,11 @@
 \newtheorem{example}{Esempio}[chapter]
 \newtheorem{exercise}{Esercizio}[chapter]
 
-\theoremstyle{themorem}
-\newtheorem{theorem}{Teorema}[chapter]
+\theoremstyle{remark}
+\newtheorem{oss}{Osservazione}[chapter]
+
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}[chapter]
 \newtheorem{proposition}{Proposizione}[chapter]
 
 \numberwithin{equation}{chapter}
@@ -43,6 +48,7 @@ Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Cond
 \chapter{Lezioni}
 \input{Lezioni/lezione18-10-09.tex}
 \input{Lezioni/lezione18-10-10.tex}
+\input{Lezioni/lezione18-10-17.tex}
 \input{Lezioni/lezione18-10-24.tex}
 
 
