@@ -1,4 +1,4 @@
-\chapter{Lezione del 24/10/2018 [Marmi]}
+\section{Lezione del 24/10/2018 [Marmi]}
 
 \begin{definition}[numero algebrico]
 	Un numero $ \alpha $ in $ \R $ o $ \C $ si dice algebrico se è radice di un polinomio a coefficienti interi, cioè se esiste $ P \in \Z[x] $ tale che $ P(\alpha) = 0 $. \\
@@ -29,7 +29,7 @@
 	\]
 \end{proof}
 
-\section{Back to dinamica topologica}
+\subsection{Back to dinamica topologica}
 \emph{Setting}: $ (X, d) $ è uno spazio metrico compatto, $ f \colon X \to X $ è una funzione continua e la dinamica è quella data dall'iterazione di $ f $. 
 
 \begin{definition}[funzione topologicamente transitiva]
@@ -53,7 +53,7 @@ Osserviamo che la transitività topologica così come la minimalità sono invari
 		\item \emph{Idemcomponibilità topologica}: se $ U \subseteq X $ è aperto $ f $-totalmente invariante, i.e. $ U = f(U) = f^{-1}(U) $, allora $ U = \emptyset $ o $ \overline{U} = X $.
 		\item Per ogni coppia di aperti non vuoti $ U, V \subseteq X $ esiste un $ n_0 \in \Z $ tale che $ f^{n_0}(U) \cap V \neq \emptyset $. 
 		\item $ \{x \in X : \overline{\mathcal{O}_f(x)} = X\} $ è un $ G_\delta $-denso\footnote{%
-			Un sottoinsieme $ A $ di uno spazio topologico $ (X, \tau) $ si dice $ G_\delta $-denso se è intersezione numerabile di aperti densi. In particolare per il Teorema di B\^{a}ire tale condizione implica che $ A $ stesso è denso. 
+			Un sottoinsieme $ A $ di uno spazio topologico $ (X, \tau) $ si dice $ G_\delta $-denso se è intersezione numerabile di aperti densi. 
 		}.
 	\end{enumerate}
 \end{theorem}
@@ -64,7 +64,7 @@ Osserviamo che la transitività topologica così come la minimalità sono invari
 		\item[$ (i) \Rightarrow (ii) $] Per ipotesi $ \exists x \in X : \overline{\mathcal{O}_f(x)} = X $. Allora se $ U \neq \emptyset, \ \exists n \in \Z : f^{n}(U) \in U $ da cui essendo $ f $-totalmente invariante, $ \forall n \in Z, \ f^n(x) \in U $ ovvero $ \overline{U} = \overline{\mathcal{O}_f(x)} = X $. 
 		\item[$ (ii) \Rightarrow (iii) $] Dato $ U $ aperto e non vuoto costruiamo un aperto non vuoto e $ f $-totalmente invariante ponendo $ U' \coloneqq \bigcup_{n \in \Z} f^n(U) $. Per ipotesi $ \overline{U'} = X $ da cui $ U' \cap V \neq \emptyset $. Allora per definizione $ \exists n_0 \in \Z : f^{n_0}(U) \cap V \neq \emptyset $.
 		\item[$ (iii) \Rightarrow (iv) $] Ricordiamo che gli spazi metrici compatti sono \emph{spazi polacchi} cioè ammettono una base numerabile di aperti $ \{U_i\}_{i \in \N} $. Osserviamo che il fatto che $ \overline{\mathcal{O}_f(x)} = X $ è equivalente a chiedere che $ \forall n \in \N, \ \exists j \in \Z : f^j(x) \in U_n $ e cioè che $ x \in \bigcap_{n \in \N} \bigcup_{m \in \Z} f^{m}(U_n) $. Ora per ipotesi $ \bigcup_{m \in \Z} f^m(x) $ ha intersezione non vuota con ogni aperto non vuoto, cioè è denso in $ X $. Per definizione questo implica che $ \{x \in X : \overline{\mathcal{O}_f(x)} = X\} $ è un $ G_\delta $-denso. 
-		\item[$ (iv) \Rightarrow (i) $] ?
+		\item[$ (iv) \Rightarrow (i) $] Essendo $ \{x \in X : \overline{\mathcal{O}_f(x)} = X\} $ un $ G_\delta $-denso per il Teorema di Ba\^{i}re è anche un denso e pertanto non vuoto. Dunque $ \exists x \in X : \overline{\mathcal{O}_f(x)} = X $ cioè $ f $ è topologicamente transitiva. \qedhere
 	\end{enumerate}
 \end{proof}
 
@@ -87,10 +87,21 @@ Osserviamo che se $ f \colon X \to X $ è solo continua allora $ (i) $ e $ (ii) 
 \end{definition}
 
 \begin{example}[dilatazione sul toro e shift]
-	Fissato $ m \geq 2 $ intero sia $ E_m \colon \T^1 \to \T^1 $ data da $ E_m(x) \coloneqq mx \pmod{1} $. (\texttt{forse}) Su $ \T^1 $ poniamo la distanza euclidea modulo 1, cioè $ d(x, y) = \inf_{p \in \Z} \abs{x - y - p} $ rispetto alla quale è uno spazio metrico compatto. Osserviamo i seguenti fatti
+	Fissato $ m \geq 2 $ intero sia $ E_m \colon \T^1 \to \T^1 $ data da $ E_m(x) \coloneqq mx \pmod{1} $. Su $ \T^1 $ poniamo la distanza euclidea modulo 1, cioè $ d(x, y) = \inf_{p \in \Z} \abs{x - y - p} $ rispetto alla quale è uno spazio metrico compatto. Osserviamo i seguenti fatti
 	\begin{itemize}
-		\item $ E_m $ è una mappa \emph{espansiva}, cioè se $ x, y \in \T^1  $ e $ d(x, y) = d_0 $ allora $ d(E_m(x), E_m(y)) = m d_0 $. ?? (0.1, 0.9)
+		\item $ E_m $ è una mappa \emph{espansiva}, cioè se $ x, y \in \T^1 $ e $ d(x, y) < 1/2^n $ allora $ d(E_m(x), E_m(y)) = m d(x, y) $ per un qualche $ n $. (??)
 		\item $ E_m $ conserva la misura di Lebesgue 
+		\item $ E_m $ è un fattore dello \emph{shift su $ m $ simboli}. \\
+		Posto $ \Sigma_m \coloneqq \{0, 1, \ldots, m-1\}^{\N} $ definiamo la mappa $ \sigma \colon \Sigma_m \to \Sigma_m $ di shift su $ m $ simboli che dato un elemento $ (\epsilon_i)_{i \in \N} \in \Sigma_m $ agisce sulla successione avanzando di uno gli indici $ \sigma\left((\epsilon_i)_{i \in \N}\right) \coloneqq (\epsilon_{i + 1})_{i \in \N} $. \\
+		Sull'insieme $ \Sigma_m $ è possibile definire un concetto di \emph{profondità} dalla quale si separano due successioni come 
+		\[
+			a\left((\epsilon_i), (\delta_i)\right) \coloneqq \inf_{i \in \N} \{\epsilon_i \neq \delta_i\}
+		\]
+		a partire dalla quale possiamo definire una distanza tra successioni 
+		\[
+			d\left((\epsilon_i), (\delta_i)\right) \coloneqq m^{-a\left((\epsilon_i), (\delta_i)\right)}. 
+		\]
+		Rispetto a tale distanza $ \Sigma_m $ è uno spazio metrico compatto e $ \sigma $ è una funzione continua ma non è un omeomorfismo. Ciò è invece vero se al posto di $ \Sigma_m $ si considera l'insieme delle successioni bi-infinite $ \tilde{\Sigma}_m \coloneqq \{0, 1, \ldots, m-1\}^{\Z} $. 
 	\end{itemize}
 \end{example}
 
