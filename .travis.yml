@@ -1,0 +1,21 @@
+sudo: required
+language: generic
+services:
+- docker
+
+before_install:
+- docker run aergus/latex
+- sudo apt-get update
+- sudo apt-get install -y latexmk
+- sudo apt-get install -y texlive-extra-utils
+- sudo sed -i 's/pdflatex/latexmk/' `which texliveonfly`
+- sudo sed -i 's/synctex=1/pdf/' `which texliveonfly`
+
+script:
+- sed -i 's/\\figureonfalse/\\figureontrue/' main.tex
+- texliveonfly main.tex
+- mv main.pdf Sistemi-Dinamici.pdf
+
+addons:
+  artifacts: true
+  paths: Sistemi-Dinamici.pdf
