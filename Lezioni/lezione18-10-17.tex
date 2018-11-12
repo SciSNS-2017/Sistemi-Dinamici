@@ -4,42 +4,55 @@
     Sia $ (X,\mathcal{F},\mu) $ uno spazio di misura e sia $ \phi\colon X\to [0,+\infty] $ una funzione semplice $ \phi(x) \coloneqq \sum_{i=1}^N a_i\chi_{A_i}(x)$ con $ a_i\in[0,+\infty] $. Definiamo l'integrale di $ \phi $ come:
     \[ \int_X \phi(x)\dif\mu(x) \coloneqq \sum_{i=1}^{N} a_i \mu(A_i) \]
 \end{definition}
+
 \begin{definition}[Integrale di funzioni non negative]
     Sia $ f\colon X\to [0,+\infty] $ una funzione misurabile. Definiamo il suo integrale come:
     \[ \int_X f(x)\dif\mu(x) \coloneqq \sup\left\{ \int_X \phi(x)\dif\mu(x) : 0 \leq \phi(x) \leq f(x) \text{ con $\phi$ semplice} \right\} \]
-    Se l'integrale di $ f $ è finito, questa si dirà \emph{integrabile} o \emph{sommabile}.
+    Se l'integrale di $ f $ è finito, questa si dirà \emph{integrabile} o \emph{sommabile}. \\
+    Se $ A \in \mathcal{F} $ allora poniamo 
+    \[
+        \int_A f(x)\dif\mu(x) \coloneqq \int_A f\rvert_A(x) \dif\mu\rvert_A(x).
+    \]
 \end{definition}
+
 \begin{definition}[Integrale]
-    Data $ f\colon X\to\R $ e dette $ f^+(x) = \max\left\{f(x),0\right\} $ e $ f^-(x) = \max\left\{-f(x), 0\right\} $, $ f $ si dice \emph{integrabile} o \emph{sommabile} se lo sono $ f^+ $ e $ f^- $ e in tal caso si pone:
+    Data $ f\colon X\to\R $ e dette $ f^+(x) \coloneqq \max\left\{f(x),0\right\} $ e $ f^-(x) \coloneqq \max\left\{-f(x), 0\right\} $, $ f $ si dice \emph{integrabile} o \emph{sommabile} se lo sono $ f^+ $ e $ f^- $ e in tal caso si pone:
     \[ \int_X f(x)\dif\mu(x) \coloneqq \int_X f^+(x)\dif\mu(x) - \int_X f^-(x)\dif\mu(x) \]
     Se infine $ f\colon X\to\C $ si pone:
     \[ \int_X f(x)\dif\mu(x) \coloneqq \int_X\Re[f(x)]\dif\mu(x) + i\int_X\Im[f(x)]\dif\mu(x) \]
 \end{definition}
+
 Elenchiamo alcune proprietà dell'integrale di una funzione $ f\colon X\to \R $:
 \begin{enumerate}
     \item \emph{Monotonia}: $ 0 \leq g \leq f \Rightarrow \int\! g\dif\mu \leq \int\! f\dif\mu $;
     \item \label{it:quasi_ovunque}Se $ f=g $ quasi ovunque, allora $ \int f\dif\mu = \int g\dif\mu $;
     \item Sia $ \mu $ una misura su $ X $ e $ \bar{\mu} $ il suo completamento. Allora $ \int_X f\dif\mu = \int_X f\dif\bar{\mu} $;
-    \item L'integrale è lineare rispetto all'integranda;
-    \item $ f $ è misurabile se e solo se $ \abs{f} $ è integrabile e in tal caso vale:
+    \item L'integrale è un'applicazione lineare sullo spazio delle funzioni misurabili;
+    \item $ f $ è integrabile se e solo se $ \abs{f} $ è integrabile e in tal caso vale:
     \[ \abs{ \int_X f(x)\dif\mu(x)} \leq \int_X \abs{f(x)}\dif\mu(x) \]
     \item I seguenti fatti sono equivalenti:
     \begin{enumerate}[label=(\roman*)]
         \item $ \int_X \abs{f(x)}\dif\mu(x) = 0$;
         \item $ f = 0 $ quasi ovunque;
-        \item $ \int_A f(x)\dif\mu(x) = 0 \quad \forall A\in\mathcal{F} $ \footnote{Si pone $ \int_A f(x)\dif\mu(x) \coloneqq \int_A f\rvert_A(x) \dif\mu\rvert_A(x) $}.
+        \item $ \forall A\in\mathcal{F}, \ \int_A f(x)\dif\mu(x) = 0 $.
     \end{enumerate}
 \end{enumerate}
+
 \begin{definition}
     Chiamiamo $ \mathscr{L}^1(X,\mathcal{F},\mu) $ lo spazio delle funzioni (misurabili) integrabili.
 \end{definition}
+
 \begin{exercise}[Disuguaglianza di Markov]
     Sia $ f\in\mathscr{L}^1(X,\mathcal{F},\mu) $ con $ f\geq 0 $ e sia $ \lambda > 0 $. Allora:
-    \[ \mu\left( \left\{ x\in X : f(x) \ge \lambda \right\}  \right) \leq \frac{1}{\lambda}\int_X f(x)\dif\mu(x) \]
+    \[ \mu\left( \left\{ x\in X : f(x) \ge \lambda \right\}  \right) \leq \frac{1}{\lambda}\int_X f(x)\dif\mu(x). \]
 \end{exercise}
-\begin{proof}
-    $ \lambda\mu\left( \{ f \geq \lambda \} \right) = \int_X \chi_{ \{f\geq\lambda \} } \lambda \dif\mu = \int_{ \{ f \geq \lambda \} } \lambda \dif\mu \leq \int_{ \{ f \geq \lambda \} } f\dif\mu \leq \int_X f\dif\mu $
-\end{proof}
+\begin{solution}
+    Basta osservare che 
+    \[
+        \lambda \cdot \mu\left( \{ f \geq \lambda \} \right) = \int_X \chi_{ \{f\geq\lambda \} } \lambda \dif\mu = \int_{ \{ f \geq \lambda \} } \lambda \dif\mu \leq \int_{ \{ f \geq \lambda \} } f\dif\mu \leq \int_X f\dif\mu. 
+    \] 
+\end{solution}
+
 \begin{thm}[Beppo Levi o Convergenza Monotona]
     Sia $ (f_n)_{n\in\N} $ una successione di funzioni misurabili con $ f_n \geq 0 $ e sia $ f\colon X\to[0,+\infty] $ tale che $ f_n\nearrow f $ quasi ovunque. Allora $ f $ è misurabile e vale:
     \[ \int_X f(x)\dif\mu(x) = \lim_{n\to+\infty} \int_X f_n(x)\dif\mu(x) \]
@@ -47,9 +60,10 @@ Elenchiamo alcune proprietà dell'integrale di una funzione $ f\colon X\to \R $:
 \begin{proof}
     \textcolor{red}{content}
 \end{proof}
+
 \begin{exercise}[Assoluta continuità]
     Dimostrare che per ogni $ f \in \mathscr{L}^1(X,\mathcal{F},\mu) $ vale:
-    \[ \quad \forall\epsilon > 0\ \exists \delta > 0 : \forall A\in\mathcal{F}\ \mu(A) < \delta \Rightarrow \int_A \abs{f(x)} \dif\mu(x) < \epsilon \]
+    \[ \quad \forall\epsilon > 0, \ \exists \delta > 0 : \forall A\in\mathcal{F}, \ \mu(A) < \delta \Rightarrow \int_A \abs{f(x)} \dif\mu(x) < \epsilon \]
 \end{exercise}
 \begin{exercise}[Lemma di Fatou]
     Siano $ (f_n) $ con $ f_n\colon X\to[0,+\infty] $ misurabili. Allora:
@@ -66,7 +80,7 @@ Elenchiamo alcune proprietà dell'integrale di una funzione $ f\colon X\to \R $:
     \[ \phi\left(\int_X f(x)\dif\mu(x) \right) \leq \int_X (\phi\circ f)(x)\dif\mu(x) \]
 \end{exercise}
 \subsection{Spazi $ L^p $}
-\begin{definition}[Spazi $ \mathscr{L}^p $]
+\begin{definition}[Spazio $ \mathscr{L}^p $]
     Sia $ (X,\mathcal{F},\mu) $ uno spazio di misura e $ p\in[0,+\infty) $. Definiamo:
     \[ \mathscr{L}^p(X,\mathcal{F},\mu) \coloneqq \left\{ f\colon X\to \R : \int_X \abs{f(x)}^p \dif\mu(x) < +\infty \right\}  \]
     Su tale spazio definiamo una \emph{semi-norma}:\footnote{Ossia una ``norma'' per cui non vale $ \norm{v} = 0 \Rightarrow v=0 $.}
@@ -85,50 +99,62 @@ Al fine di ottenere un vero spazio normato, quozientiamo $ \mathscr{L}^p $ per u
 \[ f \sim g \iff f = g \text{ quasi ovunque} \]
 Abbiamo dunque:
 \[ L^p(X,\mathcal{F},\mu) \coloneqq \faktor{\mathscr{L}^p(X,\mathcal{F},\mu)}{\sim} \]
-La \emph{quasi-norma} passa al quoziente per la proprietà \eqref{it:quasi_ovunque} e diventa una vera norma.
+La \emph{quasi-norma} passa al quoziente per la proprietà \eqref{it:quasi_ovunque} e diventa una vera norma. \\
 
 Notiamo che gli elementi di $ L^p $ sono \emph{classi di equivalenza} di funzioni, ma d'ora in poi, per semplicità, diremo che sono semplicemente \emph{funzioni}, sottintendendo che si sta scegliendo un rappresentante della classe di equivalenza in questione.
 
 \subsection{Misure prodotto e integrali multipli}
-Siano $ (X,\mathcal{E},\mu) $ e $ (Y,\mathcal{F},\nu) $ spazi di misura $ \sigma $-finiti. Definiamo:
-\[ \mathcal{E} \otimes \mathcal{F} \coloneqq \left\{ E\times F : E \in \mathcal{E}, F \in \mathcal{F} \right\} \]
+Siano $ (X,\mathcal{E},\mu) $ e $ (Y,\mathcal{F},\nu) $ spazi di misura $ \sigma $-finiti. Definiamo la $ \sigma $-algebra prodotto come:
+\[ 
+    \mathcal{E} \otimes \mathcal{F} \coloneqq \left\{ E\times F : E \in \mathcal{E}, F \in \mathcal{F} \right\}. 
+\]
 Dato $ A \in \mathcal{E}\otimes\mathcal{F} $, $ \pi_x(A) $ e $ \pi_y(A) $ (\textcolor{red}{sezioni di A a $ x $ o $ y $ fissate}) sono $ \mathcal{F} $- e $ \mathcal{E} $-misurabili rispettivamente.
 Esiste unica una misura $ \mu\otimes\nu $ su $ (X\times Y, \mathcal{E}\otimes\mathcal{F}) $ che estende
-\[ (\mu\otimes\nu)(E\times F) = \mu(E)\mu(F) \qquad \forall E\in\mathcal{E}\ \forall F\in\mathcal{F} \]
-\[ (\mu\otimes\nu)(A) = \int_X \nu(\pi_x A)\dif\mu(x) = \int_Y \mu(\pi_y A)\dif\nu(y) \]
+\[ 
+    (\mu\otimes\nu)(E\times F) = \mu(E)\mu(F) \qquad \forall E\in\mathcal{E}\ \forall F\in\mathcal{F} 
+\]
+\[
+    (\mu\otimes\nu)(A) = \int_X \nu(\pi_x A)\dif\mu(x) = \int_Y \mu(\pi_y A)\dif\nu(y) 
+\]
+
 \begin{thm}[Tonelli]\label{thm:Tonelli}
     Sia $ f\colon X\times Y \to [0,+\infty] $ misurabile su $ (X\times Y,\mathcal{E}\otimes\mathcal{F}) $. Allora:
-    \[ \int_{X\times Y} f(x,y)\dif(\mu\otimes\nu)(x,y) = \int_X \left( \int_Y f(x,y) \dif\nu(y) \right) \dif\mu(x) = \int_Y \left( \int_X f(x,y) \dif\mu(x) \right) \dif\nu(y) \]
+    \[ \int_{X\times Y} f(x,y)\dif{(\mu\otimes\nu)}(x,y) = \int_X \left( \int_Y f(x,y) \dif\nu(y) \right) \dif\mu(x) = \int_Y \left( \int_X f(x,y) \dif\mu(x) \right) \dif\nu(y) \]
 \end{thm}
+
 \begin{thm}[Fubini]
-    Sia $ f \in L^1(X\times Y,\mathcal{E}\otimes\mathcal{Y},\mu\otimes\nu) $. Allora vale la tesi del teorema \ref{thm:Tonelli} per funzioni a valori di segno qualsiasi.
+    Sia $ f \in L^1(X\times Y,\mathcal{E}\otimes\mathcal{F},\mu\otimes\nu) $. Allora vale la tesi del Teorema \ref{thm:Tonelli} per funzioni a valori di segno qualsiasi.
 \end{thm}
 
 \subsection{Cambi di variabili}
-Dato $ (X,\mathcal{F},\mu) $ $ \sigma $-finito, $ f\colon X\to[0,+\infty] $ misurabile, chiamiamo \emph{misura con densità} una del tipo:
-\[ \nu(A) \coloneqq \int_A f(x)\dif\mu(x) \]
+Dato $ (X,\mathcal{F},\mu) $ $ \sigma $-finito, $ f\colon X\to[0,+\infty] $ misurabile, chiamiamo \emph{misura con densità} una misura del tipo:
+\[ \nu(A) \coloneqq \int_A f(x)\dif\mu(x). \]
 Se $ f $ è anche integrabile, allora la misura con densità è una misura finita.
+
 \begin{example}[Gaussiana su $ \R $]
-    \[ \dif\mu(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp{\left (-\frac{x^2}{2\sigma}\right )} \dif x \]
+    \[ \dif\mu(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp{\left (-\frac{x^2}{2\sigma}\right )} \dif x. \]
 \end{example}
+
 \begin{example}[Distribuzione di Cauchy]
-    \[ \dif\mu(x) = \frac{1}{\pi(1+x^2)}\dif x \]
+    \[ \dif\mu(x) = \frac{1}{\pi(1+x^2)}\dif x. \]
 \end{example}
 
 \begin{definition}[Assoluta continuità delle misure]
-    Date due misure $ \mu $ e $ \nu $ diciamo che $ \nu $ è \emph{assolutamente continua} rispetto a $ \mu $ ($ \nu \ll \mu $) se vale $ \mu(A) = 0 \Rightarrow \nu(A) = 0\ \forall A $
+    Date due misure $ \mu $ e $ \nu $ su $ (X, \mathcal{F}) $ diciamo che $ \nu $ è assolutamente continua rispetto a $ \mu $, e scriviamo $ \nu \ll \mu $, se $ \forall A \in \mathcal{F} $ vale $ \mu(A) = 0 \Rightarrow \nu(A) = 0$.
 \end{definition}
 \begin{thm}[Radon-Nicodym]
     Se $ \nu \ll \mu $, allora $ \exists f\colon X\to [0,+\infty] $ misurabile tale che $ \nu(A) = \int_A f(x)\dif\mu(x) $.
 \end{thm}
 
-\begin{thm}[Cambio di variabile per funzioni lisce]
-    Sia $ V \subseteq\R^d $ aperto, $ W\subseteq\R^d $ aperto limitato e $ T\colon V\subseteq \R^d \to W \subseteq \R^d $ differenziabile, invertibile con inversa continua. Allora $ \forall f\in L^1(W) $
+\begin{thm}[Cambio di variabile per funzioni regolari]
+    Sia $ V \subseteq\R^d $ aperto, $ W\subseteq\R^d $ aperto limitato e $ T\colon V \to W $ differenziabile, invertibile con inversa continua. Allora $ \forall f\in L^1(W, \textcolor{red}{\mathcal{M}, \lambda}) $
     \[ \int_W f(y)\dif y = \int_V f(T(x)) \abs{\det{\jac{T}(x)}} \dif x \]
 \end{thm}
 \begin{oss}
-    Data $ \dif\mu(x) = \rho(x)\dif x $, $ \dif(T_\sharp\mu)(y) = \rho(T^{-1}(y)) \abs{\det{\jac T}(T^{-1}(y))}^{-1} \dif y $.
+    Data $ \dif\mu(x) = \rho(x)\dif x $, $ \dif{(T_\sharp\mu)(y)} = \rho(T^{-1}(y)) \abs{\det{\jac T}(T^{-1}(y))}^{-1} \dif y $.
 \end{oss}
+
+\textcolor{red}{Con $ \dif{x} $ si intende la misura di Lebesgue?} \\
 
 \textcolor{red}{Cose su misure invarianti.}
 

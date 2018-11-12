@@ -53,7 +53,7 @@ Un esempio di sistema dinamico a tempo continuo è dato da un'equazione differen
 		x(0) = x_0
 	\end{cases}
 \end{equation} 
-dove $ x, x_0 \in \R^n $ e $ v \colon \R^n \to \R^n $ è un campo vettoriale. Se supponiamo che $ v $ sia di classe $ \mathcal{C}^1 $ allora abbiamo esistenza e unicità della soluzione \texttt{(e dipendenza continua dai parametri iniziali ??)}, cioè esiste $ \tau > 0 $ e un'unica funzione $ \phi \colon [0, \tau) \to \R^n $ tale che $ \phi(0) = x_0 $ e $ \phi'(t) = v(\phi(0)) $ per ogni $ t \in [0, \tau) $. \\
+dove $ x, x_0 \in \R^n $ e $ v \colon \R^n \to \R^n $ è un campo vettoriale. Se supponiamo che $ v $ sia di classe $ \mathcal{C}^1 $ allora abbiamo esistenza e unicità della soluzione \textcolor{red}{(e dipendenza continua dai parametri iniziali ??)}, cioè esiste $ \tau > 0 $ e un'unica funzione $ \phi \colon [0, \tau) \to \R^n $ tale che $ \phi(0) = x_0 $ e $ \phi'(t) = v(\phi(0)) $ per ogni $ t \in [0, \tau) $. \\
 Se supponiamo per esempio che $ v $ sia un'applicazione lineare $ v(x) \coloneqq A x $ con $ A \in \mathrm{Mat}_{n \times n}(\R) $ allora abbiamo che la soluzione è prolungabile a tutto l'asse reale e introducendo la nozione di esponenziale di una matrice\footnote{%
 	Data $ A \in \mathrm{Mat}_{n \times n}(\R) $ si pone 
 	\[ \exp(A) \coloneqq \sum_{k = 0}^{+\infty} \frac{A^k}{k!}. \] 
@@ -61,12 +61,12 @@ Se supponiamo per esempio che $ v $ sia un'applicazione lineare $ v(x) \coloneqq
 si può scrivere nella forma 
 \[ \phi(t) = \exp{\left(t \, A\right)} \, x_0. \]
 
-\begin{definition}[orbita e spazio delle orbite]
+\begin{definition}[Orbita e spazio delle orbite]
 	Data $ f \in \Aut{(X)} $ e $ \Phi^f \colon \Z \times X \to X $ definiamo orbita di $ x \in X $ come 
 	\[
 	\mathcal{O}^f(x) \coloneqq \{f^n(x) : n \in \Z\}.
 	\]
-	Le orbite definiscono una naturale relazione di equivalenza $ x \sim y \iff \exists n \in \Z : y = f^n(x) \iff y \in \mathcal{O}^f(x) \iff x \in \mathcal{O}^f(y) $. Chiamiamo lo spazio quoziente $ \faktor{X}{\sim} $ spazio delle orbite. \texttt{Topologia quoziente?}
+	Le orbite definiscono una naturale relazione di equivalenza $ x \sim y \iff \exists n \in \Z : y = f^n(x) \iff y \in \mathcal{O}^f(x) \iff x \in \mathcal{O}^f(y) $. Chiamiamo lo spazio quoziente $ \faktor{X}{\sim} $ spazio delle orbite. \textcolor{red}{Topologia quoziente?}
 \end{definition}
 
 \subsection{Flussi vs tempo discreto: il pendolo semplice e la mappa standard}
@@ -93,7 +93,7 @@ Solitamente siamo interessati al comportamento asintotico dell'azione di $ \Phi 
 		\end{pmatrix}
 	\]
 	dove $ v(x, y) = (y, \sin{x}) $. Nel linguaggio della Definizione \ref{def:sistema-dinamico}, $ G \coloneqq \R $, $ X \coloneqq \S^1 \times \R  $ e $ {\Phi(t, (x, y)) \coloneqq (\phi(t), \phi'(t))} $ dove $ \phi \colon \R \to \R $ è una soluzione dell'equazione differenziale. \\
-	\texttt{$ E = \frac{1}{2}y^2 + \cos{x} $ integrale primo del moto e spazio  delle fasi?} \\
+	\textcolor{red}{$ E = \frac{1}{2}y^2 + \cos{x} $ integrale primo del moto e spazio  delle fasi?} \\
 	A fissato \emph{step} $ \mu $ trasformiamo l'equazione differenziale del secondo ordine in \footnote{%
 		\[
 			\ddot{x}(t) \approx \frac{\dot{x}(t) - \dot{x}(t - \mu)}{\mu} \approx \frac{\frac{x(t + \mu) - x(t)}{\mu} - \frac{x(t) - x(t - \mu)}{\mu}}{\mu} = \frac{x(t + \mu) - 2x(t) + x(t - \mu)}{\mu^2}
@@ -110,7 +110,7 @@ Solitamente siamo interessati al comportamento asintotico dell'azione di $ \Phi 
 		\end{cases}
 	\]
 	che è la \emph{mappa standard}. \\
-	\texttt{Commenti...}
+	\textcolor{red}{Commenti...}
 	
 	\iffigureon
 	\begin{figure}
