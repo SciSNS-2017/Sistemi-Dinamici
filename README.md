@@ -23,7 +23,7 @@ Attualmente i file sono:
 | 10 ottobre |Grotto     |Esercitazione| In attesa delle dispense|
 | 16 ottobre |Marmi      |Lezione      | @arn4                   |
 | 17 ottobre |Grotto     |Esercitazione| @marco-venuti           |
-| 23 ottobre |Bindini    |Esercitazione|                         |
+| 23 ottobre |Bindini    |Esercitazione| @alepiazza              |
 | 24 ottobre |Marmi      |Lezione      | @alepiazza              |
 | 30 ottobre |Bindini    |Esercitazione|                         |
 | 7 novembre |Tantari    |Esercitazione|                         |
