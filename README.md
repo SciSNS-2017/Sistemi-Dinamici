@@ -25,7 +25,7 @@ Attualmente i file sono:
 | 17 ottobre |Grotto     |Esercitazione| @marco-venuti           |
 | 23 ottobre |Bindini    |Esercitazione| @alepiazza              |
 | 24 ottobre |Marmi      |Lezione      | @alepiazza              |
-| 30 ottobre |Bindini    |Esercitazione|                         |
+| 30 ottobre |Bindini    |Esercitazione| @alepiazza              |
 | 7 novembre |Tantari    |Esercitazione|                         |
 | 13 novembre|Grotto     |Esercitazione|                         |
 | 14 novembre|Marmi      |Lezione      |                         |
