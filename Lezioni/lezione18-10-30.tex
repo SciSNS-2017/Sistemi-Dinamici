@@ -1,0 +1,74 @@
+\section{Lezione del 30/10/18 [Bindini]}
+
+\subsection{Convergenza debole}
+\emph{Setting}: $ V $ spazio di Hilbert su $ \K = \R \text{ o } \C $. 
+
+\begin{definition}[convergenza debole]
+    Diciamo che $ (v_n)_{n \in \N} \subseteq V $ converge debolmente a $ v \in V $, e scriviamo $ v_n \todeb v $, se $ \forall w \in V, \ {\langle v_n, w \rangle} \to {\langle v, w \rangle} $ (o analogamente $ {\langle v_n - v, w \rangle} \to 0 $) dove la convergenza del prodotto scalare è intesa rispetto alla distanza euclidea su $ \K $. 
+\end{definition}
+
+\begin{oss}
+    Su $ \C^n $ o più in generale spazi di dimensione finita la convergenza debole è equivalente a quella rispetto alla norma. Infatti per avere la convergenza in norma è sufficiente guardare la convergenza sugli elementi di una base $ \{e^j\} $ e $ v_n^j = {\langle v_n, e^j\rangle} \to {\langle v, e^j\rangle} = v^j $. Il viceversa è invece ovvio.
+\end{oss}
+
+\begin{lemma}
+    Sia $ (v_n)_{n \in \N} \subseteq V $. Se $ v_n \to v $ allora $ v_n \todeb v $.
+\end{lemma}
+
+\begin{lemma}
+    Sia $ (v_n)_{n \in \N} \subseteq V $. Se $ v_n \todeb v $ e $ \norm{v_n} \to \norm{v} $ allora $ v_n \to v $.
+\end{lemma}
+\begin{proof}
+    Infatti $ \norm{v_n - v}^2 = \norm{v_n}^2 + \norm{v} - 2 {\langle v_n, v \rangle} \to 2\norm{v}^2 - 2\norm{v}^2 = 0 $. 
+\end{proof}
+
+\begin{thm} \label{thm:Banach-Alouglu-facile}
+    La palla $ B_1(0) \subseteq V $ è relativamente compatta rispetto alla convergenza debole, cioè per ogni $ (v_n)_{n \in \N} \subseteq V $ con $ \norm{v_n} \leq 1 $ esiste una sottosuccessione $ (v_{n_k})_{k \in \N} \subseteq V $ e un $ v \in V $ tali che $ v_{n_k} \todeb v $. 
+\end{thm}
+\begin{proof}
+    (Idea)
+    Per ogni $ v \in V $, consideriamo $ D_v \coloneqq \overline{B_{\norm{v}}(0)} \subseteq \C $ e l'insieme $ K \coloneqq \prod_{v \in V} D_v $. Essendo $ D_v $ compatto per ogni $ v $, $ K $ è compatto per il Teorema di Tychonoff. Sia ora 
+    \begin{align*}
+        \varphi \colon B_1(0) \subseteq V & \to K \\
+        w & \mapsto ({\langle w, v \rangle})_{v \in V}
+    \end{align*}   
+    Tale mappa è ben definita essendo $ \abs{{\langle v_n, v \rangle}} \leq \norm{w} \norm{v} \leq \norm{w} $. Basterà allora mostrare che la "restrizione di $ \varphi $ nell'immagine" $ \psi \colon B_1(0) \to \varphi(B_1(0)) $ è continua con inversa continua (prendendo su $ K $ al topologia indotta e su $ B_1(0) $ quella indotta della convergenza debole) e che $ \varphi(B_1(0)) $. Essendo allora $ \varphi(B_1(0)) $ chiusa in un compatto otteniamo che è compatta e dato che $ \psi $ è un omeomorfismo otteniamo che $ B_1(0) $ è compatta. 
+\end{proof}
+
+\begin{proposition}
+    Sia $ \{e_n\}_{n \in \N} $ un insieme ortonormale in $ V $. Le seguenti proprietà sono equivalenti. 
+    \begin{enumerate}[label=(\roman*)]
+        \item $ \forall v \in V, \ v = \sum_{n = 0}^{+\infty} {\langle v, e_n \rangle} e_n $;
+        \item $ \forall v \in V, \ \exists \{a_n\}_{n \in \N} \subseteq \K : v = \sum_{n = 0}^{+\infty} a_n e_n $;
+        \item $ Span{\{e_n\}} $\footnote{Con $ Span{\{w_n\}} $ si intende l'insieme delle combinazioni lineari \emph{finite} di elementi $ w_n $.} è denso in $ V $;
+        \item $ {\langle v, e_n \rangle} = 0 \ \forall n \in \N \Rightarrow v = 0 $.
+    \end{enumerate}
+    Se è verificata una di queste proprietà si dice che $ \{e_n\} $ è un \emph{insieme completo}. 
+\end{proposition}
+\begin{proof}   
+    Mostriamo le varie implicazioni. 
+    \begin{enumerate}
+        \item[$ (i) \Rightarrow (ii) $] Ovvio.
+        \item[$ (ii) \Rightarrow (iii) $] Prendo $ v \in V $ che scrivo come $ \sum_{n = 0}^{+\infty} a_n v_n $. Ora se $ w_{N} \coloneqq \sum_{n = 0}^{N} a_ne_n $ ho per ipotesi che $ w_N \to v $. 
+        \item[$ (iii) \Rightarrow (iv) $] Sia $ v \in V $ tale che $ \forall n \in \N, \ {\langle v, e_n \rangle} = 0 $. Siano $ (w_k)_{k \in \N} \subseteq Span{\{e_n\}} $ tali che $ w_k \to v $. Ma allora $ w_k \todeb v $ quindi $ {\langle v, v \rangle} = \lim_{k} {\langle v, w_k \rangle} = 0 $ essendo $ {\langle v, w_k \rangle} = \sum_{n = 0}^{N} a_n^k {\langle v, e_n \rangle} = 0 $. Così $ \norm{v} = 0 \Rightarrow v = 0 $. 
+        \item[$ (iv) \Rightarrow (i) $] Fissato $ v \in V $ poniamo $ v_N \coloneqq \sum_{n = 0}^{N} {\langle v, e_n \rangle} e_n $. Essendo $ \{e_n\} $ un insieme ortonormale
+        \[
+            {\langle v - v_N, v_N \rangle} = {\langle v, v_N \rangle} - {\langle v_N, v_N \rangle} = \sum_{n = 0}^{N} \overline{{\langle v, e_n \rangle}}{\langle v, e_n \rangle} - \norm{v_N}^2 = 0.
+        \]
+        Pertanto
+        \[
+            \norm{v}^2 = \norm{v - v_N}^2 + \norm{v_N}^2 \geq \norm{v_N}^2 = \sum_{n = 0}^{N} \abs{{\langle v, e_n \rangle}}^2.
+        \]
+        Ora $ \norm{v_N} \leq \norm{v} $ quindi per il Teorema \ref{thm:Banach-Alouglu-facile} esiste $ (v_{N_k}) $ e $ \tilde{v} $ con $ \norm{\tilde{v}} \leq \norm{v} $ tale che $ v_{N_k} \todeb \tilde{v} $. Osservando quindi che 
+        \[
+            {\langle v - \tilde{v}, e_n \rangle} = {\langle v, e_n \rangle} - {\langle \tilde{v}, e_n \rangle} = {\langle v, e_n \rangle} - \lim_{k \to + \infty} {\langle v_{N_k}, e_n \rangle} = {\langle v, e_n \rangle} - {\langle v, e_n \rangle} = 0.
+        \]
+        Per ipotesi allora $ \tilde{v} = v $. Mostriamo che la successione tende a $ v $ in norma. Infatti
+        \[
+            \norm{v - v_{N_k}}^2 = {\langle v - v_{N_k}, v - v_{N_k}\rangle} = {\langle v - v_{N_k}, v \rangle} - {\langle v - v_{N_k}, v_{N_k} \rangle} = {\langle v - v_{N_k}, v \rangle} \to 0.
+        \]
+        \textcolor{red}{Da qui si dovrebbe concludere?} \qedhere
+    \end{enumerate}
+\end{proof}
+
+\subsection{Spazio $ L^2([0, 2\pi]) $}
