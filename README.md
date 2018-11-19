@@ -20,8 +20,8 @@ Attualmente i file sono:
 |**Giorno**  |**Docente**|**Tipo**     |**Scrittore**            |
 |------------|:---------:|-------------| ------------------------|
 | 9 ottobre  |Marmi      |Lezione      | @alepiazza              |
-| 10 ottobre |Grotto     |Esercitazione| In attesa delle dispense|
-| 16 ottobre |Marmi      |Lezione      | @arn4                   |
+| 10 ottobre |Grotto     |Esercitazione| @Konnoi5, @marco-venuti |
+| 16 ottobre |Marmi      |Lezione      | @arn4, @marco-venuti    |
 | 17 ottobre |Grotto     |Esercitazione| @marco-venuti           |
 | 23 ottobre |Bindini    |Esercitazione| @alepiazza              |
 | 24 ottobre |Marmi      |Lezione      | @alepiazza              |
