@@ -72,3 +72,25 @@
 \end{proof}
 
 \subsection{Spazio $ L^2([0, 2\pi]) $}
+\textcolor{red}{Da sistemare e completare} \\
+$ L^2([0, 2\pi]) \simeq L^2(\T^1) $. Prima di passare al quoziente non sono esattamente la stessa cosa perché per $ f \colon [0, 2\pi] \to \C $ posso assegnare 2 valori diversi in $ 0 $ e in $ 2\pi $ mentre per $ g \colon \T^1 \to \C $ fissare il valore in $ 0 $ vuol dire fissare anche il valore in $ 2\pi $. \\
+Una base ortonormale di $ L^2([0, 2\pi]) $ è $ e_n(\theta) = \frac{1}{\sqrt{2\pi}}e^{i n \theta} $ con $ n \in \Z $ e $ \theta \in [0, 2\pi] $ ed è detta \emph{base di Fourier}. 
+\begin{definition}[polinomi trigonometrici]
+    $ T_N \coloneqq \left\{\sum_{n = -N}^{N} a_n e^{i n \theta}, \ a_n \in \C\right\} $
+\end{definition}
+
+\begin{thm}
+    La base di Fourier è un insieme completo. 
+\end{thm}
+\begin{proof}
+    Road map
+    \begin{enumerate}
+        \item Se $ f \in L^2([0, 2\pi]) $, $ \hat{f}(n) \coloneqq {\langle f, e_n \rangle} = \frac{1}{2\pi} \int_{0}^{2\pi} f(\theta) e^{i n\theta} \dif{\theta} $ sono i candidati coefficienti.
+        \item Mostro che per ogni $ p \in T_N $ vale $ \norm{f - \sum_{n = -N}^{N} \hat{f}(n) e_n}_2 \leq \norm{f - p}_2 $.
+        \item Definisco $ Q_k(t) \coloneqq \lambda_k (\frac{1 + \cos{t}}{2})^k $ che è un polinomio trigonometrico di grado $ k $ e che "tende alla delta di Dirac". Mostro che 
+        \[
+            \int_{-\pi}^{\pi} f(y) Q_k(x - y) \dif{y} \to_k f(x)
+        \]
+        e uso il punto precedente per concludere. 
+    \end{enumerate}
+\end{proof}
