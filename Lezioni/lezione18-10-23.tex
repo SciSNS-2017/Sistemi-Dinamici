@@ -1,0 +1,156 @@
+\section{Lezione del 23/10/18 [Bindini]}
+
+\subsection{Spazi di Hilbert}
+\emph{Setting}: $ V $ è uno spazio vettoriale su $ \K = \R \text{ o } \C $. 
+
+\begin{definition}[prodotto scalare]
+    Una funzione $ {\langle \; , \, \rangle} \colon V \times V \to \K $ è un prodotto scalare se 
+    \begin{enumerate}[label = (\roman*)]
+        \item $ \forall v \in V, \ {\langle v, v \rangle} \geq 0 $ e $ {\langle v, v \rangle} \iff v = 0 $;
+        \item $ \forall a_1, a_2 \in \K, \forall v_1, v_2, w \in V, \ {\langle a_1v_1 + a_2v_2, w \rangle} = a_1{\langle v_1, w\rangle} + a_2{\langle v_2, w\rangle} $;
+        \item $ \forall b_1, b_2 \in \K, \forall w_1, w_2, v \in V, \ {\langle v, b_1w_1 + b_2w_2 \rangle} = \bar{b}_1{\langle v, w_1\rangle} + \bar{b}_2{\langle v, w_2\rangle} $
+    \end{enumerate}
+\end{definition}
+
+Un prodotto scalare su $ V $ induce una funzione $ \norm{\;} \colon V \to \K  $ detta \emph{norma} definita come $ {\norm{v} \coloneqq \sqrt{{\langle v, v \rangle}}} $. Una norma a sua volta indice una distanza $ d \colon V \times V \to \K $ data da \linebreak $ d(v, w) \coloneqq \norm{v - w} $ che definisce una struttura di spazio metrico e di topologia.
+
+\begin{proposition}[Cauchy-Schwarz]
+    Per ogni $ v, w \in V $ vale $ \abs{{\langle v, w \rangle}} \leq \norm{v} \cdot \norm{w} $. 
+\end{proposition}
+
+\begin{definition}[sottospazio ortogonale]
+    Se $ W \subseteq V $ è un sottospazio definiamo l'ortogonale di $ W $ come 
+    \[
+        W^{\perp} \coloneqq \{v \in V : \forall w \in W, \ {\langle v, w \rangle} = 0\}.
+    \]
+\end{definition}
+
+\begin{lemma}
+    Il prodotto scalare è una funzione continua rispetto alla topologia indotta dalla norma (e a quella euclidea in arrivo).
+\end{lemma}
+\begin{proof}
+    Fissati $ (v_0, w_0) \in V \times V $, usando la triangolare e Cauchy-Schwarz
+    \[
+        \abs{{\langle v, w \rangle} - {\langle v_0, w_0 \rangle}} = \abs{{\langle v - v_0, w\rangle} - {\langle v_0, w - w_0 \rangle}} \leq \norm{v - v_0} \, \norm{w} + \norm{v_0} \, \norm{w - w_0}.
+    \]
+    Quindi se $ v \in B_\delta(v_0) $ e $ w \in B_\delta(w_0) $ si ha
+    \[
+        \abs{{\langle v, w \rangle} - {\langle v_0, w_0 \rangle}} \leq \delta(\norm{w} + \norm{w_0}) \leq \delta(\norm{w_0} + \norm{v_0} + \delta). \qedhere
+    \]
+\end{proof}
+
+\begin{proposition}
+    $ W^\perp $ è un sottospazio chiuso di $ V $.
+\end{proposition}
+\begin{proof}
+    Il fatto che sia un sottospazio è ovvio per la linearità del prodotto scalare nella prima componente. Fissiamo ora $ w \in W $. Allora $ \{w\}^\perp = \{v \in V : {\langle v, w \rangle} = 0\} $ è un chiuso (controimmagine continua di un chiuso) da cui $ W^\perp = \bigcap_{w \in W} \{w\}^\perp $ è chiuso essendo intersezione di chiusi. 
+\end{proof}
+
+\begin{proposition}
+    Vale che $ (W^\perp)^\perp = \overline{W} $.
+\end{proposition}
+\begin{proof}
+    Se $ w \in W $ allora $ {\langle v, w \rangle} = 0 $ per ogni $ v \in W^\perp $ da cui $ W \subseteq (W^\perp)^\perp \Rightarrow \overline{W} \subseteq (W^\perp)^\perp $ essendo l'ortogonale di $ W^\perp $ un chiuso. \textcolor{red}{Viceversa}
+\end{proof}
+
+\begin{definition}[base ortonormale]
+    Una base ortonormale di $ V $ è un insieme $ \{e_j\}_{j \in J} $ con $ J $ al più numerabile tale che
+    \begin{enumerate}[label=(\roman*)]
+        \item $ \forall j, k \in J, \ {\langle e_j, e_k \rangle} = \delta_{jk} $;
+        \item\label{def:coin:base} $ \forall v \in V, \ \exists \{v_j\}_{j \in J} \subseteq \K : v = \displaystyle{\sum_{j \in J} v_j e_j} $. 
+    \end{enumerate}
+\end{definition} 
+
+Nel caso in cui $ J $ sia numerabile la condizione \ref{def:coin:base} è da intendersi come convergenza rispetto alla norma, cioè
+\[
+    \norm{v - \sum_{j = 1}^{N} v_j e_j} \to 0 \quad \text{ per } N \to +\infty
+\]
+
+\begin{definition}[spazio separabile]
+   Se $ V $ ammette una base al più numerabile allora si dice separabile.
+\end{definition}
+
+\begin{definition}[spazio di Hilbert]
+    $ V $ si dice spazio di Hilbert se è separabile e completo rispetto alla norma indotta dal prodotto scalare.
+\end{definition}
+
+\begin{thm}[criterio di completezza]
+    Sia $ (V, \norm{\;}) $ uno spazio normato. Allora le seguenti proprietà sono equivalenti.
+    \begin{enumerate}[label=(\roman*)]
+        \item $ V $ è completo.
+        \item $ \forall (v_k)_{k \in \N} \subseteq V, \ \displaystyle{\sum_{k \in \N} \norm{v_k} < +\infty \Rightarrow \sum_{k \in \N} v_k} \text{ converge} $. 
+    \end{enumerate}
+\end{thm}
+
+\begin{example}[$ \R^n, \C^n $]
+    Lo spazio $ \C^n $ ($ \R^n $) con il prodotto hermitiano standard (scalare standard) $ {\langle v, w \rangle} = v \cdot w \coloneqq v_1\bar{w}_1 + \ldots v_n\bar{w}_n $ è uno spazio di Hilbert. Più in generale su $ \R^n $ possiamo definire il prodotto scalare $ {\langle v, w \rangle} = v \cdot Qw $ con $ Q $ matrice simmetrica definita positiva che dota $ \R^n $ di una struttura di spazio di Hilbert, di cui una base ortonormale è data dagli autovettori di $ Q $.  
+\end{example}
+
+\begin{example}[spazio $ L^2 $]
+    Consideriamo lo spazio $ L^2(X, \mathcal{F}, \mu) \coloneqq \faktor{\mathscr{L}^p(X,\mathcal{F},\mu)}{\sim} $ dove 
+    \[
+        \mathscr{L}^p(X,\mathcal{F},\mu) \coloneqq \left\{f \colon X \to \K \ \text{ misurabili tali che } \int_{X} \abs{f}^2 \dif{\mu} < +\infty\right\}
+    \]
+    e $ f \sim g \iff \mu\text{-q.o.} \ f = g $. Su $ L^2(X, \mathcal{F}, \mu) $ definiamo il prodotto scalare 
+    \[
+        {\langle f, g \rangle} \coloneqq \int_{X} f(x) \overline{g(x)} \dif{\mu(x)}
+    \]
+    che induce la norma
+    \[
+        \norm{f}_2 \coloneqq \left(\int_{X} \abs{f(x)}^2 \dif{\mu(x)}\right)^{1/2}.
+    \]
+    $ L^2(X, \mathcal{F}, \mu) $ con questo prodotto scalare è uno spazio di Hilbert. 
+\end{example}
+
+\begin{example}[spazio $ l^2 $]
+    Consideriamo lo spazio 
+    \[
+        l^2(\N) \coloneqq \left\{(x_n)_{n \in \N} \subseteq \K : \sum_{n \in \N} \abs{x_n}^2 < +\infty\right\}.
+    \]
+    Tale spazio può essere visto come un esempio di $ L^2(X; \mathcal{F}) $ in cui $ X = \N $, $ \mathcal{F} = \mathscr{P}(\N) $ e $ \mu(E) = \card{E} $ (misura conta punti). Infatti in tale caso le funzioni $ f \colon \N \to \K $ sono successioni a valori nel campo e l'integrale si riduce a una sommatoria. Osserviamo inoltre che la relazione di equivalenza è in realtà un'uguaglianza e pertanto $ l^2(\N) = L^2(\N, \mathscr{P}(\N), \mu) = \mathscr{L}^2(\N, \mathscr{P}(\N), \mu) $. Il prodotto scalare su $ l^2(\N) $ è
+    \[
+        {\langle (x_n), (y_n) \rangle} = \sum_{n \in \N} x_n \bar{y}_n.
+    \]
+    Tale prodotto scalare è ben definito essendo la serie assolutamente convergente (infatti $ \abs{x_n \bar{y}_n} \leq \abs{x_n}^2 /2 + \abs{y_n}^2 /2 $). Una base di $ l^2(\N) $ è $ \{e^j\}_{j \in \N} $ dove $ e^j_n \coloneqq \delta_{jn} $.
+\end{example}
+
+\begin{proposition}
+    Lo spazio $ l^2(\N) $ è completo. 
+\end{proposition}
+\begin{proof}
+    \textcolor{red}{Pezzi di 2 dimostrazioni nel \texttt{tex}.}
+    \iffalse
+    Sia $ (x_k)_{k \in \N} \coloneqq (x_k(n))_{k \in \N} \subseteq l^2(\N) $ una successione di Cauchy. Osserviamo che per ogni $ n \in \N $ e per ogni $ k_1, k_2 \in \N $ vale
+    \[
+        \abs{x_{k_1}(n) - x_{k_2}(n)}^2 \leq \sum_{n \in \N} \abs{x_{k_1}(n) - x_{k_2}(n)}^2 = \norm{x_{k_1} - x_{k_2}}_2^2.
+    \]
+    da cui $ \abs{x_{k_1}(n) - x_{k_2}(n)} \leq \norm{x_{k_1} - x_{k_2}}_2 $. Quindi per ogni $ n \in \N $, $ (x_k(n))_{k \in \N} \subseteq \K $ è di Cauchy e pertanto converge. Sia $ \tilde{x}(n) $ il limite e $ \tilde{x} = (\tilde{x}(n))_{n \in \N} $. \\
+    Per prima cosa mostriamo che $ \tilde{x} \in l^2(\N) $. Essendo la convergenza di $ (x_k(n))_{k \in \N} $ uniforme in $ n $ si ha
+    \begin{align*}
+        \norm{\tilde{x}}_2^2 & = \sum_{n \in \N} \abs{\tilde{x}(n)}^2 = \sum_{n \in \N} \abs{\lim_{k \to +\infty} x_k(n)}^2 \\
+        & = \sum_{n \in \N} \lim_{k \to +\infty} \abs{x_k(n)}^2 = \lim_{k \to +\infty} \sum_{n \in \N} \abs{x_k(n)}^2 \\
+        & = \lim_{k \to +\infty} \norm{x_k}^2_2 = \left(\lim_{k \to +\infty} \norm{x_k}_2\right)^2.
+    \end{align*}
+    Ma $ \abs{\norm{x_{k_1}}_2 - \norm{x_{k_2}}_2} \leq \norm{x_{k_1} - x_{k_2}} $ quindi $ (\norm{x_k}_2)_k \subseteq \K $ è di Cauchy e quindi converge. Essendo allora $ x_k \in l^2(\N) $ per ogni $ k $ concludiamo che anche il limite di $ (\norm{x_k}_2) $ è finito da cui $ \norm{\tilde{x}}_2 < +\infty $ cioè $ \tilde{x} \in l^2(\N) $. \\
+    Mostriamo ora che $ (x_k) $ converge a $ \tilde{x} $ in $ l^2(\N) $ cioè che 
+    \[
+        \lim_{k \to +\infty} \norm{x_k - \tilde{x}}_2^2 = \lim_{k \to +\infty} \sum_{n \in \N} \abs{x_k(n) - \tilde{x}(n)}^2 = 0.
+    \]
+    Osserviamo che $  $ \\
+    
+    
+    DIM ALTERNATIVA \\
+    tale che $ \sum_{k \in \N} \norm{x_k}^2 < +\infty $. Osserviamo che 
+    \[
+        \abs{x_k(n)}^2 \leq \sum_{n \in \N} \abs{x_k(n)}^2 = \norm{x_k}^2 \quad \Rightarrow \quad \abs{x_k(n)} \leq \norm{x_k}.
+    \]
+    Pertanto $ \bar{x}(n) \coloneqq \sum_{k \in \N} x_k(n) $ è convergente essendo assolutamente convergente ed è il candidato limite di $ \sum_{k \in \N} x_k(n) $. Vogliamo mostrare che $ \norm{x_k - \bar{x}}_2 \to 0 $ cioè che 
+    \[
+        \sum_{n \in \N} \; \abs{\bar{x}(n) - \sum_{k = 1}^{m} x_k(n)} \to 0 \quad \text{ per } m \to +\infty
+    \]
+    \fi
+\end{proof}
+
+\begin{exercise}
+    Dimostrare che lo spazio $ L^2([0, 1]) $ è completo. 
+\end{exercise}
