@@ -1,0 +1,37 @@
+\section{Lezione del 16/10/2018 [Marmi]}
+\begin{definition}[orbita pre-periodica e periodica] Sia $f\colon X \to X$ un sistema dinamico. Un'orbita $\mathcal{O}^f(x)$ si dice pre-periodica se contiene un numero finito di elementi. Se inoltre $ f $ è invertibile l'orbita si dice periodica e la sua cardinalità si dice periodo.
+    
+Infine, se $f$ non è invertibile, possono esistere punti $ x $ (che costituiscono il pre-periodo) tali che $ \forall n > 0\ f^n (x) \neq x $.
+\end{definition}
+
+\begin{example}[Congettura di Collatz]
+Si consideri il sistema dinamico $f \colon \N \to \N$:
+\[
+    f(n) = 
+    \begin{cases}
+    	n/2 & \text{se $ n $ è pari}\\
+    	3n+1 		& \text{se $ n $ è dispari} \\	
+    \end{cases}
+\]
+La congettura\footnote{È attualmente un problema aperto.} di Collatz asserisce che tutti gli $n \in \N$ sono preperiodici e che l'unico ciclo è $ 1 \to 4 \to 2 \to 1 $.
+\end{example}
+
+\begin{definition}[Sistemi dinamici coniugati]
+Siano $f\colon X \to X$ e $g\colon Y \to Y$ due sistemi dinamici. Questi si dicono coniugati se esiste $h \colon X \to Y$ invertibile tale che $h \circ f = g \circ h$, cioè tale da far commutare il seguente diagramma:
+\begin{center}
+	\begin{tikzcd}
+	X \arrow[r, "f"] \arrow[d, "h"]	& X \arrow[d, "h"] \\
+	Y \arrow[r, "g"] & Y 
+	\end{tikzcd}
+\end{center}
+Se $h$ è solamente surgettiva si dice che $g$ è un \emph{fattore} di $f$ oppure che $f$ è un'\emph{estensione} di $g$. Se invece $h$ è solo iniettiva allora si dice che $f$ è un \emph{sottosistema} di $g$.
+\end{definition}
+
+\begin{example}
+Si considerino i seguenti sistemi dinamici $ \C \to \C$:
+\[ Q_\lambda(z) = \lambda z (1-z) \] 
+\[ P_c(z) = z^2 + c \qquad \text{con } c = - \frac{\lambda^2}{4} +  \frac{\lambda}{2}. \]
+Le funzioni $ Q_\lambda $ sono dette \emph{trasformazioni di Ulam-Von Neumann}, mentre $P_c$ è la funzione che genera l'\emph{insieme di Mandelbrot}.
+I due sistemi risultano coniugati attraverso la funzione
+\[ h_\lambda(z) = -\lambda z + \frac{\lambda}{2}\;. \]
+\end{example}
