@@ -7,7 +7,7 @@ Infine, se $f$ non è invertibile, possono esistere punti $ x $ (che costituisco
 \begin{example}[Congettura di Collatz]
 Si consideri il sistema dinamico $f \colon \N \to \N$:
 \[
-    f(n) = 
+    f(n) \coloneqq
     \begin{cases}
     	n/2 & \text{se $ n $ è pari}\\
     	3n+1 		& \text{se $ n $ è dispari} \\	
@@ -16,6 +16,7 @@ Si consideri il sistema dinamico $f \colon \N \to \N$:
 La congettura\footnote{È attualmente un problema aperto.} di Collatz asserisce che tutti gli $n \in \N$ sono preperiodici e che l'unico ciclo è $ 1 \to 4 \to 2 \to 1 $.
 \end{example}
 
+\subsection{Coniugazione e misure invarianti}
 \begin{definition}[Sistemi dinamici coniugati]
 Siano $f\colon X \to X$ e $g\colon Y \to Y$ due sistemi dinamici. Questi si dicono coniugati se esiste $h \colon X \to Y$ invertibile tale che $h \circ f = g \circ h$, cioè tale da far commutare il seguente diagramma:
 \begin{center}
@@ -27,11 +28,104 @@ Siano $f\colon X \to X$ e $g\colon Y \to Y$ due sistemi dinamici. Questi si dico
 Se $h$ è solamente surgettiva si dice che $g$ è un \emph{fattore} di $f$ oppure che $f$ è un'\emph{estensione} di $g$. Se invece $h$ è solo iniettiva allora si dice che $f$ è un \emph{sottosistema} di $g$.
 \end{definition}
 
-\begin{example}
+\begin{example} \label{ex:Ulam_Mandelbrot}
 Si considerino i seguenti sistemi dinamici $ \C \to \C$:
-\[ Q_\lambda(z) = \lambda z (1-z) \] 
-\[ P_c(z) = z^2 + c \qquad \text{con } c = - \frac{\lambda^2}{4} +  \frac{\lambda}{2}. \]
+\[ Q_\lambda(z) \coloneqq \lambda z (1-z) \]
+\[ P_c(z) \coloneqq z^2 + c \qquad \text{con } c = - \frac{\lambda^2}{4} +  \frac{\lambda}{2}. \]
 Le funzioni $ Q_\lambda $ sono dette \emph{trasformazioni di Ulam-Von Neumann}, mentre $P_c$ è la funzione che genera l'\emph{insieme di Mandelbrot}.
 I due sistemi risultano coniugati attraverso la funzione
 \[ h_\lambda(z) = -\lambda z + \frac{\lambda}{2}\;. \]
+Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
 \end{example}
+
+\begin{example}
+    Sia $ Q_4 \colon [0,1] \to [0,1] $ come definita nell'esempio \ref{ex:Ulam_Mandelbrot} e sia $ T\colon [0,1] \to [0,1] $ la mappa a tenda:
+    \[
+        T(x) \coloneqq
+        \begin{cases}
+            2x   & \text{se } 0 \leq x \leq 1/2 \\
+            2-2x & \text{se } 1/2 \leq x \leq 1
+        \end{cases}.
+    \]
+    Allora i due sistemi sono coniugati tramite $ h(x) = \sin^2\left(\frac{\pi x}{2}\right) $, cioè si ha $ Q_4\circ h = h\circ T $.
+    Inoltre, poiché $ T $ conserva la misura di Lebesgue, usando la \eqref{eq:pushforward-misure} si ottiene che $ Q_4 $ conserva la misura:
+    \[ \dif{h_\sharp \lambda}(x) = \frac{\dif x}{\pi\sqrt{x(1-x)}}\; . \]
+\end{example}
+
+\begin{example}
+    Sia $ Q_4\colon (0,1)\to(0,1) $, $ S\colon \R \to \R $ definita come
+    \[ S(y) \coloneqq \log\left(\frac{4 e^y}{(1-e^y)^2}\right) \]
+    e $ h\colon (0,1)\to\R $:
+    \[ h(x) \coloneqq \operatorname{logit}(x) \coloneqq \log\left(\frac{x}{1-x}\right) \]
+    Allora $ h\circ Q_4 = S \circ h $ e S conserva la misura:
+    \[ \dif\mu(y) = \frac{\dif y}{\pi\left( e^{y/2} - e^{-y/2} \right) } \; . \]
+\end{example}
+
+\subsection{Dinamica topologica}
+\emph{Setting}: $ X $ spazio metrico compatto e $ f\colon X\to X $ automorfismo.
+\begin{definition}[Sottoinsieme invariante]
+    Un sottoinsieme $ \Lambda \subset X $ si dice $ f $-invariante se $ \forall x\in\Lambda $ e $ \forall m \in \Z $, $ f^m(x) \in \Lambda $.
+    Se tale proprietà vale solo per $ m \geq 0 $ o $ m \leq 0 $, $ \Lambda $ si dirà rispettivamente positivamente o negativamente $ f $-invariante.
+\end{definition}
+
+\begin{oss}
+    Orbite periodiche sono insiemi invarianti, così come lo sono unioni di orbite.
+\end{oss}
+
+\begin{definition}[Punto errante]
+    Un punto $ x\in X $ si dice errante se $ \exists\; U\ni x $ intorno tale che $ \left( \bigcup_{\; \abs{m}>0} f^m(U) \right) \cap U = \emptyset $.
+    
+    Se $ f $ è solo un endomorfismo prenderemo solo gli $ m > 0 $. Nel caso di un sistema dinamico a tempo continuo, invece, si applica la stessa definizione dopo aver discretizzato il tempo ($ t = \tau\Z $).
+\end{definition}
+\begin{example}
+    Sia $ X = \R $ e $ T_\alpha (x) \coloneqq x + \alpha $ la traslazione di $ \alpha $. In questo caso tutti gli $ x\in\R $ sono punti erranti.
+\end{example}
+\begin{exercise}
+    Sia $ \Omega = \left\{ x\in X : x \text{ non è errante} \right\} $. Mostrare che $ \Omega $ è chiuso e invariante e che $ X $ compatto $ \Rightarrow \Omega \neq \emptyset $.
+\end{exercise}
+\begin{solution}
+    \textcolor{red}{content}
+\end{solution}
+
+\begin{definition}[$ \alpha $ e $ \omega $-limite]
+    Dato $ x\in X $ si definiscono gli insiemi:
+    \begin{align*}
+        \alpha(x) \coloneqq \left\{ y\in X : \exists\; n_j \nearrow -\infty, f^{n_j}(x) \to y \right\} \\
+        \omega(x) \coloneqq \left\{ y\in X : \exists\; n_j \searrow +\infty, f^{n_j}(x) \to y \right\}
+    \end{align*}
+    ossia l'insieme dei punti di accumulazione dell'orbita di x nel passato e nel futuro rispettivamente.
+\end{definition}
+
+\begin{definition}[Punto ricorrente]
+    Un punto $ x\in X $ si dice ricorrente se $ x\in \alpha(x) \cap \omega(x) $. Se vale solo $ x\in \alpha $ (risp. $ \omega $) il punto si dirà negativamente (risp. positivamente) ricorrente.
+\end{definition}
+\begin{exercise}
+    Dato $ x\in X $, $ \alpha(x) $ e $ \omega(x) $ sono chiusi e invarianti.
+\end{exercise}
+
+\begin{example}
+    \textcolor{red}{spirale}
+\end{example}
+
+\begin{example}
+    \textcolor{red}{Schifezza a forma di 8.}
+\end{example}
+
+\begin{example}
+    \textcolor{red}{Cosa sul toro}
+\end{example}
+
+\begin{exercise}[Teorema di Dirichlet]
+    
+\end{exercise}
+
+\begin{exercise}
+    $ \sum_{n=0}^{+\infty} 10^{-n!} $ è di Liouville.
+\end{exercise}
+\begin{exercise}
+    Gli irrazionali algebrici sono diofantei.
+\end{exercise}
+\begin{exercise}
+    Quasi ogni reale è diofanteo.\\
+    Hint: stimare la misura di Lebesgue di $ ( (0,1) \setminus \mathrm{CD}(\gamma,\tau) ),\; \tau > 0 $.
+\end{exercise}
