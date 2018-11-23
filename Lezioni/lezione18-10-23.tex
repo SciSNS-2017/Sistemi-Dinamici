@@ -66,9 +66,9 @@ Nel caso in cui $ J $ sia numerabile la condizione \ref{def:coin:base} è da int
     \norm{v - \sum_{j = 1}^{N} v_j e_j} \to 0 \quad \text{ per } N \to +\infty
 \]
 
-\begin{definition}[spazio separabile]
-   Se $ V $ ammette una base al più numerabile allora si dice separabile.
-\end{definition}
+\begin{proposition}
+   Uno spazio vettoriale $ V $ è separabile\footnote{Uno spazio topologico si dice separabile se contiene un sottoinsieme denso numerabile.} se e solo se ammette una base al più numerabile.
+\end{proposition}
 
 \begin{definition}[spazio di Hilbert]
     $ V $ si dice spazio di Hilbert se è separabile e completo rispetto alla norma indotta dal prodotto scalare.
@@ -87,9 +87,9 @@ Nel caso in cui $ J $ sia numerabile la condizione \ref{def:coin:base} è da int
 \end{example}
 
 \begin{example}[spazio $ L^2 $]
-    Consideriamo lo spazio $ L^2(X, \mathcal{F}, \mu) \coloneqq \faktor{\mathscr{L}^p(X,\mathcal{F},\mu)}{\sim} $ dove 
+    Consideriamo lo spazio $ L^2(X, \mathcal{F}, \mu) \coloneqq \faktor{\mathscr{L}^2(X,\mathcal{F},\mu)}{\sim} $ dove
     \[
-        \mathscr{L}^p(X,\mathcal{F},\mu) \coloneqq \left\{f \colon X \to \K \ \text{ misurabili tali che } \int_{X} \abs{f}^2 \dif{\mu} < +\infty\right\}
+        \mathscr{L}^2(X,\mathcal{F},\mu) \coloneqq \left\{f \colon X \to \K \ \text{ misurabili tali che } \int_{X} \abs{f}^2 \dif{\mu} < +\infty\right\}
     \]
     e $ f \sim g \iff \mu\text{-q.o.} \ f = g $. Su $ L^2(X, \mathcal{F}, \mu) $ definiamo il prodotto scalare 
     \[
@@ -103,11 +103,11 @@ Nel caso in cui $ J $ sia numerabile la condizione \ref{def:coin:base} è da int
 \end{example}
 
 \begin{example}[spazio $ l^2 $]
-    Consideriamo lo spazio 
+    Consideriamo lo spazio
     \[
-        l^2(\N) \coloneqq \left\{(x_n)_{n \in \N} \subseteq \K : \sum_{n \in \N} \abs{x_n}^2 < +\infty\right\}.
+        \ell^2(\N) \coloneqq \left\{(x_n)_{n \in \N} \subseteq \K : \sum_{n \in \N} \abs{x_n}^2 < +\infty\right\}.
     \]
-    Tale spazio può essere visto come un esempio di $ L^2(X; \mathcal{F}) $ in cui $ X = \N $, $ \mathcal{F} = \mathscr{P}(\N) $ e $ \mu(E) = \card{E} $ (misura conta punti). Infatti in tale caso le funzioni $ f \colon \N \to \K $ sono successioni a valori nel campo e l'integrale si riduce a una sommatoria. Osserviamo inoltre che la relazione di equivalenza è in realtà un'uguaglianza e pertanto $ l^2(\N) = L^2(\N, \mathscr{P}(\N), \mu) = \mathscr{L}^2(\N, \mathscr{P}(\N), \mu) $. Il prodotto scalare su $ l^2(\N) $ è
+    Tale spazio può essere visto come un esempio di $ \mathscr{L}^2(X, \mathcal{F}, \mu) $ in cui $ X = \N $, $ \mathcal{F} = \mathscr{P}(\N) $ e $ \mu(E) = \card{E} $ (misura conta punti). Infatti in tale caso le funzioni $ f \colon \N \to \K $ sono successioni a valori nel campo e l'integrale si riduce a una sommatoria. Osserviamo inoltre che, poiché l'unico insieme di misura nulla è il vuoto, la relazione di equivalenza è banale, cioè le classi di equivalenza sono i singoletti di $ \ell^2(\N) $: $ l^2(\N) \simeq \ell^2(\N) = \mathscr{L}^2(\N, \mathscr{P}(\N), \mu) $. Il prodotto scalare su $ l^2(\N) $ è
     \[
         {\langle (x_n), (y_n) \rangle} = \sum_{n \in \N} x_n \bar{y}_n.
     \]
@@ -137,10 +137,10 @@ Nel caso in cui $ J $ sia numerabile la condizione \ref{def:coin:base} è da int
         \lim_{k \to +\infty} \norm{x_k - \tilde{x}}_2^2 = \lim_{k \to +\infty} \sum_{n \in \N} \abs{x_k(n) - \tilde{x}(n)}^2 = 0.
     \]
     Osserviamo che $  $ \\
-    
-    
+
+
     DIM ALTERNATIVA \\
-    tale che $ \sum_{k \in \N} \norm{x_k}^2 < +\infty $. Osserviamo che 
+    tale che $ \sum_{k \in \N} \norm{x_k}^2 < +\infty $. Osserviamo che
     \[
         \abs{x_k(n)}^2 \leq \sum_{n \in \N} \abs{x_k(n)}^2 = \norm{x_k}^2 \quad \Rightarrow \quad \abs{x_k(n)} \leq \norm{x_k}.
     \]
@@ -152,5 +152,5 @@ Nel caso in cui $ J $ sia numerabile la condizione \ref{def:coin:base} è da int
 \end{proof}
 
 \begin{exercise}
-    Dimostrare che lo spazio $ L^2([0, 1]) $ è completo. 
+    Dimostrare che lo spazio $ L^2([0, 1]) $ è completo.
 \end{exercise}
