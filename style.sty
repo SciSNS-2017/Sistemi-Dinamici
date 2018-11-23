@@ -27,6 +27,7 @@
 
 % TIKZ
 \usepackage{pgf,tikz,pgfplots}
+\usepackage{tikz-cd}
 \pgfplotsset{compat=1.15}
 \usepackage{mathrsfs}
 \usetikzlibrary{arrows}
@@ -66,7 +67,7 @@
 \newcommand{\Rel}{\mathcal{R}}			% Relazione
 \newcommand{\Id}{\mathrm{Id}}			% Identità
 \newcommand{\card}[1]{\left|#1\right|}	% Cardinalità
-\renewcommand{\setminus}{\smallsetminus}
+\renewcommand{\setminus}{\!\smallsetminus\!}
 
 % SUCCESSIONI DI FUNZIONI
 \newcommand{\touf}{\rightrightarrows}	% Converge uniformemente
