@@ -1,6 +1,6 @@
 \section{Lezione del 16/10/2018 [Marmi]}
 \begin{definition}[orbita pre-periodica e periodica] Sia $f\colon X \to X$ un sistema dinamico. Un'orbita $\mathcal{O}^f(x)$ si dice pre-periodica se contiene un numero finito di elementi. Se inoltre $ f $ è invertibile l'orbita si dice periodica e la sua cardinalità si dice periodo.
-    
+
 Infine, se $f$ non è invertibile, possono esistere punti $ x $ (che costituiscono il pre-periodo) tali che $ \forall n > 0\ f^n (x) \neq x $.
 \end{definition}
 
@@ -9,8 +9,8 @@ Si consideri il sistema dinamico $f \colon \N \to \N$:
 \[
     f(n) \coloneqq
     \begin{cases}
-    	n/2 & \text{se $ n $ è pari}\\
-    	3n+1 		& \text{se $ n $ è dispari} \\	
+        n/2 & \text{se $ n $ è pari}\\
+        3n+1 & \text{se $ n $ è dispari} \\
     \end{cases}
 \]
 La congettura\footnote{È attualmente un problema aperto.} di Collatz asserisce che tutti gli $n \in \N$ sono preperiodici e che l'unico ciclo è $ 1 \to 4 \to 2 \to 1 $.
@@ -20,10 +20,10 @@ La congettura\footnote{È attualmente un problema aperto.} di Collatz asserisce 
 \begin{definition}[Sistemi dinamici coniugati]
 Siano $f\colon X \to X$ e $g\colon Y \to Y$ due sistemi dinamici. Questi si dicono coniugati se esiste $h \colon X \to Y$ invertibile tale che $h \circ f = g \circ h$, cioè tale da far commutare il seguente diagramma:
 \begin{center}
-	\begin{tikzcd}
-	X \arrow[r, "f"] \arrow[d, "h"]	& X \arrow[d, "h"] \\
-	Y \arrow[r, "g"] & Y 
-	\end{tikzcd}
+    \begin{tikzcd}
+        X \arrow[r, "f"] \arrow[d, "h"]  & X \arrow[d, "h"] \\
+        Y \arrow[r, "g"] & Y
+    \end{tikzcd}
 \end{center}
 Se $h$ è solamente surgettiva si dice che $g$ è un \emph{fattore} di $f$ oppure che $f$ è un'\emph{estensione} di $g$. Se invece $h$ è solo iniettiva allora si dice che $f$ è un \emph{sottosistema} di $g$.
 \end{definition}
@@ -38,7 +38,7 @@ I due sistemi risultano coniugati attraverso la funzione
 Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
 \end{example}
 
-\begin{example}
+\begin{example} \label{ex:Ulam_tenda}
     Sia $ Q_4 \colon [0,1] \to [0,1] $ come definita nell'esempio \ref{ex:Ulam_Mandelbrot} e sia $ T\colon [0,1] \to [0,1] $ la mappa a tenda:
     \[
         T(x) \coloneqq
@@ -50,6 +50,16 @@ Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
     Allora i due sistemi sono coniugati tramite $ h(x) = \sin^2\left(\frac{\pi x}{2}\right) $, cioè si ha $ Q_4\circ h = h\circ T $.
     Inoltre, poiché $ T $ conserva la misura di Lebesgue, usando la \eqref{eq:pushforward-misure} si ottiene che $ Q_4 $ conserva la misura:
     \[ \dif{h_\sharp \lambda}(x) = \frac{\dif x}{\pi\sqrt{x(1-x)}}\; . \]
+
+    \begin{figure}
+        \begin{center}
+            \subfloat[Mappa a tenda]
+            { \input{img/ulam-tenda/left.tikz} }
+            \subfloat[Trasformazione $ Q_4 $]
+            { \input{img/ulam-tenda/right.tikz} }
+        \end{center}
+        \caption{funzione dell'Esempio \ref{ex:Ulam_tenda}.}
+    \end{figure}
 \end{example}
 
 \begin{example}
@@ -64,7 +74,7 @@ Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
 \subsection{Dinamica topologica}
 \emph{Setting}: $ X $ spazio metrico compatto e $ f\colon X\to X $ automorfismo.
 \begin{definition}[Sottoinsieme invariante]
-    Un sottoinsieme $ \Lambda \subset X $ si dice $ f $-invariante se $ \forall x\in\Lambda $ e $ \forall m \in \Z $, $ f^m(x) \in \Lambda $.
+    Un sottoinsieme $ \Lambda \subset X $ si dice $ f $-invariante se $ \forall x\in\Lambda $ e $ \forall m \in \Z $, $ f^m(x) \in \Lambda $ o, equivalentemente, se $ f(\Lambda) \subseteq \Lambda $.
     Se tale proprietà vale solo per $ m \geq 0 $ o $ m \leq 0 $, $ \Lambda $ si dirà rispettivamente positivamente o negativamente $ f $-invariante.
 \end{definition}
 
@@ -74,17 +84,16 @@ Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
 
 \begin{definition}[Punto errante]
     Un punto $ x\in X $ si dice errante se $ \exists\; U\ni x $ intorno tale che $ \left( \bigcup_{\; \abs{m}>0} f^m(U) \right) \cap U = \emptyset $.
-    
     Se $ f $ è solo un endomorfismo prenderemo solo gli $ m > 0 $. Nel caso di un sistema dinamico a tempo continuo, invece, si applica la stessa definizione dopo aver discretizzato il tempo ($ t = \tau\Z $).
 \end{definition}
 \begin{example}
     Sia $ X = \R $ e $ T_\alpha (x) \coloneqq x + \alpha $ la traslazione di $ \alpha $. In questo caso tutti gli $ x\in\R $ sono punti erranti.
 \end{example}
 \begin{exercise}
-    Sia $ \Omega = \left\{ x\in X : x \text{ non è errante} \right\} $. Mostrare che $ \Omega $ è chiuso e invariante e che $ X $ compatto $ \Rightarrow \Omega \neq \emptyset $.
+    Sia $ \Omega = \left\{ x\in X : x \text{ non è errante} \right\} $. Mostrare che $ \Omega $ è chiuso e $ f $-invariante e che $ X $ compatto $ \Rightarrow \Omega \neq \emptyset $.
 \end{exercise}
 \begin{solution}
-    \textcolor{red}{content}
+    Se $ x\in\Omega $ allora $ \forall U \ni x $ intorno $ \exists m \neq 0\; \exists y\in f^m(U) $. Considero una successione $ (x_n) \subseteq\Omega : x_n \to \bar x $ e un intorno aperto $ U\ni\bar x $. Allora $ \exists \bar n : x_{\bar n} \in U $. Poiché $ U $ è aperto posso prendere un intorno $ V\ni x_{\bar n} $ con $ V \subset U $.
 \end{solution}
 
 \begin{definition}[$ \alpha $ e $ \omega $-limite]
@@ -93,7 +102,7 @@ Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
         \alpha(x) \coloneqq \left\{ y\in X : \exists\; n_j \nearrow -\infty, f^{n_j}(x) \to y \right\} \\
         \omega(x) \coloneqq \left\{ y\in X : \exists\; n_j \searrow +\infty, f^{n_j}(x) \to y \right\}
     \end{align*}
-    ossia l'insieme dei punti di accumulazione dell'orbita di x nel passato e nel futuro rispettivamente.
+    ossia l'insieme dei punti aderenti all'orbita di $ x $ nel passato e nel futuro rispettivamente.
 \end{definition}
 
 \begin{definition}[Punto ricorrente]
@@ -104,11 +113,31 @@ Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
 \end{exercise}
 
 \begin{example}
-    \textcolor{red}{spirale}
+    Si consideri il sistema dinamico definito su $\R^2$ che in coordinate polari segue la legge
+    \[
+        \begin{cases}
+            \dot{\theta} & = 1      \\
+            \dot{r}      & = (1-r)r
+        \end{cases}
+    \]
+    Gli insiemi limite sono
+    \begin{align*}
+        \alpha(x) &=
+        \begin{cases}
+            0                                          & \norm{x} < 1 \\
+            \left \{x \in \R^2: \norm{x} = 1 \right \} & \norm{x} = 1 \\
+            \emptyset                                  & \norm{x} > 1
+        \end{cases} \\
+        \omega(x) &=
+        \begin{cases}
+            0 & x = 0 \\
+            \left \{x \in \R^2: \norm{x} = 1 \right \} & x \neq 0
+        \end{cases}.
+    \end{align*}
 \end{example}
 
 \begin{example}
-    \textcolor{red}{Schifezza a forma di 8.}
+    \textcolor{red}{Schifezza a forma di 8, è indispensabile la figura.}
 \end{example}
 
 \begin{example}
@@ -116,7 +145,7 @@ Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
 \end{example}
 
 \begin{exercise}[Teorema di Dirichlet]
-    
+
 \end{exercise}
 
 \begin{exercise}
