@@ -9,8 +9,8 @@ Si consideri il sistema dinamico $f \colon \N \to \N$:
 \[
     f(n) \coloneqq
     \begin{cases}
-        n/2 & \text{se $ n $ è pari}\\
-        3n+1 & \text{se $ n $ è dispari} \\
+        n/2  & \text{se $ n $ è pari}    \\
+        3n+1 & \text{se $ n $ è dispari}
     \end{cases}
 \]
 La congettura\footnote{È attualmente un problema aperto.} di Collatz asserisce che tutti gli $n \in \N$ sono preperiodici e che l'unico ciclo è $ 1 \to 4 \to 2 \to 1 $.
@@ -51,6 +51,7 @@ Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
     Inoltre, poiché $ T $ conserva la misura di Lebesgue, usando la \eqref{eq:pushforward-misure} si ottiene che $ Q_4 $ conserva la misura:
     \[ \dif{h_\sharp \lambda}(x) = \frac{\dif x}{\pi\sqrt{x(1-x)}}\; . \]
 
+    \iffigureon
     \begin{figure}
         \begin{center}
             \subfloat[Mappa a tenda]
@@ -60,6 +61,7 @@ Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
         \end{center}
         \caption{funzione dell'Esempio \ref{ex:Ulam_tenda}.}
     \end{figure}
+    \fi
 \end{example}
 
 \begin{example}
@@ -93,7 +95,12 @@ Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
     Sia $ \Omega = \left\{ x\in X : x \text{ non è errante} \right\} $. Mostrare che $ \Omega $ è chiuso e $ f $-invariante e che $ X $ compatto $ \Rightarrow \Omega \neq \emptyset $.
 \end{exercise}
 \begin{solution}
-    Se $ x\in\Omega $ allora $ \forall U \ni x $ intorno $ \exists m \neq 0\; \exists y\in f^m(U) $. Considero una successione $ (x_n) \subseteq\Omega : x_n \to \bar x $ e un intorno aperto $ U\ni\bar x $. Allora $ \exists \bar n : x_{\bar n} \in U $. Poiché $ U $ è aperto posso prendere un intorno $ V\ni x_{\bar n} $ con $ V \subset U $.
+    Sia $ \bar x \in \clo{\Omega} $. Allora $ \forall U\ni \bar x $ intorno aperto $ \exists y\in\Omega\cap U $. Ma $ U $ è intorno anche di $ y\in \Omega $, per cui $ \exists m\neq 0 : f^m(U)\cap U=\emptyset $ e quindi $ \bar x \in \Omega $, da cui $ \Omega $ è chiuso.
+
+    Per dimostrare che $ \Omega $ è invariante basta far vedere che $ f(\Omega) \subseteq \Omega $. Considero dunque $ x\in f(\Omega) $, $ U\ni x $ intorno e $ V \coloneqq f^{-1}(U) $; allora $ \exists \bar x\in\Omega : x = f(\bar x) $. Poiché $ \bar x\in\Omega $, $ \exists m\neq 0 : f^m(V) \cap V \neq \emptyset $. Ora $ f^m(U) \cap U = f^m(f(V)) \cap f(V) = f(f^m(V)) \cap f(V) \supseteq f(f^m(V)\cap V) \neq \emptyset $ e quindi $ x\in\Omega $.
+
+    \textcolor{red}{$ X $ compatto $ \Rightarrow \Omega \neq \emptyset $.}
+    %Per dimostrare che se $ X $ è compatto allora $ \Omega \neq \emptyset $ procediamo per assurdo; supponiamo dunque che $ \forall x\in X\; \exists U_x\ni x \text{ intorno aperto}: \forall m\neq 0\; f^m(U)\cap U = 0 $. L'unione $ \bigcup_{x\in X}U_x $ è un ricoprimento aperto di $ X $, dal quale per compattezza si può estrarre un sottoricoprimento finito $ \{U_i\}_{i=0,\ldots,N} $. Considero le immagini $ f^k(U_0) $ al variare di $ k\neq 0 $. Queste non possono intersecare $ U_0 $ e, poiché gli $ \{U_i\} $ sono in numero finito, esiste un $ j\in\{1,\ldots,N\} $ tale che $ f^k(U_0)\cap U_j \neq \emptyset $ per almeno due valori di $ k $, che chiamiamo $ \alpha $ e $ \beta $ con $ \beta > \alpha $.
 \end{solution}
 
 \begin{definition}[$ \alpha $ e $ \omega $-limite]
@@ -116,23 +123,23 @@ Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
     Si consideri il sistema dinamico definito su $\R^2$ che in coordinate polari segue la legge
     \[
         \begin{cases}
-            \dot{\theta} & = 1      \\
-            \dot{r}      & = (1-r)r
+            \dot{\theta}  = 1      \\
+            \dot{r}       = (1-r)r
         \end{cases}
     \]
     Gli insiemi limite sono
     \begin{align*}
         \alpha(x) &=
         \begin{cases}
-            0                                          & \norm{x} < 1 \\
+            \{ (0,0) \}                                & \norm{x} < 1 \\
             \left \{x \in \R^2: \norm{x} = 1 \right \} & \norm{x} = 1 \\
             \emptyset                                  & \norm{x} > 1
         \end{cases} \\
         \omega(x) &=
         \begin{cases}
-            0 & x = 0 \\
-            \left \{x \in \R^2: \norm{x} = 1 \right \} & x \neq 0
-        \end{cases}.
+            \{ (0,0) \} & x = (0,0) \\
+            \left \{x \in \R^2: \norm{x} = 1 \right \} & x \neq (0,0)
+        \end{cases}
     \end{align*}
 \end{example}
 
@@ -140,13 +147,38 @@ Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
     \textcolor{red}{Schifezza a forma di 8, è indispensabile la figura.}
 \end{example}
 
-\begin{example}
-    \textcolor{red}{Cosa sul toro}
+\begin{example}[Rotazioni sul toro]
+    Prendiamo come spazio delle fasi $ X = \T^1 $. Consideriamo il sistema dinamico dato dall'iterazione della rotazione $ R_\alpha\colon X\to X $ definita come
+    \[ R_\alpha(x) \coloneqq x + \alpha \pmod{1}. \]
+    Dotiamo inoltre $ X $ della distanza
+    \[ d(x,y) \coloneqq \min_{p\in\Z} \abs{x-y-p}. \]
+    Mostriamo innanzi tutto che le orbite sono periodiche $ \iff \alpha\in\Q $:
+    \begin{itemize}
+        \item[$\Rightarrow$] Si ha $ \forall x\in\T^1\; \exists m\in\Z : x = x + m\alpha \pmod{1} $. Ma allora $ m\alpha = k $ per qualche $ k\in Z $ e quindi dev'essere $ \alpha\in\Q $.
+        \item[$\Leftarrow$] Sia $ \alpha = p/q $. $ R_\alpha^m(x) = x + m\frac{p}{q} \pmod{1} $, quindi dopo $ q $ passi $ x $ torna in se stesso.
+    \end{itemize}
+    Mostriamo ora che se $ \alpha\in\R\setminus\Q $, allora tutte le orbite sono dense nel toro.
+    \textcolor{red}{mancante}.
 \end{example}
 
 \begin{exercise}[Teorema di Dirichlet]
-
+    Sia $ \alpha \in \R\setminus\Q $. Allora l'equazione
+    \[ \abs{\alpha - \frac{p}{q}} < \frac{1}{q^2} \]
+    ha infinite soluzioni $ p/q \in\Q $ distinte.
 \end{exercise}
+
+\begin{definition}[Numeri diofantei]
+    Dato $ \gamma > 0 $ e $ \tau \geq 0 $, definiamo l'insieme
+    \[ \mathrm{CD(\gamma,\tau)} \coloneqq \left\{ \alpha\in\R\setminus\Q : \abs{\alpha - \frac{p}{q}} \geq \frac{\gamma}{q^{2+\tau}}\quad \forall p/q\in\Q \right\} \]
+    Definiamo poi
+    \[ \mathrm{CD(\tau)} \coloneqq \bigcup_{\gamma > 0} \mathrm{CD}(\gamma,\tau) \]
+    e infine l'insieme dei numeri diofantei
+    \[ \mathrm{CD} \coloneqq \bigcup_{\tau \geq 0} \mathrm{CD}(\tau) \]
+\end{definition}
+
+\begin{definition}[Numeri di Liouville]
+    Diciamo che $ x $ è di Liouville se $ x\in (\R\setminus\Q) \setminus \mathrm{CD} $.
+\end{definition}
 
 \begin{exercise}
     $ \sum_{n=0}^{+\infty} 10^{-n!} $ è di Liouville.

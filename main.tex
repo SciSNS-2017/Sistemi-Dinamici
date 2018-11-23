@@ -1,12 +1,11 @@
 \documentclass[a4paper]{scrbook}
 
-\usepackage{fullpage}
 \usepackage{style}
-\usepackage{tikz-cd}
+\usepackage{fullpage}
 
+% Flag per escludere le immagini
 \newif\iffigureon
 \figureonfalse
-
 
 % THEOREM ENVIORMMENT e.g. \newtheorem{comando}{nome}[numerazione]
 \theoremstyle{definition}
@@ -26,28 +25,25 @@
 
 \numberwithin{equation}{chapter}
 
+% DOCUMENT
 \title{Introduzione ai sistemi dinamici I}
 \author{SciSNS-2017}
 
 \begin{document}
-
 \frontmatter
-
 \maketitle
-
 Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale. Per leggere una copia della licenza visita il sito web \url{http://creativecommons.org/licenses/by-nc-sa/4.0/}.
 \iffigureon
 \begin{center}
-  \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[scale = 0.8]{img/by-nc-sa}}
+    \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[scale = 0.8]{img/by-nc-sa}}
 \end{center}
 \fi
 
+Il progetto è ospitato su GitHub al link \url{https://github.com/SciSNS-2017/Sistemi-Dinamici} dove si può trovare la sua versione più recente. Ogni suggerimento (errori, soluzioni di esercizi, contributi vari, ecc.) è sempre gradito e può essere segnalato creando una \emph{issue} su GitHub oppure contattando direttamente gli autori.
 
 \tableofcontents
 
-
 \mainmatter
-
 \chapter{Lezioni}
 \input{Lezioni/lezione18-10-09.tex}
 \input{Lezioni/lezione18-10-10.tex}
@@ -57,16 +53,10 @@ Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non 
 \input{Lezioni/lezione18-10-24.tex}
 \input{Lezioni/lezione18-10-30.tex}
 
-
-
 %\appendix
-
 %\chapter{Appendice}
 
-
 %\backmatter
-
 %\bibliography{bibliografia}
-
 
 \end{document}
