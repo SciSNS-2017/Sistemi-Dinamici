@@ -1,3 +1,4 @@
+[![build status](https://gitlab.com/marco-venuti/sistemi-dinamici/badges/master/build.svg)](https://gitlab.com/marco-venuti/sistemi-dinamici/-/jobs/artifacts/master/raw/Sistemi-Dinamici.pdf?job=compile_pdf)
 # Sistemi Dinamici
 Appunti del corso _Introduzione ai Sistemi Dinamici_, raccolti durante l'anno accademico 2018-2019. I docenti del corso sono:
 * Stefano Marmi
