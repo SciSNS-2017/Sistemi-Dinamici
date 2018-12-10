@@ -1,94 +1,102 @@
 \section{Lezione del 24/10/2018 [Marmi]}
 
 \begin{definition}[numero algebrico]
-	Un numero $ \alpha $ in $ \R $ o $ \C $ si dice algebrico se è radice di un polinomio a coefficienti interi, cioè se esiste $ P \in \Z[x] $ tale che $ P(\alpha) = 0 $. \\
-	Si definisce \emph{grado} $ d $ di $ \alpha $ se $ \alpha $ è radice di un polinomio di grado $ d $ e di nessun polinomio di grado minore.  
+    Un numero $ \alpha $ in $ \R $ o $ \C $ si dice algebrico se è radice di un polinomio a coefficienti interi, cioè se esiste $ P \in \Z[x] $ tale che $ P(\alpha) = 0 $. \\
+    Si definisce \emph{grado} $ d $ di $ \alpha $ se $ \alpha $ è radice di un polinomio di grado $ d $ e di nessun polinomio di grado minore.
 \end{definition}
 
 \begin{thm}[Liouville]
-	Se $ \alpha $ è algebrico di grado $ d \geq 2 $ allora $ \forall \epsilon > 0 $ la disequazione
-	\[
-		\abs{\alpha - \frac{p}{q}} < \frac{1}{q^{d + \epsilon}}
-	\]
-	ha solo un numero finito di soluzioni. 
+    Se $ \alpha $ è algebrico di grado $ d \geq 2 $ allora $ \forall \epsilon > 0 $ la disequazione
+    \[
+        \abs{\alpha - \frac{p}{q}} < \frac{1}{q^{d + \epsilon}}
+    \]
+    ha solo un numero finito di soluzioni.
 \end{thm}
-%
+
 \begin{proof}
-	Sia $ P \in \Z[x] $ di grado $ d $ indivisibile tale che $ P(\alpha) = 0 $. Osserviamo che per ogni $ p/q \in \Q $ diverso da $ \alpha $ vale che $ P(p/q) = N/q^d $ per un qualche $ N \in \Z \setminus \{0\} $. \\
-	Lo sviluppo in serie di Taylor di $ P $ centrato in $ \alpha $ ha espressione finita e pari a 
-	\[
-		P(x) = \sum_{k = 1}^{d} \frac{P^{(k)}(\alpha)}{k!} (x - \alpha)^k
-	\]
-	dove abbiamo omesso il termine di grado zero essendo $ P^{(0)}(\alpha) = P(\alpha) = 0 $. Così
-	\[
-		\abs{P\left(\frac{p}{q}\right)} \leq \sum_{k = 1}^{d} \frac{\abs{P^{(k)}(\alpha)}}{k!} \abs{\frac{p}{q} - \alpha}^k = \abs{\frac{p}{q} - \alpha} \sum_{k = 1}^{d} \frac{\abs{P^{(k)}(\alpha)}}{k!} \abs{\frac{p}{q} - \alpha}^{k - 1}.
-	\]
-	Se $ \abs{p/q - \alpha} \leq 1 $ otteniamo 
-	\[
-		\frac{\abs{N}}{q^d} \leq \abs{\frac{p}{q} - \alpha} A(\alpha) \qquad \text{ con } A(\alpha) \coloneqq d \sup_{1 \leq k \leq d} \frac{1}{k!} \abs{P^{(k)}(\alpha)}.
-	\]
-	\textcolor{red}{Ancora da terminare la dimostrazione.}
+    Sia $ P \in \Z[x] $ di grado $ d $ indivisibile tale che $ P(\alpha) = 0 $. Osserviamo che per ogni $ p/q \in \Q $ diverso da $ \alpha $ vale che $ P(p/q) = N/q^d $ per un qualche $ N \in \Z$. Se fosse $N=0$, allora il polinomio $P(x)$ avrebbe una radice razionale $p/q$, quindi sarebbe fattorizzabile come $P(x)=(x-p/q)R(x)$ e dunque non sarebbe irridcubile, assurdo. Quindi $N\in \Z \setminus \{0\} $.\\
+    Lo sviluppo in serie di Taylor di $ P $ centrato in $ \alpha $ ha espressione finita e pari a
+    \[
+        P(x) = \sum_{k = 1}^{d} \frac{P^{(k)}(\alpha)}{k!} (x - \alpha)^k
+    \]
+    dove abbiamo omesso il termine di grado zero essendo $ P^{(0)}(\alpha) = P(\alpha) = 0 $. Così
+    \[
+        \abs{P\left(\frac{p}{q}\right)} \leq \sum_{k = 1}^{d} \frac{\abs{P^{(k)}(\alpha)}}{k!} \abs{\frac{p}{q} - \alpha}^k = \abs{\frac{p}{q} - \alpha} \sum_{k = 1}^{d} \frac{\abs{P^{(k)}(\alpha)}}{k!} \abs{\frac{p}{q} - \alpha}^{k - 1}.
+    \]
+    Supponiamo ora di avere infinite soluzioni $p/q$ tali che per un certo $\epsilon$ si abbia $ \abs{p/q - \alpha} \leq \frac{1}{q^{d + \epsilon}}<1$. In particolare, essendo $q$ intero positivo e $d+\epsilon >1$:
+    \[
+        \abs{P\left(\frac{p}{q}\right)}\leq \abs{\frac{p}{q} - \alpha} \sum_{k = 1}^{d} \frac{\abs{P^{(k)}(\alpha)}}{k!} \abs{\frac{p}{q} - \alpha}^{k - 1} \leq \abs{\frac{p}{q} - \alpha} \sum_{k = 1}^{d} \frac{\abs{P^{(k)}(\alpha)}}{k!}.
+    \]
+    Notiamo ora che
+    \[
+        A(\alpha) \coloneqq d \cdot \underset{1 \leq k \leq d}{\sup} \dfrac{1}{k!} \abs{P^{(k)}(\alpha)} \geq  \sum\limits_{k = 1}^{d} \frac{\abs{P^{(k)}(\alpha)}}{k!}
+    \]
+    Infatti il sup maggiora ognuno dei termini della somma. In particolar modo $A(\alpha)$ dipende dal grado del polinomio $d$ ma non dipende dalla soluzione trovata $p/q$, quindi fissato $\alpha$ è una costante.
+    \[
+        \frac{\abs{N}}{q^d} \leq \abs{\frac{p}{q} - \alpha} A(\alpha) \leq \frac{1}{q^{d+\epsilon}} A(\alpha)
+    \]
+    Da cui $\abs{N} \leq \frac{A(\alpha)}{q^{\epsilon}}$. Questa uguaglianza vale per tutte le infinite soluzioni $p/q$, in particolar modo deve valere per infiniti $q$. Dunque esiste una successione infinita crescente $\left\{q_j\right\}_{j\in \N}$ tale che $\abs{N} \leq \frac{A(\alpha)}{q_j^{\epsilon}}$. Dato che $q_j$ va a infinito, $\frac{A(\alpha)}{q_j^{\epsilon}}$ tende a 0, dunque $\abs{N}=N=0$, assurdo per l'osservazione iniziale.\qedhere
 \end{proof}
 
 \subsection{Back to dinamica topologica}
 \emph{Setting}: $ (X, d) $ è uno spazio metrico compatto, $ f \colon X \to X $ è una funzione continua e la dinamica è quella data dall'iterazione di $ f $. 
 
 \begin{definition}[funzione topologicamente transitiva]
-	$ f $ si dice topologicamente transitiva se esiste un punto la cui orbita è densa cioè $ \exists x \in X : \overline{\mathcal{O}_f(x)} = X $.
+    $ f $ si dice topologicamente transitiva se esiste un punto la cui orbita è densa cioè $ \exists x \in X : \overline{\mathcal{O}_f(x)} = X $.
 \end{definition}
 
 \begin{definition}[funzione minimale]
-	$ f $ si dice minimale se $ \forall x \in X, \ \overline{\mathcal{O}_f(x)} = X $. 
+    $ f $ si dice minimale se $ \forall x \in X, \ \overline{\mathcal{O}_f(x)} = X $.
 \end{definition}
 
 \begin{definition}[insieme minimale]
-	Un insieme chiuso, $ f $-invariante e non vuoto $ A \subseteq X $ si dice minimale se $ f\lvert_A $ è minimale. 
+    Un insieme chiuso, $ f $-invariante e non vuoto $ A \subseteq X $ si dice minimale se $ f\lvert_A $ è minimale.
 \end{definition}
 
 Osserviamo che la transitività topologica così come la minimalità sono invarianti per coniugazione o semi-coniugazione topologica.
 
 \begin{thm}
-	Sia $ f \colon X \to X $ un omeomorfismo. I seguenti fatti sono equivalenti.
-	\begin{enumerate}[label=(\roman*)]
-		\item $ f $ è topologicamente transitiva.
-		\item \emph{Idemcomponibilità topologica}: se $ U \subseteq X $ è aperto $ f $-totalmente invariante, i.e. $ U = f(U) = f^{-1}(U) $, allora $ U = \emptyset $ o $ \overline{U} = X $.
-		\item Per ogni coppia di aperti non vuoti $ U, V \subseteq X $ esiste un $ n_0 \in \Z $ tale che $ f^{n_0}(U) \cap V \neq \emptyset $. 
-		\item $ \{x \in X : \overline{\mathcal{O}_f(x)} = X\} $ è un $ G_\delta $-denso\footnote{%
-			Un sottoinsieme $ A $ di uno spazio topologico $ (X, \tau) $ si dice $ G_\delta $-denso se è intersezione numerabile di aperti densi. 
-		}.
-	\end{enumerate}
+    Sia $ f \colon X \to X $ un omeomorfismo. I seguenti fatti sono equivalenti.
+    \begin{enumerate}[label=(\roman*)]
+        \item $ f $ è topologicamente transitiva.
+        \item \emph{Indecomponibilità topologica}: se $ U \subseteq X $ è aperto $ f $-totalmente invariante, i.e. $ U = f(U) = f^{-1}(U) $, allora $ U = \emptyset $ o $ \overline{U} = X $.
+        \item Per ogni coppia di aperti non vuoti $ U, V \subseteq X $ esiste un $ n_0 \in \Z $ tale che $ f^{n_0}(U) \cap V \neq \emptyset $.
+        \item $ \{x \in X : \overline{\mathcal{O}_f(x)} = X\} $ è un $ G_\delta $-denso\footnote{%
+            Un sottoinsieme $ A $ di uno spazio topologico $ (X, \tau) $ si dice $ G_\delta $-denso se è intersezione numerabile di aperti densi.
+        }.
+    \end{enumerate}
 \end{thm}
-%
+
 \begin{proof}
-	Mostriamo le varie implicazioni. 
-	\begin{enumerate}
-		\item[$ (i) \Rightarrow (ii) $] Per ipotesi $ \exists x \in X : \overline{\mathcal{O}_f(x)} = X $. Allora se $ U \neq \emptyset, \ \exists n \in \Z : f^{n}(U) \in U $ da cui essendo $ f $-totalmente invariante, $ \forall n \in Z, \ f^n(x) \in U $ ovvero $ \overline{U} = \overline{\mathcal{O}_f(x)} = X $. 
-		\item[$ (ii) \Rightarrow (iii) $] Dato $ U $ aperto e non vuoto costruiamo un aperto non vuoto e $ f $-totalmente invariante ponendo $ U' \coloneqq \bigcup_{n \in \Z} f^n(U) $. Per ipotesi $ \overline{U'} = X $ da cui $ U' \cap V \neq \emptyset $. Allora per definizione $ \exists n_0 \in \Z : f^{n_0}(U) \cap V \neq \emptyset $.
-		\item[$ (iii) \Rightarrow (iv) $] Ricordiamo che gli spazi metrici compatti sono \emph{spazi polacchi} cioè ammettono una base numerabile di aperti $ \{U_i\}_{i \in \N} $. Osserviamo che il fatto che $ \overline{\mathcal{O}_f(x)} = X $ è equivalente a chiedere che $ \forall n \in \N, \ \exists j \in \Z : f^j(x) \in U_n $ e cioè che $ x \in \bigcap_{n \in \N} \bigcup_{m \in \Z} f^{m}(U_n) $. Ora per ipotesi $ \bigcup_{m \in \Z} f^m(x) $ ha intersezione non vuota con ogni aperto non vuoto, cioè è denso in $ X $. Per definizione questo implica che $ \{x \in X : \overline{\mathcal{O}_f(x)} = X\} $ è un $ G_\delta $-denso. 
-		\item[$ (iv) \Rightarrow (i) $] Essendo $ \{x \in X : \overline{\mathcal{O}_f(x)} = X\} $ un $ G_\delta $-denso per il Teorema di Ba\^{i}re è anche un denso e pertanto non vuoto. Dunque $ \exists x \in X : \overline{\mathcal{O}_f(x)} = X $ cioè $ f $ è topologicamente transitiva. \qedhere
-	\end{enumerate}
+    Mostriamo le varie implicazioni.
+    \begin{description}
+        \item[$ (i) \Rightarrow (ii) $] Per ipotesi $ \exists x \in X : \overline{\mathcal{O}_f(x)} = X $. Allora se $ U \neq \emptyset, \ \exists n \in \Z : f^{n}(U) \in U $ da cui essendo $ f $-totalmente invariante, $ \forall n \in Z, \ f^n(x) \in U $ ovvero $ \overline{U} = \overline{\mathcal{O}_f(x)} = X $.
+        \item[$ (ii) \Rightarrow (iii) $] Dato $ U $ aperto e non vuoto costruiamo un aperto non vuoto e $ f $-totalmente invariante ponendo $ U' \coloneqq \bigcup_{n \in \Z} f^n(U) $. Per ipotesi $ \overline{U'} = X $ da cui $ U' \cap V \neq \emptyset $. Allora per definizione $ \exists n_0 \in \Z : f^{n_0}(U) \cap V \neq \emptyset $.
+        \item[$ (iii) \Rightarrow (iv) $] Ricordiamo che gli spazi metrici compatti sono \emph{spazi polacchi} cioè ammettono una base numerabile di aperti $ \{U_i\}_{i \in \N} $. Osserviamo che il fatto che $ \overline{\mathcal{O}_f(x)} = X $ è equivalente a chiedere che $ \forall n \in \N, \ \exists j \in \Z : f^j(x) \in U_n $ e cioè che $ x \in \bigcap_{n \in \N} \bigcup_{m \in \Z} f^{m}(U_n) $. Ora per ipotesi $ \bigcup_{m \in \Z} f^m(x) $ ha intersezione non vuota con ogni aperto non vuoto, cioè è denso in $ X $. Per definizione questo implica che $ \{x \in X : \overline{\mathcal{O}_f(x)} = X\} $ è un $ G_\delta $-denso.
+        \item[$ (iv) \Rightarrow (i) $] Essendo $ \{x \in X : \overline{\mathcal{O}_f(x)} = X\} $ un $ G_\delta $-denso per il Teorema di Ba\^{i}re è anche un denso e pertanto non vuoto. Dunque $ \exists x \in X : \overline{\mathcal{O}_f(x)} = X $ cioè $ f $ è topologicamente transitiva. \qedhere
+    \end{description}
 \end{proof}
 
 Osserviamo che se $ f \colon X \to X $ è solo continua allora $ (i) $ e $ (ii) $ sono comunque equivalenti a patto che $ X $ non abbia punti isolati. \\
 
 \begin{definition}[integrale primo]
-	Un integrale primo è una funzione $ \varphi \colon X \to \R $ tale che $ \varphi \circ f = \varphi $, cioè che è costante sulle orbite. 
+    Un integrale primo è una funzione $ \varphi \colon X \to \R $ tale che $ \varphi \circ f = \varphi $, cioè che è costante sulle orbite.
 \end{definition}
 
 \begin{proposition}
-	Se $ f $ è topologicamente transitiva allora gli unici integrali primi continui sono funzioni costanti.
+    Se $ f $ è topologicamente transitiva allora gli unici integrali primi continui sono funzioni costanti.
 \end{proposition}
 %
 \begin{proof}
-	Se $ \varphi $ è un integrale primo allora $ \varphi(\mathcal{O}_f(\bar{x})) = c $ con $ c \in \R $ dove $ \bar{x} \in X $ è il punto le cui orbite sono dense in $ X $. Allora se $ x \in \R $ esiste una successione $ (x_k)_{k \in \N} \subseteq \mathcal{O}_f(\bar{x}) $ tale che $ x_k \to x $. Essendo $ \varphi $ continua allora $ \varphi(x) = \lim_{k} \varphi(x_k) = \lim_{k} c = c $ da cui segue la tesi. 
+    Se $ \varphi $ è un integrale primo allora $ \varphi(\mathcal{O}_f(\bar{x})) = c $ con $ c \in \R $ dove $ \bar{x} \in X $ è il punto le cui orbite sono dense in $ X $. Allora se $ x \in \R $ esiste una successione $ (x_k)_{k \in \N} \subseteq \mathcal{O}_f(\bar{x}) $ tale che $ x_k \to x $. Essendo $ \varphi $ continua allora $ \varphi(x) = \lim_{k} \varphi(x_k) = \lim_{k} c = c $ da cui segue la tesi.
 \end{proof}
 
 \begin{definition}[topologicamente mescolante]
-	Una dinamica definita da $ f $ si dice topologicamente mescolante se $ \forall U, V $ aperti non vuoti $ \exists n_0 \in \N : \forall n \geq n_0, \ f^n(U) \cap V \neq \emptyset $. 
+    Una dinamica definita da $ f $ si dice topologicamente mescolante se $ \forall U, V $ aperti non vuoti $ \exists n_0 \in \N : \forall n \geq n_0, \ f^n(U) \cap V \neq \emptyset $.
 \end{definition}
 
 Osserviamo che l'essere topologicamente mescolante è invariante per coniugazione topologia e passa al fattore nel caso di semi-coniugazione. \\
-Supponiamo infatti che $ f \colon X \to X $ e $ g \colon Y \to Y $ siano semi-coniugati, cioè $ \exists h \colon X \to Y $ continua e suriettiva tale che $ g \circ h = h \circ g $ (da cui $ g^n \circ h = h \circ f^n $ per ogni $ n $), e che $ f $ sia topologicamente mescolante. Allora se $ U, V $ sono aperti in $ Y $ allora $ h^{-1}(U) $ e $ h^{-1}(V) $ sono aperti in $ X $ e quindi $ \exists n_0 : \forall n \geq n_0, \ f^{n}(h^{-1}(U)) \cap V \neq \emptyset $. Ma allora per ogni $ n \geq n_0 $ si ha 
+Supponiamo infatti che $ f \colon X \to X $ e $ g \colon Y \to Y $ siano semi-coniugati, cioè $ \exists h \colon X \to Y $ continua e suriettiva tale che $ g \circ h = h \circ g $ (da cui $ g^n \circ h = h \circ f^n $ per ogni $ n $), e che $ f $ sia topologicamente mescolante. Allora se $ U, V $ sono aperti in $ Y $ allora $ h^{-1}(U) $ e $ h^{-1}(V) $ sono aperti in $ X $ e quindi $ \exists n_0 : \forall n \geq n_0, \ f^{n}(h^{-1}(U)) \cap V \neq \emptyset $. Ma allora per ogni $ n \geq n_0 $ si ha
 \begin{align*}
     g^n(U) \cap V & = g^{n}(h(h^{-1}(U))) \cap h(h^{-1}(V)) \\
     & = h(f^n(h^{-1}(U))) \cap h(h^{-1})(V) \\
@@ -102,7 +110,7 @@ Sull'insieme $ \Sigma_m $ è possibile definire un concetto di \emph{profondità
 \[
 a\left((\epsilon_i), (\delta_i)\right) \coloneqq \inf_{i \in \N} \{\epsilon_i \neq \delta_i\}
 \]
-a partire dalla quale possiamo definire una distanza tra successioni 
+a partire dalla quale possiamo definire una distanza tra successioni
 \[
 d\left((\epsilon_i), (\delta_i)\right) \coloneqq m^{-a\left((\epsilon_i), (\delta_i)\right)}
 \]
@@ -115,12 +123,12 @@ Per mostrare la compattezza verifichiamo che $ \Sigma_m $ è totalmente limitato
     \item Le palle di raggio $ R $ e di centro $ \bar{x} \coloneqq (\bar{x}_i)_{i \in \N} $ di questo spazio metrico sono
     \[
     B_R(\bar{x}) = \{(x_i) \in \Sigma_m : \forall i \in \N : 0 \leq i \leq -\log_m{R}, \ x_i = \bar{x}_i\}.
-    \] 
-    Osserviamo quindi che, posto $ p \coloneqq \left \lfloor -\log_m{R} \right \rfloor $, ogni successione della forma \linebreak $ (x_1, \ldots, x_p, x_{p+1}, \ldots) $ sta in $ B_R{\left((x_1, \ldots, x_p, 0, \ldots)\right)} $ e pertanto considerando l'insieme delle possibili $ m^p $ successioni distinte che sono costantemente nulle dal $ (p+1) $-esimo termine in poi, le palle di raggio $ R $ centrate in tali elementi sono un ricoprimento finito di $ \Sigma_m $. 
+    \]
+    Osserviamo quindi che, posto $ p \coloneqq \left \lfloor -\log_m{R} \right \rfloor $, ogni successione della forma \linebreak $ (x_1, \ldots, x_p, x_{p+1}, \ldots) $ sta in $ B_R{\left((x_1, \ldots, x_p, 0, \ldots)\right)} $ e pertanto considerando l'insieme delle possibili $ m^p $ successioni distinte che sono costantemente nulle dal $ (p+1) $-esimo termine in poi, le palle di raggio $ R $ centrate in tali elementi sono un ricoprimento finito di $ \Sigma_m $.
     \item Sia ora $ (x^j)_{j \in \N} \coloneqq ((x_i^j)_{i \in \N})_{j \in \N} $ una successione di Cauchy in $ \Sigma_m $, cioè tale che $ \forall \epsilon > 0, \ \exists \bar{j} : \forall j_1, j_2 \geq \bar{j}, \ x_i^{j_1} = x_i^{j_2} \ \forall i \leq -\log_m{\epsilon} $. Essendo la successione $ (x_i^j)_{j \in \N} $ definitivamente costante (a $ i $ fissato, scelto un $ \epsilon $ positivo tale che $ -\log_m{\epsilon} > i $, per la proprietà di Cauchy abbiamo che $ \exists \bar{j} : \forall j \geq \bar{j}, \ x_i^j = \text{cost} $) possiamo porre $ \bar{x}_i \coloneqq \lim_{j \to +\infty} x_i^j $. La successione $ \bar{x} \coloneqq (\bar{x}_i)_{i \in \N} $ è il candidato limite. Dobbiamo mostrare che $ \lim_{j \to +\infty} d(x^j, \bar{x}) = 0 $, cioè che $ \forall I, \ \exists \bar{j} : \forall j \geq \bar{j}, \ \inf{\{i : x_i^j \neq \bar{x}_i\}} \geq I $. Tale proprietà è verificata per costruzione: fissato $ I \in \N $, per ogni $ i \in \{0, \ldots, I\} $ sappiamo che esiste $ j_i \in \N : \forall j \geq j_i, \ x_i^j = \bar{x}_i $; prendendo allora $ \bar{j} \coloneqq \max \{j_1, \ldots, j_I\} $ otteniamo che per ogni $ 0 \leq i \leq I $ e $ \forall j \geq \bar{j} $ si ha $ x_i^j = \bar{x}_i $, cioè $ \inf{\{i : x_i^j \neq \bar{x}_i\}} \geq I $.
-\end{enumerate} 
+\end{enumerate}
 
-Rispetto a tale distanza, lo \emph{shift} $ \sigma $ è una funzione continua. Infatti se prendiamo $ \bar{x} \in \Sigma_m $ ($ \sigma $ è chiaramente suriettiva) e $ B_R(\bar{x}) $ allora $ \sigma^{-1}(B_R(\bar{x})) $ è aperto: posto $ p \coloneqq \left \lfloor -\log_m{R} \right \rfloor $ e $ \bar{x} \coloneqq (\bar{x}_1, \ldots, \bar{x}_p, \ldots) $ si ha che 
+Rispetto a tale distanza, lo \emph{shift} $ \sigma $ è una funzione continua. Infatti se prendiamo $ \bar{x} \in \Sigma_m $ ($ \sigma $ è chiaramente suriettiva) e $ B_R(\bar{x}) $ allora $ \sigma^{-1}(B_R(\bar{x})) $ è aperto: posto $ p \coloneqq \left \lfloor -\log_m{R} \right \rfloor $ e $ \bar{x} \coloneqq (\bar{x}_1, \ldots, \bar{x}_p, \ldots) $ si ha che
 \[
 \sigma^{-1}(B_R(\bar{x})) = \bigcup_{k = 0}^{m-1} B_{R'}((k, \bar{x}_1, \ldots, \bar{x}_p, \bar{x}_{p+1}, \ldots))
 \]
@@ -129,25 +137,25 @@ Osserviamo tuttavia che $ \sigma $ non è iniettiva e pertanto non è un omeomor
 
 La mappa di \emph{shift} è topologicamente transitiva. Consideriamo infatti la sequenza $ (\epsilon_i) \in \Sigma_m $ costruita nel seguente modo: per ogni $ k \in \N $ consideriamo l'insieme di tutte le possibili $ m^k $ sequenza finite di $ m $ simboli e sia $ (\epsilon_i) $ la loro concatenazione in ordine crescente rispetto a $ k $ (e.g. se $ m = 2 $ allora per $ k = 1 $ abbiamo $ \{(0), (1)\} $, per $ k = 2 $ abbiamo $ \{(0, 0), (0, 1), (1, 0), (1, 1)\} $ e così via, allora $ (\epsilon_i) = (0, 1, 0, 0, 0, 1, 1, 0, 1, 1, \ldots) $). Tale successione contiene in ordine tutti i possibili inizi delle successioni in $ \Sigma_m $. L'orbita di tale sequenza sotto l'azione di $ \sigma $ è allora densa in $ \Sigma_m $: fissata una sequenza $ (\delta_i) $ e una tolleranza $ R $ basterà iterare $ \sigma $ un certo numero $ N $ di volte in modo che $ \sigma^N((\epsilon_i)) $ inizi con $ (\delta_1, \ldots, \delta_p) $ con $ p \coloneqq \left \lfloor -\log_m{R} \right \rfloor $ e ottenere quindi una sequenza che dista meno di $ R $ da $ (\delta_i) $. \\
 
-La mappa di \emph{shift} è topologicamente mescolante. Se prendiamo un aperto $ V $ e una palla $ B_R(x) $ con $ x \coloneqq (x_1, \dots, x_p, \ldots) $ con $ p \coloneqq \left \lfloor -\log_m{R} \right \rfloor $ allora $ \sigma(B_R(x)) $ è l'insieme delle successioni che coincidono con $ (x_2, \ldots, x_p) $ sui primi $ p-1 $ elemento e quindi iterando $ p $ volte $ \sigma $ otteniamo l'insieme delle successioni che coincidono sui primi 0 elementi, cioè tutto $ \Sigma_m $ allora è chiaro che $ \forall n \geq p, \ \sigma(B_R(x)) \cap V = \Sigma_m \cap V \neq \emptyset $. Se ora $ U $ è un aperto allora $ U = \bigcup_{j \in J} B_{R_j}(x^j) $ e preso $ \bar{j} \in J $ tale che $ \sigma^{\bar{j}}(B_{R_{\bar{j}}}(x^{\bar{j}})) = \Sigma_m $ abbiamo che $ \forall n \geq \bar{j}, \ \sigma^n(U) = \sigma^n B_{R_{\bar{j}}} (x^{\bar{j}})) \cup \bigcup_{j \in J\setminus\{\bar{j}\}} B_{R_j}(x^j) = \Sigma_m $ da cui $ \forall n \geq \bar{j}, \ \sigma^n(U) \cap V \neq \emptyset $. 
+La mappa di \emph{shift} è topologicamente mescolante. Se prendiamo un aperto $ V $ e una palla $ B_R(x) $ con $ x \coloneqq (x_1, \dots, x_p, \ldots) $ con $ p \coloneqq \left \lfloor -\log_m{R} \right \rfloor $ allora $ \sigma(B_R(x)) $ è l'insieme delle successioni che coincidono con $ (x_2, \ldots, x_p) $ sui primi $ p-1 $ elemento e quindi iterando $ p $ volte $ \sigma $ otteniamo l'insieme delle successioni che coincidono sui primi 0 elementi, cioè tutto $ \Sigma_m $ allora è chiaro che $ \forall n \geq p, \ \sigma(B_R(x)) \cap V = \Sigma_m \cap V \neq \emptyset $. Se ora $ U $ è un aperto allora $ U = \bigcup_{j \in J} B_{R_j}(x^j) $ e preso $ \bar{j} \in J $ tale che $ \sigma^{\bar{j}}(B_{R_{\bar{j}}}(x^{\bar{j}})) = \Sigma_m $ abbiamo che $ \forall n \geq \bar{j}, \ \sigma^n(U) = \sigma^n B_{R_{\bar{j}}} (x^{\bar{j}})) \cup \bigcup_{j \in J\setminus\{\bar{j}\}} B_{R_j}(x^j) = \Sigma_m $ da cui $ \forall n \geq \bar{j}, \ \sigma^n(U) \cap V \neq \emptyset $.
 
 \subsection{Dilatazioni intere su $ \T^1 $}
 Fissato $ m \geq 2 $ intero sia $ E_m \colon \T^1 \to \T^1 $ data da $ E_m(x) \coloneqq mx \pmod{1} $. Su $ \T^1 $ poniamo la distanza euclidea modulo 1, cioè $ d(x, y) = \inf_{p \in \Z} \abs{x - y - p} $ rispetto alla quale è uno spazio metrico compatto. Osserviamo i seguenti fatti
 \begin{itemize}
-	\item $ E_m $ è una mappa \emph{espansiva}, cioè se $ x, y \in \T^1 $ e $ d(x, y) < 1/2^n $ allora $ d(E_m(x), E_m(y)) = m d(x, y) $ per un qualche $ n $. \textcolor{red}{la definizione non è chiara}
-	\item $ E_m $ conserva la misura di Lebesgue. \textcolor{red}{segue dal fatto che moralmente $ E_m^{-1}([a, b]) $ sono $ m $ intervalli di lunghezza $ (b - a)/m $ ma serve una definizione più precisa di espansività}
-	\item $ E_m $ è un fattore dello \emph{shift su $ m $ simboli}. Infatti se consideriamo la proiezione $ \pi_m \colon \Sigma_m \to \T^1 $ 
+    \item $ E_m $ è una mappa \emph{espansiva}, cioè se $ x, y \in \T^1 $ e $ d(x, y) < 1/2^n $ allora $ d(E_m(x), E_m(y)) = m d(x, y) $ per un qualche $ n $. \textcolor{red}{la definizione non è chiara}
+    \item $ E_m $ conserva la misura di Lebesgue. \textcolor{red}{segue dal fatto che moralmente $ E_m^{-1}([a, b]) $ sono $ m $ intervalli di lunghezza $ (b - a)/m $ ma serve una definizione più precisa di espansività}
+    \item $ E_m $ è un fattore dello \emph{shift su $ m $ simboli}. Infatti se consideriamo la proiezione $ \pi_m \colon \Sigma_m \to \T^1 $
     \[
         \pi_m((\epsilon_i)_{i \in \N}) \coloneqq \sum_{i = 1}^{+\infty} \epsilon_i m^{-i}
     \]
-    che rappresenta la successione $ (\epsilon_i) $ come un numero in base $ m $ in $ [0, 1) $. La proiezione è chiaramente una mappa suriettiva. Pertanto otteniamo che il seguente diagramma è commutativo, cioè $ E_m \circ \pi_m = \pi_m \circ \sigma $, e che $ E_m $ 
+    che rappresenta la successione $ (\epsilon_i) $ come un numero in base $ m $ in $ [0, 1) $. La proiezione è chiaramente una mappa suriettiva. Pertanto otteniamo che il seguente diagramma è commutativo, cioè $ E_m \circ \pi_m = \pi_m \circ \sigma $, e che $ E_m $
     \begin{center}
         \begin{tikzcd}
             \Sigma_m \arrow[r, "\sigma"] \arrow[d, "\pi_m" left] & \Sigma_m \arrow[d, "\pi_m" right]\\
-            \T^1 \arrow[r, "E_m" below] & \T^1 
+            \T^1 \arrow[r, "E_m" below] & \T^1
         \end{tikzcd}
     \end{center}
-    Infatti se $ (\epsilon_i) \in \Sigma_m $ allora 
+    Infatti se $ (\epsilon_i) \in \Sigma_m $ allora
     \begin{align*}
         (E_m \circ \pi_m)((\epsilon_i)) & = E_m\left(\sum_{i = 1}^{+\infty} \epsilon_i m^{-i}\right)  = \sum_{i = 1}^{+\infty} \epsilon_i m^{-i+1} \pmod{1} \\
         & = \epsilon_1 \cdot 1 + \sum_{i = 2}^{+\infty} \epsilon_i m^{-i+1} \pmod{1} \\
@@ -157,47 +165,47 @@ Fissato $ m \geq 2 $ intero sia $ E_m \colon \T^1 \to \T^1 $ data da $ E_m(x) \c
     \[
         (\pi_m \circ \sigma)((\epsilon_i)) = \pi_m\left((\epsilon_{i + 1})\right)  = \sum_{i = 1}^{+\infty} \epsilon_{i + 1} m^{-i}.
     \]
-    Tuttavia osserviamo che $ \pi_m $ ha un'inversa destra (cioè una mappa $ l \colon \T^1 \to \Sigma_m $ tale che $ \pi_m \circ l = \Id_{\T^1} $) che si costruisce facendo la \emph{dinamica simbolica}: dato $ x \in \T^1 $ dividiamo l'intervallo $ [0, 1) $ in $ m $ intervalli e consideriamo l'iterazione di $ E_m $ su di $ x $ e poniamo $ l(x) \coloneqq (\epsilon_i)_{i \in \N} $ se l'iterata $ i $-esima di $ E_m $ cade nell'intervallo $ [\epsilon_i/m, \epsilon_{i + 1}/m) $. È chiaro che allora $ \pi_m((\epsilon_i)) $ coincide con la scrittura in base $ m $ del numero iniziale. La presenza di un'inversa destra permette allora di scrivere 
+    Tuttavia osserviamo che $ \pi_m $ ha un'inversa destra (cioè una mappa $ l \colon \T^1 \to \Sigma_m $ tale che $ \pi_m \circ l = \Id_{\T^1} $) che si costruisce facendo la \emph{dinamica simbolica}: dato $ x \in \T^1 $ dividiamo l'intervallo $ [0, 1) $ in $ m $ intervalli e consideriamo l'iterazione di $ E_m $ su di $ x $ e poniamo $ l(x) \coloneqq (\epsilon_i)_{i \in \N} $ se l'iterata $ i $-esima di $ E_m $ cade nell'intervallo $ [\epsilon_i/m, \epsilon_{i + 1}/m) $. È chiaro che allora $ \pi_m((\epsilon_i)) $ coincide con la scrittura in base $ m $ del numero iniziale. La presenza di un'inversa destra permette allora di scrivere
     \[
-        E_m(x) = (\pi_m \circ \sigma \circ l )(x). 
+        E_m(x) = (\pi_m \circ \sigma \circ l )(x).
     \]
-    Per fare un esempio numerico di come funziona la dinamica simbolica prendiamo $ m = 4 $ e $ x = 0.11 $. Così $ \epsilon_1 = 0 $, $ E_4(x) = 0.44 \rightarrow \epsilon_2 = 1 $, $ E_4^2(x) = 0.76 \rightarrow \epsilon_3 = 3 $, $ E_4^3(x) = 0.04 \rightarrow \epsilon_4 = 0 $, $ E_4^4(x) = 0.16 \rightarrow \epsilon_5 = 0 $, $ E_4^5(x) = 0.32 \rightarrow \epsilon_6 = 1 $, $ E_4^6(x) = 0.64 \rightarrow \epsilon_7 = 2 $, etc. Da cui $ \pi_4((\epsilon_i)) \approx 0\cdot4^{-1} + 1\cdot4^{-2} + 3\cdot4^{-3} + 0\cdot4^{-4} + 0\cdot4^{-5} + 1\cdot4^{-6} + 2\cdot4^{-7} \approx 0.1097 $. 
-    \item $ E_m $ è topologicamente transitiva. Segue dal fatto che la transitività topologica è invariante per semi-coniugazione e $ E_m $ è semi-coniugata con lo \emph{shift} che è topologicamente transitivo. 
-    \item $ E_m $ è topologicamente mescolante.	Essendo lo \emph{shift} topologicamente mescolante e $ E_m $ un fattore dello \emph{shift} concludiamo che anche $ E_m $ è topologicamente mescolante. 
+    Per fare un esempio numerico di come funziona la dinamica simbolica prendiamo $ m = 4 $ e $ x = 0.11 $. Così $ \epsilon_1 = 0 $, $ E_4(x) = 0.44 \rightarrow \epsilon_2 = 1 $, $ E_4^2(x) = 0.76 \rightarrow \epsilon_3 = 3 $, $ E_4^3(x) = 0.04 \rightarrow \epsilon_4 = 0 $, $ E_4^4(x) = 0.16 \rightarrow \epsilon_5 = 0 $, $ E_4^5(x) = 0.32 \rightarrow \epsilon_6 = 1 $, $ E_4^6(x) = 0.64 \rightarrow \epsilon_7 = 2 $, etc. Da cui $ \pi_4((\epsilon_i)) \approx 0\cdot4^{-1} + 1\cdot4^{-2} + 3\cdot4^{-3} + 0\cdot4^{-4} + 0\cdot4^{-5} + 1\cdot4^{-6} + 2\cdot4^{-7} \approx 0.1097 $.
+    \item $ E_m $ è topologicamente transitiva. Segue dal fatto che la transitività topologica è invariante per semi-coniugazione e $ E_m $ è semi-coniugata con lo \emph{shift} che è topologicamente transitivo.
+    \item $ E_m $ è topologicamente mescolante. Essendo lo \emph{shift} topologicamente mescolante e $ E_m $ un fattore dello \emph{shift} concludiamo che anche $ E_m $ è topologicamente mescolante.
 \end{itemize}
 
 \subsection{Endomorfismi e automorfismi lineari di $ \T^d $}
 \begin{example}[trasformazione del panettiere]
-    $ S \colon \T^2 \to \T^2 $ definita da 
+    $ S \colon \T^2 \to \T^2 $ definita da
     \begin{equation*}
-        S 
+        S
         \begin{pmatrix}
             x \\
-            y 
+            y
         \end{pmatrix}
-        = 
+        =
         \begin{cases}
             \begin{pmatrix}
                 2x \\
-                y/2 
-            \end{pmatrix} 
+                y/2
+            \end{pmatrix}
             & \text{se $ x \leq 1/2 $} \\[1.5em]
             \begin{pmatrix}
                 2 - 2x \\
-                1 - y/2 
+                1 - y/2
             \end{pmatrix}
             & \text{se $ x > 1/2 $}
         \end{cases}
     \end{equation*}
-    $ S $ è un fattore sullo \emph{shift} delle successioni bi-infinite di 2 simboli. 
+    $ S $ è un fattore sullo \emph{shift} delle successioni bi-infinite di 2 simboli.
 \end{example}
 
-\begin{example}[gatto di Arnol'd] 
-    Il sistema dinamico dato dall'iterazione di $ A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \\\end{pmatrix} $ sul toro. Il suo spettro è $     \left\{\frac{3+\sqrt{5}}{2}, \frac{3-\sqrt{5}}{2}\right\} $ quindi è un automorfismo iperbolico. È una trasformazione topologicamente mescolante. 
+\begin{example}[gatto di Arnol'd]
+    Il sistema dinamico dato dall'iterazione di $ A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \\\end{pmatrix} $ sul toro. Il suo spettro è $     \left\{\frac{3+\sqrt{5}}{2}, \frac{3-\sqrt{5}}{2}\right\} $ quindi è un automorfismo iperbolico. È una trasformazione topologicamente mescolante.
 \end{example}
 
 \begin{exercise}
-    Dimostrare che l’inversa di una matrice $ d \times d $ a coefficienti interi ha coefficienti interi se e solo se il determinate è di modulo 1. In generale mostrare che il nucleo di un endomorfismo lineare del toro $ \T^d $ ha cardinalità pari al valore assoluto del determinate della matrice che rappresenta l'endomorfismo.    
+    Dimostrare che l’inversa di una matrice $ d \times d $ a coefficienti interi ha coefficienti interi se e solo se il determinate è di modulo 1. In generale mostrare che il nucleo di un endomorfismo lineare del toro $ \T^d $ ha cardinalità pari al valore assoluto del determinate della matrice che rappresenta l'endomorfismo.
 \end{exercise}
 
 \begin{exercise}
@@ -211,6 +219,3 @@ Fissato $ m \geq 2 $ intero sia $ E_m \colon \T^1 \to \T^1 $ data da $ E_m(x) \c
 \begin{exercise}
     Dimostrare che la trasformazione del panettiere è topologicamente mescolante. (Hint: può essere una buona idea capire come agisce sui quadrati con vertici razionali diadici).
 \end{exercise}
-
-
-

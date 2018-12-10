@@ -1,0 +1,192 @@
+\section{Lezione del 16/10/2018 [Marmi]}
+\begin{definition}[orbita pre-periodica e periodica] Sia $f\colon X \to X$ un sistema dinamico. Un'orbita $\mathcal{O}^f(x)$ si dice pre-periodica se contiene un numero finito di elementi. Se inoltre $ f $ è invertibile l'orbita si dice periodica e la sua cardinalità si dice periodo.
+
+Infine, se $f$ non è invertibile, possono esistere punti $ x $ (che costituiscono il pre-periodo) tali che $ \forall n > 0\ f^n (x) \neq x $.
+\end{definition}
+
+\begin{example}[Congettura di Collatz]
+Si consideri il sistema dinamico $f \colon \N \to \N$:
+\[
+    f(n) \coloneqq
+    \begin{cases}
+        n/2  & \text{se $ n $ è pari}    \\
+        3n+1 & \text{se $ n $ è dispari}
+    \end{cases}
+\]
+La congettura\footnote{È attualmente un problema aperto.} di Collatz asserisce che tutti gli $n \in \N$ sono preperiodici e che l'unico ciclo è $ 1 \to 4 \to 2 \to 1 $.
+\end{example}
+
+\subsection{Coniugazione e misure invarianti}
+\begin{definition}[Sistemi dinamici coniugati]
+Siano $f\colon X \to X$ e $g\colon Y \to Y$ due sistemi dinamici. Questi si dicono coniugati se esiste $h \colon X \to Y$ invertibile tale che $h \circ f = g \circ h$, cioè tale da far commutare il seguente diagramma:
+\begin{center}
+    \begin{tikzcd}
+        X \arrow[r, "f"] \arrow[d, "h"]  & X \arrow[d, "h"] \\
+        Y \arrow[r, "g"] & Y
+    \end{tikzcd}
+\end{center}
+Se $h$ è solamente surgettiva si dice che $g$ è un \emph{fattore} di $f$ oppure che $f$ è un'\emph{estensione} di $g$. Se invece $h$ è solo iniettiva allora si dice che $f$ è un \emph{sottosistema} di $g$.
+\end{definition}
+
+\begin{example} \label{ex:Ulam_Mandelbrot}
+Si considerino i seguenti sistemi dinamici $ \C \to \C$:
+\[ Q_\lambda(z) \coloneqq \lambda z (1-z) \]
+\[ P_c(z) \coloneqq z^2 + c \qquad \text{con } c = - \frac{\lambda^2}{4} +  \frac{\lambda}{2}. \]
+Le funzioni $ Q_\lambda $ sono dette \emph{trasformazioni di Ulam-Von Neumann}, mentre $P_c$ è la funzione che genera l'\emph{insieme di Mandelbrot}.
+I due sistemi risultano coniugati attraverso la funzione
+\[ h_\lambda(z) = -\lambda z + \frac{\lambda}{2}\;. \]
+Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
+\end{example}
+
+\begin{example} \label{ex:Ulam_tenda}
+    Sia $ Q_4 \colon [0,1] \to [0,1] $ come definita nell'esempio \ref{ex:Ulam_Mandelbrot} e sia $ T\colon [0,1] \to [0,1] $ la mappa a tenda:
+    \[
+        T(x) \coloneqq
+        \begin{cases}
+            2x   & \text{se } 0 \leq x \leq 1/2 \\
+            2-2x & \text{se } 1/2 \leq x \leq 1
+        \end{cases}.
+    \]
+    Allora i due sistemi sono coniugati tramite $ h(x) = \sin^2\left(\frac{\pi x}{2}\right) $, cioè si ha $ Q_4\circ h = h\circ T $.
+    Inoltre, poiché $ T $ conserva la misura di Lebesgue, usando la \eqref{eq:pushforward-misure} si ottiene che $ Q_4 $ conserva la misura:
+    \[ \dif{h_\sharp \lambda}(x) = \frac{\dif x}{\pi\sqrt{x(1-x)}}\; . \]
+
+    \iffigureon
+    \begin{figure}
+        \begin{center}
+            \subfloat[Mappa a tenda]
+            { \input{img/ulam-tenda/left.tikz} }
+            \subfloat[Trasformazione $ Q_4 $]
+            { \input{img/ulam-tenda/right.tikz} }
+        \end{center}
+        \caption{funzione dell'Esempio \ref{ex:Ulam_tenda}.}
+    \end{figure}
+    \fi
+\end{example}
+
+\begin{example}
+    Sia $ Q_4\colon (0,1)\to(0,1) $, $ S\colon \R \to \R $ definita come
+    \[ S(y) \coloneqq \log\left(\frac{4 e^y}{(1-e^y)^2}\right) \]
+    e $ h\colon (0,1)\to\R $:
+    \[ h(x) \coloneqq \operatorname{logit}(x) \coloneqq \log\left(\frac{x}{1-x}\right) \]
+    Allora $ h\circ Q_4 = S \circ h $ e S conserva la misura:
+    \[ \dif\mu(y) = \frac{\dif y}{\pi\left( e^{y/2} - e^{-y/2} \right) } \; . \]
+\end{example}
+
+\subsection{Dinamica topologica}
+\emph{Setting}: $ X $ spazio metrico compatto e $ f\colon X\to X $ automorfismo.
+\begin{definition}[Sottoinsieme invariante]
+    Un sottoinsieme $ \Lambda \subset X $ si dice $ f $-invariante se $ \forall x\in\Lambda $ e $ \forall m \in \Z $, $ f^m(x) \in \Lambda $ o, equivalentemente, se $ f(\Lambda) \subseteq \Lambda $.
+    Se tale proprietà vale solo per $ m \geq 0 $ o $ m \leq 0 $, $ \Lambda $ si dirà rispettivamente positivamente o negativamente $ f $-invariante.
+\end{definition}
+
+\begin{oss}
+    Orbite periodiche sono insiemi invarianti, così come lo sono unioni di orbite.
+\end{oss}
+
+\begin{definition}[Punto errante]
+    Un punto $ x\in X $ si dice errante se $ \exists\; U\ni x $ intorno tale che $ \left( \bigcup_{\; \abs{m}>0} f^m(U) \right) \cap U = \emptyset $.
+    Se $ f $ è solo un endomorfismo prenderemo solo gli $ m > 0 $. Nel caso di un sistema dinamico a tempo continuo, invece, si applica la stessa definizione dopo aver discretizzato il tempo ($ t = \tau\Z $).
+\end{definition}
+\begin{example}
+    Sia $ X = \R $ e $ T_\alpha (x) \coloneqq x + \alpha $ la traslazione di $ \alpha $. In questo caso tutti gli $ x\in\R $ sono punti erranti.
+\end{example}
+\begin{exercise}
+    Sia $ \Omega = \left\{ x\in X : x \text{ non è errante} \right\} $. Mostrare che $ \Omega $ è chiuso e $ f $-invariante e che $ X $ compatto $ \Rightarrow \Omega \neq \emptyset $.
+\end{exercise}
+\begin{solution}
+    Sia $ \bar x \in \clo{\Omega} $. Allora $ \forall U\ni \bar x $ intorno aperto $ \exists y\in\Omega\cap U $. Ma $ U $ è intorno anche di $ y\in \Omega $, per cui $ \exists m\neq 0 : f^m(U)\cap U=\emptyset $ e quindi $ \bar x \in \Omega $, da cui $ \Omega $ è chiuso.
+
+    Per dimostrare che $ \Omega $ è invariante basta far vedere che $ f(\Omega) \subseteq \Omega $. Considero dunque $ x\in f(\Omega) $, $ U\ni x $ intorno e $ V \coloneqq f^{-1}(U) $; allora $ \exists \bar x\in\Omega : x = f(\bar x) $. Poiché $ \bar x\in\Omega $, $ \exists m\neq 0 : f^m(V) \cap V \neq \emptyset $. Ora $ f^m(U) \cap U = f^m(f(V)) \cap f(V) = f(f^m(V)) \cap f(V) \supseteq f(f^m(V)\cap V) \neq \emptyset $ e quindi $ x\in\Omega $.
+
+    \textcolor{red}{$ X $ compatto $ \Rightarrow \Omega \neq \emptyset $.}
+    %Per dimostrare che se $ X $ è compatto allora $ \Omega \neq \emptyset $ procediamo per assurdo; supponiamo dunque che $ \forall x\in X\; \exists U_x\ni x \text{ intorno aperto}: \forall m\neq 0\; f^m(U)\cap U = 0 $. L'unione $ \bigcup_{x\in X}U_x $ è un ricoprimento aperto di $ X $, dal quale per compattezza si può estrarre un sottoricoprimento finito $ \{U_i\}_{i=0,\ldots,N} $. Considero le immagini $ f^k(U_0) $ al variare di $ k\neq 0 $. Queste non possono intersecare $ U_0 $ e, poiché gli $ \{U_i\} $ sono in numero finito, esiste un $ j\in\{1,\ldots,N\} $ tale che $ f^k(U_0)\cap U_j \neq \emptyset $ per almeno due valori di $ k $, che chiamiamo $ \alpha $ e $ \beta $ con $ \beta > \alpha $.
+\end{solution}
+
+\begin{definition}[$ \alpha $ e $ \omega $-limite]
+    Dato $ x\in X $ si definiscono gli insiemi:
+    \begin{align*}
+        \alpha(x) \coloneqq \left\{ y\in X : \exists\; n_j \nearrow -\infty, f^{n_j}(x) \to y \right\} \\
+        \omega(x) \coloneqq \left\{ y\in X : \exists\; n_j \searrow +\infty, f^{n_j}(x) \to y \right\}
+    \end{align*}
+    ossia l'insieme dei punti aderenti all'orbita di $ x $ nel passato e nel futuro rispettivamente.
+\end{definition}
+
+\begin{definition}[Punto ricorrente]
+    Un punto $ x\in X $ si dice ricorrente se $ x\in \alpha(x) \cap \omega(x) $. Se vale solo $ x\in \alpha $ (risp. $ \omega $) il punto si dirà negativamente (risp. positivamente) ricorrente.
+\end{definition}
+\begin{exercise}
+    Dato $ x\in X $, $ \alpha(x) $ e $ \omega(x) $ sono chiusi e invarianti.
+\end{exercise}
+
+\begin{example}
+    Si consideri il sistema dinamico definito su $\R^2$ che in coordinate polari segue la legge
+    \[
+        \begin{cases}
+            \dot{\theta}  = 1      \\
+            \dot{r}       = (1-r)r
+        \end{cases}
+    \]
+    Gli insiemi limite sono
+    \begin{align*}
+        \alpha(x) &=
+        \begin{cases}
+            \{ (0,0) \}                                & \norm{x} < 1 \\
+            \left \{x \in \R^2: \norm{x} = 1 \right \} & \norm{x} = 1 \\
+            \emptyset                                  & \norm{x} > 1
+        \end{cases} \\
+        \omega(x) &=
+        \begin{cases}
+            \{ (0,0) \} & x = (0,0) \\
+            \left \{x \in \R^2: \norm{x} = 1 \right \} & x \neq (0,0)
+        \end{cases}
+    \end{align*}
+\end{example}
+
+\begin{example}
+    \textcolor{red}{Schifezza a forma di 8, è indispensabile la figura.}
+\end{example}
+
+\begin{example}[Rotazioni sul toro]
+    Prendiamo come spazio delle fasi $ X = \T^1 $. Consideriamo il sistema dinamico dato dall'iterazione della rotazione $ R_\alpha\colon X\to X $ definita come
+    \[ R_\alpha(x) \coloneqq x + \alpha \pmod{1}. \]
+    Dotiamo inoltre $ X $ della distanza
+    \[ d(x,y) \coloneqq \min_{p\in\Z} \abs{x-y-p}. \]
+    Mostriamo innanzi tutto che le orbite sono periodiche $ \iff \alpha\in\Q $:
+    \begin{itemize}
+        \item[$\Rightarrow$] Si ha $ \forall x\in\T^1\; \exists m\in\Z : x = x + m\alpha \pmod{1} $. Ma allora $ m\alpha = k $ per qualche $ k\in Z $ e quindi dev'essere $ \alpha\in\Q $.
+        \item[$\Leftarrow$] Sia $ \alpha = p/q $. $ R_\alpha^m(x) = x + m\frac{p}{q} \pmod{1} $, quindi dopo $ q $ passi $ x $ torna in se stesso.
+    \end{itemize}
+    Mostriamo ora che se $ \alpha\in\R\setminus\Q $, allora tutte le orbite sono dense nel toro.
+    \textcolor{red}{mancante}.
+\end{example}
+
+\begin{exercise}[Teorema di Dirichlet]
+    Sia $ \alpha \in \R\setminus\Q $. Allora l'equazione
+    \[ \abs{\alpha - \frac{p}{q}} < \frac{1}{q^2} \]
+    ha infinite soluzioni $ p/q \in\Q $ distinte.
+\end{exercise}
+
+\begin{definition}[Numeri diofantei]
+    Dato $ \gamma > 0 $ e $ \tau \geq 0 $, definiamo l'insieme
+    \[ \mathrm{CD(\gamma,\tau)} \coloneqq \left\{ \alpha\in\R\setminus\Q : \abs{\alpha - \frac{p}{q}} \geq \frac{\gamma}{q^{2+\tau}}\quad \forall p/q\in\Q \right\} \]
+    Definiamo poi
+    \[ \mathrm{CD(\tau)} \coloneqq \bigcup_{\gamma > 0} \mathrm{CD}(\gamma,\tau) \]
+    e infine l'insieme dei numeri diofantei
+    \[ \mathrm{CD} \coloneqq \bigcup_{\tau \geq 0} \mathrm{CD}(\tau) \]
+\end{definition}
+
+\begin{definition}[Numeri di Liouville]
+    Diciamo che $ x $ è di Liouville se $ x\in (\R\setminus\Q) \setminus \mathrm{CD} $.
+\end{definition}
+
+\begin{exercise}
+    $ \sum_{n=0}^{+\infty} 10^{-n!} $ è di Liouville.
+\end{exercise}
+\begin{exercise}
+    Gli irrazionali algebrici sono diofantei.
+\end{exercise}
+\begin{exercise}
+    Quasi ogni reale è diofanteo.\\
+    Hint: stimare la misura di Lebesgue di $ ( (0,1) \setminus \mathrm{CD}(\gamma,\tau) ),\; \tau > 0 $.
+\end{exercise}

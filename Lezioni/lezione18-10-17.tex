@@ -151,7 +151,10 @@ Se $ f $ è anche integrabile, allora la misura con densità è una misura finit
     \[ \int_W f(y)\dif y = \int_V f(T(x)) \abs{\det{\jac{T}(x)}} \dif x \]
 \end{thm}
 \begin{oss}
-    Data $ \dif\mu(x) = \rho(x)\dif x $, $ \dif{(T_\sharp\mu)(y)} = \rho(T^{-1}(y)) \abs{\det{\jac T}(T^{-1}(y))}^{-1} \dif y $.
+    Data $ \dif\mu(x) = \rho(x)\dif x $, si ha 
+    \begin{equation}\label{eq:pushforward-misure}
+        \dif{(T_\sharp\mu)(y)} = \rho(T^{-1}(y)) \abs{\det{\jac T}(T^{-1}(y))}^{-1} \dif y \: .
+    \end{equation}
 \end{oss}
 
 \textcolor{red}{Con $ \dif{x} $ si intende la misura di Lebesgue?} \\
