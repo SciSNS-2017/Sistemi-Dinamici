@@ -1,0 +1,67 @@
+\section{Lezione del 20/11/2018 [Marmi]}
+
+\emph{Setting}: $ (X, \mathcal{A}, \mu, f) $ è un sistema dinamico misurabile.
+
+\begin{thm}[Birkoff] \label{thm:Birkoff}
+    Sia $ (X, \mathcal{A}, \mu, f) $ un sistema dinamico misurabile. Allora $ \forall A \in \mathcal{A} $, per $ \mu $-q.o. $ x \in X $, $ \overline{\nu}(x, A) = \underline{\nu}(x, A) $ cioè
+    \[
+    \exists \, \nu(x, A) \coloneqq \lim_{n \to +i\infty} \frac{1}{n} \sum_{j = 0}^{n-1} \chi_A(f^{j}(x)).
+    \]
+    Inoltre $ \forall \varphi \in L^1(X, \mathcal{A}, \mu; \R) $ e per $ \mu $-q.o. $ x \in X $
+    \[
+    \exists \, \tilde{\varphi}(x) = \lim_{n \to +\infty} \frac{1}{n} \sum_{j=0}^{n-1} (\varphi \circ f^j)(x). 
+    \]
+\end{thm}
+
+\begin{thm}
+    Le seguenti proprietà sono equivalenti.
+    \begin{enumerate}[label=(\roman*)]
+        \item $ (X, \mathcal{A}, \mu, f) $ è ergodico.
+        \item $ (X, \mathcal{A}, \mu, f) $ è \emph{metricamente indecomponibile} cioè $ \forall A, \in \mathcal{A} : f(A) \subseteq A, \ \mu(A) \nu(X \setminus A) = 0 $ ovvero lo spazio delle fasi non può essere separato in due insiemi disgiunti $ f $-invarianti entrambi di misura non nulla. 
+        \item $ (X, \mathcal{A}, \mu, f) $ ha solo integrali primi del moto banali cioè $ \forall \varphi \in \textcolor{red}{L^1}(X, \mathcal{A}, \mu; \R) $ tale che $ \varphi \circ f = \varphi $ $ \mu $-q.o. si ha $ \varphi $ è costante $ \mu $-q.o.
+        \item $ \forall \varphi \in \textcolor{red}{L^1}(X, \mathcal{A}, \mu; \R) $ la media temporale di $ \varphi $ (che esiste per il Teorema \ref{thm:Birkoff})è $ \mu $-q.o. uguale alla media spaziale 
+        \[
+            \lim_{n \to +\infty} \frac{1}{n} \sum_{j=0}^{n-1} (\varphi \circ f^j)(x) = \int_{X} \varphi \dif{\mu} \qquad \text{per } \mu\text{-q.o. } x \in X.
+        \]
+        \item $ \forall A, B \in \mathcal{A}, \ \displaystyle{\lim_{n \to +\infty} \frac{1}{n} \sum_{j=0}^{n-1} \mu(f^{-j}(A) \cap B) = \mu(A) \mu(B)} $ per $ \mu $-q.o. $ x \in X $. 
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    Mostriamo le varie implicazioni.
+    \begin{description}
+        \item[$ (i) \Rightarrow (ii) $] 
+        \item[$ (ii) \Rightarrow (iii) $] 
+        \item[$ (iii) \Rightarrow (iv) $] 
+        \item[$ (iv) \Rightarrow (i) $] 
+        \item[$ (iv) \Rightarrow (v) $] 
+        \item[$ (v) \Rightarrow (ii) $] 
+    \end{description}
+\end{proof}
+
+\begin{proposition}
+    La rotazione $ R_\alpha \colon \T^1 \to \T^1 $ è ergodica se e solo se $ \alpha \in \R \setminus \Q $. 
+\end{proposition}
+\begin{proof}
+    Usiamo la caratterizzazione con gli integrali primi. Prendo $ \varphi \colon \T^1 \to \R $ in $ L^2 $ e lo sviluppo in serie di Fourier:
+    \[
+        \varphi(x) = \sum_{n \in \Z} \hat{\varphi}(n) e^{2\pi i n x}
+    \]
+    Componendola con la rotazione
+    \[
+        (\varphi \circ R_\alpha)(x) = \varphi(x + \alpha) = \sum_{n \in \Z} \hat{\varphi}(n) e^{2\pi i n \alpha} e^{2\pi i n x}.
+    \]
+    Affinché $ \varphi $ sia un integrale primo deve valere per ogni $ n \in \Z $
+    \[
+        \hat{\varphi}(n) \left(e^{2\pi i n \alpha} - 1 \right) = 0.
+    \]
+    Ora se $ \alpha \in \R \setminus \Q, \ e^{2\pi i n \alpha} \neq 1 $ per ogni $ n \neq 0 $ così $ \varphi(x) = \hat{\varphi}(0) $ cioè $ \varphi $ è costante q.o. Per mostrare la freccia inversa supponiamo per assurdo che $ \alpha \in \Q $ e della forma $ p/q $; allora $ e^{2\pi i n \alpha} - 1 = 0 $ per ogni $ n $ della forma $ kq $ con $ k \in \Z $ da cui possiamo trovare un integrale primo non costante contro l'ipotesi che $ R_\alpha $ fosse ergodico. 
+\end{proof}
+
+\begin{exercise}
+    Mostrare che le dilatazioni sul toro sono ergodiche.
+\end{exercise}
+
+\begin{exercise}
+    La trasformazione del panettiere è ergodica. 
+\end{exercise}
+
