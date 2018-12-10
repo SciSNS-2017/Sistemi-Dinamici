@@ -1,0 +1,88 @@
+\section{Lezione del 14/11/2018 [Marmi]}
+
+\subsection{Dinamica misurabile e teoria ergodica}
+
+\begin{definition}[sistema dinamico misurabile]
+    Un sistema dinamico misurabile è una quaterna $ (X, \mathcal{A}, \mu, f) $ dove
+    \begin{enumerate}[label=(\roman*)]
+        \item $ (X, \mathcal{A}, \mu) $ è uno spazio di probabilità, cioè un insieme $ X $ (spazio delle fasi) con una $ \sigma $-algebra $ \mathcal{A} $ e una misura $ \mu $ tale che $ \mu(X) = 1 $;
+        \item $ f \colon X \to X $ è una funzione misurabile e tale che $ \mu $ sia $ f $-invariante, cioè tale che $ \forall A \in \mathcal{A}, \ f_{\sharp}\mu (A) = \mu(f^{-1}(A)) = \mu(A) $;
+        \item la dinamica è data dall'iterazione di $ f $.
+    \end{enumerate}
+\end{definition}
+
+\textcolor{red}{Ho riscritto un po' la definizione seguente per renderla più simmetrica, controllare che sia equivalente a quella data a lezione}
+
+\begin{definition}[isomorfismo di sistemi dinamici misurabili]
+    Due sistemi dinamici misurabili $ (X, \mathcal{A}, \mu, f) $ e $ (Y, \mathcal{B}, \nu, g) $ si dicono isomorfi se esistono una funzione $ h \colon X \to Y $ e una funzione $ k \colon Y \to X $ che siano una l'inversa dell'altra a meno di un insieme di misura nulla e facciano commutare il seguente diagramma:
+    \begin{center}
+        \begin{tikzcd}
+        X \arrow[r, "f"] \arrow[d, shift right, "h" left] & X \arrow[d, shift left, "h" right]\\
+        Y \arrow[r, "g" below] \arrow[u, shift right, "k" right] & Y \arrow[u, shift left, "k" left]
+        \end{tikzcd}
+    \end{center}
+    Più precisamente chiediamo che $ \exists X' \subseteq X : \mu(X \setminus X') = 0 $, $ \exists Y' \subseteq Y : \nu(Y \setminus Y') = 0 $ e $ \exists h \colon X' \to Y' $ e $ k \colon Y' \to X' $ tali che
+    \begin{enumerate}[label=(\roman*)]
+        \item $ h \circ k = \Id_{Y'} $;
+        \item $ k \circ h = \Id_{X'} $;
+         \item $ h $ faccia commutare il diagramma di sopra, cioè $ g \circ h = h \circ f $ $ \mu $-q.o. o in modo equivalente $ k $ faccia commutare il diagramma, cioè $ f \circ k = k \circ g $ $ \nu $-q.o.;
+        \item $ h $ sia misurabile, cioè $ \forall B \in \mathcal{B}, \ h^{-1}(B) \in \mathcal{A} $; \textcolor{red}{condizione più forte della misurabilità?}    
+        \item $ \nu $ sia la misura immagine di $ \mu $ secondo $ h $, cioè $ {\forall B \in \mathcal{B}, \ h_\sharp \mu(B) = \mu(h^{-1}(B)) = \nu(B)} $;   
+        \item $ k $ sia misurabile, cioè $ \forall A \in \mathcal{A}, \ h^{-1}(A) \in \mathcal{B} $; \textcolor{red}{condizione più forte della misurabilità?} 
+        \item $ \mu $ sia la misura immagine di $ \nu $ secondo $ k $, cioè $ \forall A \in \mathcal{A}, \ k_\sharp \nu(A) = \nu(k^{-1}(A)) = \mu(A) $.
+    \end{enumerate}
+\end{definition}
+
+\begin{oss}
+    Le nozioni di dinamica misurabile e teoria ergodica che andremo ad enunciare sono invarianti per isomorfismo di sistemi dinamici.
+\end{oss}
+
+
+\textcolor{red}{in Tabella \ref{tab:ergodica-vs-probabilia}, confronto tra il linguaggio probabilistico e quello usato in teoria ergodica.}
+\begin{table}[h!]
+    \centering
+    \begin{tabularx}{\textwidth}{cXX}
+        & \textsc{Teoria ergodica} & \textsc{Probabilità} \\ \toprule
+        $ X $ & spazio delle fasi & spazio dei campioni \\
+        $ \mathcal{A} $ & $ \sigma $-algebra dei misurabili & collezione degli eventi \\
+        $ \mu $ & misura $ \mu(A) $ & probabilità $ \PP{(x \in A)} $ \\
+        $ \varphi \colon X \to \R $ & osservabile & variabile aleatoria \\
+        $ \varphi_n \coloneqq (\varphi \circ f^{n})_{n \in \N} $ & valore di un'osservabile lungo un'orbita & processo stocastico con distribuzione  $ \PP{(\varphi_1 \in A_1, \ldots, \varphi_k \in A_k)} =  \mu\left(\bigcup_{j = 1}^{k} \{x \in X : \varphi(f^{j}(x)) \in A_j\}\right) $ \\
+        & $ f $-invarianza di $ \mu $ & processo stazionario \\ \bottomrule
+    \end{tabularx}
+    \caption{Teoria ergodica e probabilità}
+    \label{tab:ergodica-vs-probabilia}
+\end{table}
+
+\begin{exercise}
+    Sia $ f \colon [0, 1] \to [0, 1] $ monotona e $ C^1 $ a tratti (anche numerabili). Su $ [0, 1] $ è posta una misura con densità $ \rho(x) $, cioè tale che $ \mu(A) \coloneqq \int_A \rho(x) \dif{x} $ dove $ \dif{x} $ è la misura di Lebesgue. Mostrare che $ \mu $ è $ f $-invariante se e solo se
+    \[
+        \sum_{x \in f^{-1}(\{y\})} \frac{\rho(x)}{\abs{f'(x)}} = \rho(y).
+    \]
+\end{exercise}
+
+\textcolor{red}{Esercizi e esempi}
+
+\begin{definition}[frequenze di visita]
+    Sia $ (X, \mathcal{A}, \mu, f) $ un sistema dinamico misurabile. Dato $ A \in \mathcal{A} $, $ x \in A $ e $ n \in \N $ definiamo la frequenza media delle visite ad $ A $ dell'orbita di $ x $ da $ 0 $ a $ n $ come
+    \[
+        \nu(x, A, n) \coloneqq \frac{1}{n} \sum_{j = 0}^{n-1} \chi_A(f^{j}(x)).
+    \]
+    Definiamo inoltre
+    \begin{align*}
+        \overline{\nu}(x, A) & \coloneqq \limsup_{n \to +\infty} \nu(x, A, n) \\
+        \underline{\nu}(x, A) & \coloneqq \liminf_{n \to +\infty} \nu(x, A, n)
+    \end{align*}
+    Se $ \overline{\nu} = \underline{\nu} $ allora ha senso definire la frequenza media delle visite ad $ A $ dell'orbita di $ x $
+    \[
+        \nu(x, A) \coloneqq \lim_{n \to +i\infty} \frac{1}{n} \sum_{j = 0}^{n-1} \chi_A(f^{j}(x)).
+    \]
+\end{definition}
+
+\begin{definition}[sistema ergodico]
+    Un sistema dinamico misurabile $ (X, \mathcal{A}, \mu, f) $ si dice ergodico se $ \forall A \in \mathcal{A} $ e per $ \mu $-q.o. $ x \in A $ esiste la frequenza di visita di $ x $ ad $ A $ e vale
+    \[
+        \nu(x, A) = \mu(A)
+    \]
+    cioè se la frequenza statistica delle visite coincide con la probabilità a priori. 
+\end{definition}
