@@ -28,8 +28,8 @@ Attualmente i file sono:
 | 30 ottobre |Bindini    |Esercitazione| @alepiazza, @marco-venuti|
 | 7 novembre |Tantari    |Esercitazione|                          |
 | 13 novembre|Grotto     |Esercitazione|                          |
-| 14 novembre|Marmi      |Lezione      | @alepiazza               |
-| 20 novembre|Marmi      |Lezione      |                          |
+| 14 novembre|Marmi      |Lezione      | @alepiazza, @marco-venuti|
+| 20 novembre|Marmi      |Lezione      | @alepiazza               |
 | 21 novembre|Marmi      |Lezione      |                          |
 | 27 novembre|Marmi      |Lezione      |                          |
 | 28 novembre|Tantari    |Esercitazione|                          |
