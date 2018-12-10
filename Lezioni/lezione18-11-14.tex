@@ -25,10 +25,10 @@
     \begin{enumerate}[label=(\roman*)]
         \item $ h \circ k = \Id_{Y'} $;
         \item $ k \circ h = \Id_{X'} $;
-         \item $ h $ faccia commutare il diagramma di sopra, cioè $ g \circ h = h \circ f $ $ \mu $-q.o. o in modo equivalente $ k $ faccia commutare il diagramma, cioè $ f \circ k = k \circ g $ $ \nu $-q.o.;
-        \item $ h $ sia misurabile, cioè $ \forall B \in \mathcal{B}, \ h^{-1}(B) \in \mathcal{A} $; \textcolor{red}{condizione più forte della misurabilità?}    
-        \item $ \nu $ sia la misura immagine di $ \mu $ secondo $ h $, cioè $ {\forall B \in \mathcal{B}, \ h_\sharp \mu(B) = \mu(h^{-1}(B)) = \nu(B)} $;   
-        \item $ k $ sia misurabile, cioè $ \forall A \in \mathcal{A}, \ h^{-1}(A) \in \mathcal{B} $; \textcolor{red}{condizione più forte della misurabilità?} 
+        \item $ h $ faccia commutare il diagramma di sopra, cioè $ g \circ h = h \circ f $ $ \mu $-q.o. oppure $ k $ faccia commutare il diagramma, cioè $ f \circ k = k \circ g $ $ \nu $-q.o.;
+        \item $ h $ sia misurabile, cioè $ \forall B \in \mathcal{B}, \ h^{-1}(B) \in \mathcal{A} $;
+        \item $ \nu $ sia la misura immagine di $ \mu $ secondo $ h $, cioè $ {\forall B \in \mathcal{B}, \ h_\sharp \mu(B) = \mu(h^{-1}(B)) = \nu(B)} $;
+        \item $ k $ sia misurabile, cioè $ \forall A \in \mathcal{A}, \ h^{-1}(A) \in \mathcal{B} $;
         \item $ \mu $ sia la misura immagine di $ \nu $ secondo $ k $, cioè $ \forall A \in \mathcal{A}, \ k_\sharp \nu(A) = \nu(k^{-1}(A)) = \mu(A) $.
     \end{enumerate}
 \end{definition}
@@ -37,8 +37,8 @@
     Le nozioni di dinamica misurabile e teoria ergodica che andremo ad enunciare sono invarianti per isomorfismo di sistemi dinamici.
 \end{oss}
 
+In Tabella \ref{tab:ergodica-vs-probabilia}, si riporta un confronto tra il linguaggio probabilistico e quello usato in teoria ergodica.
 
-\textcolor{red}{in Tabella \ref{tab:ergodica-vs-probabilia}, confronto tra il linguaggio probabilistico e quello usato in teoria ergodica.}
 \begin{table}[h!]
     \centering
     \begin{tabularx}{\textwidth}{cXX}
@@ -47,7 +47,7 @@
         $ \mathcal{A} $ & $ \sigma $-algebra dei misurabili & collezione degli eventi \\
         $ \mu $ & misura $ \mu(A) $ & probabilità $ \PP{(x \in A)} $ \\
         $ \varphi \colon X \to \R $ & osservabile & variabile aleatoria \\
-        $ \varphi_n \coloneqq (\varphi \circ f^{n})_{n \in \N} $ & valore di un'osservabile lungo un'orbita & processo stocastico con distribuzione  $ \PP{(\varphi_1 \in A_1, \ldots, \varphi_k \in A_k)} =  \mu\left(\bigcup_{j = 1}^{k} \{x \in X : \varphi(f^{j}(x)) \in A_j\}\right) $ \\
+        $ \varphi_n \coloneqq (\varphi \circ f^{n})_{n \in \N} $ & valore di un'osservabile lungo un'orbita & processo stocastico con distribuzione  $ \PP{(\varphi_1 \in A_1, \ldots, \varphi_k \in A_k)} =  \mu\left(\bigcap_{j = 1}^{k} \{x \in X : \varphi(f^{j}(x)) \in A_j\}\right) $ \\
         & $ f $-invarianza di $ \mu $ & processo stazionario \\ \bottomrule
     \end{tabularx}
     \caption{Teoria ergodica e probabilità}
@@ -61,7 +61,30 @@
     \]
 \end{exercise}
 
-\textcolor{red}{Esercizi e esempi}
+\begin{example}
+    I sistemi dinamici nell'esempio \ref{ex:Ulam_tenda} sono isomorfi tramite la mappa $ h $ ivi definita.
+\end{example}
+
+\begin{exercise}[mappa di Gauss]
+    Sia $ G\colon [0,1]\to [0,1] $ definita come $ G(x) \coloneqq \left\{ \frac{1}{x} \right\} $. Verificare che $ G $ conserva la misura con densità:
+    \[ \dif{\mu}(x) = \frac{\dif x}{(\log 2)(1+x)} \, . \]
+\end{exercise}
+
+\begin{exercise}[mappa di Farey]
+    Sia $ F\colon (0,1)\to (0,1) $ la mappa
+    \[
+        F(x) \coloneqq
+        \begin{cases}
+            \frac{x}{1-x}   & \text{se } 0 < x \leq \frac{1}{2} \\
+            \frac{1}{x} - 1 & \text{se } \frac{1}{2} < x < 1
+        \end{cases}
+    \]
+    Essa conserva la misura infinita $ \dif{\mu}(x) = \frac{\dif{x}}{x} $.
+\end{exercise}
+
+\begin{exercise}
+    Sia $ f\colon \R\to\R $ definita come $ f(x) \coloneqq \frac{1}{2} \left( x - \frac{1}{x} \right) $. Questa conserva la misura $ \dif{\mu}(x) = \frac{\dif{x}}{\pi(1+x^2)} $.
+\end{exercise}
 
 \begin{definition}[frequenze di visita]
     Sia $ (X, \mathcal{A}, \mu, f) $ un sistema dinamico misurabile. Dato $ A \in \mathcal{A} $, $ x \in A $ e $ n \in \N $ definiamo la frequenza media delle visite ad $ A $ dell'orbita di $ x $ da $ 0 $ a $ n $ come
@@ -73,11 +96,19 @@
         \overline{\nu}(x, A) & \coloneqq \limsup_{n \to +\infty} \nu(x, A, n) \\
         \underline{\nu}(x, A) & \coloneqq \liminf_{n \to +\infty} \nu(x, A, n)
     \end{align*}
-    Se $ \overline{\nu} = \underline{\nu} $ allora ha senso definire la frequenza media delle visite ad $ A $ dell'orbita di $ x $
+    Se $ \overline{\nu} = \underline{\nu} $ allora definiamo la frequenza media delle visite ad $ A $ dell'orbita di $ x $:
     \[
         \nu(x, A) \coloneqq \lim_{n \to +i\infty} \frac{1}{n} \sum_{j = 0}^{n-1} \chi_A(f^{j}(x)).
     \]
 \end{definition}
+Quest'ultima è una buona definizione in virtù del seguente
+\begin{thm}[Birkhoff]
+    Sia $ (X,\mathcal{A},\mu,f) $ un sistema dinamico misurabile. Allora $ \forall A\in\mathcal{A} $ e per $ \mu $-q.o. $ x\in X $
+    \[ \exists \lim_{n \to +\infty} \nu(x,A,n) = \nu(x,A) \, . \]
+    Inoltre, $ \forall \varphi \in L^1(X,\mathcal{A},\mu) $ e per $ \mu $-q.o. $ x\in X $
+    \[ \exists \lim_{n \to +\infty} \frac{1}{n} \sum_{j=0}^{n-1} \varphi\circ f^j(x) \eqqcolon \tilde{\varphi}(x) \, . \]
+    La funzione $ \tilde{\varphi} $ viene detta \emph{media temporale} dell'osservabile $ \varphi $.
+\end{thm}
 
 \begin{definition}[sistema ergodico]
     Un sistema dinamico misurabile $ (X, \mathcal{A}, \mu, f) $ si dice ergodico se $ \forall A \in \mathcal{A} $ e per $ \mu $-q.o. $ x \in A $ esiste la frequenza di visita di $ x $ ad $ A $ e vale

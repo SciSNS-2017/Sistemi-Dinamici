@@ -47,7 +47,7 @@
 \end{proposition}
 \begin{proof}
     Mostriamo le varie implicazioni.
-    \begin{itemize}
+    \begin{description}
         \item[$ (i) \Rightarrow (ii) $] Ovvio.
         \item[$ (ii) \Rightarrow (iii) $] Prendo $ v \in V $ che scrivo come $ \sum_{n = 0}^{+\infty} a_n v_n $. Ora se $ w_{N} \coloneqq \sum_{n = 0}^{N} a_ne_n $ ho per ipotesi che $ w_N \to v $. 
         \item[$ (iii) \Rightarrow (iv) $] Sia $ v \in V $ tale che $ \forall n \in \N, \ {\langle v, e_n \rangle} = 0 $. Siano $ (w_k)_{k \in \N} \subseteq \operatorname{Span}{(\{e_n\})} $ tali che $ w_k \to v $. Ma allora $ w_k \todeb v $ quindi $ {\langle v, v \rangle} = \lim_{k} {\langle v, w_k \rangle} = 0 $ essendo $ {\langle v, w_k \rangle} = \sum_{n = 0}^{N} a_n^k {\langle v, e_n \rangle} = 0 $. Così $ \norm{v} = 0 \Rightarrow v = 0 $.
@@ -68,7 +68,7 @@
             \norm{v - v_{N_k}}^2 = {\langle v - v_{N_k}, v - v_{N_k}\rangle} = {\langle v - v_{N_k}, v \rangle} - {\langle v - v_{N_k}, v_{N_k} \rangle} = {\langle v - v_{N_k}, v \rangle} \to 0.
         \]
         Finora abbiamo dunque estratto una sottosuccessione di $ v_N $ che tende a $ v $. Possiamo applicare lo stesso procedimento su un'arbitraria sottosuccessione di $ v_N $, estraendo da ciascuna una sotto-sottosuccessione convergente a $ v $. Per un noto lemma, quindi, l'intera successione $ v_N $ deve convergere a $ v $. \qedhere
-    \end{itemize}
+    \end{description}
 \end{proof}
 
 \subsection{Spazio $ L^2([0, 2\pi]) $}
