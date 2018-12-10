@@ -31,6 +31,11 @@ Attualmente i file sono:
 | 14 novembre|Marmi      |Lezione      | @alepiazza               |
 | 20 novembre|Marmi      |Lezione      |                          |
 | 21 novembre|Marmi      |Lezione      |                          |
+| 27 novembre|Marmi      |Lezione      |                          |
+| 28 novembre|Tantari    |Esercitazione|                          |
+| 4 dicembre |Marmi      |Lezione      |                          |
+| 5 dicembre |Tantari    |Esercitazione|                          |
+
 
 ### Come scrivere una lezione
 A causa delle immagini il tempo di compilazione di `main.tex` può essere molto lungo. Quando includi un'immagine scrivi `\iffigureon` prima di `\begin{figure}` e `\fi` dopo `\end{figure}`. Se nel preambolo di `main.tex` scrivi `\figureontrue` dopo `\newif\iffigureon` le figure verranno incluse; se invece scrivi `\figureonfalse` le immagini non compariranno nel pdf e la compilazione sarà più veloce.
