@@ -73,4 +73,16 @@
         \overline{\nu}(x, A) & \coloneqq \limsup_{n \to +\infty} \nu(x, A, n) \\
         \underline{\nu}(x, A) & \coloneqq \liminf_{n \to +\infty} \nu(x, A, n)
     \end{align*}
+    Se $ \overline{\nu} = \underline{\nu} $ allora ha senso definire la frequenza media delle visite ad $ A $ dell'orbita di $ x $
+    \[
+        \nu(x, A) \coloneqq \lim_{n \to +i\infty} \frac{1}{n} \sum_{j = 0}^{n-1} \chi_A(f^{j}(x)).
+    \]
+\end{definition}
+
+\begin{definition}[sistema ergodico]
+    Un sistema dinamico misurabile $ (X, \mathcal{A}, \mu, f) $ si dice ergodico se $ \forall A \in \mathcal{A} $ e per $ \mu $-q.o. $ x \in A $ esiste la frequenza di visita di $ x $ ad $ A $ e vale
+    \[
+        \nu(x, A) = \mu(A)
+    \]
+    cioè se la frequenza statistica delle visite coincide con la probabilità a priori. 
 \end{definition}
