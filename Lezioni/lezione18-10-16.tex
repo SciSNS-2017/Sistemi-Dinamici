@@ -161,6 +161,19 @@ Infatti si verifica che $ h\circ Q_\lambda = P_c \circ h $.
     \textcolor{red}{mancante}.
 \end{example}
 
+\begin{exercise}
+    Dimostrare che per ogni successione finita di cifre decimali esiste una potenza di 2 tale che la sua rappresentazione decimale inizi con tale successione.
+\end{exercise}
+\begin{solution}
+    Sia $ N\in\N $ il numero corrispondente alla data sequenza di cifre decimali e sia $ n\in\N $ tale che $ 2^n \geq N $. Allora la differenza $ d $ tra il numero di cifre di $ 2^n $ e il numero di cifre di $ N $ (espressi in base 10) è
+    \[ d = \lfloor \log_{10}2^n\rfloor - \lfloor \log_{10}N \rfloor \]
+    La condizione da imporre è dunque che esista un $ n\in\N $ tale che
+    \[ 0 \leq \frac{2^n}{10^{d}} - N < 1 \, . \]
+    Manipolando questa relazione, otteniamo
+    \[ 0 \leq \{ n\log_{10}2 \} - \{ \log_{10}N \} < \log_{10}\left( 1 + \frac{1}{N} \right) \]
+    Come nell'esercizio \ref{ex:potenze_di_due_cancro}, abbiamo $ \{ n\log_{10}2 \} = R^n_{\log_{10}(2)}(0) $. L'esistenza di un $ n $ che soddisfa la precedente relazione segue  dalla densità delle orbite delle rotazioni irrazionali nel toro, avendo preso $ \epsilon = \log_{10}\left( 1 + 1/N \right) $.
+\end{solution}
+
 \begin{exercise}[Teorema di Dirichlet]
     Sia $ \alpha \in \R\setminus\Q $. Allora l'equazione
     \[ \abs{\alpha - \frac{p}{q}} < \frac{1}{q^2} \]

@@ -30,15 +30,15 @@
     Mostriamo le varie implicazioni.
     \begin{description}
         \item[$ (i) \Rightarrow (ii) $] Sia $ A\in\mathcal{A} : f(A) \subseteq A, \mu(A) > 0 $. Poiché $ A $ è $ f $-invariante, $ \forall x\in A\ \chi_A(f^j(x)) = 1 $ e dunque $ \nu(x,A) = 1 $ da cui, per l'ergodicità, $ \mu(A) = 1 $.
-        \item[$ (ii) \Rightarrow (iii) $] 
-        \item[$ (iii) \Rightarrow (iv) $] 
-        \item[$ (iv) \Rightarrow (i) $] 
-        \item[$ (iv) \Rightarrow (v) $] 
-        \item[$ (v) \Rightarrow (ii) $] 
+        \item[$ (ii) \Rightarrow (iii) $]
+        \item[$ (iii) \Rightarrow (iv) $]
+        \item[$ (iv) \Rightarrow (i) $]
+        \item[$ (iv) \Rightarrow (v) $]
+        \item[$ (v) \Rightarrow (ii) $]
     \end{description}
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:rotazioni_erg}
     La rotazione $ R_\alpha \colon \T^1 \to \T^1 $ è ergodica se e solo se $ \alpha \in \R \setminus \Q $. 
 \end{proposition}
 \begin{proof}
@@ -54,9 +54,22 @@
     Ora se $ \alpha \in \R \setminus \Q, \ e^{2\pi i n \alpha} \neq 1 $ per ogni $ n \neq 0 $ così $ \varphi(x) = \hat{\varphi}(0) $ cioè $ \varphi $ è costante q.o. Per mostrare l'implicazione inversa supponiamo per assurdo che $ \alpha \in \Q $ e della forma $ p/q $; allora $ e^{2\pi i n \alpha} - 1 = 0 $ per ogni $ n $ della forma $ kq $ con $ k \in \Z $ da cui possiamo trovare un integrale primo non costante contro l'ipotesi che $ R_\alpha $ fosse ergodico.
 \end{proof}
 
-\begin{exercise}
-    Sia $ x_j = \text{cifra più significativa di } 2^j $. Nella successione $ (x_j)_{j\in\N} $ è più frequente 7 o 8? Calcolare poi la frequenza di ciascuna cifra.
+\begin{exercise}\label{ex:potenze_di_due_cancro}
+    Sia $ x_j = \text{cifra più significativa di } 2^j $. Calcolare la frequenza di ciascuna cifra nella successione $ (x_j)_{j\in\N} $.
 \end{exercise}
+\begin{solution}
+    Chiamiamo $ c_n $ la cifra più significativa di $ 2^n $, cioè il numero in $ \{1, \cdots, 9\} $ tale che
+    \[ c_n \cdot 10^s \leq 2^n < (c_n+1) \cdot 10^s \]
+    dove $ s = \lfloor \log_{10} 2^n \rfloor $. Prendendo ora il logaritmo si ha $ \log_{10}c_n + s \leq n\log_{10}2 < \log_{10}(c_n+1) + s $ e quindi
+    \[ \log_{10}c_n \leq \{n\log_{10}2\} < \log_{10}(c_n+1) \]
+    Considerando ora le rotazioni $ R_{\log_{10}(2)} \colon \T^1\to\T^1 $ possiamo riscrivere $ \{ n\log_{10}2 \} = R^n_{\log_{10}(2)}(0) $;
+    se suddividiamo il toro come $ \T^1 = \sqcup_{k=1}^9 I_k $ con $ I_k = \left[\log_{10}k,\log_{10}(k+1)\right) $ la condizione che la cifra più significativa di $ 2^n $ sia $ c_n $ si traduce in
+    \[ R^n_{\log_{10}(2)}(0) \in I_c \, . \]
+    La sequenza delle potenze di 2 cercata è dunque la dinamica simbolica dell'orbita di 0 tramite la rotazione di $ \log_{10}2 $ secondo la suddetta partizione.
+
+    Il sistema dinamico $ (\T^1, \mathcal{M}, \lambda, R_{\log_{10}(2)}) $ è ergodico per la proposizione \ref{prop:rotazioni_erg} in quanto $ \log_{10}2 $ è irrazionale; dunque la frequenza di visita dell'orbita di 0 agli intervalli $ I_k $ è uguale alla misura di Lebesgue degli intervalli stessi:
+    \[ \nu(0,I_c) = \log_{10}\left(1+\frac{1}{c}\right) \, . \]
+\end{solution}
 
 \begin{example}[successione di Kolakoski]
     \textcolor{red}{mancante}
