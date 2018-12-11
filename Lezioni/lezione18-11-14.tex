@@ -102,7 +102,7 @@ In Tabella \ref{tab:ergodica-vs-probabilia}, si riporta un confronto tra il ling
     \]
 \end{definition}
 Quest'ultima è una buona definizione in virtù del seguente
-\begin{thm}[Birkhoff]
+\begin{thm}[Birkhoff]\label{thm:Birkhoff}
     Sia $ (X,\mathcal{A},\mu,f) $ un sistema dinamico misurabile. Allora $ \forall A\in\mathcal{A} $ e per $ \mu $-q.o. $ x\in X $
     \[ \exists \lim_{n \to +\infty} \nu(x,A,n) = \nu(x,A) \, . \]
     Inoltre, $ \forall \varphi \in L^1(X,\mathcal{A},\mu) $ e per $ \mu $-q.o. $ x\in X $
@@ -111,7 +111,7 @@ Quest'ultima è una buona definizione in virtù del seguente
 \end{thm}
 
 \begin{definition}[sistema ergodico]
-    Un sistema dinamico misurabile $ (X, \mathcal{A}, \mu, f) $ si dice ergodico se $ \forall A \in \mathcal{A} $ e per $ \mu $-q.o. $ x \in A $ esiste la frequenza di visita di $ x $ ad $ A $ e vale
+    Un sistema dinamico misurabile $ (X, \mathcal{A}, \mu, f) $ si dice ergodico se $ \forall A \in \mathcal{A} $ e per $ \mu $-q.o. $ x \in A $ vale
     \[
         \nu(x, A) = \mu(A)
     \]

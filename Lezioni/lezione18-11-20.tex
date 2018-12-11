@@ -17,19 +17,19 @@
     Le seguenti proprietà sono equivalenti.
     \begin{enumerate}[label=(\roman*)]
         \item $ (X, \mathcal{A}, \mu, f) $ è ergodico.
-        \item $ (X, \mathcal{A}, \mu, f) $ è \emph{metricamente indecomponibile} cioè $ \forall A, \in \mathcal{A} : f(A) \subseteq A, \ \mu(A) \nu(X \setminus A) = 0 $ ovvero lo spazio delle fasi non può essere separato in due insiemi disgiunti $ f $-invarianti entrambi di misura non nulla. 
-        \item $ (X, \mathcal{A}, \mu, f) $ ha solo integrali primi del moto banali cioè $ \forall \varphi \in \textcolor{red}{L^1}(X, \mathcal{A}, \mu; \R) $ tale che $ \varphi \circ f = \varphi $ $ \mu $-q.o. si ha $ \varphi $ è costante $ \mu $-q.o.
-        \item $ \forall \varphi \in \textcolor{red}{L^1}(X, \mathcal{A}, \mu; \R) $ la media temporale di $ \varphi $ (che esiste per il Teorema \ref{thm:Birkoff})è $ \mu $-q.o. uguale alla media spaziale 
+        \item $ (X, \mathcal{A}, \mu, f) $ è \emph{metricamente indecomponibile} cioè $ \forall A \in \mathcal{A} : f(A) \subseteq A, \ \mu(A) \mu(X \setminus A) = 0 $, ovvero lo spazio delle fasi non può essere separato in due insiemi disgiunti $ f $-invarianti entrambi di misura non nulla.
+        \item $ (X, \mathcal{A}, \mu, f) $ ha solo integrali primi del moto banali cioè $ \forall \varphi \in \textcolor{red}{L^1}(X, \mathcal{A}, \mu; \R) : \varphi \circ f = \varphi $ $ \mu $-q.o. si ha che $ \varphi $ è costante $ \mu $-q.o. in $ X $.
+        \item $ \forall \varphi \in \textcolor{red}{L^1}(X, \mathcal{A}, \mu; \R) $ la media temporale di $ \varphi $ (che esiste per il Teorema \ref{thm:Birkhoff}) è $ \mu $-q.o. uguale alla media spaziale
         \[
             \lim_{n \to +\infty} \frac{1}{n} \sum_{j=0}^{n-1} (\varphi \circ f^j)(x) = \int_{X} \varphi \dif{\mu} \qquad \text{per } \mu\text{-q.o. } x \in X.
         \]
-        \item $ \forall A, B \in \mathcal{A}, \ \displaystyle{\lim_{n \to +\infty} \frac{1}{n} \sum_{j=0}^{n-1} \mu(f^{-j}(A) \cap B) = \mu(A) \mu(B)} $ per $ \mu $-q.o. $ x \in X $. 
+        \item $ \forall A, B \in \mathcal{A}, \ \displaystyle{\lim_{n \to +\infty} \frac{1}{n} \sum_{j=0}^{n-1} \mu(f^{-j}(A) \cap B) = \mu(A) \mu(B)} $ per $ \mu $-q.o. $ x \in X $, cioè il sistema dinamico è \emph{mescolante in media}.
     \end{enumerate}
 \end{thm}
 \begin{proof}
     Mostriamo le varie implicazioni.
     \begin{description}
-        \item[$ (i) \Rightarrow (ii) $] 
+        \item[$ (i) \Rightarrow (ii) $] Sia $ A\in\mathcal{A} : f(A) \subseteq A, \mu(A) > 0 $. Poiché $ A $ è $ f $-invariante, $ \forall x\in A\ \chi_A(f^j(x)) = 1 $ e dunque $ \nu(x,A) = 1 $ da cui, per l'ergodicità, $ \mu(A) = 1 $.
         \item[$ (ii) \Rightarrow (iii) $] 
         \item[$ (iii) \Rightarrow (iv) $] 
         \item[$ (iv) \Rightarrow (i) $] 
@@ -42,7 +42,7 @@
     La rotazione $ R_\alpha \colon \T^1 \to \T^1 $ è ergodica se e solo se $ \alpha \in \R \setminus \Q $. 
 \end{proposition}
 \begin{proof}
-    Usiamo la caratterizzazione con gli integrali primi. Prendo $ \varphi \colon \T^1 \to \R $ in $ L^2 $ e lo sviluppo in serie di Fourier:
+    Usiamo la caratterizzazione con gli integrali primi. Prendo $ \varphi \colon \T^1 \to \R $ in \textcolor{red}{$ L^2 $} e lo sviluppo in serie di Fourier:
     \[
         \varphi(x) = \sum_{n \in \Z} \hat{\varphi}(n) e^{2\pi i n x}
     \]
@@ -50,18 +50,28 @@
     \[
         (\varphi \circ R_\alpha)(x) = \varphi(x + \alpha) = \sum_{n \in \Z} \hat{\varphi}(n) e^{2\pi i n \alpha} e^{2\pi i n x}.
     \]
-    Affinché $ \varphi $ sia un integrale primo deve valere per ogni $ n \in \Z $
-    \[
-        \hat{\varphi}(n) \left(e^{2\pi i n \alpha} - 1 \right) = 0.
-    \]
-    Ora se $ \alpha \in \R \setminus \Q, \ e^{2\pi i n \alpha} \neq 1 $ per ogni $ n \neq 0 $ così $ \varphi(x) = \hat{\varphi}(0) $ cioè $ \varphi $ è costante q.o. Per mostrare la freccia inversa supponiamo per assurdo che $ \alpha \in \Q $ e della forma $ p/q $; allora $ e^{2\pi i n \alpha} - 1 = 0 $ per ogni $ n $ della forma $ kq $ con $ k \in \Z $ da cui possiamo trovare un integrale primo non costante contro l'ipotesi che $ R_\alpha $ fosse ergodico. 
+    Affinché $ \varphi $ sia un integrale primo deve valere $ \hat{\varphi}(n) \left(e^{2\pi i n \alpha} - 1 \right) = 0. $ per ogni $ n \in \Z $.
+    Ora se $ \alpha \in \R \setminus \Q, \ e^{2\pi i n \alpha} \neq 1 $ per ogni $ n \neq 0 $ così $ \varphi(x) = \hat{\varphi}(0) $ cioè $ \varphi $ è costante q.o. Per mostrare l'implicazione inversa supponiamo per assurdo che $ \alpha \in \Q $ e della forma $ p/q $; allora $ e^{2\pi i n \alpha} - 1 = 0 $ per ogni $ n $ della forma $ kq $ con $ k \in \Z $ da cui possiamo trovare un integrale primo non costante contro l'ipotesi che $ R_\alpha $ fosse ergodico.
 \end{proof}
+
+\begin{exercise}
+    Sia $ x_j = \text{cifra più significativa di } 2^j $. Nella successione $ (x_j)_{j\in\N} $ è più frequente 7 o 8? Calcolare poi la frequenza di ciascuna cifra.
+\end{exercise}
+
+\begin{example}[successione di Kolakoski]
+    \textcolor{red}{mancante}
+\end{example}
 
 \begin{exercise}
     Mostrare che le dilatazioni sul toro sono ergodiche.
 \end{exercise}
+\begin{solution}
+    Sia $ E_m\colon\T^1\to\T^1 $, $ E_m(x) = mx\pmod{1} $ per $ m\in\Z,\ \abs{m} \geq 2 $. Prendiamo $ \varphi\colon\T^1\to\R $ tale che $ \varphi\circ f = \varphi $; espandiamo $ \varphi $ in serie di Fourier e imponiamo che sia un integrale del moto
+    \[ \varphi(x) = \sum_{n\in\Z} \hat\varphi(x) e^{2\pi i n x} = \sum_{n\in\Z} \hat\varphi(x) e^{2\pi i n m x} = \varphi(E_m(x)) \quad \forall x\in\T^1 \]
+    Per l'ortogonalità della base di Fourier le due somme devono essere eguali termine a termine. Deve dunque valere che $ nx(1-m) = k $ per ogni $ k\in\Z $. L'equazione è banalmente verificata per $ n = 0 $. Se $ n\neq 0 $ basta prendere $ x\in\R\setminus\Q $ affinché l'equazione non sia verificata per nessun $ k\in\Z $.
+\end{solution}
 
 \begin{exercise}
-    La trasformazione del panettiere è ergodica. 
+    La trasformazione del panettiere è ergodica. \textcolor{red}{Ha scritto una mappa un po' diversa.}
 \end{exercise}
 
