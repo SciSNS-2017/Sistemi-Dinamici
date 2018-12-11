@@ -1,0 +1,81 @@
+\section{Lezione del 21/11/2018 [Marmi]}
+
+\begin{thm}[di ricorrenza di Poincaré]
+    Sia $ (X, \mathcal{A}, \mu, f) $ un sistema dinamico misurabile. Allora $ \forall A \in \mathcal{A} $, per $ \mu $-q.o. $ x \in A $, $ x $ è ricorrente in $ A $. 
+\end{thm}
+\begin{proof}
+    Sia $ A_r \coloneqq \{x \in A : x \text{ è ricorrente in } A\} \subseteq A $. Osserviamo che possiamo scrivere
+    \[
+        A_r = A \setminus \bigcup_{n \geq 1} B_n
+    \]
+    dove $ B_n $ è l'insieme degli $ x \in A $ che non visitano più $ A $ dopo il tempo $ n $ o più formalmente  
+    \[
+        B_n \coloneqq A \setminus \bigcup_{j \geq n} f^{-j}(A).
+    \]
+    Essendo $ A_r $ differenza e unione numerabile di insiemi misurabili, anche $ A_r $ misurabile. Osservando che $ A \subseteq \bigcup_{j \geq 0} f^{-j}(A) $ essendo $ f^{0}(A) = A $ otteniamo che 
+    \[
+        B_n \subseteq \bigcup_{j \geq 0} f^{-j}(A) \setminus  \bigcup_{j \geq n} f^{-j}(A).
+    \]
+    Definendo allora $ \overline{A} \coloneqq \bigcup_{j \geq 0} f^{-j}(A) $ abbiamo che 
+    \[
+        \mu(B_n) \leq \mu(\overline{A}) - \mu\left(\textstyle{\bigcup_{j \geq n}} f^{-j}(A)\right) = \mu(\overline{A}) - \mu\left(f^{-n}\left(\textstyle{\bigcup_{j \geq 0}} f^{-j}(A)\right)\right) = \mu(\overline{A}) - \mu(f^{-n}(\overline{A})).
+    \]
+    Ma $ \mu $ è $ f $-invariate quindi
+    \[
+        \mu(B_n) \leq \mu(\overline{A}) - f_{\sharp}\mu(\overline{A}) = \mu(\overline{A}) - \mu(\overline{A}) = 0.
+    \]
+    \textcolor{red}{Scrivendo i $ B_n $ come unione disgiunta} concludiamo che 
+    \[
+        \mu(A_r) = \mu(A) - \mu\left(\textstyle{\bigcup_{n \geq 1}} B_n\right) = \mu(A)
+    \]
+    cioè $ \mu $-q.o. $ x \in A $ è ricorrente in $ A $.
+\end{proof}
+
+\begin{thm}[Birkoff] \label{thm:Birkoff}
+    Sia $ (X, \mathcal{A}, \mu, f) $ un sistema dinamico misurabile. Allora $ \forall A \in \mathcal{A} $, per $ \mu $-q.o. $ x \in X $, $ \overline{\nu}(x, A) = \underline{\nu}(x, A) $ cioè
+    \[
+        \exists \, \lim_{n \to +\infty} \frac{1}{n} \sum_{j = 0}^{n-1} \chi_A(f^{j}(x)) \eqqcolon \nu(x, A).
+    \]
+    Inoltre $ \forall \varphi \in L^1(X, \mathcal{A}, \mu; \R) $ e per $ \mu $-q.o. $ x \in X $
+    \[
+        \exists \, \lim_{n \to +\infty} \frac{1}{n} \sum_{j=0}^{n-1} (\varphi \circ f^j)(x) \eqqcolon \tilde{\varphi}(x).
+    \]
+\end{thm}
+\begin{proof}
+    content...
+\end{proof}
+
+\begin{proposition}
+    Sia $ (X, \mathcal{A}, \mu_1, f) $ un sistema ergodico e $ \mu_2 $ una misura di probabilità su $ (X, \mathcal{A}) $, $ f $-invariante. Allora i seguenti fatti sono equivalenti:
+    \begin{enumerate}[label=(\roman*)]
+        \item $ \mu_1 \neq \mu_2 $;
+        \item $ \mu_2 $ non è assolutamente continua rispetto a $ \mu_1 $, cioè $ \exists A \in \mathcal{A} $ tale che $ \mu_1(A) = 0 $ ma $ \mu_2(A) > 0 $;
+        \item $ \exists A \in \mathcal{A} $ $ f $-invariante tale che $ \mu_1(A) = 0 $ e $ \mu_2(A) > 0 $.
+    \end{enumerate}
+\end{proposition}
+
+Tale teorema stabilisce che un sistema dinamico misurabile può essere ergodico rispetto a due misure "che non si parlano". Ci sono tuttavia dei sistemi dinamici che ammettono una sola misura invariante. In tale caso si dà la seguente definizione.
+
+\begin{definition}[sistema unicamente ergodico]
+    $ (X; \mathcal{A}, \mu, f) $ si dice unicamente ergodico se esiste un'unica misura di probabilità su $ (X; \mathcal{A}) $ che sia $ f $-invariante.
+\end{definition}
+
+Tale definizione è ben posta perché un sistema unicamente ergodico è anche ergodico. Se infatti per assurdo $ (X, \mathcal{A}, \mu, f) $ non fosse ergodico esisterebbe $ A \in \mathcal{A} $ $ f $-invariante tale che $ \mu(A) > 0 $ e $ \mu(X \setminus A) > 0 $. Possiamo allora definire le misure 
+\[
+     \nu_1(E) \coloneqq \frac{\mu(A \cap E)}{\mu(A)} 
+     \qquad 
+     \nu_2(E) \coloneqq \frac{\mu((X \setminus A) \cap E)}{\mu(X \setminus A)}
+\] 
+che sono misure di probabilità diverse e $ f $-invarianti contro l'ipotesi. Per l'invarianza basta osservare che per l'invarianza di $ \mu $ si ha
+\[
+    \nu_1(f^{-1}(E)) = \frac{\mu(A \cap f^{-1}(E))}{\mu(A)} \textcolor{red}{=} \frac{\mu(f^{-1}(A) \cap f^{-1}(E))}{\mu(A)} = \frac{\mu(f^{-1}(A \cap E))}{\mu(A)} = \frac{\mu(A \cap E)}{\mu(A)} = \nu_1(E).
+\] 
+
+\begin{thm}
+    Se $ (X, \mathcal{B}, \mu, f) $, con $ X $ spazio topologico e $ \mathcal{B} $ la $ \sigma $-algebra dei boreliani, è un sistema unicamente ergodico e $ \varphi \colon X \to \R $ è continua allora si ha convergenza uniforme della media temporale dell'osservabile:
+    \[
+        \frac{1}{n} \sum_{j=0}^{n-1} (\varphi \circ f^j)(x) \, \touf \, \int_X \varphi \dif{\mu}.
+    \]
+\end{thm}
+
+\subsection{Iterated function systems}
