@@ -1,0 +1,30 @@
+\section{Lezione del 27/11/2018 [Marmi]}
+
+\subsection{Mescolamento di un sistema dinamico misurabile}
+\emph{Setting}: $ (X, \mathcal{A}, \mu, f) $ sistema dinamico misurabile. \\
+
+Intuitivamente in un sistema "mescolante" un insieme viene spalmato su tutto lo spazio delle fasi sotto l'iterazione di $ f $. Se $ A $ e $ B $ sono insiemi misurabili, consideriamo l'evoluzione di $ A $ sotto $ f $: essendo lo spazio di probabilità $ \mu(f^{-n}(A) \cap B) $ è la "percentuale" di $ f^{-n}(A) $ contenuta in $ B $; se allora $ \mu $ è $ f $-invariante, $ \mu(A) $ viene preservato dall'iterazione di $ f $ e quindi ci aspettiamo che $ \mu(f^{-n}(A) \cap B) $ tenda a $ \mu(A) \mu(B) $. Più formalmente diamo la seguente definizione. 
+
+\begin{definition}[mescolamento forte]
+    Un sistema dinamico misurabile si dice (fortemente) mescolante se $ \forall A, B \in \mathcal{A} $
+    \[
+        \lim_{n \to +\infty} \mu\left(f^{-n}(A) \cap B\right) = \mu(A) \mu(B).
+    \]
+\end{definition}
+
+\begin{definition}[operatore di Koopman]
+    Definiamo l'operatore di Koopman $ \mathcal{U}_f $ associato a $ (X, \mathcal{A}, \mu, f) $ come la mappa che a $ \varphi \in L^2(X, \mathcal{A}, \mu, \R) $ associa la funzione $ \mathcal{U}_f \varphi \coloneqq \varphi \circ f $.  
+\end{definition}
+
+\begin{exercise}
+    Mostrare che $ \mathcal{U}_f $ è un'isometria di $ L^2(X, \mathcal{A}, \mu, \R) $.
+\end{exercise}
+\begin{solution}
+    Basta mostrare che per ogni $ \varphi, \psi \in L^2(X, \mathcal{A}, \mu, \R) $ si ha $ \langle{\mathcal{U}_f \varphi, \mathcal{U}_f \psi}\rangle = \langle{\varphi, \psi}\rangle $ dove $ \langle{\, , \, }\rangle $ è il prodotto scalare standard di $ L^2 $. Infatti usando l'$ f $-invarianza della misura
+   \begin{align*}
+       \int_{X} \mathcal{U}_f \varphi \; \mathcal{U}_f \psi \dif{\mu} & =  \int_{X} \varphi(f(x)) \psi(f(x)) \dif{\mu}(x) \\
+       & = \int_{f(X)} \varphi(y) \psi(y) \dif{\mu}(f^{-1}(y)) = \int_{f(X)} \varphi(y) \psi(y) \dif{\mu}(y) \\
+       & \textcolor{red}={} \int_{X} \varphi(y) \psi(y) \dif{\mu}(y).
+   \end{align*}
+\end{solution}
+
