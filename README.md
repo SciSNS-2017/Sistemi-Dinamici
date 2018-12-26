@@ -31,11 +31,13 @@ Attualmente i file sono:
 | 13 novembre|Grotto     |Esercitazione|                          |
 | 14 novembre|Marmi      |Lezione      | @alepiazza, @marco-venuti|
 | 20 novembre|Marmi      |Lezione      | @alepiazza               |
-| 21 novembre|Marmi      |Lezione      |                          |
-| 27 novembre|Marmi      |Lezione      |                          |
+| 21 novembre|Marmi      |Lezione      | @alepiazza               |
+| 27 novembre|Marmi      |Lezione      | @alepiazza               |
 | 28 novembre|Tantari    |Esercitazione|                          |
 | 4 dicembre |Marmi      |Lezione      |                          |
 | 5 dicembre |Tantari    |Esercitazione|                          |
+| 18 dicembre|           |Correzione   |                          |
+| 19 dicembre|Marmi      |Lezione      |                          |
 
 
 ### Come scrivere una lezione
