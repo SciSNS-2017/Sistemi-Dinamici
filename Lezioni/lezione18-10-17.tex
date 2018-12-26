@@ -106,9 +106,9 @@ Notiamo che gli elementi di $ L^p $ sono \emph{classi di equivalenza} di funzion
 \subsection{Misure prodotto e integrali multipli}
 Siano $ (X,\mathcal{E},\mu) $ e $ (Y,\mathcal{F},\nu) $ spazi di misura $ \sigma $-finiti. Definiamo la $ \sigma $-algebra prodotto come:
 \[ 
-    \mathcal{E} \otimes \mathcal{F} \coloneqq \left\{ E\times F : E \in \mathcal{E}, F \in \mathcal{F} \right\}. 
+    \mathcal{E} \otimes \mathcal{F} \coloneqq \sigma(\mathcal{E}\times\mathcal{F}) = \sigma\left(\left\{ E\times F : E \in \mathcal{E}, F \in \mathcal{F} \right\}\right). 
 \]
-Dato $ A \in \mathcal{E}\otimes\mathcal{F} $, $ \pi_x(A) $ e $ \pi_y(A) $ (\textcolor{red}{sezioni di A a $ x $ o $ y $ fissate}) sono $ \mathcal{F} $- e $ \mathcal{E} $-misurabili rispettivamente.
+Dato $ A \in \mathcal{E}\otimes\mathcal{F} $, $ \pi_x(A) $ e $ \pi_y(A) $ (sezioni di A a rispettivamente $ x $ o $ y $ fissate) sono $ \mathcal{F} $- e $ \mathcal{E} $-misurabili rispettivamente.
 Esiste unica una misura $ \mu\otimes\nu $ su $ (X\times Y, \mathcal{E}\otimes\mathcal{F}) $ che estende
 \[ 
     (\mu\otimes\nu)(E\times F) = \mu(E)\mu(F) \qquad \forall E\in\mathcal{E}\ \forall F\in\mathcal{F} 
@@ -153,7 +153,7 @@ Se $ f $ è anche integrabile, allora la misura con densità è una misura finit
 \begin{oss}
     Data $ \dif\mu(x) = \rho(x)\dif x $, si ha 
     \begin{equation}\label{eq:pushforward-misure}
-        \dif{(T_\sharp\mu)(y)} = \rho(T^{-1}(y)) \abs{\det{\jac T}(T^{-1}(y))}^{-1} \dif y \: .
+        \dif{(T_\sharp\mu)(y)} = \rho(T^{-1}(y)) \; \big\lvert \! \det{\jac T}(T^{-1}(y))\big\rvert^{-1} \dif y \: .
     \end{equation}
 \end{oss}
 
