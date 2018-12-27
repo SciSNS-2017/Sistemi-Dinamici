@@ -2,11 +2,18 @@
 
 \emph{Setting}: $ (X, \mathcal{A}, \mu, f) $ è un sistema dinamico misurabile.
 
+\begin{lemma} \label{lem:insieme-quasi-invariante}
+    Sia $ A \in \mathcal{A} $ un insieme quasi invariante, cioè tale che $ f(A) \subseteq A \cup N $ con $ \mu(N) = 0 $. Allora esiste $ A' \in \mathcal{A} $ $ f $-invariante quasi uguale a $ A $, cioè tale che $ \mu(A \Delta A') = 0.
+\end{lemma}
+\begin{proof}
+    Basta prendere $ N' \coloneqq \bigcup_{j \geq 0} f^{-j}(N) $ e $ A' \coloneqq A \setminus N' $. Infatti se $ x \in A' $ allora $ x \in A $ ma $ x \notin N' $ cioè $ \forall j \geq 0, \ x \notin f^{-j}(N) $; quindi $ f(x) \in A \cup N $ e $ \forall j \geq 0, \ f(x) \notin f^{-j}(N) $ da cui in particolare $ f(x) \notin f^0(N) = N $ così $ f(x) \in A \setminus N' $ ovvero $ A' $ è $ f $-invariante. Inoltre per $ f $-invarianza della misura $ \mu(N') \leq \sum_{j \geq 0} \mu(f^{-j}(N)) = 0 $ così $ \mu(A\Delta A') = \mu(A\Delta(A\setminus N')) = \mu(A \cap N') \leq \mu(N') = 0 $.
+\end{proof}
+
 \begin{thm}
     Le seguenti proprietà sono equivalenti.
     \begin{enumerate}[label=(\roman*)]
         \item $ (X, \mathcal{A}, \mu, f) $ è ergodico.
-        \item $ (X, \mathcal{A}, \mu, f) $ è \emph{metricamente indecomponibile} cioè $ \forall A \in \mathcal{A} : f(A) \subseteq A, \ \mu(A) \mu(X \setminus A) = 0 $, ovvero lo spazio delle fasi non può essere separato in due insiemi disgiunti $ f $-invarianti entrambi di misura non nulla.
+        \item $ (X, \mathcal{A}, \mu, f) $ è \emph{metricamente indecomponibile} cioè $ \forall A \in \mathcal{A} : f(A) \subseteq A, \ \mu(A) > 0 \Rightarrow \mu(X \setminus A) = 0 $, ovvero lo spazio delle fasi non può essere separato in due insiemi disgiunti $ f $-invarianti entrambi di misura non nulla.
         \item $ (X, \mathcal{A}, \mu, f) $ ha solo integrali primi del moto banali cioè $ \forall \varphi \in \textcolor{red}{L^1}(X, \mathcal{A}, \mu; \R) : \varphi \circ f = \varphi $ $ \mu $-q.o. si ha che $ \varphi $ è costante $ \mu $-q.o. in $ X $.
         \item $ \forall \varphi \in \textcolor{red}{L^1}(X, \mathcal{A}, \mu; \R) $ la media temporale di $ \varphi $ (che esiste per il Teorema \ref{thm:Birkhoff}) è $ \mu $-q.o. uguale alla media spaziale
         \[
@@ -18,9 +25,49 @@
 \begin{proof}
     Mostriamo le varie implicazioni.
     \begin{description}
-        \item[$ (i) \Rightarrow (ii) $] Sia $ A\in\mathcal{A} : f(A) \subseteq A, \mu(A) > 0 $. Poiché $ A $ è $ f $-invariante, $ \forall x\in A\ \chi_A(f^j(x)) = 1 $ e dunque $ \nu(x,A) = 1 $ da cui, per l'ergodicità, $ \mu(A) = 1 $.
-        \item[$ (ii) \Rightarrow (iii) $]
-        \item[$ (iii) \Rightarrow (iv) $]
+        \item[$ (i) \Rightarrow (ii) $] Sia $ A\in\mathcal{A} : f(A) \subseteq A $ con $\mu(A) > 0 $. Poiché $ A $ è $ f $-invariante, $ \forall x\in A\ \chi_A(f^j(x)) = 1 $ e dunque $ \nu(x,A) = 1 $ da cui, per l'ergodicità, $ \mu(A) = 1 $. Ma allora $ \mu(X \setminus A) = 1 - \mu(A) = 0 $.
+        \item[$ (ii) \Rightarrow (iii) $] L'idea è che gli insiemi di livello di un integrale primo del moto separano lo spazio delle fasi: se l'integrale primo è costante allora un'insieme di livello e tutto lo spazio e gli altri sono vuoti, se invece non fosse costante potrei decomporre lo spazio. \\
+        Sia $ \varphi $ un integrale primo in $ L^1(X, \mathcal{A}, \mu; \R) $. Supponiamo ora che valga l'ipotesi più forte $ \varphi = \varphi \circ f $ ovunque. Fissato $ \gamma \in \R $ sia $ A_\gamma \coloneqq \{x \in X : \varphi(x) \leq \gamma\} $ il sottolivello che è per ipotesi misurabile. Essendo $ \varphi $ integrale primo, $ f^{-1}(A_\gamma) = \{x \in X : (\varphi \circ f)(x) \leq \gamma\} = \{x \in X : \varphi(x) \leq \gamma\} = A_\gamma $. Ma allora $ f(A_\gamma) = f(f^{-1}(A_\gamma)) \subseteq A_\gamma $, cioè $ A_\gamma $ è $ f $-invariante. Perciò l'ipotesi \emph{(ii)} ci dice che $ \mu(A_\gamma) \in \{0, 1\} $. Consideriamo allora la funzione
+        \begin{align*}
+            \psi \colon \R & \to [0, +\infty) \\
+            \gamma & \mapsto \mu(A_\gamma)
+        \end{align*}
+        che è monotona non decrescente ($ \gamma_1 < \gamma_2 \Rightarrow A_{\gamma_1} \subseteq A_{\gamma_2} \Rightarrow \mu(A_{\gamma_1}) \leq \mu(A_{\gamma_2}) $). Osserviamo ora che
+        \[
+            \lim_{\gamma \to -\infty} \mu(A_\gamma) = 0 \qquad \lim_{\gamma \to +\infty} \mu(A_\gamma) = 1
+        \]
+        da cui deduciamo che esiste $ \overline{\gamma} \coloneqq \inf{\{\gamma \in \R : \mu(A_\gamma) = 1\}} \in \R $. Ma essendo gli $ A_\gamma $ inscatolati
+        \[
+            A_{\overline{\gamma}} = \bigcap_{n \geq 1} A_{\overline{\gamma} + \frac{1}{n}} \quad \Rightarrow \quad A_{\overline{\gamma} + \frac{1}{n}} \downarrow A_{\overline{\gamma}}
+        \]
+        da cui
+        \[
+            \mu(A_{\overline{\gamma}}) = \lim_{n \to +\infty} \mu\left(A_{\overline{\gamma} + \frac{1}{n}}\right) = 1.
+        \]
+        \textcolor{red}{Si conclude in un qualche modo oscuro.}\\
+        Supponiamo ora che $ \varphi = \varphi \circ f $ $ \mu $-q.o. Detto allora $ B_\gamma \coloneqq \{x \in X : (\varphi \circ f) \leq \gamma\} $ si ha $ \mu(A_\gamma \Delta B_\gamma) = 0 $ e pertanto $ \exists N \in \mathcal{A} : \mu(N) = 0 $ tale che $ A_\gamma = B_\gamma \Delta N $. Così $ B_\gamma = f^{-1}(A_\gamma) = f^{-1}(B_\gamma) \Delta f^{-1}(N) $. Quindi posto $ N' \coloneqq f^{-1}(N) $ per invarianza della misura si ha $ \mu(N') = 0 $ e inoltre
+        \[
+            f(B_\gamma \Delta N') = f(f^{-1}(B_\gamma)) \subseteq B_\gamma = (B_\gamma \Delta N') \Delta N'
+        \]
+        cioè $ B_\gamma \Delta N' $ è invariante a meno di un insieme di misura nulla. Per il Lemma \ref{lem:insieme-quasi-invariante} sappiamo che esiste $ B'_\gamma \in \mathcal{A} $ tale che $ f(B_\gamma) \subseteq B_\gamma $ e $ \mu(B_\gamma \Delta B'_\gamma) = 0 $. Per l'ipotesi \emph{(ii)} allora $ \mu(B'_\gamma) \in \{0, 1\} $ così\footnote{Se $ F, M \in \mathcal{A} $ e $ \mu(M) = 0 $ allora \[\mu(F \Delta M) = \mu((F \setminus M) \cup (M \setminus F)) = \mu(F \setminus M) + \mu(M \setminus F) = \mu(F) - \mu(F \cap M) + \mu(M \setminus F) = \mu(F)\] in quanto $ F \cap M $ e $ M \setminus F $ sono sottoinsiemi misurabili di un insieme di misura nulla.}
+        \[
+            \mu(A_\gamma) = \mu(B_\gamma \Delta N') = \mu(B_\gamma) = \mu((B_\gamma \Delta B'_\gamma) \Delta B'_\gamma) = \mu(B'_\gamma) \in \{0, 1\}.
+        \]
+        A questo punto si conclude come in precedenza.
+        \item[$ (iii) \Rightarrow (iv) $] Osserviamo che la media temporale di un'osservabile è un integrale primo del moto in quanto
+        \begin{align*}
+            (\tilde{\varphi} \circ f)(x) & = \lim_{n \to +\infty} \frac{1}{n} \sum_{j = 0}^{n-1} (\varphi \circ f^{j+1})(x) = \lim_{n \to +\infty} \frac{1}{n} \sum_{j = 1}^{n} (\varphi \circ f^{j})(x) \\
+            & = \lim_{n \to +\infty} \left(\frac{1}{n} \sum_{j = 0}^{n-1} (\varphi \circ f^{j})(x) - \frac{\varphi(x)}{n} + \frac{\varphi(f^{n}(x))}{n}\right) \\
+            & \textcolor{red}{=} \lim_{n \to +\infty} \frac{1}{n} \sum_{j = 0}^{n-1} (\varphi \circ f^{j})(x) = \tilde{\varphi}(x).
+        \end{align*}
+        e quindi per ipotesi $ \exists c \in \R : \tilde{\varphi} = c \ \mu\text{-q.o.} $. \\
+        Supponiamo per ora $ \varphi \geq 0 $. Essendo $ \frac{1}{n} \sum_{j = 0}^{n-1} (\varphi \circ f^{j}) \in L^1 $ e quindi misurabili possiamo applicare il Lemma di Fatou e usando l'$ f $-invarianza della misura otteniamo
+        \begin{align*}
+            \tilde{\varphi}(x) & = \int_{X} \tilde{\varphi} \dif{\mu} = \int_{X} \lim_{n \to +\infty} \frac{1}{n} \sum_{j = 0}^{n-1} (\varphi \circ f^{j}) \dif{\mu} = \int_{X} \liminf_{n \to +\infty} \frac{1}{n} \sum_{j = 0}^{n-1} (\varphi \circ f^{j}) \dif{\mu} \\
+            & \leq \liminf_{n \to +\infty} \int_{X} \frac{1}{n} \sum_{j = 0}^{n-1} (\varphi \circ f^{j}) \dif{\mu} = \liminf_{n \to +\infty} \frac{1}{n} \sum_{j = 0}^{n-1} \int_{X} (\varphi \circ f^{j}) \dif{\mu} \\
+            & = \liminf_{n \to +\infty} \frac{1}{n} \sum_{j = 0}^{n-1} \int_{X} \varphi \dif{\mu} \\
+            & = \int_{X} \varphi \dif{\mu}.
+        \end{align*}
         \item[$ (iv) \Rightarrow (i) $]
         \item[$ (iv) \Rightarrow (v) $]
         \item[$ (v) \Rightarrow (ii) $]

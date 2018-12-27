@@ -1,22 +1,22 @@
 \section{Lezione del 21/11/2018 [Marmi]}
 
 \begin{thm}[di ricorrenza di Poincaré]
-    Sia $ (X, \mathcal{A}, \mu, f) $ un sistema dinamico misurabile. Allora $ \forall A \in \mathcal{A} $, per $ \mu $-q.o. $ x \in A $, $ x $ è ricorrente in $ A $. 
+    Sia $ (X, \mathcal{A}, \mu, f) $ un sistema dinamico misurabile. Allora $ \forall A \in \mathcal{A} $, per $ \mu $-q.o. $ x \in A $, $ x $ è ricorrente in $ A $.
 \end{thm}
 \begin{proof}
     Sia $ A_r \coloneqq \{x \in A : x \text{ è ricorrente in } A\} \subseteq A $. Osserviamo che possiamo scrivere
     \[
         A_r = A \setminus \bigcup_{n \geq 1} B_n
     \]
-    dove $ B_n $ è l'insieme degli $ x \in A $ che non visitano più $ A $ dopo il tempo $ n $ o più formalmente  
+    dove $ B_n $ è l'insieme degli $ x \in A $ che non visitano più $ A $ dopo il tempo $ n $ o più formalmente
     \[
         B_n \coloneqq A \setminus \bigcup_{j \geq n} f^{-j}(A).
     \]
-    Essendo $ A_r $ differenza e unione numerabile di insiemi misurabili, anche $ A_r $ misurabile. Osservando che $ A \subseteq \bigcup_{j \geq 0} f^{-j}(A) $ essendo $ f^{0}(A) = A $ otteniamo che 
+    Essendo $ A_r $ differenza e unione numerabile di insiemi misurabili, anche $ A_r $ misurabile. Osservando che $ A \subseteq \bigcup_{j \geq 0} f^{-j}(A) $ essendo $ f^{0}(A) = A $ otteniamo che
     \[
         B_n \subseteq \bigcup_{j \geq 0} f^{-j}(A) \setminus  \bigcup_{j \geq n} f^{-j}(A).
     \]
-    Definendo allora $ \overline{A} \coloneqq \bigcup_{j \geq 0} f^{-j}(A) $ abbiamo che 
+    Definendo allora $ \overline{A} \coloneqq \bigcup_{j \geq 0} f^{-j}(A) $ abbiamo che
     \[
         \mu(B_n) \leq \mu(\overline{A}) - \mu\left(\textstyle{\bigcup_{j \geq n}} f^{-j}(A)\right) = \mu(\overline{A}) - \mu\left(f^{-n}\left(\textstyle{\bigcup_{j \geq 0}} f^{-j}(A)\right)\right) = \mu(\overline{A}) - \mu(f^{-n}(\overline{A})).
     \]
@@ -24,14 +24,14 @@
     \[
         \mu(B_n) \leq \mu(\overline{A}) - f_{\sharp}\mu(\overline{A}) = \mu(\overline{A}) - \mu(\overline{A}) = 0.
     \]
-    \textcolor{red}{Scrivendo i $ B_n $ come unione disgiunta} concludiamo che 
+    da cui $ \mu\left(\bigcup_{n \geq 1} B_n\right) \leq \sum_{n \geq 1} \mu(B_n) = 0 $. Così concludiamo che
     \[
         \mu(A_r) = \mu(A) - \mu\left(\textstyle{\bigcup_{n \geq 1}} B_n\right) = \mu(A)
-    \]
+     \]
     cioè $ \mu $-q.o. $ x \in A $ è ricorrente in $ A $.
 \end{proof}
 
-\begin{thm}[Birkoff] \label{thm:Birkoff}
+\begin{thm}[Birkhoff] \label{thm:Birkoff}
     Sia $ (X, \mathcal{A}, \mu, f) $ un sistema dinamico misurabile. Allora $ \forall A \in \mathcal{A} $, per $ \mu $-q.o. $ x \in X $, $ \overline{\nu}(x, A) = \underline{\nu}(x, A) $ cioè
     \[
         \exists \, \lim_{n \to +\infty} \frac{1}{n} \sum_{j = 0}^{n-1} \chi_A(f^{j}(x)) \eqqcolon \nu(x, A).
@@ -42,7 +42,70 @@
     \]
 \end{thm}
 \begin{proof}
-    content...
+    Trattiamo solo la parte con le funzioni caratteristiche. Sappiamo che esistono
+    \[
+        \underline{\nu}(x, A) \coloneqq \liminf_{n \to +\infty} \nu(x, A, n) \qquad \overline{\nu}(x, A) \coloneqq \limsup_{n \to +\infty} \nu(x, A, n)
+    \]
+    dove $ \nu(x, A, n) \coloneqq \frac{1}{n} \sum_{j = 0}^{n-1} \chi_A(f^{j}(x)) = \frac{1}{n} T(x, A, n) $. Sicuramente vale $ \underline{\nu}(x, A) \leq \overline{\nu}(x, A) $ quindi è sufficiente mostrare la disuguaglianza opposta. \\
+    Fissato $ \epsilon > 0 $ sia
+    \[
+        \overline{\tau}(x, A, \epsilon) \coloneqq \min{\{n \in \N : \nu(x, A, n) \geq \overline{\nu}(x, A) - \epsilon\}}.
+    \]
+    Supponiamo per ora che tale quantità sia uniformemente limitata cioè $ \exists M_\epsilon > 0 : \forall x \in X, \ \overline{\tau}(x, A, \epsilon) \leq M_\epsilon $. L'idea è di dividere l'orbita da 0 a $ n $ (abbiamo in mente $ n \gg M_\epsilon $ in quanto manderemo poi $ n \to +\infty $) in sotto-segmenti di lunghezza $ \overline{\tau} $ su cui abbiamo un controllo essendo $ \overline{\tau} $ limitato. Dato $ n > M_\epsilon $ consideriamo quindi il segmento di orbita $ (f^{j}(x))_{j = 0}^{n-1} $ di lunghezza $ n $. Definiamo la successione ricorsiva
+    \[
+        \begin{cases}
+        x_0 = x & \tau_0 = \overline{\tau}(x_0, A, \epsilon) \\
+        x_{k+1} = f^{\overline{\tau}(x, A, \epsilon)}(x_k) = f^{\tau_k}(x_0) & \tau_k = \sum_{j = 0}^{k} \overline{\tau}(x_j, A, \epsilon)
+        \end{cases}
+    \]
+    definita da $ k = 0 $ fino a $ k = K $ tale che $ \tau_{K} < n $ ma $ \tau_{K+1} \geq n $. \\
+    Ora per definizione $ \nu(x, A, \overline{\tau}(x, A , \epsilon)) \geq \overline{\nu}(x, A) - \epsilon $ mentre per $ f $-invarianza $ \overline{\nu}(f(x), A) = \overline{\nu}(x, A) $ quindi per ogni $ k \in \{0, \ldots, K\} $ il numero di visite in ogni sotto-segmento si stima come
+    \begin{align*}
+        T(x_k, A, \overline{\tau}(x_k, A, \epsilon)) & = \overline{\tau}(x_k, A, \epsilon) \cdot \nu(x_k, A, \overline{\tau}(x, A , \epsilon)) \\
+        & \geq \overline{\tau}(x_k, A, \epsilon) \cdot (\overline{\nu}(x_k, A) - \epsilon) \\
+        & = \overline{\tau}(x_k, A, \epsilon) \cdot (\overline{\nu}(x, A) - \epsilon).
+    \end{align*}
+    Il numero totale di visite lungo il segmento di orbita di lunghezza $ n $ si stima considerando i sotto-segmenti come
+    \begin{align*}
+        T(x, A, n) & = \left[\sum_{k = 0}^{K} T(x_k, A, \overline{\tau}(x, A, \epsilon))\right] + T(x_{K}, A, n - \tau_{K}) \\
+        & \geq \left[\sum_{k = 0}^{K}  \overline{\tau}(x_k, A, \epsilon)\right] (\overline{\nu}(x, A) - \epsilon) = \tau_{K} \cdot (\overline{\nu}(x, A) - \epsilon) \\
+        & \geq (n - M_\epsilon)(\overline{\nu}(x, A) - \epsilon)
+    \end{align*}
+    dove abbiamo maggiorato il termine $ T(x_{K}, A, n - \tau_{K}) $ con $ 0 $ in quanto è il pezzo di orbita su cui non abbiamo controllo e abbiamo osservato che per costruzione la somma dei tempi $ \tau_K \geq n - M_{\epsilon} $. Ora per $ f $-invarianza della misura
+    \[
+        \int_{X} T(x, A, n) \dif{\mu} = \sum_{j = 0}^{n-1} \int_{X} \chi_A(f^{j}(x)) \dif{\mu}(x) = \sum_{j = 0}^{n-1} \int_{X} \chi_A(x) \dif{\mu}(x) = n \cdot \mu(A)
+    \]
+    così per monotonia
+    \begin{gather*}
+        n \cdot \mu(A) = \int_{X} T(x, A, n) \geq (n - M_\epsilon) \left(\int_{X}(\overline{\nu}(x, A) - \epsilon) \dif{\mu}(x)\right) \\
+        \mu(A) \geq \frac{n - M_\epsilon}{n} \left(\int_{X}\overline{\nu}(x, A) \dif{\mu}(x) - \epsilon\right)
+    \end{gather*}
+    Passando prima al limite in $ n $ e poi all'estremo superiore su $ \epsilon $ otteniamo infine
+    \[
+        \mu(A) \geq \int_{X}\overline{\nu}(x, A) \dif{\mu}(x).
+    \]
+    Ripetendo lo stesso ragionamento con $ \underline{\nu} $, cioè supponendo che la quantità
+    \[
+        \underline{\tau}(x, A, \epsilon) \coloneqq \min{\{n \in \N : \nu(x, A, n) \leq \overline{\nu}(x, A) + \epsilon\}}
+    \]
+    sia uniformemente limitata e dividendo il segmento di orbita da $ 0 $ a $ (n-1) $ in sotto-segmenti giungiamo alla disuguaglianza opposta
+    \[
+        \mu(A) \leq \int_{X}\underline{\nu}(x, A) \dif{\mu}(x).
+    \]
+    Combinando le due disuguaglianze abbiamo quindi che
+    \[
+        \int_{X}\underline{\nu}(x, A) \dif{\mu}(x) \geq \int_{X}\overline{\nu}(x, A) \dif{\mu}(x).
+    \]
+    Ma d'altra parte essendo $ \underline{\nu}(x, A) \leq \overline{\nu}(x, A) $ per ogni $ x \in X $ anche
+    \[
+        \int_{X}\underline{\nu}(x, A) \dif{\mu}(x) \leq \int_{X}\overline{\nu}(x, A) \dif{\mu}(x).
+    \]
+    Così
+    \[
+        \int_{X} \overline{\nu} \dif{\mu} = \int_{X} \underline{\nu} \dif{\mu} \quad \Rightarrow \quad \int_{X} \left(\overline{\nu} - \underline{\nu}\right) \dif{\mu} = 0.
+    \]
+    Ma dato che l'integrando è positivo concludiamo che $ \mu $-q.o. si ha $ \overline{\nu}(x, A) = \underline{\nu}(x, A) $. \\
+    \textcolor{red}{Dobbiamo ora rimuovere l'ipotesi della limitatezza.}
 \end{proof}
 
 \begin{proposition}
@@ -60,16 +123,16 @@ Tale teorema stabilisce che un sistema dinamico misurabile può essere ergodico 
     $ (X; \mathcal{A}, \mu, f) $ si dice unicamente ergodico se esiste un'unica misura di probabilità su $ (X; \mathcal{A}) $ che sia $ f $-invariante.
 \end{definition}
 
-Tale definizione è ben posta perché un sistema unicamente ergodico è anche ergodico. Se infatti per assurdo $ (X, \mathcal{A}, \mu, f) $ non fosse ergodico esisterebbe $ A \in \mathcal{A} $ $ f $-invariante tale che $ \mu(A) > 0 $ e $ \mu(X \setminus A) > 0 $. Possiamo allora definire le misure 
+Tale definizione è ben posta perché un sistema unicamente ergodico è anche ergodico. Se infatti per assurdo $ (X, \mathcal{A}, \mu, f) $ non fosse ergodico esisterebbe $ A \in \mathcal{A} $ $ f $-invariante tale che $ \mu(A) > 0 $ e $ \mu(X \setminus A) > 0 $. Possiamo allora definire le misure
 \[
-     \nu_1(E) \coloneqq \frac{\mu(A \cap E)}{\mu(A)} 
-     \qquad 
+     \nu_1(E) \coloneqq \frac{\mu(A \cap E)}{\mu(A)}
+     \qquad
      \nu_2(E) \coloneqq \frac{\mu((X \setminus A) \cap E)}{\mu(X \setminus A)}
-\] 
+\]
 che sono misure di probabilità diverse e $ f $-invarianti contro l'ipotesi. Per l'invarianza basta osservare che per l'invarianza di $ \mu $ si ha
 \[
     \nu_1(f^{-1}(E)) = \frac{\mu(A \cap f^{-1}(E))}{\mu(A)} \textcolor{red}{=} \frac{\mu(f^{-1}(A) \cap f^{-1}(E))}{\mu(A)} = \frac{\mu(f^{-1}(A \cap E))}{\mu(A)} = \frac{\mu(A \cap E)}{\mu(A)} = \nu_1(E).
-\] 
+\]
 
 \begin{thm}
     Se $ (X, \mathcal{B}, \mu, f) $, con $ X $ spazio topologico e $ \mathcal{B} $ la $ \sigma $-algebra dei boreliani, è un sistema unicamente ergodico e $ \varphi \colon X \to \R $ è continua allora si ha convergenza uniforme della media temporale dell'osservabile:
