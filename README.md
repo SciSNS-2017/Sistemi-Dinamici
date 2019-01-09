@@ -12,7 +12,7 @@ Il PDF più recente si può scaricare [qui](https://gitlab.com/marco-venuti/sist
 Per ora l'idea è di trascrivere in TeX le lezioni separatamente e pensare più avanti ad una struttura più precisa degli argomenti.
 
 Attualmente i file sono:
-* `main.tex`: è il file principale della repository. Vengono importati tutti pacchetti necessari e ci sono le impostazioni generali del progetto. 
+* `main.tex`: è il file principale della repository. Vengono importati tutti pacchetti necessari e ci sono le impostazioni generali del progetto.
 * `style.sty`: contiene tutte le impostazioni di stile del progetto, include alcuni pacchetti e definisce nuovi comandi, ambienti theorem ecc. utili per velocizzare la scrittura e uniformare lo stile.
 * `bibliografia.bib`: contiene la bibliografia.
 * `Lezioni/lezione[anno]_[mese]_[giorno].tex`: è il vero contenuto di ogni lezione.
@@ -37,9 +37,10 @@ Attualmente i file sono:
 | 4 dicembre |Marmi      |Lezione      |                          |
 | 5 dicembre |Tantari    |Esercitazione|                          |
 | 18 dicembre|           |Correzione   |                          |
-| 19 dicembre|Marmi      |Lezione      |                          |
+| 19 dicembre|Marmi      |Lezione      | @alepiazza               |
+| 8 gennaio  |Marmi      |Lezione      |                          |
+| 9 gennaio  |Marmi      |Lezione      |                          |
 
 
 ### Come scrivere una lezione
 A causa delle immagini il tempo di compilazione di `main.tex` può essere molto lungo. Quando includi un'immagine scrivi `\iffigureon` prima di `\begin{figure}` e `\fi` dopo `\end{figure}`. Se nel preambolo di `main.tex` scrivi `\figureontrue` dopo `\newif\iffigureon` le figure verranno incluse; se invece scrivi `\figureonfalse` le immagini non compariranno nel pdf e la compilazione sarà più veloce.
-
