@@ -3,7 +3,7 @@
 \emph{Setting}: $ (X, \mathcal{A}, \mu, f) $ è un sistema dinamico misurabile.
 
 \begin{lemma} \label{lem:insieme-quasi-invariante}
-    Sia $ A \in \mathcal{A} $ un insieme quasi invariante, cioè tale che $ f(A) \subseteq A \cup N $ con $ \mu(N) = 0 $. Allora esiste $ A' \in \mathcal{A} $ $ f $-invariante quasi uguale a $ A $, cioè tale che $ \mu(A \Delta A') = 0. $
+    Sia $ A \in \mathcal{A} $ un insieme quasi invariante, cioè tale che $ f(A) \subseteq A \cup N $ con $ \mu(N) = 0 $. Allora esiste $ A' \in \mathcal{A} $ $ f $-invariante quasi uguale a $ A $, cioè tale che $ \mu(A \Delta A') = 0 $.
 \end{lemma}
 \begin{proof}
     Basta prendere $ N' \coloneqq \bigcup_{j \geq 0} f^{-j}(N) $ e $ A' \coloneqq A \setminus N' $. Infatti se $ x \in A' $ allora $ x \in A $ ma $ x \notin N' $ cioè $ \forall j \geq 0, \ x \notin f^{-j}(N) $; quindi $ f(x) \in A \cup N $ e $ \forall j \geq 0, \ f(x) \notin f^{-j}(N) $ da cui in particolare $ f(x) \notin f^0(N) = N $ così $ f(x) \in A \setminus N' $ ovvero $ A' $ è $ f $-invariante. Inoltre per $ f $-invarianza della misura $ \mu(N') \leq \sum_{j \geq 0} \mu(f^{-j}(N)) = 0 $ così $ \mu(A\Delta A') = \mu(A\Delta(A\setminus N')) = \mu(A \cap N') \leq \mu(N') = 0 $.
