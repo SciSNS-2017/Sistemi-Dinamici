@@ -38,7 +38,7 @@ Attualmente i file sono:
 | 5 dicembre |Tantari    |Esercitazione|                          |
 | 18 dicembre|           |Correzione   |                          |
 | 19 dicembre|Marmi      |Lezione      | @alepiazza               |
-| 8 gennaio  |Marmi      |Lezione      |                          |
+| 8 gennaio  |Marmi      |Lezione      | @alepiazza               |
 | 9 gennaio  |Marmi      |Lezione      |                          |
 
 

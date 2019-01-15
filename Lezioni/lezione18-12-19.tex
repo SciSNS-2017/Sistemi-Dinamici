@@ -6,13 +6,12 @@ Claude Shannon: \emph{A Mathematical Theory of Communication}, 1948. \\
 Sia $ (X, \mathcal{A}, \mu) $ uno spazio di probabilità e consideriamo una partizione dello spazio \linebreak $ X = A_1 \sqcup \ldots \sqcup A_n \pmod{0} $ cioè tale che gli insiemi $ A_i $ sono a due a due disgiunti a meno di insiemi di misura nulla e la loro unione è $ X $ a meno di un insieme di misura nulla. Sia $ p_i \coloneqq \mu(A_i) $ che definisce un vettore di probabilità $ p \coloneqq (p_1, \ldots, p_n) \in \R^n_+ $ essendo $ \sum_{i = 1}^{n} p_i = 1 $. Indichiamo con $ \Delta^{(n)} \coloneqq \{(p_1, \ldots, p_n) \in \R^n_+ : \sum_{i=0}^{n} p_i\} $ lo spazio dei vettori di probabilità in $ \R^n $.
 
 \begin{thm}[entropia di Shannon]
-    Sia $ H^{(n)} \colon \Delta^{(n)} \to [0, +\infty) $ una funzione reale sullo spazio dei vettori di probabilità che chiamiamo entropia. Supponiamo che
-    \begin{enumerate}[label=(\roman*)]
+    Sia $ H^{(n)} \colon \Delta^{(n)} \to [0, +\infty) $ una funzione reale sullo spazio dei vettori di probabilità che chiamiamo entropia. Supponiamo che:    \begin{enumerate}[label=(\roman*)]
         \item $ H^{(n)} $ sia continua e non identicamente costante;
         \item $ H^{(n)} $ sia simmetrica nei suoi argomenti;
         \item $ H^{(n)}(1, 0, \ldots, 0) = 0 $;
-        \item l'e entropie sono "concatenate": $ H^{(n)}(0, p_2, \ldots, p_n) = H^{(n-1)}(p_2, \ldots, p_n) $;
-        \item l'entropia massima è quella "più casuale": $ H^{(n)}(p_1, \ldots, p_n) \leq H^{(n)}\left(\dfrac{1}{n}, \ldots, \dfrac{1}{n}\right) $
+        \item le entropie sono "concatenate": $ H^{(n)}(0, p_2, \ldots, p_n) = H^{(n-1)}(p_2, \ldots, p_n) $;
+        \item l'entropia massima è quella "più casuale": $ H^{(n)}(p_1, \ldots, p_n) \leq H^{(n)}\left(\dfrac{1}{n}, \ldots, \dfrac{1}{n}\right) $;
         \item l'entropia una partizione in $ n \cdot l $ insiemi è l'entropia degli $ n $ raggruppamenti della partizione in $ l $ insiemi più la media pesata delle "entropie relative" all'interno di ciascun raggruppamento, calcolate con la probabilità condizionata. In formule
         \[
             H^{(nl)}(\pi_{11}, \ldots, \pi_{1l}, \ldots, \pi_{n1}, \ldots, \pi_{nl}) = H^{n}(p_1, \ldots, p_n) + \sum_{i = 0}^{n} p_i \, H^{(l)} \left(\dfrac{\pi_{i1}}{p_i}, \ldots, \dfrac{\pi_{il}}{p_i}\right)
@@ -54,7 +53,7 @@ Dato un sistema dinamico misurabile $ (X, \mathcal{A}, \mu, f) $ possiamo consid
 \end{definition}
 
 Questa è una buona definizione in virtù del seguente
-\begin{lemma}[Fekete]
+\begin{lemma}[Fekete] \label{lem:fekete}
     Se $ a \colon \N^{*} \to \R $ è una successione subadditiva allora esiste
     \[
         \lim_{n\to+\infty} \frac{a(n)}{n} = \inf_{n\geq1}a(n).
@@ -65,5 +64,5 @@ Questa è una buona definizione in virtù del seguente
 \end{proof}
 
 \begin{exercise}
-    Calcolare l'entropia metrica degli Schemi di Bernoulli.
+    Calcolare l'entropia metrica degli \emph{schemi di Bernoulli}.
 \end{exercise}

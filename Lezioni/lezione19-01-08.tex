@@ -1,0 +1,108 @@
+\section{Lezione del 08/01/2019 [Marmi]}
+
+\subsection{Entropia topologia}
+
+\emph{Setting}: $ (X, d) $ spazio metrico compatto.
+
+\begin{definition}[ricoprimento congiunto]
+    Siano $ \alpha \coloneqq \{A_i\} $ e $ \beta \coloneqq \{B_j\} $ due ricoprimenti aperti finiti di $ X $\footnote{Esistono per compattezza}. Definiamo il ricoprimento congiunto o join di $ \alpha $ e $ \beta $ come
+    \[
+        \alpha \vee \beta \coloneqq \{A_i \cap B_j \neq \emptyset : A_i \in \alpha, B_j \in \beta\}.
+    \]
+    Data una collezione finita di ricoprimenti finiti $ \alpha^1, \ldots, \alpha^k $ di cardinalità $ N_r \in \N $ per $ r = 1, \ldots, k $ si definisce
+    \[
+        \bigvee_{r=1}^{k} \alpha^r \coloneqq \{A_{i_1} \cap \ldots \cap A_{i_k} \neq \emptyset : r = 1, \ldots, k, \ 1 \leq i_r \leq N_r\}.
+    \]
+\end{definition}
+
+Sia ora $ f \colon X \to X $ una funzione continua. Dato che la preimmagine di un aperto tramite $ f $ è ancora un aperto, dato un ricoprimento aperto $ \alpha \coloneqq \{A_1\, \ldots, A_m\} $ finito ha senso considerare $ f^{-k}\alpha \coloneqq \{f^{-k}(A_i) : A_i \in \alpha\} $ che è ancora un ricoprimento aperto finito di $ X $ e il ricoprimento congiunto delle preimmagini di $ \alpha $ tramite $ f $
+\[
+    \bigvee_{i=1}^{n-1} f^{-i}\alpha \coloneqq \{A_{i_0} \cap f^{-1}(A_{i_1}) \cap \ldots \cap f^{-(n-1)}(A_{i_{n-1}}) \neq \emptyset : r = 0, \ldots, n-1, \ 0 \leq i_r \leq m\}.
+\]
+
+\begin{definition}[sottoricoprimento]
+    $ \beta $ è un sottoricoprimento di $ \alpha \coloneqq \{A_1, \ldots, A_m\} $ ricoprimento aperto di $ X $ se $ X \subseteq \bigcup_{B \in \beta} B $ e $ \forall B \in \beta, \exists i \in \{1, \ldots, m\} : B = A_i $.
+\end{definition}
+
+\begin{definition}[entropia di un ricoprimento]
+    Sia $ (X, d) $ uno spazio metrico compatto. L'entropia di un ricoprimento aperto finito $ \alpha $ di $ X $ si definisce come
+    \[
+        H(\alpha) \coloneqq \log N(\alpha)
+    \]
+    dove
+    \[
+        N(\alpha) \coloneqq \min{\{\card{(\beta)} : \text{$ \beta $ è un sottoricomprimento di $ \alpha $}}\}.
+    \]
+\end{definition}
+
+\begin{lemma}
+    L'entropia di un sottoricoprimento gode delle seguenti proprietà:
+    \begin{enumerate}[label=(\roman*)]
+        \item $ H(\alpha) \geq 0 $;
+        \item se $ \beta $ è un sottoricoprimento di $ \alpha $ allora $ H(\beta) \geq H(\alpha) $;
+        \item se $ \alpha $ e $ \beta $ sono ricoprimenti aperti finiti allora $ H(\alpha \vee \beta) \leq H(\alpha) + H(\beta) $ (\emph{subadditività});
+        \item se $ f \colon X \to X $ continua allora $ H(f^{-1}\alpha) \leq H(\alpha) $. Se $ f $ è inoltre suriettiva allora si ha l'uguaglianza $ H(f^{-1}\alpha) = H(\alpha) $.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \textcolor{red}{Mancante}.
+\end{proof}
+
+Osserviamo che se $ f \colon X \to X $ è continua si ha $ H(f^{-1}\alpha \vee \alpha) \leq H(f^{-1}\alpha) + H(\alpha) \leq 2 H(\alpha) $ e più in generale
+\[
+    H{\left(\bigvee_{i=0}^{n-1}f^{-i}\alpha\right)} \leq n H(\alpha).
+\]
+Per il Lemma di Fekete (Lemma \ref{lem:fekete}) la seguente è quindi una buona definizione.
+
+\begin{definition}[entropia topologica]
+    Sia $ (X, d, f) $ un sistema dinamico topologico. Fissato un ricoprimento aperto finito $ \alpha $ di $ X $ definiamo
+    \[
+        h_{\mathrm{top}}(f, \alpha) \coloneqq \lim_{n \to +\infty} \frac{1}{n} H{\left(\textstyle\bigvee_{i=0}^{n-1}f^{-i}\alpha\right)}.
+    \]
+    Definiamo quindi l'entropia topologica di $ (X, d, f) $ come
+    \[
+        h_{\mathrm{top}}(f) \coloneqq \sup{\{h_{\mathrm{top}}(f, \alpha) : \text{$ \alpha $ è un ricoprimento aperto finito di $ X $}\}}.
+    \]
+\end{definition}
+
+La definizione di entropia topologia è molto simile a quella data per sistemi dinamici misurabili. In questo caso consideriamo gli aperti invece dei misurabili e assegnamo la stessa misura ad ogni insieme.
+
+\begin{exercise}
+    Mostrare che l'identità su $(X, d) $ ha entropia topologica nulla.
+\end{exercise}
+
+Diamo ora una caratterizzazione dell'entropia topologica che permette di rimuovere l'estremo superiore quando si considera una classe particolare di ricoprimenti.
+
+\begin{definition}[generatore]
+    Sia $ (X, d, f) $ un sistema dinamico topologico. Un ricoprimento aperto finito $ \alpha $ è generatore \emph{forte} se
+    \[
+        \forall \epsilon > 0, \ \exists N > 0 : \bigvee_{i=0}^{N}f^{-i}\alpha = \{B_1, \ldots, B_m\} \text{ e } \sup_{i} \diam{(B_i)} < \epsilon.
+    \]
+    Se $ f $ è in più un omeomorfismo allora si parla semplicemente di generatore se
+    \[
+        \forall \epsilon > 0, \ \exists N > 0 : \bigvee_{i=-N}^{N}f^{-i}\alpha = \{B_1, \ldots, B_m\} \text{ e } \sup_{i} \diam{(B_i)} < \epsilon.
+    \]
+\end{definition}
+
+\begin{definition}[raffinamento]
+    $ \beta $ è un raffinamento di un ricoprimento aperto finito $ \alpha $ di $ X $ se $ \beta $ è un ricoprimento aperto finito di $ X $ e $ \forall B \in \beta, \exists A \in \alpha : B \subseteq A $. In tale caso scriviamo che $ \beta \preceq \alpha $.
+\end{definition}
+
+\begin{exercise}
+    Se $ \beta \preceq \alpha $ allora $ H(\beta) \leq H(\alpha) $
+\end{exercise}
+
+\begin{thm}
+    Sia $ (X, d, f) $ un sistema dinamico misurabile. Se $ \alpha $ è un ricoprimento generatore forte allora
+    \[
+        h_{\mathrm{top}}(f) = h_{\mathrm{top}}(f, \alpha).
+    \]
+    Se inoltre $ f $ è un omeomorfismo è sufficiente che $ \alpha $ si un generatore.
+\end{thm}
+\begin{proof}
+    \textcolor{red}{Mancante}
+\end{proof}
+
+\subsubsection{Entropia topologica degli schemi di Bernoulli}
+
+\subsubsection{Altre caratterizzazioni dell'entropia topologica}
