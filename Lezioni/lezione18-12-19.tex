@@ -3,7 +3,7 @@
 \subsection{Entropia di Shannon}
 Claude Shannon: \emph{A Mathematical Theory of Communication}, 1948. \\
 
-Sia $ (X, \mathcal{A}, \mu) $ uno spazio di probabilità e consideriamo una partizione dello spazio \linebreak $ X = A_1 \sqcup \ldots \sqcup A_n \pmod{0} $ cioè tale che gli insiemi $ A_i $ sono a due a due disgiunti a meno di insiemi di misura nulla e la loro unione è $ X $ a meno di un insieme di misura nulla. Sia $ p_i \coloneqq \mu(A_i) $ che definisce un vettore di probabilità $ p \coloneqq (p_1, \ldots, p_n) \in \R^n_+ $ essendo $ \sum_{i = 1}^{n} p_i = 1 $. Indichiamo con $ \Delta^{(n)} \coloneqq \{(p_1, \ldots, p_n) \in \R^n_+ : \sum_{i=0}^{n} p_i\} $ lo spazio dei vettori di probabilità in $ \R^n $.
+Sia $ (X, \mathcal{A}, \mu) $ uno spazio di probabilità e consideriamo una partizione finita dello spazio \linebreak $ X = A_1 \sqcup \ldots \sqcup A_n \pmod{0} $ cioè tale che gli insiemi $ A_i $ sono a due a due disgiunti a meno di insiemi di misura nulla e la loro unione è $ X $ a meno di un insieme di misura nulla. Sia $ p_i \coloneqq \mu(A_i) $ che definisce un vettore di probabilità $ p \coloneqq (p_1, \ldots, p_n) \in \R^n_+ $ essendo $ \sum_{i = 1}^{n} p_i = 1 $. Indichiamo con $ \Delta^{(n)} \coloneqq \{(p_1, \ldots, p_n) \in \R^n_+ : \sum_{i=0}^{n} p_i\} $ lo spazio dei vettori di probabilità in $ \R^n $.
 
 \begin{thm}[entropia di Shannon]
     Sia $ H^{(n)} \colon \Delta^{(n)} \to [0, +\infty) $ una funzione reale sullo spazio dei vettori di probabilità che chiamiamo entropia. Supponiamo che:    \begin{enumerate}[label=(\roman*)]
@@ -14,7 +14,7 @@ Sia $ (X, \mathcal{A}, \mu) $ uno spazio di probabilità e consideriamo una part
         \item l'entropia massima è quella "più casuale": $ H^{(n)}(p_1, \ldots, p_n) \leq H^{(n)}\left(\dfrac{1}{n}, \ldots, \dfrac{1}{n}\right) $;
         \item l'entropia una partizione in $ n \cdot l $ insiemi è l'entropia degli $ n $ raggruppamenti della partizione in $ l $ insiemi più la media pesata delle "entropie relative" all'interno di ciascun raggruppamento, calcolate con la probabilità condizionata. In formule
         \[
-            H^{(nl)}(\pi_{11}, \ldots, \pi_{1l}, \ldots, \pi_{n1}, \ldots, \pi_{nl}) = H^{n}(p_1, \ldots, p_n) + \sum_{i = 0}^{n} p_i \, H^{(l)} \left(\dfrac{\pi_{i1}}{p_i}, \ldots, \dfrac{\pi_{il}}{p_i}\right)
+            H^{(nl)}(\pi_{11}, \ldots, \pi_{1l}, \ldots, \pi_{n1}, \ldots, \pi_{nl}) = H^{(n)}(p_1, \ldots, p_n) + \sum_{i = 0}^{n} p_i \, H^{(l)} \left(\dfrac{\pi_{i1}}{p_i}, \ldots, \dfrac{\pi_{il}}{p_i}\right)
         \]
         dove $ p_i \coloneqq \sum_{j = 1}^{l} \pi_{ij} $.
     \end{enumerate}
@@ -33,7 +33,7 @@ Data una partizione $ \mathcal{P} \coloneqq \{A_1, \ldots, A_n\} $ di $ X \pmod{
 \subsection{Entropia metrica o di Kolmogorov-Sinai}
 
 \begin{definition}[raffinamento di due partizioni]
-    Se $ \mathcal{P} \coloneqq \{A_, \ldots, A_n\} $ e $ \mathcal{Q} \coloneqq \{B_1, \ldots, B_m\} $ sono due partizioni di $ X \pmod{0} $ si definisce il raffinamento di $ \mathcal{P} $ e $ \mathcal{Q} $ la partizione
+    Se $ \mathcal{P} \coloneqq \{A_1, \ldots, A_n\} $ e $ \mathcal{Q} \coloneqq \{B_1, \ldots, B_m\} $ sono due partizioni di $ X \pmod{0} $ si definisce il raffinamento di $ \mathcal{P} $ e $ \mathcal{Q} $ la partizione
     \[
         \mathcal{P} \vee \mathcal{Q} \coloneqq \{A_i \cap B_j : i = 1, \ldots, n \text{ e } j = 1, \ldots, m\}.
     \]
@@ -51,12 +51,11 @@ Dato un sistema dinamico misurabile $ (X, \mathcal{A}, \mu, f) $ possiamo consid
     \]
     dove l'estremo superiore è fatto al variare di $ \mathcal{P} $ partizione finita (o numerabile) di $ X \pmod{0} $.
 \end{definition}
-
-Questa è una buona definizione in virtù del seguente
+Questa è una buona definizione in quanto il limite di cui si fa il $ \sup $ esiste in virtù del seguente
 \begin{lemma}[Fekete] \label{lem:fekete}
-    Se $ a \colon \N^{*} \to \R $ è una successione subadditiva allora esiste
+    Se $ a \colon \N\setminus\{0\} \to \R $ è una successione subadditiva (cioè tale che $ a_{n+m} \leq a_n + a_m $) allora esiste
     \[
-        \lim_{n\to+\infty} \frac{a(n)}{n} = \inf_{n\geq1}a(n).
+        \lim_{n\to+\infty} \frac{a_n}{n} = \inf_{n\geq1}a_n.
     \]
 \end{lemma}
 \begin{proof}
@@ -64,5 +63,9 @@ Questa è una buona definizione in virtù del seguente
 \end{proof}
 
 \begin{exercise}
-    Calcolare l'entropia metrica degli \emph{schemi di Bernoulli}.
+    \textcolor{red}{Spostare nella lezione dopo quando parla di generatori}.
+    Calcolare l'entropia metrica degli \emph{schemi di Bernoulli} (usando i cilindri come partizione).
 \end{exercise}
+\begin{solution}
+    \textcolor{red}{Mancante}
+\end{solution}
