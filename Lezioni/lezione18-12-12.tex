@@ -1,4 +1,4 @@
-\section{Lezione del 12/12/2018 [Marmi]}
+\section{Lezione del 12/12/2018 [Tantari]}
 
 \subsection{Opinion formation}
 \textcolor{red}{Mancante}
@@ -6,15 +6,15 @@
 \subsection{Formalismo della meccanica statistica}
 Sia $ (\Sigma, \P(\Sigma), P) $ uno spazio di probabilità, dove $ \Sigma $ è finito. Ogni elemento $ \sigma $ di $ \Sigma $ descrive un possibile stato del sistema.
 Nel seguito, con lieve abuso di notazione, scriveremo $ P(\sigma) $ intendendo $ P(\{\sigma\}) $.
-Ogni possibile misura di probabilità su $ \Sigma $ è identificata da una funzione $ \ham \colon \Sigma\to\R $, detta \emph{hamiltoniana} del sistema, tramite
+Se il sistema viene descritto da una funzione \emph{hamiltoniana} $ \ham \colon \Sigma\to\R $ si introduce solitamente una misura di probabilità su $ \Sigma $, detta \emph{misura di Boltzmann}, data da
 \[ P_\beta(\sigma) \coloneqq \frac{1}{Z_\beta} e^{-\beta\ham(\sigma)} \]
-detta \emph{misura di Boltzmann}, dove è stata introdotta la \emph{funzione di partizione} del sistema
+dove è stata introdotta la \emph{funzione di partizione} del sistema
 \[ Z_\beta \coloneqq \sum_{\sigma\in\Sigma} e^{-\beta \ham(\sigma)}. \]
 Muniti di questa misura possiamo esprimere il valor medio di una generica osservabile $ \mathcal{O}\colon \Sigma\to\R $ su tutti gli stati possibili:
-\[ \langle\mathcal{O}\rangle = \sum_{\sigma\in\Sigma} \P_\beta(\sigma)\mathcal{O}(\sigma). \]
-\textcolor{red}{L'idea è che all'equilibrio (cioè quando le medie temporali delle osservabili del sistema non dipendono dal tempo) tale media coincida con la media temporabile della stessa osservabile}.
+\[ \langle\mathcal{O}\rangle = \sum_{\sigma\in\Sigma} P_\beta(\sigma)\mathcal{O}(\sigma). \]
+\textcolor{red}{L'idea è che all'equilibrio (cioè quando le medie temporali delle osservabili del sistema non dipendono dal tempo) tale media coincida con la media temporale della stessa osservabile}.
 
-Posto $ \Sigma = \{-1,1\}^N $ e dette $ \sigma_i $ le componenti di ciascuno stato $ \sigma $, osserviamo preliminarmente che:
+Posto $ \Sigma = \{-1,1\}^N $ e dette $ \sigma_i $ le componenti di ciascuno stato $ \sigma $ ($ \sigma_i $ è lo stato di una delle $ N $ particelle del sistema nella configurazione $ \sigma $), osserviamo preliminarmente che:
 \begin{itemize}
     \item se l'hamiltoniana ha la forma $ \ham(\sigma) = \sum_{i=1}^{N} \ham_i(\sigma_i) $, la misura di Boltzmann si fattorizza nel prodotto di $ N $ termini ognuno dei quali dipende da una sola $ \sigma_i $, dunque questa hamiltoniana modellizza un sistema i cui elementi non interagiscono tra loro;
     \item se si aggiungono termini di interazione fra gli elementi (tutti o solo alcuni) si avrà un'hamiltoniana della forma:
@@ -85,3 +85,98 @@ Dobbiamo ora imporre i vincoli; scegliamo $ \lambda $ in modo tale che $ \sum_{i
 \[ \sum_{i=1}^{N} \frac{1}{Z_\beta} e^{-\beta\ham(\sigma^i)} \ham(\sigma^i) = \bar{U} \]
 Da cui si ottiene $ \beta $ in funzione di $ \bar{U} $, ma per i nostri scopi conviene lasciare la dipendenza esplicita da $ \beta $. Otteniamo quindi, come atteso,
 \[ P(\sigma^j) = \frac{1}{Z_\beta} e^{-\beta\ham{\sigma^j}}. \]
+
+\subsection{Esercizi}
+
+\begin{exercise}
+    Sia $ \Sigma $ lo spazio degli stati, $ \ham \colon \Sigma \to \R $ una hamiltoniana, $ P_\beta(\sigma) $ la distribuzione di Boltzmann associata ad $ \ham $ e $ \Sigma_\mathrm{min} \coloneqq \{\argmin_{\sigma \in \Sigma} H(\sigma)\} \subseteq \Sigma $. Mostrare che
+    \begin{enumerate}
+        \item $ \displaystyle \lim_{\beta \to +\infty} P_\beta(\sigma) = \begin{cases}
+        1/\card{(\Sigma_\mathrm{min})} & \text{se $ \sigma \in \Sigma_\mathrm{min} $} \\
+        0 & \text{altrimenti}
+        \end{cases} $
+        \item $ \displaystyle \lim_{\beta \to +\infty} F_\beta = \min_{\sigma \in \Sigma} \ham(\sigma) $
+    \end{enumerate}
+    dove $ F_\beta $ è l'energia libera.
+\end{exercise}
+\begin{solution}
+    Osserviamo che essendo $ Z_\beta = \sum_{\sigma \in \Sigma} e^{-\beta \ham(\sigma)} $, per $ \beta \to +\infty $ il termine dominante nella somma è quello che massimizza l'esponente cioè $ e^{-\beta \ham(\overline{\sigma})} $ con $ \overline{\sigma} \in \Sigma_\mathrm{min} $. Pertanto
+    \[
+        Z_\beta \sim \sum_{\overline{\sigma} \in \Sigma_\mathrm{min}} e^{-\beta \ham(\overline{\sigma})} = \card{(\Sigma_\mathrm{min})} \, e^{-\beta \ham(\overline{\sigma})}.
+    \]
+    Così se $ \sigma \in \Sigma_\mathrm{min} $ allora $ H(\sigma) = H(\overline{\sigma}) $ e quindi
+    \[
+        P_\beta(\sigma) = \frac{1}{Z_\beta} e^{-\beta \ham(\sigma)} \sim \frac{e^{-\beta \ham(\overline\sigma)}}{\card{(\Sigma_\mathrm{min})} \, e^{-\beta \ham(\overline{\sigma})}} = \frac{1}{\card{(\Sigma_\mathrm{min})}}.
+    \]
+    Se invece $ \sigma \notin \Sigma_\mathrm{min} $ allora $ H(\sigma) - H(\overline{\sigma}) > 0 $ e quindi
+    \[
+    P_\beta(\sigma) = \frac{1}{Z_\beta} e^{-\beta \ham(\sigma)} \sim \frac{e^{-\beta \ham(\sigma)}}{\card{(\Sigma_\mathrm{min})} \, e^{-\beta \ham(\overline{\sigma})}} = \frac{1}{\card{(\Sigma_\mathrm{min})}} e^{-\beta[\ham(\sigma) - \ham(\overline \sigma)]} \to 0.
+    \]
+    Per quanto riguarda l'energia libera abbiamo invece che, sempre per $ \beta \to +\infty $
+    \[
+        F_\beta = -\frac{1}{\beta} \log Z_\beta \sim -\frac{1}{\beta} \log\left(\card{(\Sigma_\mathrm{min})} \, e^{-\beta \ham(\overline{\sigma})}\right) = -\frac{\log(\card{(\Sigma_\mathrm{min})})}{\beta} + \ham(\overline{\sigma}) \to \ham(\overline{\sigma})
+    \]
+    che è quanto volevamo essendo per definizione $ \overline{\sigma} \in \Sigma_\mathrm{min} $ e quindi $ H(\overline{\sigma})= \min_{\sigma \in \Sigma} H(\sigma) $.
+\end{solution}
+
+\begin{exercise}
+    Si consideri un sistema di $ n $ spin $ \pm 1 $ non interagenti con campo esterno uniforme $ h $, i.e. descritto dall'hamiltoniana
+    \[ \ham(\sigma) -h \sum_{i=1}^{n} \sigma_i\]
+    dove $ \sigma \in \Sigma \coloneqq \{-1, 1\}^n $ e $ \sigma_i $ sono le componenti del vettore $ \sigma $. Calcolare energia libera, energia interna ed entropia del sistema usando le definizioni e poi verificare la relazione $ f_\beta = u_\beta - \beta^{-1} s_\beta $ con $ f_\beta = F_\beta/n $, $ u_\beta = U_\beta/n $ e $ s_\beta = S[P_\beta]/n $ dove $ P_\beta $ è la distribuzione di Boltzmann detti potenziali termodinamici intensivi. Verificare che in termini della magnetizzazione media $ m = \langle 1/n \sum_{i=1}^{n} \sigma_i \rangle $ si ha
+    \[ s_\beta = -\frac{1+m}{2} \log{\left(\frac{1+m}{2}\right)} - \frac{1-m}{2} \log{\left(\frac{1-m}{2}\right)}. \]
+\end{exercise}
+\begin{solution}
+    Prima di tutto calcoliamo la funzione di ripartizione
+    \[
+        Z_\beta = \sum_{\sigma \in \Sigma} \exp\left(\beta h \sum_{i=1}^{n}\sigma_i\right)
+    \]
+    Fissata la somma $ \sum_{i=1}^{n}\sigma_i $ contiamo il numero di possibili configurazioni che realizzano tale somma. In ogni caso la somma può variare da $ n $ (tutti i $ \sigma_i = 1 $) a $ -n $ (tutti i $ \sigma_i = -1 $). Dividiamo il caso $ n $ pari e $ n $ dispari.
+    \begin{itemize}
+        \item Se $ n = 2k $ allora possiamo ottenere solo somme pari $ 2l $ con $ -k \leq l \leq k $. Per realizzare tale somma sono necessari $ k + l $ $ \sigma_i = +1 $ e $ k - l $ $ \sigma_i = -1 $. In totale ci sono $ \frac{(2k)!}{(k+l)! \cdot (k-l)!} = \binom{2k}{k+l} $ possibili configurazioni che danno come somma $ 2l $ da cui
+        \[
+            Z_\beta = \sum_{l = -k}^{k} \binom{2k}{k+l} e^{\beta h \cdot 2l} = \sum_{l = 0}^{2k} \binom{2k}{l} e^{\beta h \cdot (2l-2k)}.
+        \]
+        \item Similmente se $ n = 2k+1 $ allora possiamo ottenere solo somme pari $ 2l+1 $ con $ -k \leq l \leq k $. Per realizzare tale somma sono necessari $ k+l+1 $ $ \sigma_i = +1 $ e $ k-l $ $ \sigma_i = -1 $. In totale ci sono $ \frac{(2k+1)!}{(k+l+1)! \cdot (k-l)!} = \binom{2k+1}{k+l+1} $ possibili configurazioni che danno come somma $ 2l+1 $ da cui
+        \[
+            Z_\beta = \sum_{l = -k}^{k} \binom{2k+1}{k+l+1} e^{\beta h \cdot (2l+1)} = \sum_{l = 0}^{2k+1} \binom{2k+1}{l} e^{\beta h \cdot (2l-2k-1)}.
+        \]
+    \end{itemize}
+    Riassumendo per $ n $ generico si ottiene usando il binomio di Newton
+    \[
+        Z_\beta = e^{-\beta h n} \sum_{l=0}^{n} \binom{n}{l} \left(e^{2 \beta h}\right)^l = e^{-\beta h n} \left[1 + e^{2\beta h}\right]^{n}.
+    \]
+    L'energia libera è
+    \begin{align*}
+        F_\beta & = - \frac{1}{\beta} \log{Z_\beta} = - \frac{1}{\beta} \left[-\beta h n + n \log{\left(1+e^{2\beta h}\right)}\right] = n h - \frac{n}{\beta} \log{\left(e^{\beta h}(e^{\beta h}+e^{-\beta h})\right)} \\
+        & = -\frac{n}{\beta} \log{\left(e^{\beta h}+e^{-\beta h}\right)} = \frac{n}{\beta} \log(2\cosh{\beta h})
+    \end{align*}
+    L'energia interna è
+    \[
+        U_\beta = \pd{}{\beta} \left(\beta F_\beta\right) = -n \pd{}{\beta} \left(\log{\left(e^{\beta h}+e^{-\beta h}\right)}\right) = -n h \frac{e^{\beta h} - e^{-\beta h}}{e^{\beta h}+e^{-\beta h}} = - nh \tanh{(\beta h)}
+    \]
+    L'entropia della distribuzione di Boltzmann è
+    \[
+        S[P_\beta] = \beta^2 \pd{F_\beta}{\beta} = -n \left[\log{(2 \cosh{\beta h})} + \beta h \tanh{(\beta h)}\right].
+    \]
+    Pertanto i potenziali intensivi sono
+    \[
+        f_\beta = \frac{1}{\beta} \log(2\cosh{\beta h}) \qquad u_\beta =  -h \tanh{(\beta h)} \qquad s_\beta = -\log{(2 \cosh{\beta h})} - \beta h \tanh{(\beta h)}
+    \]
+    che soddisfano in modo evidente la relazione $ s_\beta = \beta u_\beta - \beta f_\beta $. \\
+    Per quanto riguarda la relazione tra $ s_\beta $ e la magnetizzazione osserviamo che
+    \[
+        m = \left\langle \frac{1}{n} \sum_{i=1}^{n} \sigma_i \right\rangle = -\frac{1}{nh} \langle \ham(\sigma)\rangle = -\frac{1}{nh} U_\beta = - \frac{u_\beta}{h} = \tanh{(\beta h)}.
+    \]
+    Usando il fatto che
+    \[
+        \tanh^{-1}(x) = \frac{1}{2} \log(1+x) - \frac{1}{2} \log(1-x) \qquad \cosh(\tanh^{-1}(x)) = \frac{1}{\sqrt{1 - x^2}}
+    \]
+    otteniamo la tesi
+    \begin{align*}
+        s_\beta & = -\frac{1+m}{2}\log{\left(\frac{1+m}{2}\right)} -\frac{1-m}{2}\log{\left(\frac{1-m}{2}\right)} \\
+        & = -\frac{1+m}{2}\left[\log{(1+m)} - \log{2}\right] -\frac{1-m}{2}\left[\log{(1-m)} - \log{2}\right] \\
+        & = \log{2} - \frac{1}{2}\left[\log{(1+m)} + \log{(1-m)}\right] - \frac{m}{2}\left[\log{(1+m)} - \log{(1-m)}\right] \\
+        & = \log{\left(2 \frac{1}{\sqrt{1-m^2}}\right)} - \left[\frac{1}{2}\log{(1+m)} - \frac{1}{2}\log{(1-m)}\right] \cdot m \\
+        & = \log{\left(2 \cosh{\beta h}\right)} - \beta h \tanh{\beta h}.
+    \end{align*}
+\end{solution}
