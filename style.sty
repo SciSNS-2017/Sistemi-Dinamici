@@ -7,7 +7,7 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{lipsum}
-\usepackage[bookmarks, colorlinks]{hyperref}	% Genera indice e permette di cliccare nel pdf, colorlinks fa il link colorati in rosso invece delle box.
+\usepackage[bookmarks, colorlinks]{hyperref}    % Genera indice e permette di cliccare nel pdf, colorlinks fa il link colorati in rosso invece delle box.
 
 % PACCHETTI PER LA SCRITTURA MATEMATICA
 \usepackage{amsmath}
@@ -18,12 +18,12 @@
 \usepackage{enumitem}
 \usepackage{cancel}
 \usepackage{framed}
-\usepackage{commath} 	% Comandi per derivate (differenziale: \dif{x}, derivata liebeniz: \od[n]{f}{x}, derivata parziale: \pd[n]{f}{x}, mixed partial derivative: \md{f}{5}{x}{2}{y}{3})
-\usepackage{faktor} 	% Per quoziente
+\usepackage{commath} % Comandi per derivate (differenziale: \dif{x}, derivata liebeniz: \od[n]{f}{x}, derivata parziale: \pd[n]{f}{x}, mixed partial derivative: \md{f}{5}{x}{2}{y}{3})
+\usepackage{faktor} % Per quoziente
 \usepackage{booktabs}
 \usepackage{tabularx}
 
-% IMMAGINI 
+% IMMAGINI
 \usepackage{graphics}
 \usepackage{subfig}
 
@@ -35,11 +35,11 @@
 \usetikzlibrary{arrows}
 
 % Permette di specificare nelle matrici la formattazione come nelle tabelle
-\makeatletter	
+\makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
-	\hskip -\arraycolsep
-	\let\@ifnextchar\new@ifnextchar
-	\array{#1}}
+    \hskip -\arraycolsep
+    \let\@ifnextchar\new@ifnextchar
+    \array{#1}}
 \makeatother
 
 % OPERATORI LOGICI
@@ -49,57 +49,62 @@
 \renewcommand{\iff}{\Leftrightarrow}
 
 % TOPOLOGIA
-\newcommand{\ouv}[1]{{#1}^{\circ}}		% Parte interna
-\newcommand{\clo}[1]{\overline{#1}}		% Chiusura
-\newcommand{\fron}[1]{\partial{#1}}		% Frontiera
-\newcommand{\der}[1]{D{(#1)}}			% Derivato
-%\newcommand{\di}[2]{d{\left(#1, #2\right)}}	% Distanza
+\newcommand{\ouv}[1]{{#1}^{\circ}}      % Parte interna
+\newcommand{\clo}[1]{\overline{#1}}         % Chiusura
+\newcommand{\fron}[1]{\partial{#1}}         % Frontiera
+\newcommand{\der}[1]{D{(#1)}}           % Derivato
+%\newcommand{\di}[2]{d{\left(#1, #2\right)}}    % Distanza
 \newcommand{\diam}{diam}                % Diametro
 
 % INSIEMISTICA E FUNZIONI
-\newcommand{\N}{\mathbb{N}}				% Numeri naturali
-\newcommand{\Z}{\mathbb{Z}}				% Numeri interi relativi
-\newcommand{\Q}{\mathbb{Q}}				% Numeri razionali
-\newcommand{\R}{\mathbb{R}}				% Numeri reali
-\newcommand{\C}{\mathbb{C}}				% Numeri complessi
-\newcommand{\K}{\mathbb{K}}				% Campo K generico
-\renewcommand{\S}{\mathbb{S}}			% Sfera
-\newcommand{\T}{\mathbb{T}}				% Toro
-\renewcommand{\P}{\mathscr{P}}			% Insieme delle parti
-\renewcommand{\emptyset}{\varnothing}	% Insieme vuoto
-\newcommand{\Rel}{\mathcal{R}}			% Relazione
-\newcommand{\Id}{\mathrm{Id}}			% Identità
-%\newcommand{\card}[1]{\left|#1\right|}	% Cardinalità
+\newcommand{\N}{\mathbb{N}}                 % Numeri naturali
+\newcommand{\Z}{\mathbb{Z}}                 % Numeri interi relativi
+\newcommand{\Q}{\mathbb{Q}}                 % Numeri razionali
+\newcommand{\R}{\mathbb{R}}                 % Numeri reali
+\newcommand{\C}{\mathbb{C}}                 % Numeri complessi
+\newcommand{\K}{\mathbb{K}}                 % Campo K generico
+\renewcommand{\S}{\mathbb{S}}           % Sfera
+\newcommand{\T}{\mathbb{T}}                 % Toro
+\renewcommand{\P}{\mathscr{P}}          % Insieme delle parti
+\renewcommand{\emptyset}{\varnothing}   % Insieme vuoto
+\newcommand{\Rel}{\mathcal{R}}          % Relazione
+\newcommand{\Id}{\mathrm{Id}}           % Identità
+%\newcommand{\card}[1]{\left|#1\right|}     % Cardinalità
 \DeclareMathOperator{\card}{card}
 \newcommand{\PP}{\mathbb{P}}            % Probabilità
 \renewcommand{\setminus}{\!\smallsetminus\!}
 
 % SUCCESSIONI DI FUNZIONI
-\newcommand{\touf}{\rightrightarrows}	% Converge uniformemente
+\newcommand{\touf}{\rightrightarrows}   % Converge uniformemente
 
 % FUNZIONI DI PIU' VARIABILI
-\renewcommand{\vec}[1]{\mathbf{#1}}	% Vettore in grassetto corsivo
-\DeclareMathOperator{\grad}{\nabla}			% Gradiente
-\DeclareMathOperator{\jac}{\mathit{J}}		% Jacobiano
-\DeclareMathOperator{\hess}{\mathit{H}}		% Hessiana
-\DeclareMathOperator{\meas}{meas}			% Misura
-\DeclareMathOperator{\lap}{\Delta}			% Laplaciano
+\renewcommand{\vec}[1]{\mathbf{#1}}             % Vettore in grassetto corsivo
+\DeclareMathOperator{\grad}{\nabla}             % Gradiente
+\DeclareMathOperator{\jac}{\mathit{J}}          % Jacobiano
+\DeclareMathOperator{\hess}{\mathit{H}}         % Hessiana
+\DeclareMathOperator{\meas}{meas}               % Misura
+\DeclareMathOperator{\lap}{\Delta}              % Laplaciano
 \let\div\relax
-\DeclareMathOperator{\div}{div}				% Divergenza 
-\DeclareMathOperator{\rot}{rot}				% Rotore
+\DeclareMathOperator{\div}{div}                 % Divergenza
+\DeclareMathOperator{\rot}{rot}                 % Rotore
 
 % GEOMETRIA
 \let\ker\relax
-\DeclareMathOperator{\ker}{Ker}				% Nucleo o Kernel
-\DeclareMathOperator{\im}{Im}				% Immagine
-\DeclareMathOperator{\End}{End}				% Endomorfismi
-\DeclareMathOperator{\Aut}{Aut}				% Auto<omorfismi
-\DeclareMathOperator{\tr}{tr}				% Traccia
-\DeclareMathOperator{\rg}{rg}				% Rango
-\DeclareMathOperator{\sgn}{sgn}				% Segno
-\DeclareMathOperator{\cof}{cof}				% Cofattore
-\renewcommand{\sp}[2]{\left\langle #1, #2 \right\rangle}	% Prodotto scalare parentesi angolate
-\newcommand{\varsp}[2]{\phi{\left(#1, #2\right)}}			% Prodotto scalare funzione		
+\DeclareMathOperator{\ker}{Ker}                 % Nucleo o Kernel
+\DeclareMathOperator{\im}{Im}                   % Immagine
+\DeclareMathOperator{\End}{End}                 % Endomorfismi
+\DeclareMathOperator{\Aut}{Aut}                 % Auto<omorfismi
+\DeclareMathOperator{\tr}{tr}                   % Traccia
+\DeclareMathOperator{\rg}{rg}                   % Rango
+\DeclareMathOperator{\sgn}{sgn}                 % Segno
+\DeclareMathOperator{\cof}{cof}                 % Cofattore
+\renewcommand{\sp}[2]{\left\langle #1, #2 \right\rangle}    % Prodotto scalare parentesi angolate
+\newcommand{\varsp}[2]{\phi{\left(#1, #2\right)}}           % Prodotto scalare funzione
+
+% MECCANICA STATISTICA
+\newcommand{\ham}{\mathcal{H}}
+\DeclareMathOperator*{\argmin}{arg\, min}
+\DeclareMathOperator*{\argmax}{arg\, max}
 
 % ALTRO
 \renewcommand{\epsilon}{\varepsilon}

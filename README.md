@@ -17,30 +17,39 @@ Attualmente i file sono:
 * `bibliografia.bib`: contiene la bibliografia.
 * `Lezioni/lezione[anno]_[mese]_[giorno].tex`: è il vero contenuto di ogni lezione.
 
-### Chi scrive cosa
-|**Giorno**  |**Docente**|**Tipo**     |**Scrittore**             |
-|------------|:---------:|-------------| -------------------------|
-| 9 ottobre  |Marmi      |Lezione      | @alepiazza               |
-| 10 ottobre |Grotto     |Esercitazione| @Konnoi5, @marco-venuti  |
-| 16 ottobre |Marmi      |Lezione      | @arn4, @marco-venuti     |
-| 17 ottobre |Grotto     |Esercitazione| @marco-venuti            |
-| 23 ottobre |Bindini    |Esercitazione| @alepiazza               |
-| 24 ottobre |Marmi      |Lezione      | @alepiazza               |
-| 30 ottobre |Bindini    |Esercitazione| @alepiazza, @marco-venuti|
-| 7 novembre |Tantari    |Esercitazione|                          |
-| 13 novembre|Grotto     |Esercitazione|                          |
-| 14 novembre|Marmi      |Lezione      | @alepiazza, @marco-venuti|
-| 20 novembre|Marmi      |Lezione      | @alepiazza               |
-| 21 novembre|Marmi      |Lezione      | @alepiazza               |
-| 27 novembre|Marmi      |Lezione      | @alepiazza               |
-| 28 novembre|Tantari    |Esercitazione|                          |
-| 4 dicembre |Marmi      |Lezione      |                          |
-| 5 dicembre |Tantari    |Esercitazione|                          |
-| 18 dicembre|           |Correzione   |                          |
-| 19 dicembre|Marmi      |Lezione      | @alepiazza               |
-| 8 gennaio  |Marmi      |Lezione      | @alepiazza               |
-| 9 gennaio  |Marmi      |Lezione      |                          |
-
+### Elenco lezioni
+| **Giorno**  | **Docente** | **Scrittore**             |
+|-------------|-------------|---------------------------|
+| 9 ottobre   | Marmi       | @alepiazza                |
+| 10 ottobre  | Grotto      | @Konnoi5, @marco-venuti   |
+| 16 ottobre  | Marmi       | @arn4, @marco-venuti      |
+| 17 ottobre  | Grotto      | @marco-venuti             |
+| 23 ottobre  | Bindini     | @alepiazza                |
+| 24 ottobre  | Marmi       | @alepiazza                |
+| 30 ottobre  | Bindini     | @alepiazza, @marco-venuti |
+| 7 novembre  | Tantari     |                           |
+| 13 novembre | Grotto      |                           |
+| 14 novembre | Marmi       | @alepiazza, @marco-venuti |
+| 20 novembre | Marmi       | @alepiazza                |
+| 21 novembre | Marmi       | @alepiazza                |
+| 27 novembre | Marmi       | @alepiazza                |
+| 28 novembre | Tantari     |                           |
+| 4 dicembre  | Marmi       |                           |
+| 5 dicembre  | Tantari     |                           |
+| 11 dicembre | Bindini     |                           |
+| 12 dicembre | Tantari     | @marco-venuti             |
+| 18 dicembre | Correzione  |                           |
+| 19 dicembre | Marmi       | @alepiazza                |
+| 8 gennaio   | Marmi       | @alepiazza                |
+| 9 gennaio   | Marmi       |                           |
+| 15 gennaio  | Grotto      |                           |
+| 16 gennaio  | Tantari     |                           |
+| 22 gennaio  | Bindini     |                           |
+| 23 gennaio  | Bindini     |                           |
+| 29 gennaio  | Marmi       |                           |
+| 30 gennaio  | Marmi       |                           |
+| 5 febbraio  | Tantari     |                           |
+| 6 febbraio  | Tantari     |                           |
 
 ### Come scrivere una lezione
 A causa delle immagini il tempo di compilazione di `main.tex` può essere molto lungo. Quando includi un'immagine scrivi `\iffigureon` prima di `\begin{figure}` e `\fi` dopo `\end{figure}`. Se nel preambolo di `main.tex` scrivi `\figureontrue` dopo `\newif\iffigureon` le figure verranno incluse; se invece scrivi `\figureonfalse` le immagini non compariranno nel pdf e la compilazione sarà più veloce.
