@@ -1,6 +1,6 @@
 \section{Lezione del 08/01/2019 [Marmi]}
 
-\subsection{Entropia topologia}
+\subsection{Entropia topologica}
 
 \emph{Setting}: $ (X, d) $ spazio metrico compatto.
 
@@ -76,11 +76,11 @@ Diamo ora una caratterizzazione dell'entropia topologica che permette di rimuove
 \begin{definition}[generatore]
     Sia $ (X, d, f) $ un sistema dinamico topologico. Un ricoprimento aperto finito $ \alpha $ è generatore \emph{forte} se
     \[
-        \forall \epsilon > 0, \ \exists N > 0 : \bigvee_{i=0}^{N}f^{-i}\alpha = \{B_1, \ldots, B_m\} \text{ e } \sup_{i} \diam{(B_i)} < \epsilon.
+        \forall \epsilon > 0, \ \exists N > 0 : \bigvee_{i=0}^{N}f^{-i}\alpha = \{B_1, \ldots, B_m\} \text{ e } \sup_{i} \diam{B_i} < \epsilon.
     \]
     Se $ f $ è in più un omeomorfismo allora si parla semplicemente di generatore se
     \[
-        \forall \epsilon > 0, \ \exists N > 0 : \bigvee_{i=-N}^{N}f^{-i}\alpha = \{B_1, \ldots, B_m\} \text{ e } \sup_{i} \diam{(B_i)} < \epsilon.
+        \forall \epsilon > 0, \ \exists N > 0 : \bigvee_{i=-N}^{N}f^{-i}\alpha = \{B_1, \ldots, B_m\} \text{ e } \sup_{i} \diam{B_i} < \epsilon.
     \]
 \end{definition}
 
@@ -92,7 +92,7 @@ Diamo ora una caratterizzazione dell'entropia topologica che permette di rimuove
     Se $ \beta \preceq \alpha $ allora $ H(\beta) \leq H(\alpha) $
 \end{exercise}
 
-\begin{thm}
+\begin{thm} \label{thm:entropia-top-generatore}
     Sia $ (X, d, f) $ un sistema dinamico misurabile. Se $ \alpha $ è un ricoprimento generatore forte allora
     \[
         h_{\mathrm{top}}(f) = h_{\mathrm{top}}(f, \alpha).
@@ -104,5 +104,60 @@ Diamo ora una caratterizzazione dell'entropia topologica che permette di rimuove
 \end{proof}
 
 \subsubsection{Entropia topologica degli schemi di Bernoulli}
+Sia $ X \coloneqq \{0, \ldots, k-1\}^{\Z} $ e $ \sigma \colon X \to X $ lo \emph{shift} su $ k $ simboli $ (\sigma(x))_i = x_{i+1} $. Abbiamo già visto che con la distanza $ d(x, y) \coloneqq 2^{-a(x, y)} $ dove $ a(x, y) \coloneqq \min\{\abs{i} : x_{i} \neq y_{i}\} $ lo spazio $ X $ risulta essere metrico compatto e $ \sigma $ un omeomorfismo.\\
+
+Vogliamo mostrare che il sistema dinamico $ (X, d, \sigma) $ ha entropia topologica
+\[
+    H(\sigma) = \log{(k)}.
+\]
+
+Osserviamo che i cilindri
+\[
+    \begin{pmatrix}
+    i_1 & \cdots & i_m \\
+    j_1 & \cdots & j_m
+    \end{pmatrix}
+    \coloneqq
+    \{x \in X : x_{i_1} = j_1, \ldots x_{i_m} = j_m\}
+\]
+sono un ricoprimento generatore forte di $ X $ e pertanto per il Teorema \ref{thm:entropia-top-generatore} basterà calcolare l'entropia su un particolare ricoprimento generatore. La scelta più naturale è
+\[
+    \alpha \coloneqq \left\{
+    \begin{pmatrix}
+    0 \\ 0
+    \end{pmatrix}
+    ,
+    \begin{pmatrix}
+    0 \\ 1
+    \end{pmatrix}
+    , \cdots ,
+    \begin{pmatrix}
+    0 \\ k-1
+    \end{pmatrix}
+    \right\}
+\]
+Ciascuno di questi cilindri è un aperto perché corrisponde a mettere una palla di centro $ i $ e raggio \textcolor{red}{1}. Per mostrare $ \alpha $ è un generatore forte ci basterà mostrare che fissato $ N $, $ \forall A \in \bigvee_{n=-N}^{n=N}\sigma^{-n}\alpha $ si ha $ \diam{A} < 2^{-N+1} $. Osserviamo che detto $ I \coloneqq \{0, \ldots, k-1\} $
+\[
+    \alpha \vee \sigma^{-1}\alpha = \bigcup_{j_0, j_1 \in I}
+    \begin{pmatrix}
+    0 & 1 \\
+    j_0 & j_1
+    \end{pmatrix}
+    \qquad
+    \sigma^{1}\alpha \vee \alpha \vee \sigma^{-1}\alpha = \bigcup_{j_{-1}, j_0, j_1 \in I}
+    \begin{pmatrix}
+    -1 & 0 & 1 \\
+    j_{-1} & j_0 & j_1
+    \end{pmatrix}
+\]
+e che induttivamente si ha
+\[
+    \bigvee_{n=-N}^{n=N}\sigma^{-n}\alpha = \bigcup_{j_{-N}, \ldots j_{N} \in I}
+    \begin{pmatrix}
+    -N & \cdots & 0 & \cdots & N \\
+    j_{-N} & \cdots & j_0 & \cdots & j_N
+    \end{pmatrix}
+\]
+I cilindri nell'unione sono a due a due disgiunti e pertanto un $ A \in \bigvee_{n=-N}^{n=N}\sigma^{-n}\alpha $ è uno di tali cilindri. Ora se $ x \in X $ e $ y \in A $
 
 \subsubsection{Altre caratterizzazioni dell'entropia topologica}
