@@ -37,7 +37,7 @@ Attualmente i file sono:
 | 4 dicembre  | Marmi       |                           |
 | 5 dicembre  | Tantari     |                           |
 | 11 dicembre | Bindini     |                           |
-| 12 dicembre | Tantari     | @marco-venuti             |
+| 12 dicembre | Tantari     | @marco-venuti, @alepiazza |
 | 18 dicembre | Correzione  |                           |
 | 19 dicembre | Marmi       | @alepiazza                |
 | 8 gennaio   | Marmi       | @alepiazza                |
