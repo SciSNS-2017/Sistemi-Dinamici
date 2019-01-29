@@ -180,3 +180,70 @@ Da cui si ottiene $ \beta $ in funzione di $ \bar{U} $, ma per i nostri scopi co
         & = \log{\left(2 \cosh{\beta h}\right)} - \beta h \tanh{\beta h}.
     \end{align*}
 \end{solution}
+
+\begin{exercise}
+    Si consideri un sistema con due livelli di energia: $ \Sigma = \{1, 2\} $, $ H(1) = \epsilon_1 $ e $ H(2) = \epsilon_2 > \epsilon_1 $. Sia $ \Delta = \epsilon_2 - \epsilon_1 $. Calcolare energia libera, energia interna ed entropia del sistema. Controllare che nel limite di alta e bassa temperatura valgono i seguenti sviluppi asintotici:
+    \begin{itemize}
+        \item $ U_\beta = \langle H\rangle_\Sigma + O(\beta) $ e $ S[P_\beta] = \log{(\card{\Sigma})} + O(\beta) $ per $ \beta \to 0 $
+        \item $ U_\beta = H_{\mathrm{min}} + O(e^{-\beta \Delta}) $ e $ S[P_\beta] = \log{(\card{\Sigma_\mathrm{min}})} + O(e^{-\beta \Delta}) $ per $ \beta \to +\infty $
+    \end{itemize}
+    dove $ \langle H\rangle_\Sigma $ è il valore medio dell'energia rispetto alla distribuzione uniforme su tutto $ \Sigma $ cioè in questo caso $ \langle H\rangle_\Sigma = 1/2 H(1) + 1/2 H(2) = (\epsilon_1 + \epsilon_2)/2  $. Mostrare che gli sviluppi precedenti valgono in generale per sistemi con $ \card{\Sigma} $ finito, definendo opportunamente il gap $ \Delta $.
+\end{exercise}
+\begin{solution}
+    La funzione di ripartizione è $ Z_\beta = e^{-\beta \epsilon_1} + e^{-\beta \epsilon_2} $ da cui la distribuzione di Boltzmann è
+    \[
+        P_\beta(1) = \frac{e^{-\beta\epsilon_1}}{e^{-\beta \epsilon_1} + e^{-\beta \epsilon_2}}, \qquad P_\beta(2) = \frac{e^{-\beta\epsilon_2}}{e^{-\beta \epsilon_1} + e^{-\beta \epsilon_2}}.
+    \]
+    L'energia libera è
+    \[
+        F_\beta = -\frac{1}{\beta} \log{\left[e^{-\beta\epsilon_1}(1+e^{-\beta\Delta})\right]} = \epsilon_1 - \frac{1}{\beta} \log{\left(1+e^{-\beta\Delta}\right)}.
+    \]
+    L'energia interna è
+    \[
+        U_\beta = \frac{\epsilon_1 e^{-\beta\epsilon_1} + \epsilon_2 e^{-\beta \epsilon_2}}{e^{-\beta \epsilon_1} + e^{-\beta \epsilon_2}} = \frac{\epsilon_1 + \epsilon_2 e^{-\beta\Delta}}{1+e^{-\beta\Delta}}.
+    \]
+    L'entropia della distribuzione di Boltzmann è
+    \[
+        S[P_\beta] = \beta(U_\beta - F_\beta) = \beta \frac{\epsilon_1 + \epsilon_2 e^{-\beta\Delta}}{1+e^{-\beta\Delta}} - \beta\epsilon_1 + \log{\left(1+e^{-\beta\Delta}\right)}.
+    \]
+    Per $ \beta \to 0 $ si ha
+    \begin{align*}
+        U_\beta & = \frac{\epsilon_1 + \epsilon_2 - \epsilon_2 \beta\Delta + o(\beta^2)}{2 - \beta\Delta + o(\beta^2)} = \frac{1}{2}(\epsilon_1 + \epsilon_2 - \epsilon_2 \beta\Delta + o(\beta^2))\left(1 - \frac{\beta \Delta}{2} + o(\beta^2)\right) \\
+        & = \frac{\epsilon_1 + \epsilon_2}{2} - \frac{\epsilon_1 + 3\epsilon_2}{4} \Delta \beta + o(\beta^2) = \frac{\epsilon_1 + \epsilon_2}{2} + O(\beta) \\
+        & \ \\
+        F_\beta & = \epsilon_1 - \frac{1}{\beta} \log{\left(2 - \beta\Delta + o(\beta^2)\right)} = \epsilon_1 - \frac{\log{2}}{\beta} - \frac{1}{\beta}\log{\left(1 - \frac{\beta\Delta}{2} + o(\beta^2)\right)} \\
+        & = \epsilon_1 - \frac{\log{2}}{\beta} - \frac{\Delta}{2} + o(\beta) \\
+        & \ \\
+        S[P_\beta] & = \beta(U_\beta - F_\beta) = \beta \frac{\epsilon_1 + \epsilon_2}{2} + \beta \epsilon_2 + \log{2} + \beta\frac{\Delta}{2} + o(\beta^2) = \log{2} + O(\beta)
+    \end{align*}
+    Invece per $ \beta \to +\infty $ abbiamo che $ U_\beta \to \epsilon_1 = H_\mathrm{min} $ così
+    \[
+        U_\beta - \epsilon_1 = \frac{\Delta e^{-\beta\Delta}}{1+e^{-\beta\Delta}}
+    \]
+    cioè $ U_\beta = \epsilon_1 + O(e^{-\beta\Delta}) $. Per quanto riguarda l'energia libera invece $ F_\beta \to \epsilon_1 $ da cui
+    \[
+        F_\beta - \epsilon_1 = - \frac{1}{\beta} \log{(1+e^{-\beta\Delta})}
+    \]
+    cioè $ F_\beta = \epsilon + O(e^{-\beta\Delta}/\beta) $ dal momento che $ \frac{\log{(1+e^{-\beta\Delta})}}{e^{-\beta\Delta}} \to 1 $. Pertanto per l'entropia si ha
+    \[
+        S_\beta = \beta(\epsilon_1 + O(e^{-\beta\Delta}) - \epsilon_1 + O(e^{-\beta\Delta}/\beta)) = O(e^{-\beta\Delta})
+    \]
+    che è quanto voluto essendo $ \Sigma_\mathrm{min} = \{1\} $ e quindi $ \log{(\card{\Sigma_\mathrm{min}})} = 0 $. \\
+    Se ora $ \card{\Sigma} = n \in \N $ l'energia libera è
+    \[
+        U_\beta = \frac{\sum_{i=1}^{n} \epsilon_i e^{-\beta\epsilon_i}}{\sum_{i=1}^{n}e^{-\beta\epsilon_i}}
+    \]
+    da cui per $ \beta \to 0 $ essendo $ e^{-\beta\epsilon_i} \sim 1 - \beta\epsilon_i $ si ha
+    \[
+        U_\beta \sim \frac{\sum_{i=1}^{n} \epsilon_i + \beta \sum_{i=1}^{n} \epsilon_i}{n -\beta \sum_{i=1}^{n} \epsilon_i} \sim \frac{1}{n} \left(\sum_{i=1}^{n}\epsilon_i + \beta \sum_{i=1}^{n} \epsilon_i\right)\left(1 + \frac{\beta}{n}\sum_{i=1}^{n} \epsilon_i\right) \sim \frac{1}{n} \sum_{i=1}^{n}\epsilon_i + O(\beta)
+    \]
+    mentre per $ \beta \to +\infty $ abbiamo che il termine dominante nelle somme è $ e^{-\beta\epsilon_1} $ essendo $ \epsilon_1 < \epsilon_i $ se $ i > 1 $ che raccogliamo sia a numeratore che a denominatore
+    \[
+        U_\beta = \frac{\epsilon_1 + \sum_{i=2}^{n}\epsilon_i e^{-\beta\Delta_i}}{1 + \sum_{i=2}^{n}e^{-\beta\Delta_i}}
+    \]
+    dove abbiamo definito $ \Delta_i = \epsilon_i - \epsilon_1 $. Così $ U_\beta \to \epsilon_1 = H_{\mathrm{min}} $ così
+    \[
+        U_\beta - \epsilon_1 = \frac{\sum_{i=1}^{n} \Delta_i e^{-\beta\Delta_i}}{1+\sum_{i=2}^{n}e^{-\beta\Delta_i}}.
+    \]
+    Per $ \beta \to +\infty $, $ e^{-\beta\delta_2} $ è il termine dominante e  quindi concludiamo che $ U_\beta = \epsilon_1 + O(e^{-\beta\Delta_2}) $. Per l'entropia con $ \card{\Sigma} $ finito generico il discorso è analogo.
+\end{solution}
