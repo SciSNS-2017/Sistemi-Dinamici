@@ -1,9 +1,9 @@
 \section{Lezione del 29/01/2019 [Marmi]}
 Referenze e approfondimenti:
 \begin{itemize}
-    \item A. Fasano, S. Marmi - \emph{``Analytical Mechanics: An Introduction''}
-    \item V. I. Arnol'd - \emph{``Mathematical Methods of Classical Mechanics''}
-    \item R. Abraham, J. E. Marsden - \emph{``Foundations of Mechanics''}
+    \item A. Fasano, S. Marmi - \emph{``Analytical Mechanics: An Introduction''};
+    \item V. I. Arnol'd - \emph{``Mathematical Methods of Classical Mechanics''};
+    \item R. Abraham, J. E. Marsden - \emph{``Foundations of Mechanics''}.
 \end{itemize}
 
 \subsection{Sistemi hamiltoniani}
@@ -23,20 +23,20 @@ dove $ \Id_n $ è la matrice identità $ n \times n $. Tale matrice gode della p
 
 Sia $ \mathcal{O} \subseteq \R \times \R^{2n} $ un aperto. Di seguito un elemento di $ \mathcal{O} $ verrà indicato come una coppia $ (t, x) $ dove $ t \in \Pi_\R(\mathcal{O}) $ è detta variabile \emph{tempo} e $ x \in \Pi_{\R^{2n}}(\mathcal{O}) $. Spesso si scriverà $ x = (q, p) $ dove $ q $ e $ p $ sono vettori di a $ n $ componenti detti \emph{posizione} e \emph{momento cinetico}. Le variabili $ q $ e $ p $ sono dette \emph{canonicamente coniugate}. Con lieve abuso di notazione un elemento di $ \mathcal{O} $ si scriverà spesso come una terna $ (t, q, p) $. \\
 
-Sull'aperto $ \mathcal{O} $ si considera una funzione scalare $ H \colon \mathcal{O} \to \R $ detta \emph{funzione hamiltoniana} di classe $ \mathcal{C}^{\infty} $. Tale ipotesi su $ H $ non sarà sempre necessaria nel senso che i risultati che andremo ad enunciare valgono per anche per hamiltoniane meno regolari: questa è tuttavia una questione di cui non ci vogliamo occupare e pertanto supporremo che $ H $ sia di classe $ \mathcal{C}^\infty $.
+Sull'aperto $ \mathcal{O} $ si considera una funzione scalare $ \ham \colon \mathcal{O} \to \R $ detta \emph{funzione hamiltoniana} di classe $ \mathcal{C}^{\infty} $. Tale ipotesi su $ \ham $ non sarà sempre necessaria nel senso che i risultati che andremo ad enunciare valgono per anche per hamiltoniane meno regolari: questa è tuttavia una questione di cui non ci vogliamo occupare e pertanto supporremo che $ \ham $ sia di classe $ \mathcal{C}^\infty $.
 
 Una funzione hamiltoniana genera un insieme di equazioni differenziali dette \emph{equazioni di Hamilton}
 \begin{equation} \label{eqn:ham}
     \begin{cases}
-    \dot{x} = \Gamma \, \nabla_x H(t, x) \\
+    \dot{x} = \Gamma \, \nabla_x \ham(t, x) \\
     x(0) = x_0
     \end{cases}
 \end{equation}
-dove con $ \nabla_x H $ si intende il gradiente di $ H $ a tempo fissato, cioè vista come funzione della sola $ x $ e $ x_0 \in \Pi_{\R^{2n}}(\mathcal{O}) $. Essendo $ H $ di classe $ \mathcal{C}^\infty $ il Teorema di Cauchy–Lipschitz-Picard–Lindelöf assicura esistenza e unicità locale della soluzione al problema di Cauchy \eqref{eqn:ham} e dipendenza continua dai valori iniziali. In termini delle variabili $ (q, p) $ il problema di Cauchy assume la forma più usuale
+dove con $ \nabla_x \ham $ si intende il gradiente di $ \ham $ a tempo fissato, cioè vista come funzione della sola $ x $, e $ x_0 \in \Pi_{\R^{2n}}(\mathcal{O}) $. Essendo $ \ham $ di classe $ \mathcal{C}^\infty $ il Teorema di Cauchy-Lipschitz-Picard-Lindelöf assicura esistenza e unicità locale della soluzione al problema di Cauchy \eqref{eqn:ham} e dipendenza continua dai valori iniziali. In termini delle variabili $ (q, p) $ il problema di Cauchy assume la forma più usuale
 \begin{equation}
     \begin{dcases}
-        \dot{q}_i = \dpd{H}{p_i} \\
-        \dot{p}_i = -\dpd{H}{q_i} \\
+        \dot{q}_i = \dpd{\ham}{p_i} \\
+        \dot{p}_i = -\dpd{\ham}{q_i} \\
         q_i(0) = q_{i}^0, \, p_i(0) = p_i^0 \\
     \end{dcases}
     \quad i = 1, \ldots, n
@@ -44,12 +44,12 @@ dove con $ \nabla_x H $ si intende il gradiente di $ H $ a tempo fissato, cioè 
 
 Grazie al teorema di esistenza e unicità è ben definito il \emph{flusso hamiltoniano}
 \begin{align}
-    \Phi_H^t \colon \Pi_{\R^{2n}}(\mathcal{O}) & \to \R^2 \\
+    \Phi_\ham^t \colon \Pi_{\R^{2n}}(\mathcal{O}) & \to \R^{2n} \\
     x_0 & \mapsto x(t; x_0)
 \end{align}
 dove $ x(t; x_0) $ è la soluzione del problema \eqref{eqn:ham} cioè una funzione da un intervallo che contiene $ t=0 $ a valori in $ \R^{2n} $ tale che $ x(0; x_0) = x_0 $ e per ogni $ t $ soddisfa $ \dot{x}(t; x_0) = \Gamma \, \nabla_x H(t, x(t; x_0)) $. Per definizione si ha
 \[
-    \od{}{t} (\Phi^t_H) = \lim_{h \to 0} \frac{\Phi^{t+h}_H - \Phi^{t}_H}{h} = \lim_{h \to 0} \frac{x(t+h, x_0) - x(t; 0)}{h} = \dot{x}(t; x_0) = \Gamma \, \nabla_x H(t, x(t; x_0))
+    \od{}{t} (\Phi^t_H) = \lim_{h \to 0} \frac{\Phi^{t+h}_H - \Phi^{t}_H}{h} = \lim_{h \to 0} \frac{x(t+h, x_0) - x(t; x_0)}{h} = \dot{x}(t; x_0) = \Gamma \, \nabla_x H(t, x(t; x_0))
 \]
 
 Nel caso \emph{autonomo}, cioè quando l'hamiltoniana non dipende dal tempo, sempre grazie al teorema di esistenza e unicità si ha che il flusso hamiltoniano al tempo $ t+s $ partendo al punto $ x_0 $ è la composizione del flusso al tempo $ s $ partendo da $ x_0 $ e del flusso al tempo $ t $ partendo da $ x_1 = x(s; x_0) $. Nel caso non autonomo questo non è più vero perché \textcolor{red}{ci sono problemi con l'origine dei tempi}.
@@ -57,15 +57,15 @@ Nel caso \emph{autonomo}, cioè quando l'hamiltoniana non dipende dal tempo, sem
 \begin{example}[oscillatore armonico]
     In una dimensione $ n = 1 $ si consideri l'hamiltoniana indipendente dal tempo
     \[
-        H(q, p) = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 q^2
+        \ham(q, p) = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 q^2
     \]
     che è l'energia di un oscillatore armonico di massa $ m $ e frequenza $ \omega $ dove la posizione è indicata dalla $ q $. Le equazioni di Hamilton sono
     \[
-        \dot{q} = \pd{H}{p} = \frac{p}{m} \qquad \dot{p} = -\pd{H}{q} = -m\omega^2 q
+        \dot{q} = \pd{\ham}{p} = \frac{p}{m} \qquad \dot{p} = -\pd{\ham}{q} = -m\omega^2 q
     \]
     da cui otteniamo l'equazione del moto dell'oscillatore armonico $ \ddot{q} + \omega^2 q = 0 $. Date le condizioni iniziali $ q(0) = q_0 $ e $ p(0) = p_0 $ si trova la soluzione $ q(t) = q_0 \cos{(\omega t)} + \frac{p_0}{m\omega} \sin{(\omega t)} $ definita per ogni tempo $ t \in \R $. Il flusso hamiltoniano è
     \[
-        \Phi^t_H
+        \Phi^t_\ham
         \begin{pmatrix}
         p_0 \\
         q_0
@@ -85,18 +85,18 @@ Nel caso \emph{autonomo}, cioè quando l'hamiltoniana non dipende dal tempo, sem
     \]
     Una possibile hamiltoniana da cui deriva tale equazione è
     \[
-        H(t, q, p) = \frac{p^2}{2m} + F(q) - q g(t) \qquad \text{ con } F(q) = \int_0^q f(z) \dif{z}
+        \ham(t q, p) = \frac{p^2}{2m} + F(q) - q g(t) \qquad \text{ con } F(q) = \int_0^q f(z) \dif{z}
     \]
 \end{example}
 
 \begin{thm}
-    Se l'hamiltoniana $ H $ è indipendente dal tempo allora per ogni $ t $ si ha $ H \circ \Phi_H^t = H $, cioè $ H $ è un integrale primo del moto.
+    Se l'hamiltoniana $ \ham $ è indipendente dal tempo allora per ogni $ t $ si ha $ \ham \circ \Phi_\ham^t = \ham $, cioè $ \ham $ è un integrale primo del moto.
 \end{thm}
 \begin{proof}
-    Si ha per la \emph{chin rule}
+    Si ha per la \emph{chain rule}
     \begin{align*}
-        \od{}{t} \left(H(t, \Phi_H^t(x_0))\right) & = \dpd{H}{t}(t, \Phi_H^t(x_0)) + \left(\nabla_x H \cdot \dod{}{t}(\Phi^t_H)\right)(t, \Phi^t_H(x_0)) \\
-        & = \dpd{H}{t}(t, \Phi_H^t(x_0)) + \left(\nabla_x H \cdot \Gamma \, \nabla_x H\right)(t, \Phi^t_H(x_0)) = 0
+        \od{}{t} \left( \ham(t, \Phi_\ham^t(x_0))\right) & = \dpd{\ham}{t}(t, \Phi_\ham^t(x_0)) + \left(\nabla_x \ham \cdot \dod{}{t}(\Phi^t_\ham)\right)(t, \Phi^t_\ham(x_0)) \\
+        & = \dpd{\ham}{t}(t, \Phi_\ham^t(x_0)) + \left(\nabla_x \ham \cdot \Gamma \, \nabla_x \ham\right)(t, \Phi^t_\ham(x_0)) = 0
     \end{align*}
-    in quanto per ipotesi $ \pd{H}{t} = 0 $ e la $ w \cdot \Gamma v $ è una forma bilineare antisimmetrica e pertanto nulle se valutata sullo stesso vettore.
+    in quanto per ipotesi $ \pd{\ham}{t} = 0 $ e la $ w \cdot \Gamma v $ è una forma bilineare antisimmetrica e pertanto nulle se valutata sullo stesso vettore.
 \end{proof}
