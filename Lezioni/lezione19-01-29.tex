@@ -21,14 +21,14 @@ dove $ \Id_n $ è la matrice identità $ n \times n $. Tale matrice gode della p
     Mostrare che ogni matrice antisimmetrica ha rango pari.
 \end{exercise}
 
-Sia $ \mathcal{O} \subseteq \R \times \R^{2n} $ un aperto. Di seguito un elemento di $ \mathcal{O} $ verrà indicato come una coppia $ (t, x) $ dove $ t \in \Pi_\R(\mathcal{O}) $ è detta variabile \emph{tempo} e $ x \in \Pi_{\R^{2n}}(\mathcal{O}) $. Spesso si scriverà $ x = (q, p) $ dove $ q $ e $ p $ sono vettori di a $ n $ componenti detti \emph{posizione} e \emph{momento cinetico}. Le variabili $ q $ e $ p $ sono dette \emph{canonicamente coniugate}. Con lieve abuso di notazione un elemento di $ \mathcal{O} $ si scriverà spesso come una terna $ (t, q, p) $. \\
+Sia $ \mathcal{O} \subseteq \R^{2n} \times \R $ un aperto. Di seguito un elemento di $ \mathcal{O} $ verrà indicato come una coppia $ (x, t) $ dove $ x \in \Pi_{\R^{2n}}(\mathcal{O}) $ e $ t \in \Pi_\R(\mathcal{O}) $ è detta variabile \emph{tempo}. Spesso si scriverà $ x = (q, p) $ dove $ q $ e $ p $ sono vettori di a $ n $ componenti detti \emph{posizione} e \emph{momento cinetico}. Le variabili $ q $ e $ p $ sono dette \emph{canonicamente coniugate}. Con lieve abuso di notazione un elemento di $ \mathcal{O} $ si scriverà spesso come una terna $ (q, p, t) $. \\
 
 Sull'aperto $ \mathcal{O} $ si considera una funzione scalare $ \ham \colon \mathcal{O} \to \R $ detta \emph{funzione hamiltoniana} di classe $ \mathcal{C}^{\infty} $. Tale ipotesi su $ \ham $ non sarà sempre necessaria nel senso che i risultati che andremo ad enunciare valgono per anche per hamiltoniane meno regolari: questa è tuttavia una questione di cui non ci vogliamo occupare e pertanto supporremo che $ \ham $ sia di classe $ \mathcal{C}^\infty $.
 
 Una funzione hamiltoniana genera un insieme di equazioni differenziali dette \emph{equazioni di Hamilton}
 \begin{equation} \label{eqn:ham}
     \begin{cases}
-    \dot{x} = \Gamma \, \nabla_x \ham(t, x) \\
+    \dot{x} = \Gamma \, \nabla_x \ham(x, t) \\
     x(0) = x_0
     \end{cases}
 \end{equation}
@@ -47,9 +47,9 @@ Grazie al teorema di esistenza e unicità è ben definito il \emph{flusso hamilt
     \Phi_\ham^t \colon \Pi_{\R^{2n}}(\mathcal{O}) & \to \R^{2n} \\
     x_0 & \mapsto x(t; x_0)
 \end{align}
-dove $ x(t; x_0) $ è la soluzione del problema \eqref{eqn:ham} cioè una funzione da un intervallo che contiene $ t=0 $ a valori in $ \R^{2n} $ tale che $ x(0; x_0) = x_0 $ e per ogni $ t $ soddisfa $ \dot{x}(t; x_0) = \Gamma \, \nabla_x H(t, x(t; x_0)) $. Per definizione si ha
+dove $ x(t; x_0) $ è la soluzione del problema \eqref{eqn:ham} cioè una funzione da un intervallo che contiene $ t=0 $ a valori in $ \R^{2n} $ tale che $ x(0; x_0) = x_0 $ e per ogni $ t $ soddisfa $ \dot{x}(t; x_0) = \Gamma \, \nabla_x H(x(t; x_0), t) $. Per definizione si ha
 \[
-    \od{}{t} (\Phi^t_H) = \lim_{h \to 0} \frac{\Phi^{t+h}_H - \Phi^{t}_H}{h} = \lim_{h \to 0} \frac{x(t+h, x_0) - x(t; x_0)}{h} = \dot{x}(t; x_0) = \Gamma \, \nabla_x H(t, x(t; x_0))
+    \od{}{t} (\Phi^t_H) = \lim_{h \to 0} \frac{\Phi^{t+h}_H - \Phi^{t}_H}{h} = \lim_{h \to 0} \frac{x(t+h, x_0) - x(t; x_0)}{h} = \dot{x}(t; x_0) = \Gamma \, \nabla_x H(x(t; x_0), t)
 \]
 
 Nel caso \emph{autonomo}, cioè quando l'hamiltoniana non dipende dal tempo, sempre grazie al teorema di esistenza e unicità si ha che il flusso hamiltoniano al tempo $ t+s $ partendo al punto $ x_0 $ è la composizione del flusso al tempo $ s $ partendo da $ x_0 $ e del flusso al tempo $ t $ partendo da $ x_1 = x(s; x_0) $. Nel caso non autonomo questo non è più vero perché \textcolor{red}{ci sono problemi con l'origine dei tempi}.
@@ -85,7 +85,7 @@ Nel caso \emph{autonomo}, cioè quando l'hamiltoniana non dipende dal tempo, sem
     \]
     Una possibile hamiltoniana da cui deriva tale equazione è
     \[
-        \ham(t q, p) = \frac{p^2}{2m} + F(q) - q g(t) \qquad \text{ con } F(q) = \int_0^q f(z) \dif{z}
+        \ham(q, p, t) = \frac{p^2}{2m} + F(q) - q g(t) \qquad \text{ con } F(q) = \int_0^q f(z) \dif{z}
     \]
 \end{example}
 
@@ -95,8 +95,8 @@ Nel caso \emph{autonomo}, cioè quando l'hamiltoniana non dipende dal tempo, sem
 \begin{proof}
     Si ha per la \emph{chain rule}
     \begin{align*}
-        \od{}{t} \left( \ham(t, \Phi_\ham^t(x_0))\right) & = \dpd{\ham}{t}(t, \Phi_\ham^t(x_0)) + \left(\nabla_x \ham \cdot \dod{}{t}(\Phi^t_\ham)\right)(t, \Phi^t_\ham(x_0)) \\
-        & = \dpd{\ham}{t}(t, \Phi_\ham^t(x_0)) + \left(\nabla_x \ham \cdot \Gamma \, \nabla_x \ham\right)(t, \Phi^t_\ham(x_0)) = 0
+        \dod{}{t} \left( \ham(\Phi_\ham^t(x_0), t)\right) & = \dpd{\ham}{t}(\Phi_\ham^t(x_0), t) + \left(\nabla_x \ham \cdot \dod{}{t}(\Phi^t_\ham)\right)(\Phi^t_\ham(x_0), t) \\
+        & = \dpd{\ham}{t}(\Phi_\ham^t(x_0), t) + \left(\nabla_x \ham \cdot \Gamma \, \nabla_x \ham\right)(\Phi^t_\ham(x_0), t) = 0
     \end{align*}
-    in quanto per ipotesi $ \pd{\ham}{t} = 0 $ e la $ w \cdot \Gamma v $ è una forma bilineare antisimmetrica e pertanto nulle se valutata sullo stesso vettore.
+    in quanto per ipotesi $ \pd{\ham}{t} = 0 $ e la $ g(w, v) = w \cdot \Gamma v $ è una forma bilineare antisimmetrica e pertanto nulla se valutata sullo stesso vettore.
 \end{proof}
