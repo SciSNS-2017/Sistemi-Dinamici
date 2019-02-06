@@ -47,9 +47,9 @@ Grazie al teorema di esistenza e unicità è ben definito il \emph{flusso hamilt
     \Phi_\ham^t \colon \Pi_{\R^{2n}}(\mathcal{O}) & \to \R^{2n} \\
     x_0 & \mapsto x(t; x_0)
 \end{align}
-dove $ x(t; x_0) $ è la soluzione del problema \eqref{eqn:ham} cioè una funzione da un intervallo che contiene $ t=0 $ a valori in $ \R^{2n} $ tale che $ x(0; x_0) = x_0 $ e per ogni $ t $ soddisfa $ \dot{x}(t; x_0) = \Gamma \, \nabla_x H(x(t; x_0), t) $. Per definizione si ha
+dove $ x(t; x_0) $ è la soluzione del problema \eqref{eqn:ham} cioè una funzione da un intervallo che contiene $ t=0 $ a valori in $ \R^{2n} $ tale che $ x(0; x_0) = x_0 $ e per ogni $ t $ soddisfa $ \dot{x}(t; x_0) = \Gamma \, \nabla_x \ham(x(t; x_0), t) $. Per definizione si ha
 \[
-    \od{}{t} (\Phi^t_H) = \lim_{h \to 0} \frac{\Phi^{t+h}_H - \Phi^{t}_H}{h} = \lim_{h \to 0} \frac{x(t+h, x_0) - x(t; x_0)}{h} = \dot{x}(t; x_0) = \Gamma \, \nabla_x H(x(t; x_0), t)
+    \od{}{t} (\Phi^t_\ham) = \lim_{h \to 0} \frac{\Phi^{t+h}_\ham - \Phi^{t}_\ham}{h} = \lim_{h \to 0} \frac{x(t+h; x_0) - x(t; x_0)}{h} = \dot{x}(t; x_0) = \Gamma \, \nabla_x \ham(\Phi_\ham^t(x_0), t)
 \]
 
 Nel caso \emph{autonomo}, cioè quando l'hamiltoniana non dipende dal tempo, sempre grazie al teorema di esistenza e unicità si ha che il flusso hamiltoniano al tempo $ t+s $ partendo al punto $ x_0 $ è la composizione del flusso al tempo $ s $ partendo da $ x_0 $ e del flusso al tempo $ t $ partendo da $ x_1 = x(s; x_0) $. Nel caso non autonomo questo non è più vero perché \textcolor{red}{ci sono problemi con l'origine dei tempi}.
@@ -95,8 +95,116 @@ Nel caso \emph{autonomo}, cioè quando l'hamiltoniana non dipende dal tempo, sem
 \begin{proof}
     Si ha per la \emph{chain rule}
     \begin{align*}
-        \dod{}{t} \left( \ham(\Phi_\ham^t(x_0), t)\right) & = \dpd{\ham}{t}(\Phi_\ham^t(x_0), t) + \left(\nabla_x \ham \cdot \dod{}{t}(\Phi^t_\ham)\right)(\Phi^t_\ham(x_0), t) \\
-        & = \dpd{\ham}{t}(\Phi_\ham^t(x_0), t) + \left(\nabla_x \ham \cdot \Gamma \, \nabla_x \ham\right)(\Phi^t_\ham(x_0), t) = 0
+        \dod{}{t} \left(\ham(\Phi_\ham^t(x_0), t)\right) & = \left(\nabla_x \ham \cdot \dod{}{t}(\Phi^t_\ham)\right)(\Phi^t_\ham(x_0), t) + \dpd{\ham}{t}(\Phi_\ham^t(x_0), t) \\
+        & = \left(\nabla_x \ham \cdot \Gamma \, \nabla_x \ham\right)(\Phi^t_\ham(x_0), t) + \dpd{\ham}{t}(\Phi_\ham^t(x_0), t) = 0
     \end{align*}
     in quanto per ipotesi $ \pd{\ham}{t} = 0 $ e la $ g(w, v) = w \cdot \Gamma v $ è una forma bilineare antisimmetrica e pertanto nulla se valutata sullo stesso vettore.
 \end{proof}
+
+\subsection{Parentesi di Poisson}
+\begin{definition}[parentesi di Poisson]
+    Siano $ F, G \colon \mathcal{O} \to \R $ due osservabili di classe $ \mathcal{C}^\infty $. Si definisce la parentesi di Poisson tra $ F $ e $ G $ come
+    \begin{equation}
+        \left\{F, G\right\} \coloneqq (\nabla_x F)^T \cdot \Gamma \nabla_x G = \sum_{i=1}^{n} \left(\dpd{F}{q_i} \dpd{G}{p_i} - \dpd{F}{p_i}\dpd{G}{q_i}\right).
+    \end{equation}
+\end{definition}
+
+\begin{proposition}
+    Le parentesi di Poisson godono delle seguenti proprietà:
+    \begin{enumerate}[label=(\roman*)]
+        \item \emph{antisimmetria}: $ \{F, G\} = - \{G, F\} $;
+        \item \emph{linearità}: $ \{\alpha_1 F_1 + \alpha_2 F_2, G\} = \alpha_1 \{F_1, G\} + \alpha_2\{F_2, G\} $;
+        \item \emph{regola di Leibniz}: $ \{F_1 \, F_2, G\} = F_2 \, \{F_1, G\} + F_1 \, \{F_2, G\} $;
+        \item \emph{identità di Jacobi}: $ \{F, \{G, H\}\} + \{G, \{H, F\}\} + \{H, \{F, G\}\} = 0 $.
+    \end{enumerate}
+\end{proposition}
+
+\begin{definition}[algebra di Lie]
+    Un'algebra di Lie è una coppia $ (A, \star) $ dove $ A $ è uno spazio vettoriale su $ \K = \R \text{ o } \C $ e $ \star \colon A \times A \to A $ è un prodotto che soddisfa le seguenti proprietà:
+    \begin{enumerate}[label=(\roman*)]
+        \item \emph{anticommutativo}: $ \forall a, b \in A : a \star b = - (b \star a) $;
+        \item \emph{distributivo}: $ \forall a, b, c \in A : a \star (b + c) = a \star b + a \star c $;
+        \item \emph{associativo con gli scalari}: $ \forall a, b \in A, \ \forall \lambda \in \K : \lambda (a \star b) = (\lambda a) \star b $;
+        \item \emph{identità di Jacobi}: $ \forall a, b, c \in A : a \star (b \star c) + b \star (c \star a) + c \star (a \star b) = 0 $.
+    \end{enumerate}
+\end{definition}
+
+\begin{exercise}
+    Mostrare che le seguenti strutture sono un'algebra di Lie.
+    \begin{enumerate}
+        \item $ \R^3 $ con il prodotto vettoriale $ (x \times y)_i = \epsilon_{ijk} x_j y_k $.
+        \item Le osservabili $ \mathcal{C}^\infty(\mathcal{O}, \R) $ con le parentesi di Poisson.
+        \item $ \gl(n, \R) $ con il commutatore $ [A, B] = AB - BA $.
+    \end{enumerate}
+\end{exercise}
+
+In termini delle parentesi di Poisson, le equazioni di Hamilton assumono una forma più concisa
+\begin{equation}
+    \begin{cases}
+        \dot{x} = \{x, \ham\} \\
+        x(0) = x_0
+    \end{cases}
+\end{equation}
+o in funzione delle $ (q, p) $
+\begin{equation}
+    \begin{cases}
+    \dot{q}_i = \{q_i, \ham\} \\
+    \dot{p}_i = \{p_i, \ham\} \\
+    q_i(0) = q_i^0, \, p_i(0) = p_i^0
+    \end{cases}
+\end{equation}
+È immediato verificare che valgono le così dette \emph{parentesi di Poisson fondamentali}
+\begin{equation}
+    \{q_i, q_j\} = \{p_i, p_j\} = 0 \qquad \{q_i, p_j\} = \delta_{ij}
+\end{equation}
+
+Le parentesi di Poisson permettono di scrivere anche in modo sintetico la derivata di un osservabile lungo il flusso hamiltoniano. È infatti facile verificare che
+\begin{equation}
+    \od{}{t} \left(F(\Phi_\ham^t, t)\right) = \{F, \ham\}(\Phi_\ham^t, t) + \pd{F}{t}(\Phi_\ham^t, t).
+\end{equation}
+Tale relazione permette di dedurre i seguenti fatti:
+\begin{itemize}
+    \item se un'osservabile non dipende in modo esplicito dal tempo e ha perentesi di Poisson nulla con l'hamiltoniana allora è un integrale primo del moto;
+    \item \emph{teorema di Poisson}: usando l'identità di Jacobi, se $ F $ e $ G $ sono due osservabili che hanno parentesi di Poisson nulla con l'hamiltoniana anche la loro parentesi di Poisson $ \{F, G\} $ ha parentesi nulla con l'hamiltoniana. In particolare se $ F $ e $ G $ non dipendono in modo esplicito dal tempo e sono integrali del moto anche $ \{F, G\} $ non dipende dal tempo ed è un integrale del moto.
+\end{itemize}
+
+\subsection{Sistemi hamiltoniani lineari}
+
+\begin{definition}[sistema hamiltoniano lineare]
+    Un sistema hamiltoniano si dice lineare se l'hamiltoniana è una forma quadratica
+    \begin{equation}
+        \ham(x, t) = \frac{1}{2} x^T \cdot S(t) x
+    \end{equation}
+    dove $ S \colon [a, b] \to \gl(2n, \R) $ è una matrice dipendente dal tempo di classe $ \mathcal{C}^\infty $ e simmetrica (cioè $ \forall t \in [a, b], \ S^T(t) = S(t) $) e $ 0 \in [a, b] \subseteq \R $. Un'hamiltoniana di questo tipo definisce delle equazioni di Hamilton lineari
+    \begin{equation} \label{eqn:ham-lineare}
+        \begin{cases}
+            \dot{x} = \Gamma S(t) x \\
+            x(0) = x_0
+        \end{cases}
+    \end{equation}
+\end{definition}
+\ \\
+
+Nel caso di $ S $ costante, cioè $ S(t) = S $ il sistema \eqref{eqn:ham-lineare} diventa autonomo $ \dot{x} = \Gamma S x $ e la soluzione si può scrivere in modo esplicito usando l'esponenziale di una matrice
+\begin{equation}
+    x(t; x_0) = \Phi^t_\ham(x_0) = e^{t \Gamma S} x_0 = e^{tA} x_0
+\end{equation}
+dove abbiamo definito $ A \coloneqq \Gamma S $ e ricordiamo che $ e^{tA} \coloneqq \sum_{n=0}^{+\infty} \frac{t^n}{n!}A^n $.
+
+\begin{definition}[matrice hamiltoniana]
+    $ A \in gl(2n, \R) $ è detta matrice hamiltoniana o simplettica infinitesima se
+    \begin{equation}
+        A^T \Gamma + \Gamma A = 0.
+    \end{equation}
+    L'insieme $ \sp(n, \R) \coloneqq \{A \in \gl(2n, \R) : A \text{ è hamiltoniana}\} $ è il sottospazio di $ \gl(2n, \R) $ delle matrici hamiltoniane.
+\end{definition}
+
+\begin{thm}
+    Sia $ A \in \gl(2n, \R) $. Le seguenti proprietà sono equivalenti.
+    \begin{enumerate}[label=(\roman*)]
+        \item $ A \in \sp(n, \R) $.
+        \item $ \exists R \in \gl(2n, \R) : R = R^T $ tale che $ A = \Gamma R $.
+        \item $ (\Gamma A)^T = \Gamma A $.
+    \end{enumerate}
+    Inoltre $ \forall A, B \in \sp(n, \R) $ e $ \forall \lambda \in \R $ si ha $ A^T, \lambda A, A \pm B, [A, B] \in \sp(n, \R) $ e pertanto $ \sp(n, \R) $ è una sottoalgebra di Lie di $ \gl(2n, \R) $ con il commutatore.
+\end{thm}
