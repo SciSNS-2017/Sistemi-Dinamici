@@ -15,7 +15,7 @@ Sia $ \gl(n, \R) $ il gruppo delle matrici $ n \times n $ a coefficienti in $ \R
         -\Id_{n} & 0 \\
     \end{pmatrix}
 \end{equation}
-dove $ \Id_n $ è la matrice identità $ n \times n $. Tale matrice gode della proprietà $ \Gamma^t = -\Gamma = \Gamma^{-1} $. \\
+dove $ \Id_n $ è la matrice identità $ n \times n $. Tale matrice gode della proprietà $ \Gamma^t = -\Gamma = \Gamma^{-1} $ ed è facile verificare che $ \det{\Gamma} = 1 $. \\
 
 \begin{exercise}
     Mostrare che ogni matrice antisimmetrica ha rango pari.
@@ -199,7 +199,7 @@ dove abbiamo definito $ A \coloneqq \Gamma S $ e ricordiamo che $ e^{tA} \colone
     L'insieme $ \sp(n, \R) \coloneqq \{A \in \gl(2n, \R) : A \text{ è hamiltoniana}\} $ è il sottospazio di $ \gl(2n, \R) $ delle matrici hamiltoniane.
 \end{definition}
 
-\begin{thm}
+\begin{thm} \label{thm:mat-sp}
     Sia $ A \in \gl(2n, \R) $. Le seguenti proprietà sono equivalenti.
     \begin{enumerate}[label=(\roman*)]
         \item $ A \in \sp(n, \R) $.
@@ -208,3 +208,163 @@ dove abbiamo definito $ A \coloneqq \Gamma S $ e ricordiamo che $ e^{tA} \colone
     \end{enumerate}
     Inoltre $ \forall A, B \in \sp(n, \R) $ e $ \forall \lambda \in \R $ si ha $ A^T, \lambda A, A \pm B, [A, B] \in \sp(n, \R) $ e pertanto $ \sp(n, \R) $ è una sottoalgebra di Lie di $ \gl(2n, \R) $ con il commutatore.
 \end{thm}
+\begin{proof}
+    \begin{description}
+        \item[$ (i) \iff (iii) $] Sia $ A \in \gl(2n, \R) $ tale che $ A^T \Gamma + \Gamma A = 0 $. Allora $ \Gamma A = - A^T \Gamma = - (\Gamma^T A)^T = - ((-\Gamma) A)^T = (\Gamma A)^T $.
+        \item[$ (ii) \iff (iii) $] Sia $ R $ simmetrica e $ A = \Gamma R $. Allora $ (\Gamma A)^T = (\Gamma^2 R)^T = (-\Id R)^T = -R^T = -R = (\Gamma)^2 R = \Gamma (\Gamma R) = (\Gamma A) $. Viceversa per ipotesi $ R \coloneqq -\Gamma A $ è matrice simmetrica quindi $ A = - \Gamma^{-1} R^T = \Gamma R $.
+    \end{description}
+    Siano ora $ A = \Gamma R $ e $ B = \Gamma S $, con $ R $ e $ S $ matrici simmetriche, due matrici in $ \sp(n, \R) $. Allora
+    \begin{itemize}
+        \item $ A^T = R^T \Gamma^T = - R \Gamma = \Gamma (\Gamma R \Gamma) $ e $ (\Gamma R \Gamma)^T = \Gamma^T R^T \Gamma^T = (-\Gamma) R (-\Gamma) = \Gamma R \Gamma $;
+        \item $ \lambda A = \lambda \Gamma R = \Gamma (\lambda R) $ e $ \lambda R $ è matrice simmetrica;
+        \item $ A \pm B = \Gamma R \pm \Gamma S = \Gamma (R \pm S) $ e $ R \pm S $ è matrice simmetrica;
+        \item $ [A, B] = \Gamma R \Gamma S - \Gamma S \Gamma R = \Gamma (R \Gamma S - S \Gamma R) $ e $ (R \Gamma S - S \Gamma R)^T = S^T \Gamma^T R^T - R^T \Gamma^T S^T = - S \Gamma R + R \Gamma S $.
+    \end{itemize}
+    Quindi $ \sp(n, \R) $ è effettivamente una sottoalgebra di Lie.
+\end{proof}
+
+\begin{exercise}
+    Mostrare che se $ n = 1 $ allora $ A \in \sp(1, \R) \iff \tr{A} = 0 $. In generale mostrare che scrivendo $ A \in \gl(2n, \R) $ come matrice a blocchi $ A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} $ con $ a, b, c, d \in \gl(n, \R) $ allora
+    \[
+        A \in \sp(n, \R) \iff
+        \begin{cases}
+            a^T + d = 0 \\
+            b^T = b, \ c^T = c
+        \end{cases}
+    \]
+    Dedurre da questo $ \dim_\R {\sp(n, \R)} $.
+\end{exercise}
+\begin{solution}
+    Se $ n = 1 $ allora $ A $ è una matrice quadrata $ 2 \times 2 $ a coefficienti $ a, b, c, d \in \R $. Si ha
+    \[
+        \Gamma A = 
+        \begin{pmatrix}
+            0 & 1 \\
+            -1 & 0
+        \end{pmatrix}
+        \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            c & d \\
+            -a & -b
+        \end{pmatrix}
+    \]
+    Imponendo che $ \Gamma A $ sia simmetrica si ottiene $ d = -a \Rightarrow \tr{A} = a + d = 0 $. Nel caso generale $ a, b, c, d $ sono matrici $ n \times n $ pertanto
+    \[
+        (\Gamma A)^T =
+        \begin{pmatrix}
+            c^T & -a^T \\
+            d^T & -b^T
+        \end{pmatrix}
+    \]
+    da cui affinché $ \Gamma A $ sia simmetrica deve essere $ c^T = c $, $ b^T = b $ e $ -a^T = d \Rightarrow a^T + d = 0 $. \\
+    Lo spazio $ \gl(n, \R) $ ha dimensione $ n^2 $ mentre il sottospazio di $ \gl(n, \R) $ delle matrici simmetriche ha dimensione $ n(n+1)/2 $. Pertanto $ \dim_\R \sp(n, \R) = n^2 + n(n+1)/2 + n(n+1)/2 = 2n^2 + n $.
+\end{solution}
+
+\subsection{Matrici simplettiche}
+\begin{definition}[matrice simplettica]
+    Sia $ \Omega \in \gl(2n, \R) $ e $ \mu \in \R $ con $ \mu \neq 0 $. Si dice che $ \Omega $ è $ \mu $-simplettica se soddisfa
+    \begin{equation} \label{eqn:mat-Sp}
+        \Omega^T \Gamma \Omega = \mu \Gamma.
+    \end{equation}
+    Per $ \mu = 1 $ si parla semplicemente di matrice simplettica e $ \Sp(n, \R) \coloneqq \{\Omega \in \gl(2n, \R) : \Omega \text{ è simplettica}\} $ è il sottospazio di $ \gl(2n, \R) $ delle matrici simplettiche.
+\end{definition}
+
+\begin{thm}
+    Sia $ \Omega \in \gl(2n, \R) $ e $ \mu \in \R $ con $ \mu \neq 0 $. Allora $ \Omega $ è $ \mu $-simplettica allora $ \det{\Omega} \neq 0 $ e $ \Omega^{-1} = - \frac{1}{\mu} \Gamma \Omega^T \Gamma $. Inoltre se $ \Omega_1, \Omega_2 $ sono $ \mu_1 $ e $ \mu_2 $-simplettiche allora $ \Omega_1^T $, $ \Omega_1^{-1} $ e $ \Omega_1 \Omega_2 $ sono rispettivamente $ \mu_1 $, $ \frac{1}{\mu_1} $ e $ \mu_1 \mu_2 $-simplettiche. Pertanto $ \Sp(n, \R) $ è un gruppo.
+\end{thm}
+\begin{proof}
+    Se $ \Omega $ è $ \mu $-simplettica, prendendo il determinante dell'equazione \eqref{eqn:mat-Sp} si ottiene $ (\det{\Omega})^2 = \mu \neq 0 $ da cui $ \Omega $ è invertibile. Ci basta allora verificare che $ \Omega^{-1} \Omega = -\frac{1}{\mu} \Gamma \Omega^T \Gamma \Omega = - \frac{1}{\mu} \mu \Gamma^2 = \Id $. Per quanto riguarda le proprietà di gruppo si ha:
+    \begin{itemize}
+        \item $ (\Omega_1 \Omega_2)^T \Gamma (\Omega_1 \Omega_2) = \Omega_2^T (\Omega_1 \Gamma \Omega_1) \Omega_2 = \mu_1 \Omega_2^T \Gamma \Omega_2 = \mu_1 \mu_2 \Gamma $;
+        \item dalla relazione tra $ \Omega $ e la sua inversa abbiamo $ \Omega \Omega^{-1} = - \frac{1}{\mu} \Omega \Gamma \Omega^T \Gamma = \Id $ da cui $ \Omega \Gamma \Omega^T = \mu \Gamma $ da cui $ \Omega^T $ è $ \mu $-simplettica;
+        \item $ (\Omega^{-1})^T \Gamma \Omega^{-1} = (\Omega^T)^{-1} \Gamma \Omega^{-1} = - (\Omega \Gamma \Omega^T)^{-1} = - (\mu \Gamma)^{-1} = \frac{1}{\mu} \Gamma $. \qedhere
+    \end{itemize}
+\end{proof}
+
+\begin{exercise}
+    Mostrare che se $ n = 1 $ allora $ \Omega \in \Sp(1, \R) \iff \det{\Omega} = 1 $. In generale mostrare che scrivendo $ \Omega \in \gl(2n, \R) $ come matrice a blocchi $ \Omega = \begin{pmatrix} a & b \\ c & d \end{pmatrix} $ con $ a, b, c, d \in \gl(n, \R) $ allora
+    \[
+    \Omega \text{ è $ \mu $-simplettica } \iff
+    \begin{cases}
+        a^T d - c^T b = \mu \Id \\
+        (a^T c)^T = a^T c \\
+        (b^T d)^T = b^T d
+    \end{cases}
+    \]
+    e per l'inversa è data da $ \Omega^{-1} = \dfrac{1}{\mu} \begin{pmatrix} d^T & -b^T \\ -c^T & a^T \end{pmatrix} $.
+\end{exercise}
+\begin{solution}
+    Se $ n = 1 $ allora $ \Omega $ è una matrice quadrata $ 2 \times 2 $ a coefficienti $ a, b, c, d \in \R $. Si ha
+    \[
+        \Omega^T \Gamma \Omega = 
+        \begin{pmatrix}
+        a & c \\
+        b & d
+        \end{pmatrix}
+        \begin{pmatrix}
+        0 & 1 \\
+        -1 & 0
+        \end{pmatrix}
+        \begin{pmatrix}
+        a & b \\
+        c & d
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+        0 & ad - bc \\
+        bc - ad & 0
+        \end{pmatrix}
+        =
+        \Gamma =
+        \begin{pmatrix}
+        0 & 1 \\
+        -1 & 0
+        \end{pmatrix}
+    \]
+    da cui ricaviamo che $ \det{\Omega} = ad - bc = 1 $. Nel caso generale $ a, b, c, d $ sono matrici $ n \times n $ pertanto
+    \[
+    \Omega^T \Gamma \Omega =
+    \begin{pmatrix}
+    a^T c - c^T a & a^T d - c^T b \\
+    b^T c - d^T a & b^T d - d^T b
+    \end{pmatrix}
+    =
+    \mu \Gamma
+    =
+    \begin{pmatrix}
+    	0        & \mu \Id \\
+    	-\mu \Id & 0
+    \end{pmatrix}
+    \]
+    per cui dobbiamo imporre $ a^T c = c^T a = (a^T c)^T $, $ b^T d = d^T b = (b^T d)^T $ e infine $ a^T d - c^T b = \mu \Id $. Per quanto riguarda l'inversa
+    \[
+        \Omega^{-1} = - \frac{1}{\mu} \Gamma \Omega^T \Gamma =
+        - \frac{1}{\mu}
+        \begin{pmatrix}
+        	0    & \Id \\
+        	-\Id & 0
+        \end{pmatrix}
+        \begin{pmatrix}
+        	a^T & b^T \\
+        	c^T & d^T
+        \end{pmatrix}
+        \begin{pmatrix}
+        	0    & \Id \\
+        	-\Id & 0
+        \end{pmatrix}
+        =
+        \dfrac{1}{\mu} 
+        \begin{pmatrix}
+        	d^T  & -b^T \\
+        	-c^T & a^T
+        \end{pmatrix}
+    \]
+\end{solution}
+
+\begin{exercise}
+    Mostrare che $ A \in \sp(n, \R) \iff \forall t \in \R, \ e^{tA} \in \Sp(n, \R) $.
+\end{exercise}
