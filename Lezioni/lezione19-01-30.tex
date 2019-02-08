@@ -48,20 +48,132 @@ Osserviamo infine che per il prodotto simplettico standard valgono delle relazio
 \end{proof}
 
 \begin{definition}[funzione simplettica]
-    Siano $ (V_1, \omega_1) $ e $ (V_2, \omega_2) $ due spazi vettoriali simplettici. Una funzione lineare $ s \colon V_1 \to V_2 $ si dice simplettica se conserva il prodotto simplettico
+    Siano $ (V_1, \omega_1) $ e $ (V_2, \omega_2) $ due spazi vettoriali simplettici. Una funzione lineare $ S \colon V_1 \to V_2 $ si dice simplettica se conserva il prodotto simplettico
     \[
-        \omega_2(s(v), s(u)) = \omega_1(u, v) \quad \forall u, v \in V_1.
+        \omega_2(S(v), S(u)) = \omega_1(u, v) \quad \forall u, v \in V_1.
     \]
 \end{definition}
 
 \begin{proposition}
-    Su $ (\R^{2n}, \omega_\Gamma) $, un endomorfismo lineare $ s \colon \R^{2n} \to \R^{2n} $ è simplettico se e solo se la sua matrice rappresentativa $ S $ è una matrice simplettica $ S^T \Gamma S = \Gamma $.
+    Su $ (\R^{2n}, \omega_\Gamma) $, un endomorfismo lineare $ S \colon \R^{2n} \to \R^{2n} $ è simplettico se e solo se la sua matrice rappresentativa $ S $ è una matrice simplettica $ S^T \Gamma S = \Gamma $.
 \end{proposition}
 
 \subsection{Campi vettoriali hamiltoniani}
 
 \begin{definition}[campo vettoriale hamiltoniano]
-    Un campo vettoriale $ X \colon \mathcal{O} \to \R $ di classe $ \mathcal{C}^\infty $ si dice hamiltoniano se esiste una funzione hamiltoniana $ \ham \colon \mathcal{O} \to \R $ tale che $ \forall (x, t) \in \mathcal{O}, \ X(x, t) = \Gamma \nabla_x \ham(x, t) $.
+    Un campo vettoriale $ X \colon \mathcal{O} \to \R^{2n} $ di classe $ \mathcal{C}^\infty $ si dice hamiltoniano se esiste una funzione hamiltoniana $ \ham \colon \mathcal{O} \to \R $ tale che $ \forall (x, t) \in \mathcal{O}, \ X(x, t) = \Gamma \nabla_x \ham(x, t) $.
 \end{definition}
 
-Chiaramente l'hamiltoniana associata a $ X $ non è unica in quanto ad essa può essere aggiunta una funzione $ \chi $ con $ \nabla_x \chi = 0 $. Essendo $ \mathcal{O} $ connesso, tale relazione equivale a chiedere che $ \chi $ sia indipendente dal tempo $ \chi(x, t) = \chi(t) $. L'hamiltoniana diventa quindi unica se chiediamo che al campo vettoriale nullo sia associata l'hamiltoniana nulla.
+Chiaramente l'hamiltoniana associata a $ X $ non è unica in quanto ad essa può essere aggiunta una funzione $ \chi $ con $ \nabla_x \chi = 0 $. Essendo $ \mathcal{O} $ connesso, tale relazione equivale a chiedere che $ \chi $ sia indipendente dal tempo $ \chi(x, t) = \chi(t) $. L'hamiltoniana diventa quindi unica se chiediamo che al campo vettoriale nullo sia associata l'hamiltoniana nulla. \\
+
+In seguito sarà utile il seguente risultato generale dell'analisi vettoriale.
+
+\begin{lemma}[Poincaré] \label{lem:poincare}
+    Sia $ A \subseteq \R^m $ un aperto semplicemente connesso e $ F \colon A \to \R^m $ una funzione di classe $ \mathcal{C}^1 $ tale che $ \forall i, j = 1, \ldots, m $
+    \[
+        \pd{F_i}{x_j} = \pd{F_j}{x_i}.
+    \]
+    Allora esiste una funzione $ f \colon A \to \R $ di classe $ \mathcal{C}^2 $ tale che $ F = - \grad{f} $.
+\end{lemma}
+
+\begin{thm}
+    $ X \colon \mathcal{O} \to \R^{2n} $ è un campo vettoriale hamiltoniano se e solo
+    \begin{equation}
+        J_x X (x, t) \coloneqq \left(\dpd{X_i}{x_j}(x, t)\right)_{ij}
+    \end{equation}
+    è una matrice hamiltoniana $ \forall (x, t) \in \mathcal{O} $.
+\end{thm}
+\begin{proof}
+    Supponiamo che esista una hamiltoniana $ \ham $ tale che $ X = \Gamma \nabla_x \ham $. Allora
+    \[
+        \pd{X_i}{x_j} = \sum_{k=1}^{2n} \Gamma_{ik} \md{\ham}{2}{x_k}{}{x_j}{} = \Gamma \, \mathrm{Hess}(\ham).
+    \]
+    Essendo $ \ham $ regolare, la sua matrice hessiana è simmetrica e pertanto $ J_x X $ è hamiltoniana. \\
+    Viceversa, detta $ Y(x, t) \coloneqq \Gamma X(x, t) $, essendo $ J_x X $ hamiltoniana si ha $ \forall i, j = 1, \ldots, 2n $
+    \[
+        \pd{Y_i}{x_j} = (\Gamma J_x X)_{ij} = (\Gamma J_x X)_{ji} = \pd{Y_j}{x_i}.
+    \]
+    Essendo $ \mathcal{O} $ semplicemente connesso, per il Lemma \ref{lem:poincare},  esiste $ \ham \colon \mathcal{O} \to \R $ tale che $ Y(x, t) = \nabla_x \ham(x, t) $ da cui $ X(x, t) = -\Gamma Y(x, t) = \Gamma \nabla_x \ham(x, t) $.
+\end{proof}
+
+\begin{exercise}
+    Si consideri il campo vettoriale definito dal sistema di equazioni differenziali
+    \[
+        \begin{cases}
+            \dot{q} = q^{\beta} p^\alpha \\
+            \dot{p} = - q^{\gamma} p^{\alpha+1}
+        \end{cases}
+    \]
+    Dire per quali valori di $ \alpha, \beta, \gamma \in \R $ il campo è hamiltoniano e trovare una hamiltoniana.
+\end{exercise}
+\begin{solution}
+    Sia $ X(q, p, t) = (p^\alpha q^\beta, -p^{\alpha+1}q^{\beta}) $ il campo in questione. Si ha
+    \[
+        J_x X (q, p, t) =
+        \begin{pmatrix}
+            \beta q^{\beta-1} p^{\alpha} & \alpha q^{\beta} p^{\alpha-1} \\
+            - \gamma q^{\gamma-1} p^{\alpha+1} & - (\alpha+1) q^{\gamma} p^{\alpha}
+        \end{pmatrix}
+    \]
+    Ora $ J_x X \in \sp(1, \R) \iff \tr{J_x X} = 0 $ pertanto deve essere
+    \[
+        \beta q^{\beta-1} p^{\alpha} - (\alpha+1) q^{\gamma} p^{\alpha} = 0 \quad \Rightarrow \quad \left(\beta q^{\beta-1} - (\alpha+1) q^{\gamma}\right) p^{\alpha} = 0
+    \]
+    da cui ricaviamo se $ \alpha = -1 $ allora $ \beta = 0 $ e $ \gamma $ è qualsiasi; se invece $ \alpha \neq -1 $ allora $ \beta = \alpha+1 $ e $ \gamma = \beta - 1 = \alpha $. Nel primo caso le equazioni di Hamilton diventano
+    \[
+        \begin{cases}
+            \dot{q} = 1/p \\
+            \dot{p} = -q^{\gamma}
+        \end{cases}
+    \]
+    e una possibile hamiltoniana è $ \ham (q, p, t) = q^{\gamma+1}/(\gamma+1) + \log{p} $. Nel secondo caso si ha
+    \[
+        \begin{cases}
+            \dot{q} = q^{\alpha+1} p^\alpha  \\
+            \dot{p} = - q^{\alpha} p^{\alpha+1}
+        \end{cases}
+    \]
+    e una possibile hamiltoniana è $ \ham(q, p, t) = \dfrac{q^{\alpha+1}p^{\alpha+1}}{\alpha+1} $
+\end{solution}
+
+\subsection{Cambio di coordinate in una ODE}
+Per semplicità di notazione lavoriamo su $ \R^m \times \R $ invece che su un aperto $ \mathcal{O} $ in esso contenuto. Consideriamo una generica equazione differenziale alle derivate ordinarie
+\begin{equation} \label{eqn:ode}
+    \begin{cases}
+    \dot{\vec{x}} = \vec{v}(\vec{x}, t) \\
+    \vec{x}(0) = \vec{x}_0
+    \end{cases}
+\end{equation}
+dove $ \vec{v} \colon \R^{m} \times \R \to \R^m $ è un capo vettoriale di classe $ \mathcal{C}^{\infty} $. Vogliamo studiare in che modo trasforma l'equazione \eqref{eqn:ode} sotto cambio di coordinate. Ricordiamo che dire che $ \vec{x}(t) $ è soluzione dell'equazione \eqref{eqn:ode} vuol dire che $ \vec{x}(0) = \vec{x}_0 $ e per ogni $ t \in (a, b) \subseteq \R $ si ha $ \od{}{t} \vec{x}(t) = \vec{v}(\vec{x}(t), t) $. \\
+
+Vogliamo trovare una $ \vec{w} \colon \R^m \times \R \to \R $ che ci permetta di scrivere scrivere il sistema \eqref{eqn:ode} come
+\begin{equation} \label{eqn:ode-trasf}
+    \begin{cases}
+    \dot{\vec{y}} = \vec{w}(\vec{y}, t) \\
+    \vec{y}(0) = \vec{y}_0
+    \end{cases}
+\end{equation}
+dove $ \vec{y} $ è l'esito di un cambio di coordinate. Dire che $ \vec{y}(t) $ è soluzione dell'equazione \eqref{eqn:ode-trasf} vuol dire che $ \vec{y}(0) = \vec{y}_0 $ e per ogni $ t \in (a, b) \subseteq \R $ si ha $ \od{}{t} \vec{y}(t) = \vec{w}(\vec{y}(t), t) $. Sia quindi
+\begin{align*}
+    \vec{f} \colon \R^m \times \R & \to \R^m \times \R \\
+    (\vec{x}, t) & \mapsto (\hat{\vec{y}}(\vec{x}, t), t) \eqqcolon (\vec{y}, t)
+\end{align*}
+un diffeomorfismo $ \mathcal{C}^\infty $  di $ \R^m \times \R $ che agisce sul tempo come l'identità e sulla variabile $ \vec{x} $ con una funzione $ \hat{\vec{y}} \colon \R^m \times \R \to \R^m $. Essendo un diffeomorfismo sia
+\begin{align*}
+    \vec{g} \colon \R^m \times \R & \to \R^m \times \R \\
+    (\vec{y}, t) & \mapsto (\hat{\vec{x}}(\vec{y}, t), t) \eqqcolon (\vec{x}, t)
+\end{align*}
+la trasformazione inversa dove $ \hat{\vec{x}} \colon \R^m \times \R \to \R^m $. Si ha
+\begin{align*}
+    \dod{}{t} \vec{y}(t) & = \dod{}{t} \left( \hat{\vec{y}}(\vec{x}(t), t)\right) = (J_\vec{x} \hat{\vec{y}})(\vec{x}(t), t) \ \dod{}{t} \vec{x}(t)  + (J_t \hat{\vec{y}})(\vec{x}(t), t) \\
+    & = (J_\vec{x} \hat{\vec{y}})(\vec{x}(t), t) \ \vec{v}(\vec{x}(t), t)  + (J_t \hat{\vec{y}})(\vec{x}(t), t) \\
+    & = \left[J_\vec{x} \hat{\vec{y}} \vec{v} + J_t J_t \hat{\vec{y}}\right] (\vec{x}(t), t) \\
+    & = \left[J_\vec{x} \hat{\vec{y}} \vec{v} + J_t J_t \hat{\vec{y}}\right] (\hat{\vec{x}}(\vec{y}(t), t), t)
+\end{align*}
+Indicando con $ J = J_\vec{x} \hat{\vec{y}} = \left(\dpd{\hat{y}_i}{x_j}\right) $ lo jacobiano rispetto alla variabile $ \vec{x} $ del cambio di coordinate e con lieve abuso di notazione $ \dpd{\hat{\vec{y}}}{t} = J_t \hat{\vec{y}} $ abbiamo che il campo trasformato è
+\begin{equation}
+    \vec{w}(\vec{y}, t) \coloneqq \left[ J \vec{v} + \dpd{\hat{\vec{y}}}{t}\right] (\hat{\vec{x}}(\vec{y}, t), t).
+\end{equation}
+Mentre chiaramente $ \vec{y}_0 = \hat{\vec{y}}(\vec{x}_0, 0) $.
+
+\subsection{Trasformazioni canoniche}
