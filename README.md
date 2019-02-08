@@ -47,7 +47,7 @@ Attualmente i file sono:
 | 22 gennaio  | Bindini     |                           |
 | 23 gennaio  | Bindini     |                           |
 | 29 gennaio  | Marmi       | @alepiazza                |
-| 30 gennaio  | Marmi       |                           |
+| 30 gennaio  | Marmi       | @alepiazza                |
 | 5 febbraio  | Tantari     |                           |
 | 6 febbraio  | Tantari     |                           |
 
