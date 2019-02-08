@@ -1,0 +1,67 @@
+\section{Lezione del 30/01/2019 [Marmi]}
+
+\subsection{Spazi vettoriali simplettici}
+
+\begin{definition}[prodotto simplettico]
+    Sia $ V $ uno spazio vettoriale su $ \R $ con $ \dim_\R V = 2n $. Una funzione $ \omega \colon V \times V \to \R $ si dice prodotto simplettico se è
+    \begin{enumerate}[label=(\roman*)]
+        \item \emph{antisimmetrico}: $ \forall x, y \in V, \ \omega(x, y) = - \omega(y, x) $;
+        \item \emph{bilineare}: $ \forall x_1, x_2, y \in V, \forall \alpha_1, \alpha_2 \in \R, \ \omega(\alpha_1 x_1 + \alpha_2 x_2, y) = \alpha_1 \omega(x_1, y) + \alpha_2 \omega(x_2, y) $;
+        \item \emph{non degenere}: $ \forall y \in V, \ \omega(x, y) = 0 \Rightarrow x = 0 $.
+    \end{enumerate}
+    Uno spazio vettoriale dotato di prodotto simplettico $ (V, \omega) $ è detto spazio vettoriale simplettico.
+\end{definition}
+
+Sia $ V $ uno spazio vettoriale simplettico e $ \{e_1, \ldots, e_{2n}\} $ una base. Possiamo definire la matrice $ W \in \gl(2n, \R) $ data da $ W_{ij} = \omega(e_i, e_j) $. Tale matrici risulta antisimmetrica $ W^{T} = -W $ e invertibile $ \det{W} \neq 0 $. Dati $ x = \sum_{i=1}^{2n} x_i e_i $ e $ y = \sum_{j=1}^{2n} y_j e_j $ per bilinearità il prodotto simplettico si scrive come
+\begin{equation} \label{eqn:prod-simplettoc-W}
+    \omega(x, y) = \sum_{i, j=1}^{2n} x_i y_j \omega(e_i, e_j) = \sum_{i, j=1}^{2n} x_i y_j W_{ij} = x^T \cdot W y
+\end{equation}
+Viceversa data una matrice $ W \in \gl(2n, \R) $ invertibile e antisimmetrica, questa induce su $ V $ un prodotto simplettico $ \omega_W $ dato dalla formula \eqref{eqn:prod-simplettoc-W}. \\
+
+Se $ W = \Gamma $ allora si parla di \emph{prodotto simplettico standard}. Se $ V = \R^{2n} $, scrivendo $ x = (q, p) $ e $ y = (q', p') $ e la base canonica come $ \{e_{q_1}, \ldots, e_{q_n}, e_{p_1}, \ldots, e_{p_n}\} $ si ha
+\begin{equation}
+    \omega_\Gamma(x, y) = x^T \cdot \Gamma y = \sum_{i=1}^{n} \left(q_i p'_i - p_i q'_i\right) =
+    \sum_{i=1}^{n}
+    \det{
+    \begin{pmatrix}
+    q_i & p_i \\
+    q'_i & p'_i
+    \end{pmatrix}
+    }
+\end{equation}
+Tale relazione ha la seguente interpretazione geometrica: il prodotto scalare simplettico standard su $ \R^{2n} $ è la somma delle aree orientate delle proiezioni del parallelogramma di lati $ x $ e $ y $ sugli $ n $ piani $ \pi_i = Span\{e_{q_i}, e_{p_i}\} $.
+
+Osserviamo infine che per il prodotto simplettico standard valgono delle relazioni simili a quelle delle parentesi di Poisson fondamentali
+\begin{equation}
+    \omega_\Gamma(e_{q_i}, e_{q_j}) = \omega_\Gamma(e_{p_i}, e_{p_j}) = 0 \qquad \omega_\Gamma(e_{q_i}, e_{p_j}) = \delta_{ij}
+\end{equation}
+
+\begin{definition}[base simplettica]
+    Sia $ (V, \omega) $ uno spazio vettoriale simplettico. Una base $ \{e_1, \ldots, e_{2n}\} $ di $ V $ si dice simplettica se $ W = \Gamma $.
+\end{definition}
+
+\begin{thm}
+    Ogni spazio vettoriale simplettico $ (V, \omega) $ ammette una base simplettica.
+\end{thm}
+\begin{proof}
+    \textcolor{red}{Esercizio, 2 modi.}
+\end{proof}
+
+\begin{definition}[funzione simplettica]
+    Siano $ (V_1, \omega_1) $ e $ (V_2, \omega_2) $ due spazi vettoriali simplettici. Una funzione lineare $ s \colon V_1 \to V_2 $ si dice simplettica se conserva il prodotto simplettico
+    \[
+        \omega_2(s(v), s(u)) = \omega_1(u, v) \quad \forall u, v \in V_1.
+    \]
+\end{definition}
+
+\begin{proposition}
+    Su $ (\R^{2n}, \omega_\Gamma) $, un endomorfismo lineare $ s \colon \R^{2n} \to \R^{2n} $ è simplettico se e solo se la sua matrice rappresentativa $ S $ è una matrice simplettica $ S^T \Gamma S = \Gamma $.
+\end{proposition}
+
+\subsection{Campi vettoriali hamiltoniani}
+
+\begin{definition}[campo vettoriale hamiltoniano]
+    Un campo vettoriale $ X \colon \mathcal{O} \to \R $ di classe $ \mathcal{C}^\infty $ si dice hamiltoniano se esiste una funzione hamiltoniana $ \ham \colon \mathcal{O} \to \R $ tale che $ \forall (x, t) \in \mathcal{O}, \ X(x, t) = \Gamma \nabla_x \ham(x, t) $.
+\end{definition}
+
+Chiaramente l'hamiltoniana associata a $ X $ non è unica in quanto ad essa può essere aggiunta una funzione $ \chi $ con $ \nabla_x \chi = 0 $. Essendo $ \mathcal{O} $ connesso, tale relazione equivale a chiedere che $ \chi $ sia indipendente dal tempo $ \chi(x, t) = \chi(t) $. L'hamiltoniana diventa quindi unica se chiediamo che al campo vettoriale nullo sia associata l'hamiltoniana nulla.

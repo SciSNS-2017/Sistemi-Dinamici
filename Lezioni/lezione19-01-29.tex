@@ -21,7 +21,7 @@ dove $ \Id_n $ è la matrice identità $ n \times n $. Tale matrice gode della p
     Mostrare che ogni matrice antisimmetrica ha rango pari.
 \end{exercise}
 
-Sia $ \mathcal{O} \subseteq \R^{2n} \times \R $ un aperto. Di seguito un elemento di $ \mathcal{O} $ verrà indicato come una coppia $ (x, t) $ dove $ x \in \Pi_{\R^{2n}}(\mathcal{O}) $ e $ t \in \Pi_\R(\mathcal{O}) $ è detta variabile \emph{tempo}. Spesso si scriverà $ x = (q, p) $ dove $ q $ e $ p $ sono vettori di a $ n $ componenti detti \emph{posizione} e \emph{momento cinetico}. Le variabili $ q $ e $ p $ sono dette \emph{canonicamente coniugate}. Con lieve abuso di notazione un elemento di $ \mathcal{O} $ si scriverà spesso come una terna $ (q, p, t) $. \\
+Sia $ \mathcal{O} \subseteq \R^{2n} \times \R $ un aperto semplicemente connesso. Di seguito un elemento di $ \mathcal{O} $ verrà indicato come una coppia $ (x, t) $ dove $ x \in \Pi_{\R^{2n}}(\mathcal{O}) $ e $ t \in \Pi_\R(\mathcal{O}) $ è detta variabile \emph{tempo}. Spesso si scriverà $ x = (q, p) $ dove $ q $ e $ p $ sono vettori di a $ n $ componenti detti \emph{posizione} e \emph{momento cinetico}. Le variabili $ q $ e $ p $ sono dette \emph{canonicamente coniugate}. Con lieve abuso di notazione un elemento di $ \mathcal{O} $ si scriverà spesso come una terna $ (q, p, t) $. \\
 
 Sull'aperto $ \mathcal{O} $ si considera una funzione scalare $ \ham \colon \mathcal{O} \to \R $ detta \emph{funzione hamiltoniana} di classe $ \mathcal{C}^{\infty} $. Tale ipotesi su $ \ham $ non sarà sempre necessaria nel senso che i risultati che andremo ad enunciare valgono per anche per hamiltoniane meno regolari: questa è tuttavia una questione di cui non ci vogliamo occupare e pertanto supporremo che $ \ham $ sia di classe $ \mathcal{C}^\infty $.
 
@@ -32,7 +32,9 @@ Una funzione hamiltoniana genera un insieme di equazioni differenziali dette \em
     x(0) = x_0
     \end{cases}
 \end{equation}
-dove con $ \nabla_x \ham $ si intende il gradiente di $ \ham $ a tempo fissato, cioè vista come funzione della sola $ x $, e $ x_0 \in \Pi_{\R^{2n}}(\mathcal{O}) $. Essendo $ \ham $ di classe $ \mathcal{C}^\infty $ il Teorema di Cauchy-Lipschitz-Picard-Lindelöf assicura esistenza e unicità locale della soluzione al problema di Cauchy \eqref{eqn:ham} e dipendenza continua dai valori iniziali. In termini delle variabili $ (q, p) $ il problema di Cauchy assume la forma più usuale
+dove con $ \nabla_x \ham $ si intende il gradiente di $ \ham $ a tempo fissato, cioè vista come funzione della sola $ x $, e $ x_0 \in \Pi_{\R^{2n}}(\mathcal{O}) $. Il "vettore" $ \Gamma \, \nabla_x \ham $ è detto \emph{gradiente simplettico} di $ \ham $.
+
+Essendo $ \ham $ di classe $ \mathcal{C}^\infty $ il Teorema di Cauchy-Lipschitz-Picard-Lindelöf assicura esistenza e unicità locale della soluzione al problema di Cauchy \eqref{eqn:ham} e dipendenza continua dai valori iniziali. In termini delle variabili $ (q, p) $ il problema di Cauchy assume la forma più usuale
 \begin{equation}
     \begin{dcases}
         \dot{q}_i = \dpd{\ham}{p_i} \\
@@ -336,8 +338,8 @@ dove abbiamo definito $ A \coloneqq \Gamma S $ e ricordiamo che $ e^{tA} \colone
     \mu \Gamma
     =
     \begin{pmatrix}
-    	0        & \mu \Id \\
-    	-\mu \Id & 0
+    0        & \mu \Id \\
+    -\mu \Id & 0
     \end{pmatrix}
     \]
     per cui dobbiamo imporre $ a^T c = c^T a = (a^T c)^T $, $ b^T d = d^T b = (b^T d)^T $ e infine $ a^T d - c^T b = \mu \Id $. Per quanto riguarda l'inversa
@@ -345,26 +347,35 @@ dove abbiamo definito $ A \coloneqq \Gamma S $ e ricordiamo che $ e^{tA} \colone
         \Omega^{-1} = - \frac{1}{\mu} \Gamma \Omega^T \Gamma =
         - \frac{1}{\mu}
         \begin{pmatrix}
-        	0    & \Id \\
-        	-\Id & 0
+        0    & \Id \\
+        -\Id & 0
         \end{pmatrix}
         \begin{pmatrix}
-        	a^T & b^T \\
-        	c^T & d^T
+        a^T & b^T \\
+        c^T & d^T
         \end{pmatrix}
         \begin{pmatrix}
-        	0    & \Id \\
-        	-\Id & 0
+        0    & \Id \\
+        -\Id & 0
         \end{pmatrix}
         =
-        \dfrac{1}{\mu} 
+        \dfrac{1}{\mu}
         \begin{pmatrix}
-        	d^T  & -b^T \\
-        	-c^T & a^T
+        d^T  & -b^T \\
+        -c^T & a^T
         \end{pmatrix}
     \]
 \end{solution}
 
-\begin{exercise}
-    Mostrare che $ A \in \sp(n, \R) \iff \forall t \in \R, \ e^{tA} \in \Sp(n, \R) $.
-\end{exercise}
+Il seguente risultato stabilisce il legame tra matrici hamiltoniane e matrici simplettiche.
+
+\begin{thm}
+    Mostrare che $ A \in \sp(n, \R) \Rightarrow \forall t \in \R, \ e^{tA} \in \Sp(n, \R) $.
+\end{thm}
+\begin{proof}
+    Dalla definizione di esponenziale di una matrice si può mostrare che $ (e^{tA})^T = e^{t A^T} $ e che $ e^{tA} $ è invertibile con inversa $ (e^{tA})^{-1} = e^{-tA} $. Pertanto la condizione di simpletticità è equivalente a mostrare che
+    \[
+        e^{tA^T} \Gamma = \Gamma e^{-tA}.
+    \]
+    Infatti essendo $ A \in \sp(n, \R) $ si ha $ A^T\Gamma = -(\Gamma A)^T = - \Gamma A $. Così \textcolor{red}{da finire}
+\end{proof}
