@@ -1,0 +1,85 @@
+\section{Lezione del 16/01/19 [Tantari]}
+
+Ci prefiggiamo di studiare ora il modello di Curie-Weiss nel \emph{limite termodinamico}, cioè nel limite in cui il numero $ n $ di particelle tende a infinito. In particolare calcoleremo il limite dell'energia libera $ f_{\beta, n} \coloneqq F_{\beta, n}/n = -\frac{\log Z_{\beta, n}}{\beta n}$\footnote{D'ora in poi ometteremo il pedice $ \beta $ per alleggerire la notazione.}.
+
+\begin{enumerate}
+  \item Calcolo di $ \lim_{n\to\infty} \frac{1}{n} \log{Z_n} = \lim_{n\to\infty} -\frac{\beta F_n}{n} $
+  \item Data una generica osservabile $ \mathcal{O}\colon\Sigma\to\R $, calcoliamone il valore atteso nel limite termodinamico $ \lim_{n\to\infty} \mean{\mathcal{O}_n(\sigma)}_{P_\beta} $. Nel nostro caso considereremo la \emph{magnetizzazione media} $ m_n(\sigma) \coloneqq \mean{\frac{1}{n}\sum_{i=1}^{n}\sigma_i} $.
+  \item \textcolor{red}{Automedia: calcolo delle fluttuazioni delle osservabili}.
+  $ \lim_{n\to\infty} P_\beta\left(\ \abs{m_n(\sigma) - m_\beta } > \epsilon \right) $.
+  \textcolor{red}{Non capisco cosa sia $ m_\beta $ e se quella che prima ho definito come $ m_n $ sia davvero $ m_n $ oppure sia $ m_\beta $.} 
+\end{enumerate}
+
+Nel modello di Curie-Weiss lo spazio delle fasi è $ \Sigma = \{-1,1\}^n $. L'hamiltoniana è:
+\[ \ham_n(\sigma) = -\frac{1}{n} \sum_{i<j} \sigma_i \sigma_j - h \sum_i \sigma_i \]
+dove il primo termine descrive l'interazione tra gli spin, che tendono ad allinearsi, e il secondo l'interazione con il campo esterno $ h $. Osserviamo che $ \ham_n $ scala come $ n $; una quantità di questo tipo di dice \emph{intensiva}. La quantità che ci prefiggiamo di calcolare $ f_n $, è invece \emph{intensiva}.
+
+
+
+
+
+Riscriviamo l'hamiltoniana in termini di $ m_n(\sigma) $:
+\[ \sum_{i<j} \sigma_i \sigma_j = \frac{1}{2} \sum_{i \neq j} \sigma_i \sigma_j = \sum_{i,j} \sigma_i \sigma_j -\frac{n}{2} = \frac{n^2 m_n^2(\sigma)}{2} - \frac{n}{2} \]
+da cui, trascurando un'irrilevante costante additiva
+\[ \ham(\sigma) = -\frac{n m_n^2(\sigma)}{2} - hnm_n(\sigma) \]
+e quindi
+\[ Z_n = \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) \right) \]
+
+\subsection{Esistenza del limite}
+Dimostriamo innanzi tutto che il limite $ \lim_{n\to\infty} \frac{\log Z_n}{n} $ esiste.
+\begin{proof}
+    Procediamo facendo vedere che la successione $ \log Z_n $ è subadditiva e usiamo il lemma \ref{lem:fekete}.
+    Posto $ n = n_1 + n_2 $, siano $ \sigma_1 \in \{-1,1\}^{n_1} $ e $ \sigma_2 \in \{-1,1\}^{n_2} $; si ha
+    \[ m_n(\sigma_1,\sigma_2) = \frac{n_1}{n} m_1(\sigma_1) + \frac{n_2}{n} m_2(\sigma_2) \]
+    si verifica con facili calcoli che
+    \[ n m_n^2 = n_1 m_1^2 + n_2 m_2^2 - \frac{n_1 n_2}{n} (m_1-m_2)^2 \leq n_1 m_1^2 + n_2 m_2^2 \]
+    e quindi
+    \begin{align*}
+        Z_{n_1} Z_{n_2} & = \sum_{\sigma_1\in\Sigma_1} \sum_{\sigma_2\in\Sigma_2} \exp\left(\frac{\beta}{2} \left(n_1 m_{n_1}^2(\sigma_1) + n_2 m_{n_2}^2(\sigma_2) \right) \right) \exp\left(\beta h\left(n_1 m_{n_1}(\sigma_1) + n_2 m_{n_2}(\sigma_2) \right) \right) \\
+                        & \geq \sum_{\sigma\in\Sigma} \exp\left(\frac{\beta n m_n^2(\sigma)}{2} \right) \exp\left(\beta h n m_n(\sigma) \right) = Z_{n_1+n_2}.
+    \end{align*}
+    Prendendo il logaritmo si ottiene $ \log Z_{n_1+n_2} \leq \log Z_{n_1} + \log Z_{n_2} $.
+\end{proof}
+
+\textbf{Bound a priori \textcolor{red}{Non ne ho capito il senso}}
+\[ Z_n = \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) \right) \leq \sum_{\sigma \in \Sigma} \exp\left(  \frac{\beta n}{2} + \beta n h \right) = \exp\left( n \left( \log 2 + \frac{\beta}{2} + \beta h \right) \right) \]
+Da cui
+\[ \frac{\log Z_n}{n} \leq \log 2 + \frac{\beta}{2} + \beta h \]
+
+Detta $ U $ la distribuzione uniforme sulle $ 2^n $ configurazioni possibili, e usando la diseguaglianza di Jensen, si ha
+\[ Z_n = 2^n \mean{\exp\left(-\beta\ham_n\right)}_U \geq 2^n \exp\left( -\beta \mean{\ham}_U \right) = 2^n \]
+in quanto $ \mean{\sigma_i}_U = 0 $ e $ \mean{\sigma_i\sigma_j}_U = \mean{\sigma_i}_U\mean{\sigma_j}_U = 0 $. Prendendo il logaritmo:
+\[ \frac{\log Z_n}{n} \geq \log 2 \]
+\textcolor{red}{Abbiamo usato il principio variazionale di Gibbs???}
+
+\subsection{Calcolo dell'energia libera}
+\subsubsection{Primo bound}
+Sia $ M \in [-1,1] $. Allora si ha $ \exp\left( -\frac{\beta n (m_n(\sigma) - M)^2}{2} \right) \leq 1 $ e quindi
+\begin{align*}
+    Z_n & \geq \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) - \frac{\beta n (m_n(\sigma)-M)^2}{2}\right) \\
+        & = \exp\left( -\frac{\beta n M^2}{2} \right) \sum_{\sigma \in \Sigma} \exp\left( (M+h) \beta n m_n(\sigma) \right)                              \\
+        & = \exp\left( -\frac{\beta n M^2}{2} \right) \sum_{\sigma \in \Sigma} \prod_{i=1}^{n} \exp( \beta(M+h) \sigma_i )                               \\
+        & = \exp\left( -\frac{\beta n M^2}{2} \right) \sum_{\sigma_1 = \pm 1} \cdots \sum_{\sigma_n = \pm 1} \prod_{i=1}^{n} \exp( \beta(M+h) \sigma_i ) \\
+        & = \exp\left( -\frac{\beta n M^2}{2} \right) \left(\sum_{\sigma_1 = \pm 1} \exp(\beta(M+h)\sigma_1)\right) \cdots \left(\sum_{\sigma_n = \pm 1} \exp(\beta(M+h)\sigma_n)\right) \\
+        & = \exp\left( -\frac{\beta n M^2}{2} \right) \prod_{i=1}^{n} \sum_{\sigma_i = \pm 1} \exp(\beta(M+h)\sigma_i) \\
+        & = \exp\left( -\frac{\beta n M^2}{2} \right) 2^n \cosh^n(\beta(M+h)). \\
+\end{align*}
+Abbiamo dunque:
+\[ \frac{\log Z_n}{n} \geq \log 2 + \log\cosh(\beta(M+h)) - \frac{\beta M^2}{2} \]
+Prendendo il limite per $ n\to\infty $ e il $ \sup $ al variare di $ M $ in $ [-1,1] $ otteniamo
+\[ \lim_{n \to +\infty}\frac{Z_n}{n} \geq \sup_{M\in[-1,1]}\left( \log 2 + \log\cosh(\beta(M+h)) - \frac{\beta M^2}{2} \right) \eqqcolon \bar{\alpha}(\beta, h) \]
+
+\subsubsection{Secondo bound}
+(se $ n $ è pari?)
+$ m(\sigma) \in \left\{ -1, -1 + \frac{2}{n}, \ldots, 1-\frac{2}{n}, 1 \right\} $
+
+\[ \sum_M \exp\left( -\frac{\beta(m(\sigma)-M)^2}{2} \right) \geq 1 \]
+\begin{align*}
+    Z_n & \leq \sum_M \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) - \frac{\beta n (m_n(\sigma)-M)^2}{2}\right) \\
+        & = \sum_M \exp\left( n\left( -\frac{\beta  M^2}{2} + \log 2 + \log\cosh(\beta(M+h)) \right) \right) \\
+        & \leq \sum_M \exp(n \bar{\alpha}(\beta, h)) = (n+1) \exp(n \bar{\alpha}(\beta, h)).
+\end{align*}
+Prendendo il logaritmo e facendo il limite si ottiene
+\[  \lim_{n \to +\infty} \frac{Z_n}{n} \leq \bar{\alpha}(\beta,h). \]
+Dunque abbiamo
+\[ \lim_{n \to +\infty}\frac{Z_n}{n} = \bar{\alpha}(\beta,h) = \sup_{M\in[-1,1]}\left( \log 2 + \log\cosh(\beta(M+h)) - \frac{\beta M^2}{2} \right) \]
