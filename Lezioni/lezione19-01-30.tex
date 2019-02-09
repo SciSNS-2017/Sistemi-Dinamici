@@ -177,3 +177,124 @@ Indicando con $ J = J_\vec{x} \hat{\vec{y}} = \left(\dpd{\hat{y}_i}{x_j}\right) 
 Mentre chiaramente $ \vec{y}_0 = \hat{\vec{y}}(\vec{x}_0, 0) $.
 
 \subsection{Trasformazioni canoniche}
+Vogliamo applicare quanto detto nella sezione precedente alle equazioni di Hamilton
+\[
+    \dot{\vec{x}} = \Gamma \, \nabla_\vec{x} \ham(\vec{x}, t).
+\]
+In tale caso il campo vettoriale è $ \vec{v}(\vec{x}, t) \coloneqq \Gamma \, \nabla_\vec{x} \ham(\vec{x}, t) $. Consideriamo la trasformazione delle coordinate $ \vec{y} = \hat{\vec{y}}(\vec{x}, t) $ e $ \hat{\vec{x}}(\vec{y}, t) $ la trasformazione inversa. Le equazioni di Hamilton diventano
+\[
+    \dot{\vec{y}} = \vec{w}(\vec{y}, t) = \left[ J \, \Gamma \, \nabla_\vec{x} \ham + \dpd{\hat{\vec{y}}}{t}\right] (\hat{\vec{x}}(\vec{y}, t), t).
+\]
+In generale non è detto che per ogni hamiltoniana $ \ham $ la trasformazione delle coordinate lasci le equazioni di Hamilton invarianti in forma. In altre parole non è garantito che sotto la trasformazione $ \vec{x} \to \vec{y} $ per ogni hamiltoniana $ \ham(\vec{x}, t) $ esista un'altra hamiltoniana $ \mathcal{K}(\vec{y}, t) $ tale che
+\[
+    \vec{w}(\vec{y}, t) = \left[ J \, \Gamma \, \nabla_\vec{x} \ham + \dpd{\hat{\vec{y}}}{t}\right] (\hat{\vec{x}}(\vec{y}, t), t) = \Gamma \, \nabla_\vec{y} \mathcal{K}(\vec{y}, t)
+\]
+È ora nostro interesse riuscire a caratterizzare tali trasformazioni.
+
+\begin{example} \label{es:ham-quadratica-canoniche}
+    Restringiamoci per ora al caso dei sistemi hamiltoniani lineari autonomi. Sia quindi $ \ham(\vec{x}, t) = \frac{1}{2} \vec{x}^T \cdot S \vec{x} $ con $ S \in \gl(2n, \R) $ simmetrica. Vogliamo caratterizzare l'insieme delle trasformazioni lineari dello spazio delle fasi $ \hat{\vec{y}}(\vec{x}, t) \coloneqq A \vec{x} $ con $ A \in \GL(2n, \R) $ che lasciano le equazioni di Hamilton invarianti in forma. Le equazioni di Hamilton sono $ \dot{\vec{x}} = \Gamma S \vec{x} $ che sotto la trasformazione diventano
+    \[
+        \dot{\vec{y}} = A \Gamma S A^{-1} \vec{y}.
+    \]
+    Affinché la trasformazione sia canonica deve esistere una matrice $ C \in \gl(2n, \R) $ simmetrica tale che
+    \[
+        A \Gamma S A^{-1} = \Gamma C \quad \iff \quad - A^T \Gamma A \Gamma S = A^T C A
+    \]
+    Ora essendo $ C $ simmetrica, anche $ A^T C A $ è simmetrica, per cui detta $ \Lambda \coloneqq A^T \Gamma A $ che è antisimmetrica si ottiene che $ \Lambda \Gamma S $ è una matrice simmetrica ovvero usando che $ S^T = S $
+    \[
+        \Lambda \Gamma S = - S^T \Gamma \Lambda^T = S \Gamma \Lambda
+    \]
+    Dunque $ \hat{\vec{y}} $ è una trasformazione che lascia le equazioni di Hamilton invarianti in forma per le hamiltoniane lineari indipendenti dal tempo se e solo se per ogni $ S $ simmetrica vale $ \Lambda \Gamma S = S \Gamma \Lambda $. Mostriamo che tale condizione è equivalente a chiedere che $ \exists \mu \neq 0  : \Lambda = \mu \Gamma $, ovvero $ A $ è $ \mu $-simplettica: $ A^T \Gamma A = \mu \Gamma $. \\
+    Scriviamo le matrici come matrici a blocchi
+    \[
+        \Lambda =
+        \begin{pmatrix}
+            a & b \\
+            -b^T & d
+        \end{pmatrix}
+        \qquad
+        S =
+        \begin{pmatrix}
+            e & f \\
+            f^T & g
+        \end{pmatrix}
+        \qquad
+        \Gamma =
+        \begin{pmatrix}
+        0 & \Id \\
+        -\Id & 0
+        \end{pmatrix}
+    \]
+    con $ a, b, c, d, e, f, g \in \gl(n, \R) $ tali che $ a^T = -a $, $ d^T = -d $, $ e^T = e $ e $ g^T = g $ dobbiamo imporre
+    \[
+        \Lambda \Gamma S =
+        \begin{pmatrix}
+            a f^T - b e & a g - b f \\
+            - b^T f^T - d e & - b^T g - d f
+        \end{pmatrix}
+        =
+        S \Gamma \Lambda
+        =
+        \begin{pmatrix}
+            -e b^T - f a & e d - f b \\
+            -f^T b^T - g a & f^T d - g b
+        \end{pmatrix}
+    \]
+    ovvero
+    \begin{equation}
+        \begin{cases}
+            a f^T - b e = -e b^T - f a \\
+            a g - b f = e d - f b \\
+            - b^T f^T - d e = -f^T b^T - g a \\
+            - b^T g - d f  = f^T d - g b
+        \end{cases}
+    \end{equation}
+    Dal momento che tale equazione deve essere soddisfatta per ogni matrice $ S $ simmetrica possiamo porre $ e = f = 0 $ da cui ricaviamo $ a g = g a = 0 $. Scegliendo $ g = \Id $ otteniamo $ a = 0 $. Scegliendo ora $ e = 0 $ troviamo che per ogni $ f \in \gl(n, \R) $ deve essere $ f b = b f $. Ma una matrice commuta con ogni matrice se e solo se è multiplo dell'identità, quindi $ \exists \mu \neq 0 : b = \mu \Id $. Ricaviamo quindi che $ e d =  d e = 0 $ da cui scegliendo analogamente a prima $ e = \Id $ otteniamo $ d = 0 $. In conclusione
+    \[
+        \Lambda =
+        \begin{pmatrix}
+        0 & \mu \Id \\
+        - \mu \Id & 0
+        \end{pmatrix}
+        = \mu \Gamma.
+    \]
+    Abbiamo quindi trovato che restringendosi ai sistemi lineari autonomi, le trasformazioni lineari delle coordinate che lasciano le equazioni di Hamilton invarianti in forma sono tutte e sole quelle che hanno matrice $ \mu $-simplettica.
+\end{example}
+
+Precisiamo che nell'esempio \ref{es:ham-quadratica-canoniche} \emph{non} abbiamo risposto alla domanda iniziale in quanto le trasformazioni a cui siamo interessati devono lasciare le equazioni di Hamilton invarianti in forma per \emph{tutte} le hamiltoniane, mentre ora ci siamo ristetti alle forme quadratiche indipendenti dal tempo. Tuttavia vedremo che la condizione trovata si trasferisce al caso generale a livello infinitesimo.
+
+\begin{definition}[trasformazione canonica]
+    Una trasformazione $ \hat{\vec{y}} \colon \mathcal{O} \to \R^{2n} $ si dice canonica se il suo jacobiano $ J(\vec{x}, t) \coloneqq J_\vec{x} \hat{\vec{y}}(\vec{x}, t) $ rispetto alla variabile $ \vec{x} $ è una matrice simplettica $ \forall (\vec{x}, t) \in \mathcal{O} $. Nel caso in cui $ \hat{\vec{y}}(\vec{x}, t) $ non dipenda esplicitamente dal tempo si parla di trasformazioni completamente canoniche.
+\end{definition}
+
+\begin{lemma}
+    Se $ J(\vec{x}, t) $ è una matrice simplettica $ \forall (\vec{x}, t) \in \mathcal{O} $ allora $ A \coloneqq \dpd{J}{t} \circ J^{-1} $ è una matrice hamiltoniana $ (\vec{x}, t) $.
+\end{lemma}
+\begin{proof}
+    Essendo $ J $ simplettica si ha
+    \[
+        \pd{J^T}{t} \Gamma J + J^T \Gamma \pd{J}{t} = \pd{}{t} \left(J^T \Gamma J\right) = \pd{}{t} \Gamma = 0
+    \]
+    da cui otteniamo che
+    \[
+        J^T \Gamma \pd{J}{t} = - \pd{J^T}{t} \Gamma J \quad \Rightarrow \quad - (J^T)^{-1} \pd{J^T} \Gamma = \Gamma \pd{J}{t} J^{-1}.
+    \]
+    Ci basta mostrare che la matrice $ \Gamma A $ è simmetrica
+    \[
+        \left(\Gamma \dpd{J}{t} J^{-1} \right)^T = - (J^{-1})^T \pd{J^T}{t} \Gamma = - (J^T)^{-1} \pd{J^T}{t} \Gamma = \Gamma \dpd{J}{t} J^{-1}. \qedhere
+    \]
+\end{proof}
+
+\begin{thm}
+    Le trasformazioni canoniche lasciano le equazioni di Hamilton invarianti in forma.
+\end{thm}
+\begin{proof}
+    Come abbiamo visto il nuovo campo hamiltoniano dopo il cambio di coordinate è
+    \[
+        \vec{w}(\vec{y}, t) \coloneqq J(\hat{\vec{x}}(\vec{y}, t), t) \ \Gamma \, \nabla_\vec{x} \ham(\hat{\vec{x}}(\vec{y}, t), t) + \dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t).
+    \]
+    Definiamo $ \hat{\ham}(\vec{y}, t) \coloneqq \ham(\hat{\vec{x}}(\vec{y}, t), t) $ che è l'hamiltoniano scritta nelle nuove coordinate. Essendo la trasformazione un diffeomorfismo si ha anche $ \ham(\vec{x}, t) = \hat{\ham}(\hat{\vec{y}}(\vec{x}, t), t) $ così per la \emph{chain rule}
+    \[
+        \nabla_\vec{x} \ham(\vec{x}, t) = \nabla_\vec{x} \hat{\ham}(\hat{\vec{y}}(\vec{x}, t), t) = J^T (\hat{\vec{y}}(\vec{x}, t), t) \nabla_\vec{y} \ \hat{\ham}(\hat{\vec{y}}(\vec{x}, t), t)
+    \]
+\end{proof}
