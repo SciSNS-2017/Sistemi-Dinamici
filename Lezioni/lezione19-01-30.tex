@@ -76,7 +76,7 @@ In seguito sarà utile il seguente risultato generale dell'analisi vettoriale.
     Allora esiste una funzione $ f \colon A \to \R $ di classe $ \mathcal{C}^2 $ tale che $ F = - \grad{f} $.
 \end{lemma}
 
-\begin{thm}
+\begin{thm} \label{thm:campo-hamiltoniano}
     $ X \colon \mathcal{O} \to \R^{2n} $ è un campo vettoriale hamiltoniano se e solo
     \begin{equation}
         J_x X (x, t) \coloneqq \left(\dpd{X_i}{x_j}(x, t)\right)_{ij}
@@ -267,7 +267,7 @@ Precisiamo che nell'esempio \ref{es:ham-quadratica-canoniche} \emph{non} abbiamo
     Una trasformazione $ \hat{\vec{y}} \colon \mathcal{O} \to \R^{2n} $ si dice canonica se il suo jacobiano $ J(\vec{x}, t) \coloneqq J_\vec{x} \hat{\vec{y}}(\vec{x}, t) $ rispetto alla variabile $ \vec{x} $ è una matrice simplettica $ \forall (\vec{x}, t) \in \mathcal{O} $. Nel caso in cui $ \hat{\vec{y}}(\vec{x}, t) $ non dipenda esplicitamente dal tempo si parla di trasformazioni completamente canoniche.
 \end{definition}
 
-\begin{lemma}
+\begin{lemma} \label{lem:jacob-simplettica}
     Se $ J(\vec{x}, t) $ è una matrice simplettica $ \forall (\vec{x}, t) \in \mathcal{O} $ allora $ A \coloneqq \dpd{J}{t} \circ J^{-1} $ è una matrice hamiltoniana $ (\vec{x}, t) $.
 \end{lemma}
 \begin{proof}
@@ -291,10 +291,80 @@ Precisiamo che nell'esempio \ref{es:ham-quadratica-canoniche} \emph{non} abbiamo
 \begin{proof}
     Come abbiamo visto il nuovo campo hamiltoniano dopo il cambio di coordinate è
     \[
-        \vec{w}(\vec{y}, t) \coloneqq J(\hat{\vec{x}}(\vec{y}, t), t) \ \Gamma \, \nabla_\vec{x} \ham(\hat{\vec{x}}(\vec{y}, t), t) + \dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t).
+        \vec{w}(\vec{y}, t) \coloneqq J(\hat{\vec{x}}(\vec{y}, t), t) \ \Gamma \, (\nabla_\vec{x} \ham)(\hat{\vec{x}}(\vec{y}, t), t) + \dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t).
     \]
     Definiamo $ \hat{\ham}(\vec{y}, t) \coloneqq \ham(\hat{\vec{x}}(\vec{y}, t), t) $ che è l'hamiltoniano scritta nelle nuove coordinate. Essendo la trasformazione un diffeomorfismo si ha anche $ \ham(\vec{x}, t) = \hat{\ham}(\hat{\vec{y}}(\vec{x}, t), t) $ così per la \emph{chain rule}
     \[
-        \nabla_\vec{x} \ham(\vec{x}, t) = \nabla_\vec{x} \hat{\ham}(\hat{\vec{y}}(\vec{x}, t), t) = J^T (\hat{\vec{y}}(\vec{x}, t), t) \nabla_\vec{y} \ \hat{\ham}(\hat{\vec{y}}(\vec{x}, t), t)
+        \nabla_\vec{x} \hat{\ham}(\vec{x}, t) = \nabla_\vec{x} \hat{\ham}(\hat{\vec{y}}(\vec{x}, t), t) = J^{T}(\vec{x}, t )\ (\nabla_\vec{y} \hat{\ham})(\hat{\vec{y}}(\vec{x}, t), t)
     \]
+    da cui
+    \[
+        (\nabla_\vec{x} \ham)(\hat{\vec{x}}(\vec{y}, t), t) = J^{T}(\hat{\vec{x}}(\vec{y}, t), t) \ (\nabla_\vec{y} \hat{\ham})(\vec{y}, t).
+    \]
+    Pertanto il campo hamiltoniano si scrive in termini di $ \hat{\ham} $ come
+    \begin{align*}
+        \vec{w}(\vec{y}, t) & = J(\hat{\vec{x}}(\vec{y}, t), t) \ \Gamma \, J^{T}(\hat{\vec{x}}(\vec{y}, t), t) \ (\nabla_\vec{y} \hat{\ham})(\vec{y}, t) + \dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t) \\
+        & = \Gamma \nabla_\vec{y} \hat{\ham}(\vec{y}, t) +  \dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t)
+    \end{align*}
+    dove abbiamo usato la simpletticità di $ J^T $ che discende dalla simpletticità di $ J $. \\
+    Per concludere ci basta mostrare che $ \dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t) $ è un campo hamiltoniano. Grazie al Teorema \ref{thm:campo-hamiltoniano} è sufficiente provare che matrice $ A(\vec{y}, t) \coloneqq J_\vec{y} \left(\dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t)\right) $ è una matrice hamiltoniana per ogni $ (\vec{x}, t) $. Infatti
+    \[
+        A_{ij} = \pd{}{y_j} \left(\dpd{\hat{y}_i}{t}(\hat{\vec{x}}(\vec{y}, t), t)\right) = \sum_{k=1}^{2n} \md{\hat{y}_i}{2}{t}{}{x_k}{} (\hat{\vec{x}}(\vec{y}, t), t) \ \pd{\hat{x}_k}{y_j} (\vec{y}, t) = \left(\pd{J}{t} \ J^{-1}\right)_{ij}
+    \]
+    che è una matrice hamiltoniana grazie al Lemma \ref{lem:jacob-simplettica}. Dunque esiste una hamiltoniana $ \mathcal{K}_0 $ tale che $ \dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t) = \Gamma \nabla_\vec{y} \mathcal{K}_0(\vec{y}, t) $. Così
+    \[
+        \vec{w}(\vec{y}, t) = \Gamma \hat{\ham}(\vec{y}, t) + \Gamma \nabla_\vec{y} \mathcal{K}_0(\vec{y}, t).
+    \]
+    Definendo quindi la nuova hamiltoniana $ \mathcal{K}(\vec{y}, t) \coloneqq \hat{\ham}(\vec{y}, t) + \mathcal{K}_0(\vec{y}, t) $ abbiamo che le equazioni di Hamilton trasformate sono
+    \[
+        \dot{\vec{y}} = \vec{w}(\vec{y}, t) = \Gamma \nabla_\vec{y} \mathcal{K}(\vec{y}, t)
+    \]
+    ovvero sono invarianti in forma sotto la trasformazione $ \vec{x} \to \vec{y} $.
 \end{proof}
+
+\begin{example}[trasformazioni di scala]
+    Consideriamo la trasformazione per $ i = 1, \ldots, n $
+    \[
+        \begin{cases}
+            Q_i = \mu_i q_i \\
+            P_i = \nu_i p_i
+        \end{cases}
+    \]
+    Nella notazione usata in precedenza, $ \vec{x} = (\vec{q}, \vec{p}) $ e $ \vec{y} = (\vec{Q}, \vec{P}) $. \\
+    Mostriamo che tale trasformazione è $ \rho $-simplettica se e solo se $ \forall i = 1, \ldots, n, \ \mu_i \nu_i = \rho $ e che in tale caso la nuova hamiltoniana è
+    \[
+        \mathcal{K}(\vec{Q}, \vec{P}, t) = \rho \mathcal{H}\left(
+        \begin{pmatrix}
+            \mu_1^{-1} & & \\
+            & \ddots & \\
+            & & \mu_n^{-1}
+        \end{pmatrix}
+        \vec{Q},
+        \begin{pmatrix}
+            \nu_1^{-1} & & \\
+            & \ddots & \\
+            & & \nu_n^{-1}
+        \end{pmatrix}
+        \vec{P},
+        t
+        \right)
+    \]
+    \textcolor{red}{Mancante}
+\end{example}
+
+\begin{example}[scambio di coordinate]
+    Consideriamo la trasformazione per $ i = 1, \ldots, n $
+    \[
+        \begin{cases}
+            Q_i = p_i \\
+            P_i = -q_i
+        \end{cases}
+    \]
+    Mostriamo che è canonica e quindi conserva la struttura delle equazioni di Hamilton. Tale risultato evidenzia il fato che nel formalismo hamiltoniano le $ q $ e le $ p $ sono allo stesso livello e interscambiabili. \\
+    \textcolor{red}{Mancante}
+\end{example}
+
+\begin{example}[trasformazioni puntuali]
+    Consideriamo una trasformazione generica delle posizioni $ \vec{Q} = \hat{\vec{Q}}(\vec{q}) $. Nel formalismo lagrangiano, tale trasformazione induce una trasformazione dei momenti coniugati data da $ \vec{P} = ((J^T)^{-1}(\vec{q}))\vec{p} $ dove $ J(\vec{q}) \coloneqq J \hat{\vec{Q}} $.Come è noto nella teoria lagrangiana, le equazioni di Eulero-Lagrange sono invarianti in forma sotto una trasformazioni delle posizioni. Mostriamo che tale trasformazione è simplettica e che quindi lascia invariata anche la struttura delle equazioni di Hamilton. \\
+    \textcolor{red}{Mancante}
+\end{example}
