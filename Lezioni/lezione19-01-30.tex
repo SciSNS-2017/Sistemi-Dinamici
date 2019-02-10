@@ -1,0 +1,370 @@
+\section{Lezione del 30/01/2019 [Marmi]}
+
+\subsection{Spazi vettoriali simplettici}
+
+\begin{definition}[prodotto simplettico]
+    Sia $ V $ uno spazio vettoriale su $ \R $ con $ \dim_\R V = 2n $. Una funzione $ \omega \colon V \times V \to \R $ si dice prodotto simplettico se è
+    \begin{enumerate}[label=(\roman*)]
+        \item \emph{antisimmetrico}: $ \forall x, y \in V, \ \omega(x, y) = - \omega(y, x) $;
+        \item \emph{bilineare}: $ \forall x_1, x_2, y \in V, \forall \alpha_1, \alpha_2 \in \R, \ \omega(\alpha_1 x_1 + \alpha_2 x_2, y) = \alpha_1 \omega(x_1, y) + \alpha_2 \omega(x_2, y) $;
+        \item \emph{non degenere}: $ \forall y \in V, \ \omega(x, y) = 0 \Rightarrow x = 0 $.
+    \end{enumerate}
+    Uno spazio vettoriale dotato di prodotto simplettico $ (V, \omega) $ è detto spazio vettoriale simplettico.
+\end{definition}
+
+Sia $ V $ uno spazio vettoriale simplettico e $ \{e_1, \ldots, e_{2n}\} $ una base. Possiamo definire la matrice $ W \in \gl(2n, \R) $ data da $ W_{ij} = \omega(e_i, e_j) $. Tale matrici risulta antisimmetrica $ W^{T} = -W $ e invertibile $ \det{W} \neq 0 $. Dati $ x = \sum_{i=1}^{2n} x_i e_i $ e $ y = \sum_{j=1}^{2n} y_j e_j $ per bilinearità il prodotto simplettico si scrive come
+\begin{equation} \label{eqn:prod-simplettoc-W}
+    \omega(x, y) = \sum_{i, j=1}^{2n} x_i y_j \omega(e_i, e_j) = \sum_{i, j=1}^{2n} x_i y_j W_{ij} = x^T \cdot W y
+\end{equation}
+Viceversa data una matrice $ W \in \gl(2n, \R) $ invertibile e antisimmetrica, questa induce su $ V $ un prodotto simplettico $ \omega_W $ dato dalla formula \eqref{eqn:prod-simplettoc-W}. \\
+
+Se $ W = \Gamma $ allora si parla di \emph{prodotto simplettico standard}. Se $ V = \R^{2n} $, scrivendo $ x = (q, p) $ e $ y = (q', p') $ e la base canonica come $ \{e_{q_1}, \ldots, e_{q_n}, e_{p_1}, \ldots, e_{p_n}\} $ si ha
+\begin{equation}
+    \omega_\Gamma(x, y) = x^T \cdot \Gamma y = \sum_{i=1}^{n} \left(q_i p'_i - p_i q'_i\right) =
+    \sum_{i=1}^{n}
+    \det{
+    \begin{pmatrix}
+    q_i & p_i \\
+    q'_i & p'_i
+    \end{pmatrix}
+    }
+\end{equation}
+Tale relazione ha la seguente interpretazione geometrica: il prodotto scalare simplettico standard su $ \R^{2n} $ è la somma delle aree orientate delle proiezioni del parallelogramma di lati $ x $ e $ y $ sugli $ n $ piani $ \pi_i = Span\{e_{q_i}, e_{p_i}\} $.
+
+Osserviamo infine che per il prodotto simplettico standard valgono delle relazioni simili a quelle delle parentesi di Poisson fondamentali
+\begin{equation}
+    \omega_\Gamma(e_{q_i}, e_{q_j}) = \omega_\Gamma(e_{p_i}, e_{p_j}) = 0 \qquad \omega_\Gamma(e_{q_i}, e_{p_j}) = \delta_{ij}
+\end{equation}
+
+\begin{definition}[base simplettica]
+    Sia $ (V, \omega) $ uno spazio vettoriale simplettico. Una base $ \{e_1, \ldots, e_{2n}\} $ di $ V $ si dice simplettica se $ W = \Gamma $.
+\end{definition}
+
+\begin{thm}
+    Ogni spazio vettoriale simplettico $ (V, \omega) $ ammette una base simplettica.
+\end{thm}
+\begin{proof}
+    \textcolor{red}{Esercizio, 2 modi.}
+\end{proof}
+
+\begin{definition}[funzione simplettica]
+    Siano $ (V_1, \omega_1) $ e $ (V_2, \omega_2) $ due spazi vettoriali simplettici. Una funzione lineare $ S \colon V_1 \to V_2 $ si dice simplettica se conserva il prodotto simplettico
+    \[
+        \omega_2(S(v), S(u)) = \omega_1(u, v) \quad \forall u, v \in V_1.
+    \]
+\end{definition}
+
+\begin{proposition}
+    Su $ (\R^{2n}, \omega_\Gamma) $, un endomorfismo lineare $ S \colon \R^{2n} \to \R^{2n} $ è simplettico se e solo se la sua matrice rappresentativa $ S $ è una matrice simplettica $ S^T \Gamma S = \Gamma $.
+\end{proposition}
+
+\subsection{Campi vettoriali hamiltoniani}
+
+\begin{definition}[campo vettoriale hamiltoniano]
+    Un campo vettoriale $ X \colon \mathcal{O} \to \R^{2n} $ di classe $ \mathcal{C}^\infty $ si dice hamiltoniano se esiste una funzione hamiltoniana $ \ham \colon \mathcal{O} \to \R $ tale che $ \forall (x, t) \in \mathcal{O}, \ X(x, t) = \Gamma \nabla_x \ham(x, t) $.
+\end{definition}
+
+Chiaramente l'hamiltoniana associata a $ X $ non è unica in quanto ad essa può essere aggiunta una funzione $ \chi $ con $ \nabla_x \chi = 0 $. Essendo $ \mathcal{O} $ connesso, tale relazione equivale a chiedere che $ \chi $ sia indipendente dal tempo $ \chi(x, t) = \chi(t) $. L'hamiltoniana diventa quindi unica se chiediamo che al campo vettoriale nullo sia associata l'hamiltoniana nulla. \\
+
+In seguito sarà utile il seguente risultato generale dell'analisi vettoriale.
+
+\begin{lemma}[Poincaré] \label{lem:poincare}
+    Sia $ A \subseteq \R^m $ un aperto semplicemente connesso e $ F \colon A \to \R^m $ una funzione di classe $ \mathcal{C}^1 $ tale che $ \forall i, j = 1, \ldots, m $
+    \[
+        \pd{F_i}{x_j} = \pd{F_j}{x_i}.
+    \]
+    Allora esiste una funzione $ f \colon A \to \R $ di classe $ \mathcal{C}^2 $ tale che $ F = - \grad{f} $.
+\end{lemma}
+
+\begin{thm} \label{thm:campo-hamiltoniano}
+    $ X \colon \mathcal{O} \to \R^{2n} $ è un campo vettoriale hamiltoniano se e solo
+    \begin{equation}
+        J_x X (x, t) \coloneqq \left(\dpd{X_i}{x_j}(x, t)\right)_{ij}
+    \end{equation}
+    è una matrice hamiltoniana $ \forall (x, t) \in \mathcal{O} $.
+\end{thm}
+\begin{proof}
+    Supponiamo che esista una hamiltoniana $ \ham $ tale che $ X = \Gamma \nabla_x \ham $. Allora
+    \[
+        \pd{X_i}{x_j} = \sum_{k=1}^{2n} \Gamma_{ik} \md{\ham}{2}{x_k}{}{x_j}{} = \Gamma \, \mathrm{Hess}(\ham).
+    \]
+    Essendo $ \ham $ regolare, la sua matrice hessiana è simmetrica e pertanto $ J_x X $ è hamiltoniana. \\
+    Viceversa, detta $ Y(x, t) \coloneqq \Gamma X(x, t) $, essendo $ J_x X $ hamiltoniana si ha $ \forall i, j = 1, \ldots, 2n $
+    \[
+        \pd{Y_i}{x_j} = (\Gamma J_x X)_{ij} = (\Gamma J_x X)_{ji} = \pd{Y_j}{x_i}.
+    \]
+    Essendo $ \mathcal{O} $ semplicemente connesso, per il Lemma \ref{lem:poincare},  esiste $ \ham \colon \mathcal{O} \to \R $ tale che $ Y(x, t) = \nabla_x \ham(x, t) $ da cui $ X(x, t) = -\Gamma Y(x, t) = \Gamma \nabla_x \ham(x, t) $.
+\end{proof}
+
+\begin{exercise}
+    Si consideri il campo vettoriale definito dal sistema di equazioni differenziali
+    \[
+        \begin{cases}
+            \dot{q} = q^{\beta} p^\alpha \\
+            \dot{p} = - q^{\gamma} p^{\alpha+1}
+        \end{cases}
+    \]
+    Dire per quali valori di $ \alpha, \beta, \gamma \in \R $ il campo è hamiltoniano e trovare una hamiltoniana.
+\end{exercise}
+\begin{solution}
+    Sia $ X(q, p, t) = (p^\alpha q^\beta, -p^{\alpha+1}q^{\beta}) $ il campo in questione. Si ha
+    \[
+        J_x X (q, p, t) =
+        \begin{pmatrix}
+            \beta q^{\beta-1} p^{\alpha} & \alpha q^{\beta} p^{\alpha-1} \\
+            - \gamma q^{\gamma-1} p^{\alpha+1} & - (\alpha+1) q^{\gamma} p^{\alpha}
+        \end{pmatrix}
+    \]
+    Ora $ J_x X \in \sp(1, \R) \iff \tr{J_x X} = 0 $ pertanto deve essere
+    \[
+        \beta q^{\beta-1} p^{\alpha} - (\alpha+1) q^{\gamma} p^{\alpha} = 0 \quad \Rightarrow \quad \left(\beta q^{\beta-1} - (\alpha+1) q^{\gamma}\right) p^{\alpha} = 0
+    \]
+    da cui ricaviamo se $ \alpha = -1 $ allora $ \beta = 0 $ e $ \gamma $ è qualsiasi; se invece $ \alpha \neq -1 $ allora $ \beta = \alpha+1 $ e $ \gamma = \beta - 1 = \alpha $. Nel primo caso le equazioni di Hamilton diventano
+    \[
+        \begin{cases}
+            \dot{q} = 1/p \\
+            \dot{p} = -q^{\gamma}
+        \end{cases}
+    \]
+    e una possibile hamiltoniana è $ \ham (q, p, t) = q^{\gamma+1}/(\gamma+1) + \log{p} $. Nel secondo caso si ha
+    \[
+        \begin{cases}
+            \dot{q} = q^{\alpha+1} p^\alpha  \\
+            \dot{p} = - q^{\alpha} p^{\alpha+1}
+        \end{cases}
+    \]
+    e una possibile hamiltoniana è $ \ham(q, p, t) = \dfrac{q^{\alpha+1}p^{\alpha+1}}{\alpha+1} $
+\end{solution}
+
+\subsection{Cambio di coordinate in una ODE}
+Per semplicità di notazione lavoriamo su $ \R^m \times \R $ invece che su un aperto $ \mathcal{O} $ in esso contenuto. Consideriamo una generica equazione differenziale alle derivate ordinarie
+\begin{equation} \label{eqn:ode}
+    \begin{cases}
+    \dot{\vec{x}} = \vec{v}(\vec{x}, t) \\
+    \vec{x}(0) = \vec{x}_0
+    \end{cases}
+\end{equation}
+dove $ \vec{v} \colon \R^{m} \times \R \to \R^m $ è un capo vettoriale di classe $ \mathcal{C}^{\infty} $. Vogliamo studiare in che modo trasforma l'equazione \eqref{eqn:ode} sotto cambio di coordinate. Ricordiamo che dire che $ \vec{x}(t) $ è soluzione dell'equazione \eqref{eqn:ode} vuol dire che $ \vec{x}(0) = \vec{x}_0 $ e per ogni $ t \in (a, b) \subseteq \R $ si ha $ \od{}{t} \vec{x}(t) = \vec{v}(\vec{x}(t), t) $. \\
+
+Vogliamo trovare una $ \vec{w} \colon \R^m \times \R \to \R $ che ci permetta di scrivere scrivere il sistema \eqref{eqn:ode} come
+\begin{equation} \label{eqn:ode-trasf}
+    \begin{cases}
+    \dot{\vec{y}} = \vec{w}(\vec{y}, t) \\
+    \vec{y}(0) = \vec{y}_0
+    \end{cases}
+\end{equation}
+dove $ \vec{y} $ è l'esito di un cambio di coordinate. Dire che $ \vec{y}(t) $ è soluzione dell'equazione \eqref{eqn:ode-trasf} vuol dire che $ \vec{y}(0) = \vec{y}_0 $ e per ogni $ t \in (a, b) \subseteq \R $ si ha $ \od{}{t} \vec{y}(t) = \vec{w}(\vec{y}(t), t) $. Sia quindi
+\begin{align*}
+    \vec{f} \colon \R^m \times \R & \to \R^m \times \R \\
+    (\vec{x}, t) & \mapsto (\hat{\vec{y}}(\vec{x}, t), t) \eqqcolon (\vec{y}, t)
+\end{align*}
+un diffeomorfismo $ \mathcal{C}^\infty $  di $ \R^m \times \R $ che agisce sul tempo come l'identità e sulla variabile $ \vec{x} $ con una funzione $ \hat{\vec{y}} \colon \R^m \times \R \to \R^m $. Essendo un diffeomorfismo sia
+\begin{align*}
+    \vec{g} \colon \R^m \times \R & \to \R^m \times \R \\
+    (\vec{y}, t) & \mapsto (\hat{\vec{x}}(\vec{y}, t), t) \eqqcolon (\vec{x}, t)
+\end{align*}
+la trasformazione inversa dove $ \hat{\vec{x}} \colon \R^m \times \R \to \R^m $. Si ha
+\begin{align*}
+    \dod{}{t} \vec{y}(t) & = \dod{}{t} \left( \hat{\vec{y}}(\vec{x}(t), t)\right) = (J_\vec{x} \hat{\vec{y}})(\vec{x}(t), t) \ \dod{}{t} \vec{x}(t)  + (J_t \hat{\vec{y}})(\vec{x}(t), t) \\
+    & = (J_\vec{x} \hat{\vec{y}})(\vec{x}(t), t) \ \vec{v}(\vec{x}(t), t)  + (J_t \hat{\vec{y}})(\vec{x}(t), t) \\
+    & = \left[J_\vec{x} \hat{\vec{y}} \vec{v} + J_t J_t \hat{\vec{y}}\right] (\vec{x}(t), t) \\
+    & = \left[J_\vec{x} \hat{\vec{y}} \vec{v} + J_t J_t \hat{\vec{y}}\right] (\hat{\vec{x}}(\vec{y}(t), t), t)
+\end{align*}
+Indicando con $ J = J_\vec{x} \hat{\vec{y}} = \left(\dpd{\hat{y}_i}{x_j}\right) $ lo jacobiano rispetto alla variabile $ \vec{x} $ del cambio di coordinate e con lieve abuso di notazione $ \dpd{\hat{\vec{y}}}{t} = J_t \hat{\vec{y}} $ abbiamo che il campo trasformato è
+\begin{equation}
+    \vec{w}(\vec{y}, t) \coloneqq \left[ J \vec{v} + \dpd{\hat{\vec{y}}}{t}\right] (\hat{\vec{x}}(\vec{y}, t), t).
+\end{equation}
+Mentre chiaramente $ \vec{y}_0 = \hat{\vec{y}}(\vec{x}_0, 0) $.
+
+\subsection{Trasformazioni canoniche}
+Vogliamo applicare quanto detto nella sezione precedente alle equazioni di Hamilton
+\[
+    \dot{\vec{x}} = \Gamma \, \nabla_\vec{x} \ham(\vec{x}, t).
+\]
+In tale caso il campo vettoriale è $ \vec{v}(\vec{x}, t) \coloneqq \Gamma \, \nabla_\vec{x} \ham(\vec{x}, t) $. Consideriamo la trasformazione delle coordinate $ \vec{y} = \hat{\vec{y}}(\vec{x}, t) $ e $ \hat{\vec{x}}(\vec{y}, t) $ la trasformazione inversa. Le equazioni di Hamilton diventano
+\[
+    \dot{\vec{y}} = \vec{w}(\vec{y}, t) = \left[ J \, \Gamma \, \nabla_\vec{x} \ham + \dpd{\hat{\vec{y}}}{t}\right] (\hat{\vec{x}}(\vec{y}, t), t).
+\]
+In generale non è detto che per ogni hamiltoniana $ \ham $ la trasformazione delle coordinate lasci le equazioni di Hamilton invarianti in forma. In altre parole non è garantito che sotto la trasformazione $ \vec{x} \to \vec{y} $ per ogni hamiltoniana $ \ham(\vec{x}, t) $ esista un'altra hamiltoniana $ \mathcal{K}(\vec{y}, t) $ tale che
+\[
+    \vec{w}(\vec{y}, t) = \left[ J \, \Gamma \, \nabla_\vec{x} \ham + \dpd{\hat{\vec{y}}}{t}\right] (\hat{\vec{x}}(\vec{y}, t), t) = \Gamma \, \nabla_\vec{y} \mathcal{K}(\vec{y}, t)
+\]
+È ora nostro interesse riuscire a caratterizzare tali trasformazioni.
+
+\begin{example} \label{es:ham-quadratica-canoniche}
+    Restringiamoci per ora al caso dei sistemi hamiltoniani lineari autonomi. Sia quindi $ \ham(\vec{x}, t) = \frac{1}{2} \vec{x}^T \cdot S \vec{x} $ con $ S \in \gl(2n, \R) $ simmetrica. Vogliamo caratterizzare l'insieme delle trasformazioni lineari dello spazio delle fasi $ \hat{\vec{y}}(\vec{x}, t) \coloneqq A \vec{x} $ con $ A \in \GL(2n, \R) $ che lasciano le equazioni di Hamilton invarianti in forma. Le equazioni di Hamilton sono $ \dot{\vec{x}} = \Gamma S \vec{x} $ che sotto la trasformazione diventano
+    \[
+        \dot{\vec{y}} = A \Gamma S A^{-1} \vec{y}.
+    \]
+    Affinché la trasformazione sia canonica deve esistere una matrice $ C \in \gl(2n, \R) $ simmetrica tale che
+    \[
+        A \Gamma S A^{-1} = \Gamma C \quad \iff \quad - A^T \Gamma A \Gamma S = A^T C A
+    \]
+    Ora essendo $ C $ simmetrica, anche $ A^T C A $ è simmetrica, per cui detta $ \Lambda \coloneqq A^T \Gamma A $ che è antisimmetrica si ottiene che $ \Lambda \Gamma S $ è una matrice simmetrica ovvero usando che $ S^T = S $
+    \[
+        \Lambda \Gamma S = - S^T \Gamma \Lambda^T = S \Gamma \Lambda
+    \]
+    Dunque $ \hat{\vec{y}} $ è una trasformazione che lascia le equazioni di Hamilton invarianti in forma per le hamiltoniane lineari indipendenti dal tempo se e solo se per ogni $ S $ simmetrica vale $ \Lambda \Gamma S = S \Gamma \Lambda $. Mostriamo che tale condizione è equivalente a chiedere che $ \exists \mu \neq 0  : \Lambda = \mu \Gamma $, ovvero $ A $ è $ \mu $-simplettica: $ A^T \Gamma A = \mu \Gamma $. \\
+    Scriviamo le matrici come matrici a blocchi
+    \[
+        \Lambda =
+        \begin{pmatrix}
+            a & b \\
+            -b^T & d
+        \end{pmatrix}
+        \qquad
+        S =
+        \begin{pmatrix}
+            e & f \\
+            f^T & g
+        \end{pmatrix}
+        \qquad
+        \Gamma =
+        \begin{pmatrix}
+        0 & \Id \\
+        -\Id & 0
+        \end{pmatrix}
+    \]
+    con $ a, b, c, d, e, f, g \in \gl(n, \R) $ tali che $ a^T = -a $, $ d^T = -d $, $ e^T = e $ e $ g^T = g $ dobbiamo imporre
+    \[
+        \Lambda \Gamma S =
+        \begin{pmatrix}
+            a f^T - b e & a g - b f \\
+            - b^T f^T - d e & - b^T g - d f
+        \end{pmatrix}
+        =
+        S \Gamma \Lambda
+        =
+        \begin{pmatrix}
+            -e b^T - f a & e d - f b \\
+            -f^T b^T - g a & f^T d - g b
+        \end{pmatrix}
+    \]
+    ovvero
+    \begin{equation}
+        \begin{cases}
+            a f^T - b e = -e b^T - f a \\
+            a g - b f = e d - f b \\
+            - b^T f^T - d e = -f^T b^T - g a \\
+            - b^T g - d f  = f^T d - g b
+        \end{cases}
+    \end{equation}
+    Dal momento che tale equazione deve essere soddisfatta per ogni matrice $ S $ simmetrica possiamo porre $ e = f = 0 $ da cui ricaviamo $ a g = g a = 0 $. Scegliendo $ g = \Id $ otteniamo $ a = 0 $. Scegliendo ora $ e = 0 $ troviamo che per ogni $ f \in \gl(n, \R) $ deve essere $ f b = b f $. Ma una matrice commuta con ogni matrice se e solo se è multiplo dell'identità, quindi $ \exists \mu \neq 0 : b = \mu \Id $. Ricaviamo quindi che $ e d =  d e = 0 $ da cui scegliendo analogamente a prima $ e = \Id $ otteniamo $ d = 0 $. In conclusione
+    \[
+        \Lambda =
+        \begin{pmatrix}
+        0 & \mu \Id \\
+        - \mu \Id & 0
+        \end{pmatrix}
+        = \mu \Gamma.
+    \]
+    Abbiamo quindi trovato che restringendosi ai sistemi lineari autonomi, le trasformazioni lineari delle coordinate che lasciano le equazioni di Hamilton invarianti in forma sono tutte e sole quelle che hanno matrice $ \mu $-simplettica.
+\end{example}
+
+Precisiamo che nell'esempio \ref{es:ham-quadratica-canoniche} \emph{non} abbiamo risposto alla domanda iniziale in quanto le trasformazioni a cui siamo interessati devono lasciare le equazioni di Hamilton invarianti in forma per \emph{tutte} le hamiltoniane, mentre ora ci siamo ristetti alle forme quadratiche indipendenti dal tempo. Tuttavia vedremo che la condizione trovata si trasferisce al caso generale a livello infinitesimo.
+
+\begin{definition}[trasformazione canonica]
+    Una trasformazione $ \hat{\vec{y}} \colon \mathcal{O} \to \R^{2n} $ si dice canonica se il suo jacobiano $ J(\vec{x}, t) \coloneqq J_\vec{x} \hat{\vec{y}}(\vec{x}, t) $ rispetto alla variabile $ \vec{x} $ è una matrice simplettica $ \forall (\vec{x}, t) \in \mathcal{O} $. Nel caso in cui $ \hat{\vec{y}}(\vec{x}, t) $ non dipenda esplicitamente dal tempo si parla di trasformazioni completamente canoniche.
+\end{definition}
+
+\begin{lemma} \label{lem:jacob-simplettica}
+    Se $ J(\vec{x}, t) $ è una matrice simplettica $ \forall (\vec{x}, t) \in \mathcal{O} $ allora $ A \coloneqq \dpd{J}{t} \circ J^{-1} $ è una matrice hamiltoniana $ (\vec{x}, t) $.
+\end{lemma}
+\begin{proof}
+    Essendo $ J $ simplettica si ha
+    \[
+        \pd{J^T}{t} \Gamma J + J^T \Gamma \pd{J}{t} = \pd{}{t} \left(J^T \Gamma J\right) = \pd{}{t} \Gamma = 0
+    \]
+    da cui otteniamo che
+    \[
+        J^T \Gamma \pd{J}{t} = - \pd{J^T}{t} \Gamma J \quad \Rightarrow \quad - (J^T)^{-1} \pd{J^T} \Gamma = \Gamma \pd{J}{t} J^{-1}.
+    \]
+    Ci basta mostrare che la matrice $ \Gamma A $ è simmetrica
+    \[
+        \left(\Gamma \dpd{J}{t} J^{-1} \right)^T = - (J^{-1})^T \pd{J^T}{t} \Gamma = - (J^T)^{-1} \pd{J^T}{t} \Gamma = \Gamma \dpd{J}{t} J^{-1}. \qedhere
+    \]
+\end{proof}
+
+\begin{thm}
+    Le trasformazioni canoniche lasciano le equazioni di Hamilton invarianti in forma.
+\end{thm}
+\begin{proof}
+    Come abbiamo visto il nuovo campo hamiltoniano dopo il cambio di coordinate è
+    \[
+        \vec{w}(\vec{y}, t) \coloneqq J(\hat{\vec{x}}(\vec{y}, t), t) \ \Gamma \, (\nabla_\vec{x} \ham)(\hat{\vec{x}}(\vec{y}, t), t) + \dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t).
+    \]
+    Definiamo $ \hat{\ham}(\vec{y}, t) \coloneqq \ham(\hat{\vec{x}}(\vec{y}, t), t) $ che è l'hamiltoniano scritta nelle nuove coordinate. Essendo la trasformazione un diffeomorfismo si ha anche $ \ham(\vec{x}, t) = \hat{\ham}(\hat{\vec{y}}(\vec{x}, t), t) $ così per la \emph{chain rule}
+    \[
+        \nabla_\vec{x} \hat{\ham}(\vec{x}, t) = \nabla_\vec{x} \hat{\ham}(\hat{\vec{y}}(\vec{x}, t), t) = J^{T}(\vec{x}, t )\ (\nabla_\vec{y} \hat{\ham})(\hat{\vec{y}}(\vec{x}, t), t)
+    \]
+    da cui
+    \[
+        (\nabla_\vec{x} \ham)(\hat{\vec{x}}(\vec{y}, t), t) = J^{T}(\hat{\vec{x}}(\vec{y}, t), t) \ (\nabla_\vec{y} \hat{\ham})(\vec{y}, t).
+    \]
+    Pertanto il campo hamiltoniano si scrive in termini di $ \hat{\ham} $ come
+    \begin{align*}
+        \vec{w}(\vec{y}, t) & = J(\hat{\vec{x}}(\vec{y}, t), t) \ \Gamma \, J^{T}(\hat{\vec{x}}(\vec{y}, t), t) \ (\nabla_\vec{y} \hat{\ham})(\vec{y}, t) + \dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t) \\
+        & = \Gamma \nabla_\vec{y} \hat{\ham}(\vec{y}, t) +  \dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t)
+    \end{align*}
+    dove abbiamo usato la simpletticità di $ J^T $ che discende dalla simpletticità di $ J $. \\
+    Per concludere ci basta mostrare che $ \dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t) $ è un campo hamiltoniano. Grazie al Teorema \ref{thm:campo-hamiltoniano} è sufficiente provare che matrice $ A(\vec{y}, t) \coloneqq J_\vec{y} \left(\dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t)\right) $ è una matrice hamiltoniana per ogni $ (\vec{x}, t) $. Infatti
+    \[
+        A_{ij} = \pd{}{y_j} \left(\dpd{\hat{y}_i}{t}(\hat{\vec{x}}(\vec{y}, t), t)\right) = \sum_{k=1}^{2n} \md{\hat{y}_i}{2}{t}{}{x_k}{} (\hat{\vec{x}}(\vec{y}, t), t) \ \pd{\hat{x}_k}{y_j} (\vec{y}, t) = \left(\pd{J}{t} \ J^{-1}\right)_{ij}
+    \]
+    che è una matrice hamiltoniana grazie al Lemma \ref{lem:jacob-simplettica}. Dunque esiste una hamiltoniana $ \mathcal{K}_0 $ tale che $ \dpd{\hat{\vec{y}}}{t}(\hat{\vec{x}}(\vec{y}, t), t) = \Gamma \nabla_\vec{y} \mathcal{K}_0(\vec{y}, t) $. Così
+    \[
+        \vec{w}(\vec{y}, t) = \Gamma \hat{\ham}(\vec{y}, t) + \Gamma \nabla_\vec{y} \mathcal{K}_0(\vec{y}, t).
+    \]
+    Definendo quindi la nuova hamiltoniana $ \mathcal{K}(\vec{y}, t) \coloneqq \hat{\ham}(\vec{y}, t) + \mathcal{K}_0(\vec{y}, t) $ abbiamo che le equazioni di Hamilton trasformate sono
+    \[
+        \dot{\vec{y}} = \vec{w}(\vec{y}, t) = \Gamma \nabla_\vec{y} \mathcal{K}(\vec{y}, t)
+    \]
+    ovvero sono invarianti in forma sotto la trasformazione $ \vec{x} \to \vec{y} $.
+\end{proof}
+
+\begin{example}[trasformazioni di scala]
+    Consideriamo la trasformazione per $ i = 1, \ldots, n $
+    \[
+        \begin{cases}
+            Q_i = \mu_i q_i \\
+            P_i = \nu_i p_i
+        \end{cases}
+    \]
+    Nella notazione usata in precedenza, $ \vec{x} = (\vec{q}, \vec{p}) $ e $ \vec{y} = (\vec{Q}, \vec{P}) $. \\
+    Mostriamo che tale trasformazione è $ \rho $-simplettica se e solo se $ \forall i = 1, \ldots, n, \ \mu_i \nu_i = \rho $ e che in tale caso la nuova hamiltoniana è
+    \[
+        \mathcal{K}(\vec{Q}, \vec{P}, t) = \rho \mathcal{H}\left(
+        \begin{pmatrix}
+            \mu_1^{-1} & & \\
+            & \ddots & \\
+            & & \mu_n^{-1}
+        \end{pmatrix}
+        \vec{Q},
+        \begin{pmatrix}
+            \nu_1^{-1} & & \\
+            & \ddots & \\
+            & & \nu_n^{-1}
+        \end{pmatrix}
+        \vec{P},
+        t
+        \right)
+    \]
+    \textcolor{red}{Mancante}
+\end{example}
+
+\begin{example}[scambio di coordinate]
+    Consideriamo la trasformazione per $ i = 1, \ldots, n $
+    \[
+        \begin{cases}
+            Q_i = p_i \\
+            P_i = -q_i
+        \end{cases}
+    \]
+    Mostriamo che è canonica e quindi conserva la struttura delle equazioni di Hamilton. Tale risultato evidenzia il fato che nel formalismo hamiltoniano le $ q $ e le $ p $ sono allo stesso livello e interscambiabili. \\
+    \textcolor{red}{Mancante}
+\end{example}
+
+\begin{example}[trasformazioni puntuali]
+    Consideriamo una trasformazione generica delle posizioni $ \vec{Q} = \hat{\vec{Q}}(\vec{q}) $. Nel formalismo lagrangiano, tale trasformazione induce una trasformazione dei momenti coniugati data da $ \vec{P} = ((J^T)^{-1}(\vec{q}))\vec{p} $ dove $ J(\vec{q}) \coloneqq J \hat{\vec{Q}} $.Come è noto nella teoria lagrangiana, le equazioni di Eulero-Lagrange sono invarianti in forma sotto una trasformazioni delle posizioni. Mostriamo che tale trasformazione è simplettica e che quindi lascia invariata anche la struttura delle equazioni di Hamilton. \\
+    \textcolor{red}{Mancante}
+\end{example}
