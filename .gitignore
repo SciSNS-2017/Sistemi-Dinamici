@@ -12,3 +12,4 @@
 *.fdb_latexmk
 \#*#
 *.*~
+!img/*/*.pdf

@@ -8,7 +8,7 @@ Ci prefiggiamo di studiare ora il modello di Curie-Weiss nel \emph{limite termod
   \item Data una generica osservabile $ \mathcal{O}\colon\Sigma\to\R $, calcoliamone il valore atteso nel limite termodinamico $ \lim_{n\to\infty} \mean{\mathcal{O}_n(\sigma)}_{P_\beta} $. Nel nostro caso considereremo la \emph{magnetizzazione media} $ m_n(\sigma) \coloneqq \mean{\frac{1}{n}\sum_{i=1}^{n}\sigma_i} $.
   \item \textcolor{red}{Automedia: calcolo delle fluttuazioni delle osservabili}.
   $ \lim_{n\to\infty} P_\beta\left(\ \abs{m_n(\sigma) - m_\beta } > \epsilon \right) $.
-  \textcolor{red}{Non capisco cosa sia $ m_\beta $ e se quella che prima ho definito come $ m_n $ sia davvero $ m_n $ oppure sia $ m_\beta $.} 
+  \textcolor{red}{Non capisco cosa sia $ m_\beta $ e se quella che prima ho definito come $ m_n $ sia davvero $ m_n $ oppure sia $ m_\beta $.}
 \end{enumerate}
 
 Nel modello di Curie-Weiss lo spazio delle fasi è $ \Sigma = \{-1,1\}^n $. L'hamiltoniana è:
@@ -84,7 +84,7 @@ Dunque abbiamo dimostrato che
 
 Poniamoci ora nel caso $ h = 0 $, cioè in assenza di campo esterno. Studiamo i punti stazionari di $ \alpha(M, \beta, 0) $ a fissato $ \beta $:
 \[ \pd{\alpha}{M} = \beta \left( \tanh(\beta M) - M \right) = 0 \]
-Osserviamo che l'equazione $ \tanh{\beta M} = M $ ha sempre la soluzione $ M = 0 $, mentre solo nel caso $ \beta > 1 $ si aggiungono due soluzioni opposte non nulle. Inoltre in un intorno destro di $ M = 0 $ la derivata $ \pd{\alpha}{M} $ è negativa per $ \beta \leq 1 $, positiva per $ \beta > 1 $. Dunque in $ M = 0 $ $ \alpha $ presenta un massimo per $ \beta \leq 1 $, mentre un minimo per $ \beta > 1 $. Si verifica infine che le soluzioni aggiuntive presenti nel caso $ \beta > 1 $ corrispondono a due massimi.
+Osserviamo che l'equazione $ \tanh{\beta M} = M $ ha sempre la soluzione $ M = 0 $, mentre solo nel caso $ \beta > 1 $ si aggiungono due soluzioni opposte non nulle. Inoltre in un intorno destro di $ M = 0 $ la derivata $ \pd{\alpha}{M} $ è negativa per $ \beta \leq 1 $, positiva per $ \beta > 1 $. Dunque in $ M = 0 $ $ \alpha $ presenta un massimo per $ \beta \leq 1 $, mentre un minimo per $ \beta > 1 $. Si verifica infine che le soluzioni aggiuntive presenti nel caso $ \beta > 1 $ corrispondono a due massimi (si veda anche la figura \ref{fig:alpha}).
 
 \iffigureon
 \begin{figure}[h!]
@@ -96,4 +96,11 @@ Osserviamo che l'equazione $ \tanh{\beta M} = M $ ha sempre la soluzione $ M = 0
     \caption{$ \alpha(M,\beta,h) $ per diversi valori di $ \beta $ e $ h $ fissati.}
     \label{fig:alpha}
 \end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.8]{img/cw/transizione.pdf}
+    \caption{$ \overline{M} $ in funzione di $ T = \frac{1}{\beta}$.}
+\end{figure}
 \fi
+
