@@ -1,0 +1,30 @@
+%<<<<<<<WARNING>>>>>>>
+% PGF/Tikz doesn't support the following mathematical functions:
+% cosh, acosh, sinh, asinh, tanh, atanh,
+% x^r with r not integer
+
+% Plotting will be done using GNUPLOT
+% GNUPLOT must be installed and you must allow Latex to call external
+% programs by adding the following option to your compiler
+% shell-escape    OR    enable-write18 
+% Example: pdflatex --shell-escape file.tex 
+
+\definecolor{sexdts}{rgb}{0.1803921568627451,0.49019607843137253,0.19607843137254902}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+xmin=-3.5,
+xmax=3.5,
+ymin=-1.7498317317715488,
+ymax=2.781986295604104,
+xtick={-4,-3.5,...,3},
+ytick={-1.5,-1,...,2.5},
+xticklabels={,,},
+yticklabels={,,},
+xlabel=$M$,
+ylabel={$\alpha(M,\beta\leq 1,0)$},]
+\clip(-4.053984304681382,-1.7498317317715488) rectangle (4.4441428338333075,2.781986295604104);
+\draw[line width=1pt,color=sexdts,smooth,samples=100,domain=-4.053984304681382:4.4441428338333075] plot(\x,{ln(2)+ln(cosh(0.7*((\x))))-1/2*0.7*(\x)^(2)});
+\end{axis}
+\end{tikzpicture}

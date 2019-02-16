@@ -55,11 +55,15 @@ Questa è una buona definizione in quanto il limite di cui si fa il $ \sup $ esi
 \begin{lemma}[Fekete] \label{lem:fekete}
     Se $ a \colon \N\setminus\{0\} \to \R $ è una successione subadditiva (cioè tale che $ a_{n+m} \leq a_n + a_m $) allora esiste
     \[
-        \lim_{n\to+\infty} \frac{a_n}{n} = \inf_{n\geq1}a_n.
+        \lim_{n\to+\infty} \frac{a_n}{n} = \inf_{n\geq1}\frac{a_n}{n}.
     \]
 \end{lemma}
 \begin{proof}
-    \textcolor{red}{Mancante}
+    Sia $ \alpha = \inf_{n\geq1} (a_n/n) $. La disuguaglianza $ \liminf_{n\to\infty} (a_n/n) \geq \alpha $ è ovvia. Ci basta dimostrare che $ \limsup_{n\to\infty} (a_n/n) \leq \alpha $. Sia dunque $ \epsilon > 0 $; allora esiste $ \bar{n} $ tale che $ a_{\bar{n}}/\bar{n} \leq \alpha + \epsilon $. Riscriviamo ora $ n $ come $ n = k \bar{n} + r $ per opportuni $ k\in\N $ e $ r\in\{0,\ldots, \bar{n}-1\} $. Per la subaddività si ha $ a_{k\bar{n}+r} \leq a_{k\bar{n}} + a_r \leq ka_{\bar{n}} + a_r $ e quindi
+    \[ \frac{a_n}{n} \leq \frac{k}{n}a_{\bar{n}} + \frac{1}{n}a_r \leq \frac{k}{n}a_{\bar{n}} + \frac{1}{n} a_{\bar{r}} \]
+    dove $ \bar{r} = \argmax_{r\in\{ 0,\ldots, \bar{n}-1 \}} a_r $. Prendendo il $ \limsup $ si ha
+    \[ \limsup_{n\to\infty} \frac{a_n}{n} \leq \frac{a_{\bar{n}}}{\bar{n}} \leq \alpha + \epsilon \]
+    da cui, per l'arbitrarietà di $ \epsilon $, si conclude.
 \end{proof}
 
 \begin{exercise}
