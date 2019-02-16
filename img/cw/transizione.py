@@ -22,7 +22,7 @@ plt.rc('text', usetex=True)
 plt.rc('font', family='serif', size=11)
 
 plt.xlabel('$1/\\beta$')
-plt.ylabel('$\\overline{M}$')
+plt.ylabel('$\\bar{M}$')
 plt.xlim(0, 1.4)
 plt.plot(1/betas, Ms, color='k')
 plt.plot(1/betas, -Ms, color='k')

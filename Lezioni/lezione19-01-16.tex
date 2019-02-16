@@ -1,11 +1,12 @@
 \section{Lezione del 16/01/19 [Tantari]}
+\textcolor{red}{Introduzione e road map vanno riviste quando avrò finito la seconda lezione e sarà chiaro (spero) cosa si sta cercando di fare.}
 
 Ci prefiggiamo di studiare ora il modello di Curie-Weiss nel \emph{limite termodinamico}, cioè nel limite in cui il numero $ n $ di particelle tende a infinito. In particolare calcoleremo il limite dell'energia libera $ f_{\beta, n} \coloneqq F_{\beta, n}/n = -\frac{\log Z_{\beta, n}}{\beta n}$\footnote{D'ora in poi ometteremo il pedice $ \beta $ per alleggerire la notazione.}.
 
 \subsubsection{Road map}
 \begin{enumerate}
   \item Calcolo di $ \lim_{n\to\infty} \frac{1}{n} \log{Z_n} = \lim_{n\to\infty} -\frac{\beta F_n}{n} $
-  \item Data una generica osservabile $ \mathcal{O}\colon\Sigma\to\R $, calcoliamone il valore atteso nel limite termodinamico $ \lim_{n\to\infty} \mean{\mathcal{O}_n(\sigma)}_{P_\beta} $. Nel nostro caso considereremo la \emph{magnetizzazione media} $ m_n(\sigma) \coloneqq \mean{\frac{1}{n}\sum_{i=1}^{n}\sigma_i} $.
+  \item Data una generica osservabile $ \mathcal{O}\colon\Sigma\to\R $, calcoliamone il valore atteso nel limite termodinamico $ \lim_{n\to\infty} \mean{\mathcal{O}_n(\sigma)}_{P_\beta} $. Nel nostro caso considereremo la \emph{magnetizzazione media} $ m_n(\sigma) \coloneqq \mean{\frac{1}{n}\sum_{i=1}^{n}\sigma_i}_{P_\beta} $.
   \item \textcolor{red}{Automedia: calcolo delle fluttuazioni delle osservabili}.
   $ \lim_{n\to\infty} P_\beta\left(\ \abs{m_n(\sigma) - m_\beta } > \epsilon \right) $.
   \textcolor{red}{Non capisco cosa sia $ m_\beta $ e se quella che prima ho definito come $ m_n $ sia davvero $ m_n $ oppure sia $ m_\beta $.}
@@ -80,14 +81,16 @@ Prendendo il logaritmo e facendo il limite si ottiene
 Dunque abbiamo dimostrato che
 \[ \lim_{n \to +\infty}\frac{\log Z_n}{n} = \bar{\alpha}(\beta,h) = \sup_{M\in[-1,1]} \alpha(M, \beta, h). \]
 
+Studiamo ora i punti stazionari di $ \alpha(M, \beta, h) $ a fissati $ \beta $ e $ h $:
+\begin{equation}\label{eq:mbar}
+    \pd{\alpha}{M} = \beta \left( \tanh(\beta (M+h)) - M \right) = 0.
+\end{equation}
+Nel caso particolare $ h = 0 $, cioè in assenza di campo esterno, l'equazione si riduce a $ \tanh{\beta M} = M $. Questa ha sempre la soluzione $ M = 0 $, mentre solo nel caso $ \beta > 1 $ si aggiungono due soluzioni opposte non nulle. Inoltre in un intorno destro di $ M = 0 $ la derivata $ \pd{\alpha}{M} $ è negativa per $ \beta \leq 1 $, positiva per $ \beta > 1 $. Dunque in $ M = 0 $ $ \alpha $ presenta un massimo per $ \beta \leq 1 $, mentre un minimo per $ \beta > 1 $. Si verifica infine che le soluzioni aggiuntive presenti nel caso $ \beta > 1 $ corrispondono a due massimi (si veda anche la figura \ref{fig:alpha}).
 
-
-Poniamoci ora nel caso $ h = 0 $, cioè in assenza di campo esterno. Studiamo i punti stazionari di $ \alpha(M, \beta, 0) $ a fissato $ \beta $:
-\[ \pd{\alpha}{M} = \beta \left( \tanh(\beta M) - M \right) = 0 \]
-Osserviamo che l'equazione $ \tanh{\beta M} = M $ ha sempre la soluzione $ M = 0 $, mentre solo nel caso $ \beta > 1 $ si aggiungono due soluzioni opposte non nulle. Inoltre in un intorno destro di $ M = 0 $ la derivata $ \pd{\alpha}{M} $ è negativa per $ \beta \leq 1 $, positiva per $ \beta > 1 $. Dunque in $ M = 0 $ $ \alpha $ presenta un massimo per $ \beta \leq 1 $, mentre un minimo per $ \beta > 1 $. Si verifica infine che le soluzioni aggiuntive presenti nel caso $ \beta > 1 $ corrispondono a due massimi (si veda anche la figura \ref{fig:alpha}).
+Nel seguito porremo $ \bar{M}(\beta,h) \coloneqq \argmax_{M\in[-1,1]} \alpha(M,\beta,h) $ e dunque sarà $ \bar{\alpha}(\beta, h) = \alpha(\bar{M}, \beta, h) $\footnote{In caso di ambiguità si scelga, ad esempio, il più grande $ M $ che realizzano il massimo.}. Nella figura \ref{fig:transizione} è riportato l'andamento di $ \pm \bar{M}(\beta, 0) $ in funzione di $ T=\frac{1}{\beta} $. Si osserva che in corrispondenza di $ \beta = 1 $ il sistema presenza una transizione di fase \textcolor{red}{di seconda specie}.
 
 \iffigureon
-\begin{figure}[h!]
+\begin{figure}[p]
     \centering
     \subfloat{\input{img/cw/h0b>1.tikz}}
     \subfloat{\input{img/cw/h0b<1.tikz}} \\
@@ -96,11 +99,46 @@ Osserviamo che l'equazione $ \tanh{\beta M} = M $ ha sempre la soluzione $ M = 0
     \caption{$ \alpha(M,\beta,h) $ per diversi valori di $ \beta $ e $ h $ fissati.}
     \label{fig:alpha}
 \end{figure}
-
-\begin{figure}
+\begin{figure}[p]
     \centering
     \includegraphics[scale=0.8]{img/cw/transizione.pdf}
-    \caption{$ \overline{M} $ in funzione di $ T = \frac{1}{\beta}$.}
+    \caption{$ \bar{M} $ in funzione di $ T = \frac{1}{\beta}$.}
+    \label{fig:transizione}
 \end{figure}
 \fi
+
+\subsubsection{Valore atteso della magnetizzazione media}
+Sfruttiamo ora la conoscenza del limite termodinamico dell'energia libera per calcolare il valore atteso della magnetizzazione media e del suo quadrato. Dimostriamo innanzi tutto la seguente
+\begin{proposition}
+    Siano $ f_n\colon I\subseteq\R \to \R $ funzioni convesse e derivabili in $ x_0 \in I $ e sia $ f\colon I\to\R $ derivabile in $ x_0 $ tale che $ f_n \to f $ puntualmente. Allora
+    \[ \lim_{n \to +\infty} f_n'(x_0) = f'(x_0) = \od{}{x} \left( \lim_{n \to +\infty} f'(x_0) \right). \]
+\end{proposition}
+\begin{proof}\label{prop:convessascambio}
+    Sia $ \Delta x \geq 0 $.
+    \[ f_n'(x_0) \leq \frac{f_n(x_0+\Delta x)-f_n(x_0)}{\Delta x}. \]
+    Prendendo il $ \limsup $ si ha
+    \[ \limsup_{n\to +\infty} f'_n(x_0) \leq \frac{f(x_0+\Delta x)-f(x_0)}{\Delta x} \textcolor{red}{\leq f'(x_0)}. \]
+    Analogamente si mostra che per $ \Delta x \leq 0 $ vale
+    \[ \liminf_{n\to +\infty} f_n'(x_0) \geq \frac{f(x_0+\Delta x)-f(x_0)}{\Delta x} \textcolor{red}{\geq f'(x_0)} \]
+    da cui la tesi.
+\end{proof}
+
+Calcoliamo ora
+\[ \pd{}{h}\left(\frac{\log Z_n}{n}\right) = \frac{1}{n Z_n} \pd{Z_n}{h} = \frac{1}{nZ_n}\sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) \right) \beta n m_n(\sigma) = \beta \mean{m_n}_{P_\beta}. \]
+Abbiamo quindi
+\begin{align}
+	\label{eq:limmagnmedia}
+    \lim_{n \to +\infty}\mean{m_n}_{P_\beta} & = \frac{1}{\beta} \lim_{n \to +\infty} \dpd{}{h}\left(\frac{\log Z_n}{n}\right) = \frac{1}{\beta} \dpd{}{h} \left( \lim_{n \to +\infty} \frac{\log Z_n}{n} \right) \nonumber \\
+	                                         & = \frac{1}{\beta} \dpd{\bar{\alpha}}{h}(\beta, h) = \frac{1}{\beta} \dpd{\alpha}{h} (\bar{M}, \beta, h) = \tanh(\beta(\bar{M}+h)) = \bar{M}(\beta, h)
+\end{align}
+dove si è sostituita la condizione \eqref{eq:mbar} e si sono scambiati limite e derivata per la proposizione \ref{prop:convessascambio}. Nel caso $ h = 0 $ abbiamo inoltre
+\[ \pd{}{\beta} \left(\frac{\log Z_n}{n}\right) = \frac{1}{n Z_n} \pd{Z_n}{\beta} = \frac{1}{n Z_n} \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} \right) \frac{n m_n^2(\sigma)}{2} = \frac{1}{2} \mean{m_n^2}_{P_\beta} \]
+da cui
+\begin{align*}
+	\lim_{n \to +\infty}\mean{m_n^2}_{P_\beta} & = 2 \lim_{n \to +\infty} \dpd{}{\beta} \left(\frac{\log Z_n}{n}\right) = 2 \dpd{}{\beta} \left( \lim_{n \to +\infty}\frac{\log Z_n}{n} \right) \\
+                                               & =	2 \dpd{\bar{\alpha}}{\beta}(\beta,0) = 2\dpd{\alpha}{\beta}(\bar{M},\beta,0) = 2\left( \bar{M}\tanh(\beta\bar{M}) - \frac{\bar{M}^2}{2} \right) = \bar{M}^2.
+\end{align*}
+Dalla \eqref{eq:limmagnmedia} segue che $ \mean{m_n}_{P_\beta} = 0 $ se $ h = 0 $ e $ \beta \leq 1 $.
+
+\textcolor{red}{Qui mancano un po' di discorsi conclusivi che però vengono ripresi nella lezione successiva.}
 
