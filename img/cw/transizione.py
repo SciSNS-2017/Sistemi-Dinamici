@@ -14,7 +14,7 @@ Ms = []
 
 for b in betas:
     Ms.append(fsolve(f, x0=init, args=[b]))
-    print(b)
+#    print(b)
 
 Ms = np.array(Ms)
 
