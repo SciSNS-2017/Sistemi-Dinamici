@@ -3,18 +3,35 @@
 \subsection{Entropia di Shannon}
 Claude Shannon: \emph{A Mathematical Theory of Communication}, 1948. \\
 
-Sia $ (X, \mathcal{A}, \mu) $ uno spazio di probabilità e consideriamo una partizione finita dello spazio \linebreak $ X = A_1 \sqcup \ldots \sqcup A_n \pmod{0} $ cioè tale che gli insiemi $ A_i $ sono a due a due disgiunti a meno di insiemi di misura nulla e la loro unione è $ X $ a meno di un insieme di misura nulla. Sia $ p_i \coloneqq \mu(A_i) $ che definisce un vettore di probabilità $ p \coloneqq (p_1, \ldots, p_n) \in \R^n_+ $ essendo $ \sum_{i = 1}^{n} p_i = 1 $. Indichiamo con $ \Delta^{(n)} \coloneqq \{(p_1, \ldots, p_n) \in \R^n_+ : \sum_{i=0}^{n} p_i\} $ lo spazio dei vettori di probabilità in $ \R^n $.
+Sia $ (X, \mathcal{A}, \mu) $ uno spazio di probabilità e consideriamo una partizione finita dello spazio \linebreak $ X = A_1 \sqcup \ldots \sqcup A_n \pmod{0} $ cioè tale che gli insiemi $ A_i $ sono a due a due disgiunti a meno di insiemi di misura nulla e la loro unione è $ X $ a meno di un insieme di misura nulla. A tale partizione possiamo associare un vettore di probabilità $ p \coloneqq (p_1, \ldots, p_n) \in \R^n_+ $ dove $ p_i \coloneqq \mu(A_i) $. Indichiamo con $ \Delta^{(n)} \coloneqq \{(p_1, \ldots, p_n) \in \R^n_+ : \sum_{i=0}^{n} p_i=1\} $ lo spazio dei vettori di probabilità in $ \R^n $. \\
+
+L'idea di Shannon è quella di associare a ogni elemento $ x \in X $ una certa quantità di \emph{informazione} $ I(x) $ partendo dal fatto che gli eventi più rari contengono informazione maggiore. La seconda intuizione di Shannon è di utilizzare la scala logaritmica per quantificare tale informazione: se $ x \in A_i $ della partizione allora $ I(x) = -\log p_i $. In tale modo se $ x $ un evento è ``raro'', ovvero $ p_i=\mu(A_i) $ è ``piccola'', allora $ I(x) $ sarà ``grande''; viceversa se $ x $ è un evento frequente, ovvero $ p_i $ è ``grande'', allora $ I(x) $ sarà ``piccola''. Più formalmente definiamo la funzione che indica l'indice della partizione a cui $ x $ appartiene\footnote{Siccome la partizione è definita $ (\mathrm{mod} 0) $ chiaramente $ i $ sarà una funzione definita quasi ovunque.}
+\begin{align*}
+    i \colon X & \to \{1, \ldots, n\} \\
+    x & \mapsto i(x) = j : x \in A_{j}
+\end{align*}
+da cui la funzione \emph{informazione} è
+\begin{align*}
+    I \colon X & \to [0, +\infty) \\
+    x & \mapsto -\log p_{i(x)}
+\end{align*}
+L'\emph{entropia di Shannon} della partizione è una quantità che ci dice qual è l'informazione media contenuta nella partizione, ovvero sarà il valore di aspettazione della funzione informazione
+\begin{equation} \label{eqn:entropia-shannon}
+    H \coloneqq \mathbb{E}[I] = \int_{X} I(x) \dif{\mu(x)} = -\sum_{i=1}^{n} p_i \log{p_i}
+\end{equation}
+
+Il seguente teorema formalizza le nozioni di informazione media sopra esposte e afferma che la definizione di entropia dell'equazione \eqref{eqn:entropia-shannon} è l'unica compatibile (a meno di riscalamenti) con una serie di assiomi che corrispondo a nozioni intuitive legate all'idea di informazione media data a Shannon.
 
 \begin{thm}[entropia di Shannon]
     Sia $ H^{(n)} \colon \Delta^{(n)} \to [0, +\infty) $ una funzione reale sullo spazio dei vettori di probabilità che chiamiamo entropia. Supponiamo che:    \begin{enumerate}[label=(\roman*)]
-        \item $ H^{(n)} $ sia continua e non identicamente costante;
+        \item\label{pt:continua} $ H^{(n)} $ sia continua e non identicamente costante;
         \item $ H^{(n)} $ sia simmetrica nei suoi argomenti;
         \item $ H^{(n)}(1, 0, \ldots, 0) = 0 $;
-        \item le entropie sono "concatenate": $ H^{(n)}(0, p_2, \ldots, p_n) = H^{(n-1)}(p_2, \ldots, p_n) $;
-        \item l'entropia massima è quella "più casuale": $ H^{(n)}(p_1, \ldots, p_n) \leq H^{(n)}\left(\dfrac{1}{n}, \ldots, \dfrac{1}{n}\right) $;
-        \item l'entropia una partizione in $ n \cdot l $ insiemi è l'entropia degli $ n $ raggruppamenti della partizione in $ l $ insiemi più la media pesata delle "entropie relative" all'interno di ciascun raggruppamento, calcolate con la probabilità condizionata. In formule
+        \item\label{pt:concat} le entropie sono ``concatenate'': $ H^{(n)}(0, p_2, \ldots, p_n) = H^{(n-1)}(p_2, \ldots, p_n) $;
+        \item\label{pt:max} l'entropia massima è quella ``più casuale'': $ H^{(n)}(p_1, \ldots, p_n) \leq H^{(n)}\left(\dfrac{1}{n}, \ldots, \dfrac{1}{n}\right) $;
+        \item\label{pt:formula} l'entropia di una partizione in $ n \cdot l $ insiemi è l'entropia degli $ n $ raggruppamenti della partizione in $ l $ insiemi più la media pesata delle ``entropie relative'' all'interno di ciascun raggruppamento, calcolate con la probabilità condizionata. In formule
         \[
-            H^{(nl)}(\pi_{11}, \ldots, \pi_{1l}, \ldots, \pi_{n1}, \ldots, \pi_{nl}) = H^{(n)}(p_1, \ldots, p_n) + \sum_{i = 0}^{n} p_i \, H^{(l)} \left(\dfrac{\pi_{i1}}{p_i}, \ldots, \dfrac{\pi_{il}}{p_i}\right)
+            H^{(nl)}(\pi_{11}, \ldots, \pi_{1l}, \ldots, \pi_{n1}, \ldots, \pi_{nl}) = H^{(n)}(p_1, \ldots, p_n) + \sum_{i=1}^{n} p_i \, H^{(l)} \left(\dfrac{\pi_{i1}}{p_i}, \ldots, \dfrac{\pi_{il}}{p_i}\right)
         \]
         dove $ p_i \coloneqq \sum_{j = 1}^{l} \pi_{ij} $.
     \end{enumerate}
@@ -25,10 +42,43 @@ Sia $ (X, \mathcal{A}, \mu) $ uno spazio di probabilità e consideriamo una part
     e viene detta entropia di Shannon.
 \end{thm}
 \begin{proof}
-    Per prima cosa mostreremo che la tesi vale per $ K(n) \coloneqq H^{(n)}\left(\frac{1}{n}, \ldots, \frac{1}{n}\right) $. Useremo l'ultima proprietà per trovare l'espressione di $ H^{(n)} $ sui razionali e concluderemo così per densità. \textcolor{red}{Mancante}
+    Per prima cosa mostreremo che la tesi vale per $ K(n) \coloneqq H^{(n)}\left(\frac{1}{n}, \ldots, \frac{1}{n}\right) = C \cdot \log{n} $. Useremo l'ultima proprietà per trovare l'espressione di $ H^{(n)} $ sui razionali e concluderemo così per densità. \\
+    Dalla \ref{pt:concat} e dalla \ref{pt:max} otteniamo che $ K(n) $ è una funzione non decrescente in $ n $
+    \[
+        K(n+1) = H^{(n+1)}\left(\frac{1}{n+1}, \ldots, \frac{1}{n+1}\right) \geq H^{(n+1)}\left(0, \frac{1}{n}, \ldots, \frac{1}{n}\right) = H^{(n)}\left(\frac{1}{n}, \ldots, \frac{1}{n}\right) = K(n).
+    \]
+    Mentre dalla \ref{pt:concat} abbiamo che $ K(nl) = K(n) + K(l) $: infatti prendendo $ \pi_{ij} = \frac{1}{nl} $ da cui $ p_i = \sum_{j=1}^{l} \frac{1}{nl} = \frac{1}{n} $ si ottiene
+    \begin{align*}
+        K(nl) & = H^{(nl)}\left(\frac{1}{nl}, \ldots, \frac{1}{nl}\right) = H^{(n)}\left(\frac{1}{n}, \ldots, \frac{1}{n}\right) + \sum_{i=1}^{n} \frac{1}{n} H^{(l)} \left(\frac{1}{l}, \ldots, \frac{1}{l}\right) \\
+        & = K(n) + n\frac{1}{n} K(l)
+    \end{align*}
+    Ora $ \forall r, l \in \N\setminus\{0\} $ e $ \forall n \in \N $, sia $ m \in \N $ tale che $ l^{m} \leq r^{n} \leq l^{m+1} $. Per quanto detto sulla funzione $ K $ abbiamo che $ K(l^m) \leq K(r^{n}) \leq K(l^{m+1}) $ ovvero
+    \[ \frac{m}{n} \leq \frac{K(r)}{K(l)} \leq \frac{m}{n} + \frac{1}{n}. \]
+    Se applichiamo il logaritmo alla stessa disuguaglianza otteniamo similmente
+    \[ \frac{m}{n} \leq \frac{\log{r}}{\log{l}} \leq \frac{m}{n} + \frac{1}{n} \]
+    da cui
+    \[ \frac{K(r)}{K(l)} - \frac{1}{n} \leq \frac{\log{r}}{\log{l}} \leq \frac{K(r)}{K(l)} + \frac{1}{n}. \]
+    Passando al limite in $ n $ otteniamo che $ \forall r, l \in \N\setminus\{0\} $ vale $ \frac{K(r)}{K(l)} = \frac{\log{r}}{\log{l}} $ da cui esiste una costante $ C > 0 $ tale che $ K(r) = C \cdot \log{r} $. \\
+    Ora per la \ref{pt:concat} e la \ref{pt:formula}
+    \begin{align*}
+        H^{\left(\sum_{i=1}^{n} l_i\right)}(\pi_{11},\ldots,\pi_{1l_1}
+        , \ldots, \pi_{n1},\ldots,\pi_{1l_n}) & = H^{(nL)}(\pi_{11}, \ldots, \pi_{1L}, \ldots, \pi_{n1}, \ldots, \pi_{nL}) \\
+        & = H^{(n)}(p_1, \ldots, p_n) + \sum_{i=1}^{n} p_i \, H^{(L)} \left(\dfrac{\pi_{i1}}{p_i}, \ldots, \dfrac{\pi_{iL}}{p_i}\right) \\
+        & = H^{(n)}(p_1, \ldots, p_n) + \sum_{i=1}^{n} p_i \, H^{(l_i)} \left(\dfrac{\pi_{i1}}{p_i}, \ldots, \dfrac{\pi_{il_i}}{p_i}\right)
+    \end{align*}
+    dove $ L \coloneqq \max\{l_1, \ldots, l_n\} $ e abbiamo posto a zero le probabilità $ \pi_{i (l_j+1)}, \ldots, \pi_{jL} $. Se ora poniamo $ s\coloneqq\sum_{i=1}^{n}l_i $ e prendiamo $ \pi_{ij} = 1/s $ otteniamo che $ p_i = l_i/s $ così
+    \[ K(s) = H^{(s)}\left(\frac{1}{s}. \ldots, \frac{1}{s}\right) = H^{(n)}\left(\frac{l_1}{s}, \ldots, \frac{l_n}{s}\right) + \sum_{i=1}^{n} \frac{l_i}{s} H^{(l_i)}\left(\frac{1}{l_i}, \ldots, \frac{1}{l_i}\right) \]
+    ovvero
+    \begin{align*}
+        H^{(n)}\left(\frac{l_1}{s}, \ldots, \frac{l_n}{s}\right) = K(s) - \sum_{i=1}^{n} \frac{l_i}{s} K(l_i) = C \log{s} \cdot \sum_{i=1}^{n} \frac{l_i}{s} - C \sum_{i=1}^{n} \frac{l_i}{s} \log{\frac{1}{l_i}} = - C \sum_{i=1}^{n}\frac{l_i}{s} \log{\frac{l_i}{s}}.
+    \end{align*}
+    Tale espressione determina $ H^{(n)} $ su tutti i vettori di probabilità a componenti razionali. Infatti se $ \left(\frac{r_1}{s_1},\ldots,\frac{r_n}{s_n}\right) \in \Delta^{(n)} $ con $ l_i, s_i \in \N $, posto $ s \coloneqq \mathrm{mcm}\{s_1, \ldots, s_n\} $ e $ l_i = r_i \frac{s}{s_i} $ si ha $ \left(\frac{r_1}{s_1},\ldots,\frac{r_n}{s_n}\right) = \left(\frac{l_1}{s}, \ldots, \frac{l_n}{s}\right) $ e inoltre $ \sum_{i=1}^{n} l_i = s $ essendo $ \sum_{i=1}^{n}\frac{r_i}{s_i} $. Così
+    \[ H^{(n)}\left(\frac{r_1}{s_1},\ldots,\frac{r_n}{s_n}\right) = H^{(n)}\left(\frac{l_1}{s}, \ldots, \frac{l_n}{s}\right) = - C \sum_{i=1}^{n}\frac{l_i}{s} \log{\frac{l_i}{s}} = - C \sum_{i=1}^{n}\frac{r_i}{s_i} \log{\frac{r_i}{s_i}}. \]
+    Dobbiamo ora mostrare che tale formula si estende in modo unico anche ai vettori di probabilità reali. La funzione $ f_n(p_1, \ldots, p_n) = -C\sum_{i=1}^{n}p_i \log{p_i} $ definita su tutto $ \Delta^{(n)} $\footnote{In realtà $ f_n $ è l'estensione continua di $ -C\sum_{i=1}^{n}p_i \log{p_i} $ che è ben definita solo sui vettori di probabilità con componenti tutte non nulle.} è una funzione continua su un compatto e pertanto uniformemente continua. D'altra parte abbiamo visto che $ f_n $ coincide con $ H^{(n)} $ su $ \Delta^{(n)} \cap \Q^{n} $ ed $ H^{(n)} $ la restrizione di $ f_n $ ai vettori di probabilità razionali è uniformemente continua sul suo domino. Così per la \ref{pt:continua}, la funzione $ H^{(n)} $ si estende in modo unico alla chiusura di $ \Delta^{(n)} \cap \Q^{n} $ che è $ \Delta^{(n)} $ e, per unicità dell'estensione, tale estensione deve coincidere con $ f_n $ su tutto $ \Delta^{(n)} $.
 \end{proof}
 
-Data una partizione $ \mathcal{P} \coloneqq \{A_1, \ldots, A_n\} $ di $ X \pmod{0} $ scriveremo più brevemente $ H(\mathcal{P}) \coloneqq H^{(n)}(\mu(A_1). \ldots, \mu(A_n)) $.
+Data una partizione $ \mathcal{P} \coloneqq \{A_1, \ldots, A_n\} $ di $ X \pmod{0} $ scriveremo più brevemente
+\[ H(\mathcal{P}) \coloneqq H^{(n)}(\mu(A_1), \ldots, \mu(A_n)). \]
 
 \subsection{Entropia metrica o di Kolmogorov-Sinai}
 
