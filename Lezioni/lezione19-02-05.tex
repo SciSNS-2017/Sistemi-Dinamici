@@ -1,1 +1,47 @@
-\[ \lim_{n \to +\infty}\mean{\left(m_n(\sigma)-\mean{m_n(\sigma)}_{P_\beta}\right)^2}_{P_\beta} = 0 \]
+\section{Lezione del 05/02/19 [Tantari]}
+Nella lezione precedente si è ottenuto che, tranne sulla semiretta $ h=0 $, $ \beta \geq 1 $, vale
+\[ \lim_{n \to +\infty}\mean{m_n}_{P_\beta} = \bar{M}(\beta, h) \]
+\[ \lim_{n \to +\infty}\mean{m_n^2}_{P_\beta} = \bar{M}^2(\beta,h) \]
+e quindi
+\[ \lim_{n \to +\infty}\mean{\left(m_n-\mean{m_n}_{P_\beta}\right)^2}_{P_\beta} = \lim_{n \to +\infty} \left( \mean{m_n^2}_{P_\beta} - \mean{m_n}^2_{P_\beta} \right) = 0. \]
+In generale, una famiglia di osservabili $ \mathcal{O}_n $ la cui varianza tenda a zero per $ n\to +\infty $ si dice \emph{automediante}; ciò significa che nel limite termodinamico il valore dell'osservabile diventa deterministico.\\
+
+Un altro modo per calcolare la varianza di un'osservabile è il seguente:
+supponiamo di poter riscrivere l'hamiltoniana esplicitando l'osservabile di interesse:
+\[ \ham(\sigma) = \mathcal{K}(\sigma) + \lambda\mathcal{O}(\sigma). \]
+Allora la varianza di $ \mathcal{O} $ si ottiene calcolando
+\begin{align*}
+    \dpd[2]{}{\lambda} \left( \log Z_n \right) & = \dpd{}{\lambda} \left[ \frac{1}{Z_n} \sum_{\sigma \in \Sigma} \exp\left( K(\sigma) + \lambda \mathcal{O}(\sigma) \right) \mathcal{O}(\sigma) \right] \\
+    & = -\frac{1}{Z_n^2} \left( \sum_{\sigma \in \Sigma} \exp\left( K(\sigma) + \lambda \mathcal{O}(\sigma) \right) \right)^2 + \frac{1}{Z_n} \sum_{\sigma \in \Sigma} \exp\left( K(\sigma) + \lambda \mathcal{O}(\sigma) \right) \mathcal{O}^2(\sigma) \\
+    & = \mean{\mathcal{O}^2}_{P_\beta} - \mean{\mathcal{O}}^2_{P_\beta} = \mean{ \left(\mathcal{O} - \mean{\mathcal{O}}_{P_\beta} \right)^2 }_{P_\beta}.
+\end{align*}
+Tornando al caso specifico della magnetizzazione media, prendendo $ \mathcal{O} = \beta n m_n $  e $ \lambda = h $ si ha:
+\[ \dpd[2]{}{h}\left( \frac{\log Z_n}{n} \right) = \beta^2 n \mean{\left(m_n-\mean{m_n}_{P_\beta}\right)^2}_{P_\beta} \]
+e quindi:
+\[ \lim_{n \to +\infty} \mean{\left(m_n-\mean{m_n}_{P_\beta}\right)^2}_{P_\beta} = \frac{1}{\beta^2} \lim_{n \to +\infty} \left[ \frac{1}{n} \dpd[2]{}{h}\left( \frac{\log Z_n}{n} \right) \right] = 0. \]
+\\
+
+Da ultimo possiamo calcolare esplicitamente la distribuzione di $ m_n $, cioè $ f(x) = P_\beta \left( m_n^{-1} (\{x\}) \right) $. Detto $ k $ il numero di spin uguali a 1, notiamo che $ m_n $ può assumere solo i valori $ \left(-1 + \frac{2k}{n}\right)_{k=0,\ldots,n} $; se poniamo $ m_n = x $ allora $ k = \frac{1}{2}(1+x) n $ e quindi
+\begin{align}\label{eq:distrMagn}
+    f(x) & = P_\beta \left( m_n^{-1} (\{x\}) \right) = \sum_{\sigma\in m_n^{-1}(\{x\})} \frac{1}{Z_n} \exp\left( \beta\left( \frac{n}{2}m_n^2(\sigma) + nhm_n(\sigma) -\frac{1}{2}\right) \right) \nonumber \\
+    & = \frac{1}{Z_n} \binom{n}{\frac{1}{2}(1+x) n} \exp\left( \beta\left( \frac{n}{2}x^2 + nhx - \frac{1}{2} \right) \right).
+\end{align}
+Infatti tutti i $ \sigma $ tali che $ m_n(\sigma) = x $ hanno la stessa probabilità, e sono $ \binom{n}{k} $ (il numero di modi in cui si possono scegliere gli spin uguali a 1). In figura \ref{fig:distrMagn} sono riportati alcuni grafici della \eqref{eq:distrMagn} al variare di $ h $ e $ \beta $.
+
+\iffigureon
+\begin{figure}[p]
+    \centering
+    \subfloat[$ h=0, \beta=1 $.]{\input{img/cw/magnh0b1.tikz}}
+    \subfloat[$ h=0, \beta<1 $.]{\input{img/cw/magnh0b<1.tikz}} \\
+    \subfloat[$ h=0, \beta>1 $: si ha magnetizzazione spontanea.]{\input{img/cw/magnh0b>1.tikz}}
+    \subfloat[$ h>0 $: indipendentemente da $ \beta $ il picco è spostato nel verso del campo esterno.]{\input{img/cw/magnh>0b>1.tikz}}
+    \caption{distribuzione di $ m_n $ data dalla \eqref{eq:distrMagn} per $ n = 165 $ al variare di $ h $ e $ \beta $.}
+    \label{fig:distrMagn}
+\end{figure}
+\fi
+
+\subsection{Valore atteso di un'osservabile generica}
+
+
+\subsection{Altri metodi per il calcolo dell'energia libera}
+\textcolor{red}{Mancante}

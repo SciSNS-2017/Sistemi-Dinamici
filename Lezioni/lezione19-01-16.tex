@@ -1,15 +1,11 @@
 \section{Lezione del 16/01/19 [Tantari]}
-\textcolor{red}{Introduzione e road map vanno riviste quando avrò finito la seconda lezione e sarà chiaro (spero) cosa si sta cercando di fare.}
-
-Ci prefiggiamo di studiare ora il modello di Curie-Weiss nel \emph{limite termodinamico}, cioè nel limite in cui il numero $ n $ di particelle tende a infinito. In particolare calcoleremo il limite dell'energia libera $ f_{\beta, n} \coloneqq F_{\beta, n}/n = -\frac{\log Z_{\beta, n}}{\beta n}$\footnote{D'ora in poi ometteremo il pedice $ \beta $ per alleggerire la notazione.}.
+Ci prefiggiamo di studiare ora il modello di Curie-Weiss nel \emph{limite termodinamico}, cioè nel limite in cui il numero $ n $ di particelle tende a infinito. In particolare sarà utile conoscere il limite dell'energia libera $ f_{\beta, n} \coloneqq F_{\beta, n}/n = -\frac{\log Z_{\beta, n}}{\beta n}$\footnote{D'ora in poi ometteremo il pedice $ \beta $ per alleggerire la notazione.}.
 
 \subsubsection{Road map}
 \begin{enumerate}
-  \item Calcolo di $ \lim_{n\to\infty} \frac{1}{n} \log{Z_n} = \lim_{n\to\infty} -\frac{\beta F_n}{n} $
-  \item Data una generica osservabile $ \mathcal{O}\colon\Sigma\to\R $, calcoliamone il valore atteso nel limite termodinamico $ \lim_{n\to\infty} \mean{\mathcal{O}_n(\sigma)}_{P_\beta} $. Nel nostro caso considereremo la \emph{magnetizzazione media} $ m_n(\sigma) \coloneqq \mean{\frac{1}{n}\sum_{i=1}^{n}\sigma_i}_{P_\beta} $.
-  \item \textcolor{red}{Automedia: calcolo delle fluttuazioni delle osservabili}.
-  $ \lim_{n\to\infty} P_\beta\left(\ \abs{m_n(\sigma) - m_\beta } > \epsilon \right) $.
-  \textcolor{red}{Non capisco cosa sia $ m_\beta $ e se quella che prima ho definito come $ m_n $ sia davvero $ m_n $ oppure sia $ m_\beta $.}
+  \item Calcolo di $ \lim_{n\to\infty} \frac{1}{n} \log{Z_n} = \lim_{n\to\infty} -\frac{\beta F_n}{n} $;
+  \item Data una generica famiglia di osservabili $ \mathcal{O}_n\colon\Sigma\to\R $, calcolo del valore atteso nel limite termodinamico $ \lim_{n\to\infty} \mean{\mathcal{O}_n}_{P_\beta} $. Ad esempio considereremo la \emph{magnetizzazione media} $ m_n(\sigma) \coloneqq \frac{1}{n}\sum_{i=1}^{n}\sigma_i $;
+  \item Calcolo delle fluttuazioni delle osservabili, cioè di $ \mean{ \left(\mathcal{O} - \mean{\mathcal{O}}_{P_\beta} \right)^2 }_{P_\beta} $.
 \end{enumerate}
 
 Nel modello di Curie-Weiss lo spazio delle fasi è $ \Sigma = \{-1,1\}^n $. L'hamiltoniana è:
@@ -124,8 +120,7 @@ Sfruttiamo ora la conoscenza del limite termodinamico dell'energia libera per ca
     \[ \liminf_{n\to +\infty} f_n'(x_0) \geq f'(x_0) \]
     da cui la tesi.
 \end{proof}
-
-Calcoliamo ora
+Calcoliamo ora\footnote{Si noti che $ \alpha(M,\beta,h) $ è discontinua sulla semiretta $ h=0 $, $ \beta \geq 1 $ e dunque non è possibile derivare rispetto ad $ h $ in tale regione.}.
 \[ \pd{}{h}\left(\frac{\log Z_n}{n}\right) = \frac{1}{n Z_n} \pd{Z_n}{h} = \frac{1}{nZ_n}\sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) \right) \beta n m_n(\sigma) = \beta \mean{m_n}_{P_\beta}. \]
 Abbiamo quindi
 \begin{align}
@@ -150,5 +145,5 @@ da cui
 \end{align*}
 Usando la \ref{eq:limmagnmedia} segue che
 \[ \lim_{n \to +\infty} \mean{m_n^2}_{P_\beta} = \bar{M}^2(\beta,h). \]
-\textcolor{red}{Qui mancano un po' di discorsi conclusivi che però vengono ripresi nella lezione successiva.}
 
+Infine, anche nel caso $ h=0 $ e $ \beta \geq 1 $ vale $ \mean{m_n}_{P_\beta} = \bar{M}(\beta,0) = 0$; infatti stanti queste ipotesi l'hamiltoniana è invariante sotto la trasformazione $ \sigma_i \to -\sigma_i \ \forall i = 1,\ldots,n$ e in particolare anche la misura di Boltzmann dovrà rimanere invariata, dunque $ \mean{m_n}_{P_\beta} \to \mean{m_n}_{P_\beta} $; d'altra parte $ m_n $ cambia di segno sotto tale trasformazione, per cui dev'essere anche $ \mean{m_n}_{P_\beta} \to -\mean{m_n}_{P_\beta} $, da cui si conclude $ \mean{m_n}_{P_\beta} = 0 $.
