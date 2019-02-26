@@ -22,7 +22,7 @@ L'\emph{entropia di Shannon} della partizione è una quantità che ci dice qual 
 
 Il seguente teorema formalizza le nozioni di informazione media sopra esposte e afferma che la definizione di entropia dell'equazione \eqref{eqn:entropia-shannon} è l'unica compatibile (a meno di riscalamenti) con una serie di assiomi che corrispondo a nozioni intuitive legate all'idea di informazione media data a Shannon.
 
-\begin{thm}[entropia di Shannon]
+\begin{thm}[entropia di Shannon] \label{thm:Shannon}
     Sia $ H^{(n)} \colon \Delta^{(n)} \to [0, +\infty) $ una funzione reale sullo spazio dei vettori di probabilità che chiamiamo entropia. Supponiamo che:    \begin{enumerate}[label=(\roman*)]
         \item\label{pt:continua} $ H^{(n)} $ sia continua e non identicamente costante;
         \item $ H^{(n)} $ sia simmetrica nei suoi argomenti;
@@ -82,26 +82,32 @@ Data una partizione $ \mathcal{P} \coloneqq \{A_1, \ldots, A_n\} $ di $ X \pmod{
 
 \subsection{Entropia metrica o di Kolmogorov-Sinai}
 
-\begin{definition}[raffinamento di due partizioni]
-    Se $ \mathcal{P} \coloneqq \{A_1, \ldots, A_n\} $ e $ \mathcal{Q} \coloneqq \{B_1, \ldots, B_m\} $ sono due partizioni di $ X \pmod{0} $ si definisce il raffinamento di $ \mathcal{P} $ e $ \mathcal{Q} $ la partizione
+\begin{definition}[join di due partizioni]
+    Se $ \mathcal{P} \coloneqq \{A_1, \ldots, A_n\} $ e $ \mathcal{Q} \coloneqq \{B_1, \ldots, B_m\} $ sono due partizioni di $ X \pmod{0} $ si definisce il join di $ \mathcal{P} $ e $ \mathcal{Q} $ come la partizione
     \[
         \mathcal{P} \vee \mathcal{Q} \coloneqq \{A_i \cap B_j : i = 1, \ldots, n \text{ e } j = 1, \ldots, m\}.
     \]
 \end{definition}
 
-Dato un sistema dinamico misurabile $ (X, \mathcal{A}, \mu, f) $ possiamo considerare il raffinamento delle iterazioni di $ f $ su $ \mathcal{P} $. Posto $ f^{-k}\mathcal{P} \coloneqq \{f^{-k}(A_i) : A_i \in \mathcal{P}\} $ sia
+Dato un sistema dinamico misurabile $ (X, \mathcal{A}, \mu, f) $ possiamo considerare il join delle iterazioni di $ f $ su $ \mathcal{P} $. Posto $ f^{-k}\mathcal{P} \coloneqq \{f^{-k}(A_i) : A_i \in \mathcal{P}\} $ tale join è
 \[
-    \mathcal{P}^{(n)} \coloneqq \mathcal{P} \vee (f^{-1}\mathcal{P}) \vee \cdots \vee (f^{-(n-1)}\mathcal{P}).
+    \mathcal{P}^{(n)} \coloneqq \mathcal{P} \vee (f^{-1}\mathcal{P}) \vee \cdots \vee (f^{-(n-1)}\mathcal{P}) = \bigvee_{i=0}^{n}f^{-i}\mathcal{P}
 \]
+
+Tale costruzione ha lo scopo di quantificare l'informazione media che si ottiene facendo la \emph{dinamica simbolica} dell'iterazione di $ f $ usando la partizione $ \mathcal{P} $. Alla partizione $ \mathcal{P} = \{A_1, \ldots, A_n\} $ associamo l'insieme di simboli $ \{a_1, \ldots, a_n\} $. Consideriamo l'orbita di un punto $ x \in X $ sotto l'azione di $ f $: al passo $ n $-esimo dell'iterazione codifichiamo il blocco della partizione in cui sta $ f^{n}(x) $ con il simbolo $ a_{i_n} $ associato alla partizione, e così per ogni $ n \in \N $. In tale modo all'orbita corrisponde una successione $ (a_{i_n}) $ che è la codifica dell'orbita data dalla scelta della partizione.
+
+Ora se $ B \in \mathcal{P}^{(n)} $ vuol dire che $ B = A_{i_0} \cap f^{-1}(A_{i_1}) \cap \cdots \cap f^{-(n-1)}(A_{i_{n-1}}) $ ovvero se $ x \in B $ vuol dire che $ x \in A_{i_0}, f(x) \in A_{i_1}, \ldots, f^{n-1}(x) \in A_{i_{n-1}} $. Pertanto a $ B \in \mathcal{P}^{(n)} $ corrisponde l'insieme degli $ x \in X $ che hanno come dinamica simbolica fino all'$ n $-esima iterazione la stringa $ (a_{i_0}, \ldots, a_{i_{n-1}}) $.
+
+Pertanto $ H(\mathcal{P}^{(n)}) $ quantifica, in un certo senso, l'informazione media che si ottiene sulla dinamica di $ f $ conoscendo i primi $ n $ blocchi in cui è ``passata'' l'orbita di un elemento di $ X $ sotto $ f $. Dividendo tale quantità per $ n $ (la lunghezza della stringa della dinamica simbolica) e prendendo il limite in $ n $ otteniamo quindi l'informazione media che si ottiene sulla dinamica di $ f $ facendo la dinamica simbolica usando come partizione dello spazio $ \mathcal{P} $. Chiaramente tale limite dipende dalla partizione scelta, che poteva per esempio non essere ottimale per la codifica di $ f $: per definire un'entropia associata al sistema dinamico $ (X, \mathcal{A}, \mu, f) $ dovremo quindi prendere l'estremo superiore di tale limite al variare della partizione.
 
 \begin{definition}[entropia di Kolmogorov-Sinai]
     Sia $ (X, \mathcal{A}, \mu, f) $ un sistema dinamico misurabile. L'entropia del sistema è
     \[
         h_\mu(f) \coloneqq \sup_\mathcal{P} {\lim_{n \to +\infty} \frac{1}{n}H(\mathcal{P}^{(n)})}
     \]
-    dove l'estremo superiore è fatto al variare di $ \mathcal{P} $ partizione finita (o numerabile) di $ X \pmod{0} $.
+    dove $ H $ è l'entropia di Shannon della partizione e l'estremo superiore è fatto al variare di $ \mathcal{P} $ partizione finita (o numerabile) di $ X \pmod{0} $.
 \end{definition}
-Questa è una buona definizione in quanto il limite di cui si fa il $ \sup $ esiste in virtù del seguente
+Per mostrare che questa è una buona definizione enunciamo il seguente
 \begin{lemma}[Fekete] \label{lem:fekete}
     Se $ a \colon \N\setminus\{0\} \to \R $ è una successione subadditiva (cioè tale che $ a_{n+m} \leq a_n + a_m $) allora esiste
     \[
@@ -114,6 +120,23 @@ Questa è una buona definizione in quanto il limite di cui si fa il $ \sup $ esi
     dove $ \bar{r} = \argmax_{r\in\{ 0,\ldots, \bar{n}-1 \}} a_r $. Prendendo il $ \limsup $ si ha
     \[ \limsup_{n\to\infty} \frac{a_n}{n} \leq \frac{a_{\bar{n}}}{\bar{n}} \leq \alpha + \epsilon \]
     da cui, per l'arbitrarietà di $ \epsilon $, si conclude.
+\end{proof}
+Grazie a tale lemma ci basta allora dimostrare che la successione $ H(\mathcal{P}^{(n)}) $ è subadditiva in $ n $. Ora
+\[ H(\mathcal{P}^{(n+m)}) = H\left(\bigvee_{i=0}^{n+m}f^{-i}\mathcal{P}\right) = H\left(P^{(m)} \vee \bigvee_{i=m+1}^{n+m}f^{-i}\mathcal{P}\right) \]
+e d'altra parte
+\[ H\left(\bigvee_{i=n+1}^{n+m}f^{-i}\mathcal{P}\right) = H\left(f^{-m}\bigvee_{i=1}^{n}f^{-i}\mathcal{P}\right) = H\left(\bigvee_{i=1}^{n}f^{-i}\mathcal{P}\right) = H(\mathcal{P}^{(n)}) \]
+in quanto per $ f $-invarianza della misura, se $ \bigvee_{i=1}^{n}f^{-i}\mathcal{P} = \{B_1, \ldots, B_k\} $ allora $ f^{-m}\bigvee_{i=1}^{n}f^{-i}\mathcal{P} = \{f^{-m}(B_1), \ldots, f^{-m}(B_k)\} $ così $ \mu(f^{-m}(B_i)) = \mu(B_i) $ è l'entropia di Shannon delle due partizioni è la stessa. Per concludere ci basta basta quindi mostrare la seguente
+
+\begin{proposition}
+    Date due partizioni $ \mathcal{P} $ e $ \mathcal{Q} $ vale $ H(\mathcal{P} \vee \mathcal{Q}) \leq H(\mathcal{P}) + H(\mathcal{Q}) $.
+\end{proposition}
+\begin{proof}
+    Siano $ \mathcal{P} = \{A_1, \ldots, A_n\} $ e $ \mathcal{Q} = \{B_1, \ldots, B_m\} $. Allora per il teorema \ref{thm:Shannon}, punto \ref{pt:formula} abbiamo che
+    \[ H(\mathcal{P} \vee \mathcal{Q}) = H(\mathcal{P}) + \sum_{i, j} p_i f(t_{ij}) \]
+    dove $ p_i = \mu(A_i) $ e $ t_{ij} = \frac{\mu(A_i \cap B_j)}{\mu(A_i)} $ e $ f(x) = - x \log{x} $. Essendo $ f $ convessa e $ \sum_{i} p_i = 1 $ otteniamo per la disuguaglianza di Jensen
+    \[ \sum_{i} p_i f(t_{ij}) \leq f\left(\sum_{i} p_i t_{ij}\right) = f(\mu(B_j)) = - \mu(B_j) \log{\mu(B_j)} \]
+    così
+    \[ \sum_{ij} p_j f(t_{ij}) = \sum_{j} \sum_{i} p_j f(t_{ij}) \leq - \sum_{j} \mu(B_j) \log{\mu(B_j)} = H(\mathcal{Q}). \qedhere \]
 \end{proof}
 
 \begin{exercise}
