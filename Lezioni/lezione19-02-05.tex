@@ -41,7 +41,54 @@ Infatti tutti i $ \sigma $ tali che $ m_n(\sigma) = x $ hanno la stessa probabil
 \fi
 
 \subsection{Valore atteso di un'osservabile generica}
+Poiché lo spazio degli stati è finito, una generica osservabile $ \mathcal{O}\colon \Sigma\to\R $ è completamente caratterizzata da $ \card{\Sigma} = 2^n $ valori. Possiamo quindi vedere $ \mathcal{O} $ come una funzione di $ n $ variabili appartenenti $ \{+1,-1\} $. Estendiamo ora tale osservabile ad una funzione $ \tilde{\mathcal{O}}\colon\R^n\to\R $, ad esempio facendo passare un polinomio in $ n $ variabili per i $ 2^n $ punti assegnati. Vogliamo cioè trovare una funzione del tipo
+\[ \tilde{\mathcal{O}} (x_1,\ldots,x_n) = \sum_{\abs{i}=0}^{N(n)} \alpha_{i} x^i \]
+dove $ i $ è un multi indice e $ x = (x_1, \ldots, x_n) $, in modo tale che
+\[ \tilde{\mathcal{O}}(\sigma_1, \ldots, \sigma_n) = \mathcal{O}((\sigma_1,\ldots,\sigma_n)). \]
+Volendo studiare $ \lim_{n \to +\infty} \mean{\mathcal{O}}_{P_\beta} $, possiamo quindi ridurci allo studio di generici prodotti della forma $ \sigma_1 \cdots \sigma_k $.
 
+\textcolor{red}{
+    Non è chiaro il senso di tutto ciò. Innanzi tutto non è ben definito cosa voglia dire considerare la stessa osservabile in sistemi a diversa taglia, poiché non c'è sempre un modo ovvio (come invece nel caso di $ m_n $) per esprimere l'osservabile come funzione di $ n $.
+    Inoltre, sia il grado $ N $ che i coefficienti del polinomio interpolante dipendono, in generale, da $ n $, per cui non è sufficiente conoscere $ \mean{x}_{P_\beta} $ per calcolare $ \lim_{n \to +\infty} \mean{\mathcal{O}}_{P_\beta} $.
+}
+
+\begin{thm}
+    Se $ \beta < 1 $ oppure $ \beta \geq 1 \wedge h \neq 0 $ vale
+    \[ \lim_{n \to +\infty} \mean{\sigma_1, \ldots, \sigma_k}_{P_\beta} = \overline{M}^k(\beta, h). \]
+\end{thm}
+\begin{proof}
+    Si procede per induzione.
+\begin{pbase}
+    \[ \mean{m_n}_{P_\beta} = \frac{1}{n} \sum_{i=1}^{n}\mean{\sigma_i}_{P_\beta} = \mean{\sigma_1}_{P_\beta} \]
+    ma $ \mean{m_n}_{P_\beta} \to_n \overline{M}(\beta,h) $, da cui la tesi.
+\end{pbase}
+\begin{pind}
+
+    \begin{lemma}\label{lemma:cusumano}
+        Siano $ f_n\colon \Sigma_n \to \R $ equilimitate e sia $ \mean{f} \coloneqq \lim_{n \to +\infty}\mean{f_n}_{P_{\beta, n}} $. Allora
+        \[ \mean{f_n m_n}_{P_{\beta,n}} \to \overline{M}(\beta,h) \mean{f}. \]
+    \end{lemma}
+    \begin{proof}
+        Per la diseguaglianza di Cauchy-Schwartz si ha
+        \begin{align*}
+            \abs{ \mean{f_n\cdot \left(m_n-\overline{M}(\beta,h) \right) }_{P_{\beta,n}} }^2  & \leq \mean{f_n^2}_{P_{\beta,n}} \cdot \mean{\left (m_n-\overline{M}(\beta,h)\right )^2}_{P_{\beta,n}} \\
+            & \leq K \cdot \left( \mean{m_n^2}_{P_{\beta,n}} + \overline{M}^2(\beta,h) - 2\overline{M}(\beta,h)\mean{m_n}_{P_{\beta,n}} \right) \\
+            & \to K \left( \overline{M}^2(\beta,h) + \overline{M}^2(\beta,h) - 2\overline{M}^2(\beta,h) \right) = 0
+        \end{align*}
+        e quindi
+        \begin{align*}
+            \lim_{n \to +\infty} \mean{f_n m_n}_{P_{\beta,n}} & = \lim_{n \to +\infty} \mean{f_n\cdot \left(m_n-\overline{M}(\beta,h) \right) }_{P_{\beta,n}} + \lim_{n \to +\infty}\mean{f_n}_{P_{\beta,n}} \overline{M}(\beta,h) \\
+            & = \overline{M}(\beta,h)\mean{f}. \qedhere
+        \end{align*}
+        \begin{align*}
+            \mean{\sigma_1 \cdots \sigma_k m_n}_{P_{\beta,n}} & = \frac{1}{n} \sum_{i=1}^{n} \mean{\sigma_1 \cdots \sigma_k \sigma_i}_{P_{\beta,n}} = \frac{1}{n} \sum_{i=1}^k\mean{\sigma_1\cdots\sigma_k\sigma_i}_{P_{\beta,n}} + \frac{1}{n} \sum_{i=k+1}^n \mean{\sigma_1\cdots\sigma_k\sigma_i}_{P_{\beta,n}} \\
+            & = \frac{1}{n} \sum_{i=1}^k {\overbrace{\mean{\sigma_1 \cdots \sigma_k}}^{k-1}}_{P_{\beta,n}} + \frac{1}{n} \sum_{i=k+1}^n \mean{\sigma_1 \cdots \sigma_k \sigma_{k+1}}_{P_{\beta,n}} \\
+            & = \frac{k}{n} \mean{\sigma_1 \cdots \sigma_k}_{P_{\beta,n}} + \frac{n-k}{n} \mean{\sigma_1 \cdots \sigma_k \sigma_{k+1}}_{P_{\beta,n}}.
+        \end{align*}
+        Passando al limite, usando il lemma \ref{lemma:cusumano} con $ f(\sigma_1, \ldots, \sigma_n) = \sigma_1 \cdots \sigma_k $ e l'ipotesi induttiva si ottiene la tesi.
+    \end{proof}
+\end{pind}
+\end{proof}
 
 \subsection{Altri metodi per il calcolo dell'energia libera}
 \textcolor{red}{Mancante}
