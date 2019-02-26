@@ -5,16 +5,22 @@
 
 \subsection{Formalismo della meccanica statistica}
 Sia $ (\Sigma, \P(\Sigma), P) $ uno spazio di probabilità, dove $ \Sigma $ è finito. Ogni elemento $ \sigma $ di $ \Sigma $ descrive un possibile stato del sistema.
-Nel seguito, con lieve abuso di notazione, scriveremo $ P(\sigma) $ intendendo $ P(\{\sigma\}) $.
+Essendo lo spazio per l'appunto di dimensione finita, le sa $ \sigma $-algebra l'insieme delle parti, è sufficiente definire la misura di probabilità sui $ \sigma \in \Sigma $ per determinare $ P $ su ogni sottoinsieme di $ \sigma $.  Nel seguito quindi, con lieve abuso di notazione, scriveremo $ P(\sigma) $ intendendo $ P(\{\sigma\}) $. \\
 Se il sistema viene descritto da una funzione \emph{hamiltoniana} $ \ham \colon \Sigma\to\R $ si introduce solitamente una misura di probabilità su $ \Sigma $, detta \emph{misura di Boltzmann}, data da
-\[ P_\beta(\sigma) \coloneqq \frac{1}{Z_\beta} e^{-\beta\ham(\sigma)} \]
+\begin{equation}
+    P_\beta(\sigma) \coloneqq \frac{1}{Z_\beta} e^{-\beta\ham(\sigma)}
+\end{equation}
 dove è stata introdotta la \emph{funzione di partizione} del sistema
-\[ Z_\beta \coloneqq \sum_{\sigma\in\Sigma} e^{-\beta \ham(\sigma)}. \]
+\begin{equation}
+    Z_\beta \coloneqq \sum_{\sigma\in\Sigma} e^{-\beta \ham(\sigma)}.
+\end{equation}
 Muniti di questa misura possiamo esprimere il valor medio di una generica osservabile $ \mathcal{O}\colon \Sigma\to\R $ su tutti gli stati possibili:
-\[ \langle\mathcal{O}\rangle = \sum_{\sigma\in\Sigma} P_\beta(\sigma)\mathcal{O}(\sigma). \]
-\textcolor{red}{L'idea è che all'equilibrio (cioè quando le medie temporali delle osservabili del sistema non dipendono dal tempo) tale media coincida con la media temporale della stessa osservabile}.
+\begin{equation} \label{eqn:media-osservabile}
+    \langle\mathcal{O}\rangle = \sum_{\sigma\in\Sigma} P_\beta(\sigma)\mathcal{O}(\sigma).
+\end{equation}
+Uno degli assunti fondamentali della meccanica statistica è che sullo spazio $ (\Sigma, \P(\Sigma), P) $ sia definita una qualche dinamica misurabile e che il sistema dinamico risultante sia \emph{ergodico}. A questo punto ci si dimentica dell'esistenza di una dinamica e si utilizza direttamente la misura invariante $ P $ per studiare il comportamento del sistema all'equilibrio. Per ergodicità, le medie temporali degli osservabili lungo la dinamica coincidono quindi con il valore atteso delle osservabili stesse rispetto alla misura $ P $, cioè coincidono con l'espressione nell'equazione \eqref{eqn:media-osservabile} \\
 
-Posto $ \Sigma = \{-1,1\}^N $ e dette $ \sigma_i $ le componenti di ciascuno stato $ \sigma $ ($ \sigma_i $ è lo stato di una delle $ N $ particelle del sistema nella configurazione $ \sigma $), osserviamo preliminarmente che:
+Un sistema a $ N $ corpi con \emph{spin} è descritto da uno spazio degli stati $ \Sigma = \{-1,1\}^N $ dove $ \sigma_i \in \{-1\, 1\} $ sono le componenti di ciascuno stato $ \sigma $ ($ \sigma_i $ è lo stato di una delle $ N $ particelle del sistema nella configurazione $ \sigma $). Osserviamo preliminarmente che:
 \begin{itemize}
     \item se l'hamiltoniana ha la forma $ \ham(\sigma) = \sum_{i=1}^{N} \ham_i(\sigma_i) $, la misura di Boltzmann si fattorizza nel prodotto di $ N $ termini ognuno dei quali dipende da una sola $ \sigma_i $, dunque questa hamiltoniana modellizza un sistema i cui elementi non interagiscono tra loro;
     \item se si aggiungono termini di interazione fra gli elementi (tutti o solo alcuni) si avrà un'hamiltoniana della forma:
@@ -37,21 +43,32 @@ Introduciamo l'\emph{energia libera}
     F_\beta \coloneqq -\frac{1}{\beta} \log{Z_\beta},
 \end{equation}
 l'\emph{energia interna}
-\[ U \coloneqq \langle\ham\rangle = \sum_{\sigma\in\Sigma} P(\sigma)\ham(\sigma) \]
+\begin{equation}
+    U[P] \coloneqq \langle\ham\rangle = \sum_{\sigma\in\Sigma} P(\sigma)\ham(\sigma)
+\end{equation}
 e il funzionale \emph{entropia}
-\[ S[P] = -\sum_{\sigma\in\Sigma} P(\sigma) \log{P(\sigma)}. \]
+\begin{equation}
+    S[P] \coloneqq -\sum_{\sigma\in\Sigma} P(\sigma) \log{P(\sigma)}.
+\end{equation}
 Calcoliamo ora l'entropia della misura di Boltzmann:
 \[ S[P_\beta] = - \sum_{\sigma\in\Sigma} \frac{1}{Z_\beta}e^{-\beta\ham(\sigma)} \left( -\log{Z_\beta}  - \beta\ham(\sigma) \right) = \log{Z_\beta} + \beta U_\beta \]
-da cui, usando la \eqref{eq:en_libera}
-\[ F_\beta = U_\beta - \frac{1}{\beta} S[P_\beta]. \]
-Si verificano inoltre le seguenti relazioni:
-\[ U_\beta = \pd{\beta F_\beta}{\beta} \qquad S_\beta = \beta^2 \pd{F_\beta}{\beta} \]
+da cui, usando la \eqref{eq:en_libera}, si ottiene
+\begin{equation} \label{eqn:gibbs-boltzmann}
+    F_\beta = U_\beta - \frac{1}{\beta} S[P_\beta].
+\end{equation}
+\begin{equation}
+    U_\beta = \pd{\beta F_\beta}{\beta} \qquad S_\beta = \beta^2 \pd{F_\beta}{\beta}
+\end{equation}
 
 \subsection{Energia libera di Gibbs e principi variazionali}
 Con lo spirito di generalizzare la \eqref{eq:en_libera}, introduciamo il funzionale \emph{energia libera di Gibbs} per una misura di probabilità generica:
-\[ G[P] \coloneqq U - \frac{1}{\beta} S[P] = \sum_{\sigma\in\Sigma} P(\sigma)\ham(\sigma) + \frac{1}{\beta}\sum_{\sigma\in\Sigma} P(\sigma) \log{P(\sigma)}. \]
-Ovviamente si ha $ G[P_\beta] = F_\beta $. Vogliamo ora analizzare se $ G[P_\beta] $ sia un estremo dell'energia libera di Gibbs. A tale scopo introduciamo la \emph{divergenza di Kullback-Leibler}
-\[ D(P_1 \parallel P_2) \coloneqq \sum_{\sigma\in\Sigma} P_1(\sigma) \log{\frac{P_1(\sigma)}{P_2(\sigma)}}. \]
+\begin{equation}
+    G[P] \coloneqq U[P] - \frac{1}{\beta} S[P] = \sum_{\sigma\in\Sigma} P(\sigma)\ham(\sigma) + \frac{1}{\beta}\sum_{\sigma\in\Sigma} P(\sigma) \log{P(\sigma)}.
+\end{equation}
+Ovviamente per l'equazione \eqref{eqn:gibbs-boltzmann} si ha $ G[P_\beta] = F_\beta $. Vogliamo ora analizzare se $ G[P_\beta] $ sia un estremo dell'energia libera di Gibbs. A tale scopo introduciamo la \emph{divergenza di Kullback-Leibler}
+\begin{equation}
+    D(P_1 \parallel P_2) \coloneqq \sum_{\sigma\in\Sigma} P_1(\sigma) \log{\frac{P_1(\sigma)}{P_2(\sigma)}}.
+\end{equation}
 Si verifica che
 \begin{itemize}
     \item $ D(P_1 \parallel P_2) $ è convessa in $ P_1 $;
@@ -59,20 +76,30 @@ Si verifica che
     \item $ D(P_1 \parallel P_2) $ non è simmetrica nei suoi argomenti.
 \end{itemize}
 Infine si ha che, per una generica $ P $:
-\[ G[P] = G[P_\beta] + \frac{1}{\beta} D(P \parallel P_\beta) \]
-da cui segue che $ G[P] $ ha un minimo (globale) quando $ P = P_\beta $ e, poiché dalla convessità di $ D $ segue che $ G[P] $ è convesso in $ P $, non esistono altri estremi del funzionale.
+\begin{align*}
+	G[P] & = \sum_{\sigma\in\Sigma} P(\sigma)\ham(\sigma) + \frac{1}{\beta}\sum_{\sigma\in\Sigma} P(\sigma) \log{\left(\frac{P(\sigma)}{P_\beta(\sigma)} P_\beta(\sigma)\right)}                \\
+	     & = \sum_{\sigma\in\Sigma} P(\sigma)\ham(\sigma) + \frac{1}{\beta}\sum_{\sigma\in\Sigma} P(\sigma) \log{P_\beta(\sigma)} + D(P \parallel P_\beta)                                      \\
+	     & = \sum_{\sigma\in\Sigma} P(\sigma)\ham(\sigma) + \frac{1}{\beta}\sum_{\sigma\in\Sigma} P(\sigma) \log{\left(\frac{e^{-\beta \ham(\sigma)}}{Z_\beta}\right)} + D(P \parallel P_\beta) \\
+	     & = \sum_{\sigma\in\Sigma} P(\sigma)\ham(\sigma) - \sum_{\sigma\in\Sigma} P(\sigma)\ham(\sigma) - \frac{1}{\beta} Z_\beta \sum_{\sigma\in\Sigma} P(\sigma) + D(P \parallel P_\beta)    \\
+	     & = -\frac{1}{\beta} Z_\beta + D(P \parallel P_\beta)
+\end{align*}
+ovvero
+\begin{equation}
+     G[P] = G[P_\beta] + \frac{1}{\beta} D(P \parallel P_\beta)
+\end{equation}
+Pertanto otteniamo che $ G[P] $ ha un minimo (globale) quando $ P = P_\beta $ e, poiché dalla convessità di $ D $ segue che $ G[P] $ è convesso in $ P $, non esistono altri estremi del funzionale. \\
 
 Vogliamo ora riscrivere il principio variazionale così individuato (cioè che la misura di Boltzmann è l'unica che minimizza l'energia libera di Gibbs) in termini di un altro principio variazionale che coinvolga l'entropia. Abbiamo che, detto $ \mathcal{P} $ l'insieme delle possibili misure di probabilità su $ \Sigma $:
 \begin{align*}
     P_\beta(\sigma) = \argmin_{P\in\mathcal{P}} G[P] & = \argmin_{P\in\mathcal{P}} \left[ \sum_{\sigma\in\Sigma} P(\sigma) \ham(\sigma) - \frac{1}{\beta} S[P] \right]\\
                                                      & = \argmax_{P\in\mathcal{P}} \left[ S[P] - \beta \sum_{\sigma\in\Sigma}P(\sigma)\ham(\sigma) \right]\\
-                                                     & = \argmax_{\substack{P\in\mathcal{P}\\ U=\bar{U}}} S[P].
+                                                     & = \argmax_{\substack{P\in\mathcal{P}\\ U=\overline{U}}} S[P].
 \end{align*}
-Nell'ultimo passaggio si è interpretato $ \beta $ come un moltiplicatore di Lagrange, e dunque il problema di massimo in analisi può essere visto come un problema di massimo della sola entropia, col vincolo di mantenere l'energia interna fissata a una certa costante $ \bar{U} $.
+Nell'ultimo passaggio si è interpretato $ \beta $ come un moltiplicatore di Lagrange, e dunque il problema di massimo in analisi può essere visto come un problema di massimo della sola entropia, col vincolo di mantenere l'energia interna fissata a una certa costante $ \overline{U} $.
 
-Verifichiamo ora esplicitamente che la misura di Boltzmann è quella che massimizza l'entropia a fissata energia interna. Introduciamo due moltiplicatori di Lagrange per fissare il vincolo che l'energia interna sia pari a $ \bar{U} $ e che la generica misura $ P\in\mathcal{M} $ sia di probabilità, cioè $ \sum_{\sigma\in\Sigma}P(\sigma) = 1 $.
+Verifichiamo ora esplicitamente che la misura di Boltzmann è quella che massimizza l'entropia a fissata energia interna. Introduciamo due moltiplicatori di Lagrange per fissare il vincolo che l'energia interna sia pari a $ \overline{U} $ e che la generica misura $ P\in\mathcal{M} $ sia di probabilità, cioè $ \sum_{\sigma\in\Sigma}P(\sigma) = 1 $.
 \begin{align*}
-    \argmax_{\substack{P\in\mathcal{P}\\ U=\bar{U}}} S[P] & = \argmax_{\substack{P\in\mathcal{P}\\ U=\bar{U}}} \left[ -\sum_{\sigma\in\Sigma}P(\sigma)\log{P(\sigma)} \right]\\
+    \argmax_{\substack{P\in\mathcal{P}\\ U=\overline{U}}} S[P] & = \argmax_{\substack{P\in\mathcal{P}\\ U=\overline{U}}} \left[ -\sum_{\sigma\in\Sigma}P(\sigma)\log{P(\sigma)} \right]\\
                                                           & = \argmax_{P\in\mathcal{M}} \left[ -\sum_{\sigma\in\Sigma}P(\sigma)\log{P(\sigma)} - \beta \sum_{\sigma\in\Sigma}P(\sigma)\ham(\sigma) + \lambda \sum_{\sigma\in\Sigma}P(\sigma) \right]
 \end{align*}
 Detto $ p_i \coloneqq P(\sigma^i) $, dove $ \sigma^i \in \Sigma $ è una delle possibili configurazioni, ed essendo $ \Sigma $ finito, possiamo identificare $ \mathcal{M} $ con $ \R^N $, con $ N \coloneqq \card(\Sigma) $. L'argomento dell'$ \argmax $ può quindi essere pensato come una funzione $ f\colon \R^{N+2}\to\R $ così definita
@@ -81,9 +108,9 @@ Dobbiamo quindi imporre che le derivate parziali $ \pd{f}{p_j} $ si annullino
 \[ \lambda -1 - \log{p_j} - \beta \ham(\sigma^j) = 0 \]
 da cui
 \[ p_j = e^{\lambda - 1} e^{-\beta\ham(\sigma^j)}. \]
-Dobbiamo ora imporre i vincoli; scegliamo $ \lambda $ in modo tale che $ \sum_{i=1}^{N} p_i = 1 $, cioè $ {e^{\lambda - 1} = 1/Z_\beta} $. Imponiamo infine:
-\[ \sum_{i=1}^{N} \frac{1}{Z_\beta} e^{-\beta\ham(\sigma^i)} \ham(\sigma^i) = \bar{U} \]
-Da cui si ottiene $ \beta $ in funzione di $ \bar{U} $, ma per i nostri scopi conviene lasciare la dipendenza esplicita da $ \beta $. Otteniamo quindi, come atteso,
+Dobbiamo ora imporre i vincoli. Scegliamo $ \lambda $ in modo tale che $ \sum_{i=1}^{N} p_i = 1 $, cioè $ {e^{\lambda - 1} = 1/Z_\beta} $. Imponiamo infine:
+\[ \sum_{i=1}^{N} \frac{1}{Z_\beta} e^{-\beta\ham(\sigma^i)} \ham(\sigma^i) = \overline{U} \]
+Da cui si ottiene $ \beta $ in funzione di $ \overline{U} $, ma per i nostri scopi conviene lasciare la dipendenza esplicita da $ \beta $. Otteniamo quindi, come atteso,
 \[ P(\sigma^j) = \frac{1}{Z_\beta} e^{-\beta\ham{\sigma^j}}. \]
 
 \subsection{Esercizi}

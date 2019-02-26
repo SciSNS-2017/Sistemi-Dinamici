@@ -1,35 +1,44 @@
 \section{Lezione del 16/01/19 [Tantari]}
 \textcolor{red}{Introduzione e road map vanno riviste quando avrò finito la seconda lezione e sarà chiaro (spero) cosa si sta cercando di fare.}
 
-Ci prefiggiamo di studiare ora il modello di Curie-Weiss nel \emph{limite termodinamico}, cioè nel limite in cui il numero $ n $ di particelle tende a infinito. In particolare calcoleremo il limite dell'energia libera $ f_{\beta, n} \coloneqq F_{\beta, n}/n = -\frac{\log Z_{\beta, n}}{\beta n}$\footnote{D'ora in poi ometteremo il pedice $ \beta $ per alleggerire la notazione.}.
+Ci prefiggiamo di studiare ora il modello di Curie-Weiss nel \emph{limite termodinamico}, cioè nel limite in cui il numero $ n $ di particelle tende a infinito.
+
+In linea di principio, potremmo voler calcolare direttamente il limite della distribuzione di Boltzmann $ \lim_{n \to \infty} P_{\beta, n} $. Tuttavia tale limite conduce a problematiche assolutamente non banali: per esempio le $ P_{\beta, n} $ sono definite su spazi di misura diversi la cui cardinalità cresce con $ n $ e pertanto non è ben chiaro che cosa voglia dire fare tale limite\footnote{Una trattazione di che cosa voglia dire il limite termodinamico della misura di Boltzmann è stato fatto da Dobrushin, Lanford e Ruelle e porta alla definizione degli \emph{stati DLR}.}. Pertanto il limite termodinamico viene di solito formulato in termini di quantità termodinamiche che sono numeri reali. In particolare calcoleremo il limite dell'energia libera $ f_{\beta, n} \coloneqq F_{\beta, n}/n = -\frac{\log Z_{\beta, n}}{\beta n}$\footnote{D'ora in poi ometteremo il pedice $ \beta $ per alleggerire la notazione.}.
 
 \subsubsection{Road map}
 \begin{enumerate}
   \item Calcolo di $ \lim_{n\to\infty} \frac{1}{n} \log{Z_n} = \lim_{n\to\infty} -\frac{\beta F_n}{n} $
-  \item Data una generica osservabile $ \mathcal{O}\colon\Sigma\to\R $, calcoliamone il valore atteso nel limite termodinamico $ \lim_{n\to\infty} \mean{\mathcal{O}_n(\sigma)}_{P_\beta} $. Nel nostro caso considereremo la \emph{magnetizzazione media} $ m_n(\sigma) \coloneqq \mean{\frac{1}{n}\sum_{i=1}^{n}\sigma_i}_{P_\beta} $.
+  \item Data una generica osservabile $ \mathcal{O}\colon\Sigma\to\R $, calcoliamone il valore atteso nel limite termodinamico $ \lim_{n\to\infty} \mean{\mathcal{O}_n(\sigma)}_{P_{\beta, n}} $. Nel nostro caso considereremo la \emph{magnetizzazione media} $ m_n(\sigma) \coloneqq \frac{1}{n}\sum_{i=1}^{n}\sigma_i $.
   \item \textcolor{red}{Automedia: calcolo delle fluttuazioni delle osservabili}.
   $ \lim_{n\to\infty} P_\beta\left(\ \abs{m_n(\sigma) - m_\beta } > \epsilon \right) $.
   \textcolor{red}{Non capisco cosa sia $ m_\beta $ e se quella che prima ho definito come $ m_n $ sia davvero $ m_n $ oppure sia $ m_\beta $.}
 \end{enumerate}
 
 Nel modello di Curie-Weiss lo spazio delle fasi è $ \Sigma = \{-1,1\}^n $. L'hamiltoniana è:
-\[ \ham_n(\sigma) = -\frac{1}{n} \sum_{i<j} \sigma_i \sigma_j - h \sum_i \sigma_i \]
-dove il primo termine descrive l'interazione tra gli spin, che tendono ad allinearsi, e il secondo l'interazione con il campo esterno $ h $. Osserviamo che $ \ham_n $ scala come $ n $; una quantità di questo tipo di dice \emph{intensiva}. La quantità che ci prefiggiamo di calcolare, $ f_n $, è invece \emph{intensiva}.
+\begin{equation}
+    \ham_n(\sigma) = -\frac{1}{n} \sum_{i<j} \sigma_i \sigma_j - h \sum_i \sigma_i
+\end{equation}
+dove il primo termine descrive l'interazione tra gli spin, che tendono ad allinearsi, e il secondo l'interazione con il campo esterno $ h $. Osserviamo che $ \sum_{i=1}^{n} \sigma_i $ scala come $ n $, $ \sum_{i<j} \sigma_i \sigma_j $ scala come $ n^2 $  e pertanto $ \ham_n $ scala come $ n $; una quantità di questo tipo di dice \emph{estensiva}. La quantità che ci prefiggiamo di calcolare, $ f_n $, è invece \emph{intensiva}.
 
-Cominciamo riscrivendo l'hamiltoniana in termini di $ m_n(\sigma) $:
+Cominciamo riscrivendo l'hamiltoniana in termini della magnetizzazione media $ m_n(\sigma) $:
 \[ \sum_{i<j} \sigma_i \sigma_j = \frac{1}{2} \sum_{i \neq j} \sigma_i \sigma_j = \sum_{i,j} \sigma_i \sigma_j -\frac{n}{2} = \frac{n^2 m_n^2(\sigma)}{2} - \frac{n}{2} \]
-da cui, trascurando un'irrilevante costante additiva
-\[ \ham(\sigma) = -\frac{n m_n^2(\sigma)}{2} - hnm_n(\sigma) \]
+da cui
+\begin{equation}
+    \ham(\sigma) = -\frac{n m_n^2(\sigma)}{2} - hnm_n(\sigma) + \frac{1}{2}.
+\end{equation}
 e quindi
-\[ Z_n = \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) \right) \]
+\begin{equation} \label{eqn:Zn-mag}
+    Z_n = \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) - \frac{\beta}{2}\right).
+\end{equation}
+Di seguito trascureremo la costante $ 1/2 $ nell'hamiltoniana e conseguentemente a $ -\beta/2 $ a esponente in $ Z_n $ in quanto essa, non dipendendo da $ \sigma $, porta a una costante $ e^{-\beta/2} $ che moltiplica la somma nella \eqref{eqn:Zn-mag} ovvero a un termine del tipo $ -\frac{\beta}{2n} $ in $ \frac{\log Z_n}{n} $, trascurabile nel limite termodinamico.
 
 \subsection{Esistenza del limite}
 Dimostriamo innanzi tutto che il limite $ \lim_{n\to\infty} \frac{\log Z_n}{n} $ esiste.
 \begin{proof}
-    Procediamo facendo vedere che la successione $ \log Z_n $ è subadditiva e usiamo il lemma \ref{lem:fekete}.
-    Posto $ n = n_1 + n_2 $, siano $ \sigma_1 \in \{-1,1\}^{n_1} $ e $ \sigma_2 \in \{-1,1\}^{n_2} $; si ha
-    \[ m_n(\sigma_1,\sigma_2) = \frac{n_1}{n} m_1(\sigma_1) + \frac{n_2}{n} m_2(\sigma_2) \]
-    si verifica con facili calcoli che
+    Procediamo facendo vedere che la successione $ \log Z_n $ è subadditiva e per concludere con il lemma di Fekete (lemma \ref{lem:fekete}).
+    Posto $ n = n_1 + n_2 $, siano $ \sigma_1 \in \{-1,1\}^{n_1} $ e $ \sigma_2 \in \{-1,1\}^{n_2} $ così che $ (\sigma_1, \sigma_2) \in \Sigma $; si ha
+    \[ m_n(\sigma_1,\sigma_2) = \mean{\frac{1}{n} \sum_{i=1}^{n_1} \sigma_i} + \mean{\frac{1}{n} \sum_{i=n_1 + 1}^{n_2} \sigma_i} = \frac{n_1}{n} m_1(\sigma_1) + \frac{n_2}{n} m_2(\sigma_2) \]
+    dove abbiamo definito $ m_1(\sigma) = \frac{1}{n_1} \sum_{i=1}^{n_1}\sigma_{1, i} $ e similmente $ m_2(\sigma) $. Si verifica con facili calcoli che
     \[ n m_n^2 = n_1 m_1^2 + n_2 m_2^2 - \frac{n_1 n_2}{n} (m_1-m_2)^2 \leq n_1 m_1^2 + n_2 m_2^2 \]
     e quindi
     \begin{align*}
@@ -39,20 +48,27 @@ Dimostriamo innanzi tutto che il limite $ \lim_{n\to\infty} \frac{\log Z_n}{n} $
     Prendendo il logaritmo si ottiene $ \log Z_{n_1+n_2} \leq \log Z_{n_1} + \log Z_{n_2} $.
 \end{proof}
 
-Possiamo ora dare una stima grossolana del limite in analisi. \textcolor{red}{(Non ne ho capito il senso)}. In un verso abbiamo:
-\[ Z_n = \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) \right) \leq \sum_{\sigma \in \Sigma} \exp\left(  \frac{\beta n}{2} + \beta n h \right) = \exp\left( n \left( \log 2 + \frac{\beta}{2} + \beta h \right) \right) \]
+Possiamo ora dare una stima grossolana del limite in analisi. \textcolor{red}{(Non ne ho capito il senso)}. Osservando che dalla definizione $ m_n(\sigma) \leq 1 $, in un verso abbiamo:
+\begin{align*}
+    Z_n & = \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) \right) \leq \sum_{\sigma \in \Sigma} \exp\left(  \frac{\beta n}{2} + \beta n h \right) \\
+    & = 2^n \exp\left( \frac{\beta n}{2} + \beta n h\right) = \exp\left( n \left( \log 2 + \frac{\beta}{2} + \beta h \right) \right)
+\end{align*}
 Da cui
 \[ \frac{\log Z_n}{n} \leq \log 2 + \frac{\beta}{2} + \beta h \]
-Nell'altro verso, detta $ U $ la distribuzione uniforme sulle $ 2^n $ configurazioni possibili, e usando la diseguaglianza di Jensen, si ha
-\[ Z_n = 2^n \mean{\exp\left(-\beta\ham_n\right)}_U \geq 2^n \exp\left( -\beta \mean{\ham}_U \right) = 2^n \]
-in quanto $ \mean{\sigma_i}_U = 0 $ e $ \mean{\sigma_i\sigma_j}_U = \mean{\sigma_i}_U\mean{\sigma_j}_U = 0 $. Prendendo il logaritmo abbiamo infine:
-\[ \frac{\log Z_n}{n} \geq \log 2 \]
-\textcolor{red}{Abbiamo usato il principio variazionale di Gibbs???}
+Nell'altro verso, detta $ \Omega_0 $ la distribuzione uniforme sulle $ 2^n $ configurazioni possibili, e usando la diseguaglianza di Jensen\footnote{Sia $ (X, \mathcal{F}, \mu) $ uno spazio di misura. Se $ f \colon X \to \R $ è una variabile aleatoria e $ \varphi \colon \R \to \R $ è una funzione convessa, allora \[\varphi\left(\mathbb{E}\left[f\right]\right) \leq \mathbb{E}\left[\varphi(f)\right].\]}, si ha
+\[
+    Z_n = 2^n \mean{\exp\left(-\beta\ham_n\right)}_{\Omega_0} \geq 2^n \exp\left( -\beta \mean{\ham}_{\Omega_0} \right) = 2^n
+\]
+in quanto $ \mean{\sigma_i}_{\Omega_0} = 0 $ e $ \mean{\sigma_i\sigma_j}_{\Omega_0} = \mean{\sigma_i}_{\Omega_0}\mean{\sigma_j}_{\Omega_0} = 0 $. Prendendo il logaritmo abbiamo infine:
+\[ \frac{\log Z_n}{n} \geq \log 2. \]
+La stessa stima dal basso poteva essere ottenuta usando il principio variazionale di Gibbs (che d'altra parte fa uso della disuguaglianza di Jensen). Infatti sapendo che $ F_\beta \leq G[\Omega_0] $ si ottiene
+\[ \frac{\log Z_n}{n} = -\frac{\beta}{n} F_\beta \geq -\frac{\beta}{n} \left[\mean{H}_{\Omega_0} + \frac{1}{\beta} \sum_{\sigma \in \Sigma} \Omega_0(\sigma) \log{\Omega_0(\sigma)}\right]. \]
+Ora come detto in precedenza $ \mean{H}_{\Omega_0} = 0 $ mentre $ \sum_{\sigma \in \Sigma} \Omega_0(\sigma) \log{\Omega_0(\sigma)} = 2^{n} \frac{1}{2^{n}} (- n \log{2}) $ da cui $ \frac{\log Z_n}{n} \geq -\frac{n}{\beta}\left(-\frac{\beta}{n} \log{2}\right) = \log{2} $
 
 \subsection{Calcolo dell'energia libera}
 Calcoliamo ora in modo esatto l'energia libera nel limite termodinamico.
 \subsubsection{Primo bound}
-Sia $ M \in [-1,1] $. Allora si ha $ \exp\left( -\frac{\beta n (m_n(\sigma) - M)^2}{2} \right) \leq 1 $ e quindi
+Sia $ M \in [-1,1] $. Essendo $ -1 \leq m_n(\sigma) \leq 1 $ si ha $ \exp\left( -\frac{\beta n (m_n(\sigma) - M)^2}{2} \right) \leq 1 $. Quindi
 \begin{align*}
     Z_n & \geq \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) - \frac{\beta n (m_n(\sigma)-M)^2}{2}\right) \\
         & = \exp\left( -\frac{\beta n M^2}{2} \right) \sum_{\sigma \in \Sigma} \exp\left( (M+h) \beta n m_n(\sigma) \right)                              \\
@@ -63,13 +79,13 @@ Sia $ M \in [-1,1] $. Allora si ha $ \exp\left( -\frac{\beta n (m_n(\sigma) - M)
         & = \exp\left( -\frac{\beta n M^2}{2} \right) 2^n \cosh^n(\beta(M+h)). \\
 \end{align*}
 Abbiamo dunque:
-\[ \frac{\log Z_n}{n} \geq \log 2 + \log\cosh(\beta(M+h)) - \frac{\beta M^2}{2} \eqqcolon \alpha(\beta, h) \]
+\[ \frac{\log Z_n}{n} \geq \log 2 + \log\cosh(\beta(M+h)) - \frac{\beta M^2}{2} \eqqcolon \alpha(M, \beta, h) \]
 Prendendo il limite per $ n\to\infty $ e il $ \sup $ al variare di $ M $ in $ [-1,1] $ otteniamo
 \[ \lim_{n \to +\infty}\frac{\log Z_n}{n} \geq \sup_{M\in[-1,1]} \alpha(M, \beta, h) \eqqcolon \bar{\alpha}(\beta, h) \]
 
 \subsubsection{Secondo bound}
 Osserviamo che $ m_n(\sigma) $ può assumere solamente $ n+1 $ valori: $ \im m_n = \left\{ -1, -1 + \frac{2}{n}, \ldots, 1-\frac{2}{n}, 1 \right\} $. Sia ora $ M \in \im m_n $; abbiamo che
-\[ \sum_{M\in \im m_n} \exp\left( -\frac{\beta(m(\sigma)-M)^2}{2} \right) = 1 + \sum_{\substack{M \in \im m_n \\ M \neq m_n(\sigma)}} \exp\left( -\frac{\beta(m(\sigma)-M)^2}{2} \right) \geq 1 \]
+\[ \sum_{M\in \im m_n} \exp\left( -\frac{\beta(m_n(\sigma)-M)^2}{2} \right) = 1 + \sum_{\substack{M \in \im m_n \\ M \neq m_n(\sigma)}} \exp\left( -\frac{\beta(m_n(\sigma)-M)^2}{2} \right) \geq 1 \]
 e quindi
 \begin{align*}
     Z_n & \leq \sum_{M\in \im m_n} \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) - \frac{\beta n (m_n(\sigma)-M)^2}{2}\right)     \\
@@ -85,9 +101,9 @@ Studiamo ora i punti stazionari di $ \alpha(M, \beta, h) $ a fissati $ \beta $ e
 \begin{equation}\label{eq:mbar}
     \pd{\alpha}{M} = \beta \left( \tanh(\beta (M+h)) - M \right) = 0.
 \end{equation}
-Nel caso particolare $ h = 0 $, cioè in assenza di campo esterno, l'equazione si riduce a $ \tanh{\beta M} = M $. Questa ha sempre la soluzione $ M = 0 $, mentre solo nel caso $ \beta > 1 $ si aggiungono due soluzioni opposte non nulle. Inoltre in un intorno destro di $ M = 0 $ la derivata $ \pd{\alpha}{M} $ è negativa per $ \beta \leq 1 $, positiva per $ \beta > 1 $. Dunque in $ M = 0 $ $ \alpha $ presenta un massimo per $ \beta \leq 1 $, mentre un minimo per $ \beta > 1 $. Si verifica infine che le soluzioni aggiuntive presenti nel caso $ \beta > 1 $ corrispondono a due massimi (si veda anche la figura \ref{fig:alpha}).
+Nel caso particolare $ h = 0 $, cioè in assenza di campo esterno, l'equazione si riduce a $ \tanh{\beta M} = M $. Questa ha sempre la soluzione $ M = 0 $, mentre solo nel caso $ \beta > 1 $ si aggiungono due soluzioni opposte non nulle. Inoltre in un intorno destro di $ M = 0 $ la derivata $ \pd{\alpha}{M} $ è negativa per $ \beta \leq 1 $, positiva per $ \beta > 1 $. Dunque in $ M = 0 $ $ \alpha $ presenta un massimo per $ \beta \leq 1 $, mentre un minimo per $ \beta > 1 $. Si verifica infine che le soluzioni aggiuntive presenti nel caso $ \beta > 1 $ corrispondono a due massimi (si veda anche la Figura \ref{fig:alpha}).
 
-Nel seguito porremo $ \bar{M}(\beta,h) \coloneqq \argmax_{M\in[-1,1]} \alpha(M,\beta,h) $ e dunque sarà $ \bar{\alpha}(\beta, h) = \alpha(\bar{M}, \beta, h) $\footnote{In caso di ambiguità si scelga, ad esempio, il più grande $ M $ che realizzano il massimo.}. Nella figura \ref{fig:transizione} è riportato l'andamento di $ \pm \bar{M}(\beta, 0) $ in funzione di $ T=\frac{1}{\beta} $. Si osserva che in corrispondenza di $ \beta = 1 $ il sistema presenza una transizione di fase \textcolor{red}{di seconda specie}.
+Nel seguito porremo $ \overline{M}(\beta,h) \coloneqq \argmax_{M\in[-1,1]} \alpha(M,\beta,h) $ e dunque sarà $ \bar{\alpha}(\beta, h) = \alpha(\overline{M}, \beta, h) $\footnote{In caso di ambiguità si scelga, ad esempio, il più grande $ M $ che realizzano il massimo.}. Nella Figura \ref{fig:transizione} è riportato l'andamento di $ \pm \overline{M}(\beta, 0) $ in funzione di $ T=\frac{1}{\beta} $. Si osserva che in corrispondenza di $ \beta = 1 $ il sistema presenza una transizione di fase \textcolor{red}{di seconda specie}.
 
 \iffigureon
 \begin{figure}[p]
@@ -102,7 +118,7 @@ Nel seguito porremo $ \bar{M}(\beta,h) \coloneqq \argmax_{M\in[-1,1]} \alpha(M,\
 \begin{figure}[p]
     \centering
     \includegraphics[scale=0.8]{img/cw/transizione.pdf}
-    \caption{$ \bar{M} $ in funzione di $ T = \frac{1}{\beta}$.}
+    \caption{$ \overline{M} $ in funzione di $ T = \frac{1}{\beta}$.}
     \label{fig:transizione}
 \end{figure}
 \fi
@@ -131,10 +147,10 @@ Abbiamo quindi
 \begin{align}
 	\label{eq:limmagnmedia}
     \lim_{n \to +\infty}\mean{m_n}_{P_\beta} & = \frac{1}{\beta} \lim_{n \to +\infty} \dpd{}{h}\left(\frac{\log Z_n}{n}\right) = \frac{1}{\beta} \dpd{}{h} \left( \lim_{n \to +\infty} \frac{\log Z_n}{n} \right) \nonumber \\
-	                                         & = \frac{1}{\beta} \dpd{\bar{\alpha}}{h}(\beta, h) = \frac{1}{\beta} \dod{}{h} \left( \alpha(\bar{M}(\beta,h), \beta, h)\right) \nonumber \\
-                                             & = \frac{1}{\beta} \left[ \dpd{\alpha}{M}(\bar{M}(\beta,h),\beta,h) \dpd{\bar{M}}{h}(\beta,h) + \dpd{\alpha}{h}(\bar{M}(\beta,h),\beta,h) \right] \nonumber \\
-                                             & = \tanh(\beta(\bar{M}(\beta,h)+h))  \nonumber \\
-                                             & = \bar{M}(\beta, h)
+	                                         & = \frac{1}{\beta} \dpd{\overline{\alpha}}{h}(\beta, h) = \frac{1}{\beta} \dod{}{h} \left( \alpha(\overline{M}(\beta,h), \beta, h)\right) \nonumber \\
+                                             & = \frac{1}{\beta} \left[ \dpd{\alpha}{M}(\overline{M}(\beta,h),\beta,h) \dpd{\overline{M}}{h}(\beta,h) + \dpd{\alpha}{h}(\overline{M}(\beta,h),\beta,h) \right] \nonumber \\
+                                             & = \tanh(\beta(\overline{M}(\beta,h)+h))  \nonumber \\
+                                             & = \overline{M}(\beta, h)
 \end{align}
 dove si è sostituita la condizione \eqref{eq:mbar} e si sono scambiati limite e derivata per la proposizione \ref{prop:convessascambio}. Se invece deriviamo rispetto a $ \beta $ otteniamo
 \begin{align*}
@@ -143,12 +159,11 @@ dove si è sostituita la condizione \eqref{eq:mbar} e si sono scambiati limite e
 da cui
 \begin{align*}
 	\frac{1}{2}\lim_{n \to +\infty}\mean{m_n^2}_{P_\beta} + h\lim_{n \to +\infty}\mean{m_n}_{P_\beta}& = \lim_{n \to +\infty} \dpd{}{\beta} \left(\frac{\log Z_n}{n}\right) = \dpd{}{\beta} \left( \lim_{n \to +\infty}\frac{\log Z_n}{n} \right) \\
-                                               & = \dpd{\bar{\alpha}}{\beta}(\beta,h) = \dod{}{\beta}\left(\alpha(\bar{M}(\beta,h),\beta,h)\right) \\
-                                               & = \dpd{\alpha}{M}(\bar{M}(\beta,h),\beta,h) \dpd{\bar{M}}{\beta}(\beta,h) + \dpd{\alpha}{\beta}(\bar{M}(\beta,h),\beta,h) \\
-                                               & = \left(\bar{M}(\beta,h) + h\right) \tanh\left(\beta(\bar{M}(\beta,h)+ h)\right) - \frac{1}{2}\bar{M}^2(\beta,h)\\
-                                               & = \frac{1}{2}\bar{M}^2(\beta,h) + h \bar{M}(\beta,h).
+                                               & = \dpd{\overline{\alpha}}{\beta}(\beta,h) = \dod{}{\beta}\left(\alpha(\overline{M}(\beta,h),\beta,h)\right) \\
+                                               & = \dpd{\alpha}{M}(\overline{M}(\beta,h),\beta,h) \dpd{\overline{M}}{\beta}(\beta,h) + \dpd{\alpha}{\beta}(\overline{M}(\beta,h),\beta,h) \\
+                                               & = \left(\overline{M}(\beta,h) + h\right) \tanh\left(\beta(\overline{M}(\beta,h)+ h)\right) - \frac{1}{2}\overline{M}^2(\beta,h)\\
+                                               & = \frac{1}{2}\overline{M}^2(\beta,h) + h \overline{M}(\beta,h).
 \end{align*}
 Usando la \ref{eq:limmagnmedia} segue che
 \[ \lim_{n \to +\infty} \mean{m_n^2}_{P_\beta} = \bar{M}^2(\beta,h). \]
 \textcolor{red}{Qui mancano un po' di discorsi conclusivi che però vengono ripresi nella lezione successiva.}
-
