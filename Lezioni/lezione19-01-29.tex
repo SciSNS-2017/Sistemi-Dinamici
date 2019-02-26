@@ -21,9 +21,9 @@ dove $ \Id_n $ è la matrice identità $ n \times n $. Tale matrice gode della p
     Mostrare che ogni matrice antisimmetrica ha rango pari.
 \end{exercise}
 
-Sia $ \mathcal{O} \subseteq \R^{2n} \times \R $ un aperto semplicemente connesso. Di seguito un elemento di $ \mathcal{O} $ verrà indicato come una coppia $ (x, t) $ dove $ x \in \Pi_{\R^{2n}}(\mathcal{O}) $ e $ t \in \Pi_\R(\mathcal{O}) $ è detta variabile \emph{tempo}. Spesso si scriverà $ x = (q, p) $ dove $ q $ e $ p $ sono vettori di a $ n $ componenti detti \emph{posizione} e \emph{momento cinetico}. Le variabili $ q $ e $ p $ sono dette \emph{canonicamente coniugate}. Con lieve abuso di notazione un elemento di $ \mathcal{O} $ si scriverà spesso come una terna $ (q, p, t) $. \\
+Sia $ \mathcal{O} \subseteq \R^{2n} \times \R $ un aperto semplicemente connesso. Di seguito un elemento di $ \mathcal{O} $ verrà indicato come una coppia $ (x, t) $ dove le coordinate $ x $ appartengono allo \emph{spazio delle fasi} $ \Pi_{\R^{2n}}(\mathcal{O}) $ e $ t \in \Pi_\R(\mathcal{O}) $ è detta variabile \emph{tempo}. Spesso si scriverà $ x = (q, p) $ dove $ q $ e $ p $ sono vettori di a $ n $ componenti detti \emph{posizione} e \emph{momento cinetico}. Le variabili $ q $ e $ p $ sono dette \emph{canonicamente coniugate}. Con lieve abuso di notazione un elemento di $ \mathcal{O} $ si scriverà spesso come una terna $ (q, p, t) $. \\
 
-Sull'aperto $ \mathcal{O} $ si considera una funzione scalare $ \ham \colon \mathcal{O} \to \R $ detta \emph{funzione hamiltoniana} di classe $ \mathcal{C}^{\infty} $. Tale ipotesi su $ \ham $ non sarà sempre necessaria nel senso che i risultati che andremo ad enunciare valgono per anche per hamiltoniane meno regolari: questa è tuttavia una questione di cui non ci vogliamo occupare e pertanto supporremo che $ \ham $ sia di classe $ \mathcal{C}^\infty $.
+Sull'aperto $ \mathcal{O} $ si considera una funzione scalare $ \ham \colon \mathcal{O} \to \R $, detta \emph{funzione hamiltoniana}, di classe $ \mathcal{C}^{\infty} $. Tale ipotesi su $ \ham $ non sarà sempre necessaria nel senso che i risultati che andremo ad enunciare valgono per anche per hamiltoniane meno regolari: questa è tuttavia una questione di cui non ci vogliamo occupare e pertanto supporremo che $ \ham $ sia di classe $ \mathcal{C}^\infty $.
 
 Una funzione hamiltoniana genera un insieme di equazioni differenziali dette \emph{equazioni di Hamilton}
 \begin{equation} \label{eqn:ham}
@@ -32,7 +32,7 @@ Una funzione hamiltoniana genera un insieme di equazioni differenziali dette \em
     x(0) = x_0
     \end{cases}
 \end{equation}
-dove con $ \nabla_x \ham $ si intende il gradiente di $ \ham $ a tempo fissato, cioè vista come funzione della sola $ x $, e $ x_0 \in \Pi_{\R^{2n}}(\mathcal{O}) $. Il "vettore" $ \Gamma \, \nabla_x \ham $ è detto \emph{gradiente simplettico} di $ \ham $.
+dove con $ \nabla_x \ham $ si intende il gradiente di $ \ham $ a tempo fissato, cioè vista come funzione della sola $ x $, e $ x_0 \in \Pi_{\R^{2n}}(\mathcal{O}) $. Il ``vettore'' $ \Gamma \, \nabla_x \ham $ è detto \emph{gradiente simplettico} di $ \ham $.
 
 Essendo $ \ham $ di classe $ \mathcal{C}^\infty $ il Teorema di Cauchy-Lipschitz-Picard-Lindelöf assicura esistenza e unicità locale della soluzione al problema di Cauchy \eqref{eqn:ham} e dipendenza continua dai valori iniziali. In termini delle variabili $ (q, p) $ il problema di Cauchy assume la forma più usuale
 \begin{equation}
@@ -49,9 +49,9 @@ Grazie al teorema di esistenza e unicità è ben definito il \emph{flusso hamilt
     \Phi_\ham^t \colon \Pi_{\R^{2n}}(\mathcal{O}) & \to \R^{2n} \\
     x_0 & \mapsto x(t; x_0)
 \end{align}
-dove $ x(t; x_0) $ è la soluzione del problema \eqref{eqn:ham} cioè una funzione da un intervallo che contiene $ t=0 $ a valori in $ \R^{2n} $ tale che $ x(0; x_0) = x_0 $ e per ogni $ t $ soddisfa $ \dot{x}(t; x_0) = \Gamma \, \nabla_x \ham(x(t; x_0), t) $. Per definizione si ha
+dove $ x(t; x_0) $ è la soluzione del problema \eqref{eqn:ham}, cioè una funzione da un intervallo che contiene $ t=0 $ a valori in $ \R^{2n} $ tale che $ x(0; x_0) = x_0 $ e che per ogni $ t $ soddisfa $ \dot{x}(t; x_0) = \Gamma \, \nabla_x \ham(x(t; x_0), t) $. Dalla definizione segue che
 \[
-    \od{}{t} (\Phi^t_\ham) = \lim_{h \to 0} \frac{\Phi^{t+h}_\ham - \Phi^{t}_\ham}{h} = \lim_{h \to 0} \frac{x(t+h; x_0) - x(t; x_0)}{h} = \dot{x}(t; x_0) = \Gamma \, \nabla_x \ham(\Phi_\ham^t(x_0), t)
+    \od{}{t} (\Phi^t_\ham) = \dot{x}(t; x_0) = \Gamma \, \nabla_x \ham(\Phi_\ham^t(x_0), t).
 \]
 
 Nel caso \emph{autonomo}, cioè quando l'hamiltoniana non dipende dal tempo, sempre grazie al teorema di esistenza e unicità si ha che il flusso hamiltoniano al tempo $ t+s $ partendo al punto $ x_0 $ è la composizione del flusso al tempo $ s $ partendo da $ x_0 $ e del flusso al tempo $ t $ partendo da $ x_1 = x(s; x_0) $. Nel caso non autonomo questo non è più vero perché \textcolor{red}{ci sono problemi con l'origine dei tempi}.
@@ -107,7 +107,7 @@ Nel caso \emph{autonomo}, cioè quando l'hamiltoniana non dipende dal tempo, sem
 \begin{definition}[parentesi di Poisson]
     Siano $ F, G \colon \mathcal{O} \to \R $ due osservabili di classe $ \mathcal{C}^\infty $. Si definisce la parentesi di Poisson tra $ F $ e $ G $ come
     \begin{equation}
-        \left\{F, G\right\} \coloneqq (\nabla_x F)^T \cdot \Gamma \nabla_x G = \sum_{i=1}^{n} \left(\dpd{F}{q_i} \dpd{G}{p_i} - \dpd{F}{p_i}\dpd{G}{q_i}\right).
+        \left\{F, G\right\} \coloneqq (\nabla_x F)^T \,\Gamma\, \nabla_x G = \sum_{i=1}^{n} \left(\dpd{F}{q_i} \dpd{G}{p_i} - \dpd{F}{p_i}\dpd{G}{q_i}\right).
     \end{equation}
 \end{definition}
 
@@ -160,13 +160,13 @@ o in funzione delle $ (q, p) $
     \{q_i, q_j\} = \{p_i, p_j\} = 0 \qquad \{q_i, p_j\} = \delta_{ij}
 \end{equation}
 
-Le parentesi di Poisson permettono di scrivere anche in modo sintetico la derivata di un osservabile lungo il flusso hamiltoniano. È infatti facile verificare che
+Le parentesi di Poisson permettono di scrivere anche in modo sintetico la derivata di un'osservabile lungo il flusso hamiltoniano. È infatti facile verificare che
 \begin{equation}
     \od{}{t} \left(F(\Phi_\ham^t, t)\right) = \{F, \ham\}(\Phi_\ham^t, t) + \pd{F}{t}(\Phi_\ham^t, t).
 \end{equation}
 Tale relazione permette di dedurre i seguenti fatti:
 \begin{itemize}
-    \item se un'osservabile non dipende in modo esplicito dal tempo e ha perentesi di Poisson nulla con l'hamiltoniana allora è un integrale primo del moto;
+    \item se un'osservabile non dipende in modo esplicito dal tempo e ha parentesi di Poisson nulla con l'hamiltoniana allora è un integrale primo del moto;
     \item \emph{teorema di Poisson}: usando l'identità di Jacobi, se $ F $ e $ G $ sono due osservabili che hanno parentesi di Poisson nulla con l'hamiltoniana anche la loro parentesi di Poisson $ \{F, G\} $ ha parentesi nulla con l'hamiltoniana. In particolare se $ F $ e $ G $ non dipendono in modo esplicito dal tempo e sono integrali del moto anche $ \{F, G\} $ non dipende dal tempo ed è un integrale del moto.
 \end{itemize}
 
@@ -175,7 +175,7 @@ Tale relazione permette di dedurre i seguenti fatti:
 \begin{definition}[sistema hamiltoniano lineare]
     Un sistema hamiltoniano si dice lineare se l'hamiltoniana è una forma quadratica
     \begin{equation}
-        \ham(x, t) = \frac{1}{2} x^T \cdot S(t) x
+        \ham(x, t) = \frac{1}{2} x^T S(t) x
     \end{equation}
     dove $ S \colon [a, b] \to \gl(2n, \R) $ è una matrice dipendente dal tempo di classe $ \mathcal{C}^\infty $ e simmetrica (cioè $ \forall t \in [a, b], \ S^T(t) = S(t) $) e $ 0 \in [a, b] \subseteq \R $. Un'hamiltoniana di questo tipo definisce delle equazioni di Hamilton lineari
     \begin{equation} \label{eqn:ham-lineare}
@@ -198,24 +198,26 @@ dove abbiamo definito $ A \coloneqq \Gamma S $ e ricordiamo che $ e^{tA} \colone
     \begin{equation}
         A^T \Gamma + \Gamma A = 0.
     \end{equation}
-    L'insieme $ \sp(n, \R) \coloneqq \{A \in \gl(2n, \R) : A \text{ è hamiltoniana}\} $ è il sottospazio di $ \gl(2n, \R) $ delle matrici hamiltoniane.
+    L'insieme $ \sp(n, \R) \coloneqq \{A \in \gl(2n, \R) : A \text{ è hamiltoniana}\} $ è il sottospazio vettoriale di $ \gl(2n, \R) $ delle matrici hamiltoniane\footnote{Le matrici hamiltoniane non formano invece un sottogruppo di $ \gl(2n, \R) $ con la moltiplicazione.}.
 \end{definition}
 
 \begin{thm} \label{thm:mat-sp}
     Sia $ A \in \gl(2n, \R) $. Le seguenti proprietà sono equivalenti.
     \begin{enumerate}[label=(\roman*)]
-        \item $ A \in \sp(n, \R) $.
-        \item $ \exists R \in \gl(2n, \R) : R = R^T $ tale che $ A = \Gamma R $.
-        \item $ (\Gamma A)^T = \Gamma A $.
+        \item $ A \in \sp(n, \R) $;
+        \item $ \Gamma A \Gamma = A^T $;
+        \item $ \exists R \in \gl(2n, \R) : R = R^T $ tale che $ A = \Gamma R $;
+        \item\label{pt:GAsimm} $ (\Gamma A)^T = \Gamma A $.
     \end{enumerate}
     Inoltre $ \forall A, B \in \sp(n, \R) $ e $ \forall \lambda \in \R $ si ha $ A^T, \lambda A, A \pm B, [A, B] \in \sp(n, \R) $ e pertanto $ \sp(n, \R) $ è una sottoalgebra di Lie di $ \gl(2n, \R) $ con il commutatore.
 \end{thm}
 \begin{proof}
     \begin{description}
-        \item[$ (i) \iff (iii) $] Sia $ A \in \gl(2n, \R) $ tale che $ A^T \Gamma + \Gamma A = 0 $. Allora $ \Gamma A = - A^T \Gamma = - (\Gamma^T A)^T = - ((-\Gamma) A)^T = (\Gamma A)^T $.
-        \item[$ (ii) \iff (iii) $] Sia $ R $ simmetrica e $ A = \Gamma R $. Allora $ (\Gamma A)^T = (\Gamma^2 R)^T = (-\Id R)^T = -R^T = -R = (\Gamma)^2 R = \Gamma (\Gamma R) = (\Gamma A) $. Viceversa per ipotesi $ R \coloneqq -\Gamma A $ è matrice simmetrica quindi $ A = - \Gamma^{-1} R^T = \Gamma R $.
+        \item[$ (i) \iff (ii) $] Ovvio.
+        \item[$ (i) \iff (iv) $] Sia $ A \in \gl(2n, \R) $ tale che $ A^T \Gamma + \Gamma A = 0 $. Allora $ \Gamma A = - A^T \Gamma = - (\Gamma^T A)^T = - ((-\Gamma) A)^T = (\Gamma A)^T $.
+        \item[$ (iii) \iff (iv) $] Sia $ R $ simmetrica e $ A = \Gamma R $. Allora $ (\Gamma A)^T = (\Gamma^2 R)^T = (-\Id R)^T = -R^T = -R = (\Gamma)^2 R = \Gamma (\Gamma R) = (\Gamma A) $. Viceversa per ipotesi $ R \coloneqq -\Gamma A $ è matrice simmetrica quindi $ A = - \Gamma^{-1} R^T = \Gamma R $.
     \end{description}
-    Siano ora $ A = \Gamma R $ e $ B = \Gamma S $, con $ R $ e $ S $ matrici simmetriche, due matrici in $ \sp(n, \R) $. Allora
+    \noindent Siano ora $ A = \Gamma R $ e $ B = \Gamma S $, con $ R $ e $ S $ matrici simmetriche, due matrici in $ \sp(n, \R) $. Allora
     \begin{itemize}
         \item $ A^T = R^T \Gamma^T = - R \Gamma = \Gamma (\Gamma R \Gamma) $ e $ (\Gamma R \Gamma)^T = \Gamma^T R^T \Gamma^T = (-\Gamma) R (-\Gamma) = \Gamma R \Gamma $;
         \item $ \lambda A = \lambda \Gamma R = \Gamma (\lambda R) $ e $ \lambda R $ è matrice simmetrica;
@@ -272,11 +274,11 @@ dove abbiamo definito $ A \coloneqq \Gamma S $ e ricordiamo che $ e^{tA} \colone
     \begin{equation} \label{eqn:mat-Sp}
         \Omega^T \Gamma \Omega = \mu \Gamma.
     \end{equation}
-    Per $ \mu = 1 $ si parla semplicemente di matrice simplettica e $ \Sp(n, \R) \coloneqq \{\Omega \in \gl(2n, \R) : \Omega \text{ è simplettica}\} $ è il sottospazio di $ \gl(2n, \R) $ delle matrici simplettiche.
+    Per $ \mu = 1 $ si parla semplicemente di matrice simplettica e $ \Sp(n, \R) \coloneqq \{\Omega \in \gl(2n, \R) : \Omega \text{ è simplettica}\} $ è il sottospazio vettoriale di $ \gl(2n, \R) $ delle matrici simplettiche.
 \end{definition}
 
 \begin{thm}
-    Sia $ \Omega \in \gl(2n, \R) $ e $ \mu \in \R $ con $ \mu \neq 0 $. Allora $ \Omega $ è $ \mu $-simplettica allora $ \det{\Omega} \neq 0 $ e $ \Omega^{-1} = - \frac{1}{\mu} \Gamma \Omega^T \Gamma $. Inoltre se $ \Omega_1, \Omega_2 $ sono $ \mu_1 $ e $ \mu_2 $-simplettiche allora $ \Omega_1^T $, $ \Omega_1^{-1} $ e $ \Omega_1 \Omega_2 $ sono rispettivamente $ \mu_1 $, $ \frac{1}{\mu_1} $ e $ \mu_1 \mu_2 $-simplettiche. Pertanto $ \Sp(n, \R) $ è un gruppo.
+    Sia $ \Omega \in \gl(2n, \R) $ e $ \mu \in \R $ con $ \mu \neq 0 $. Se $ \Omega $ è $ \mu $-simplettica allora $ \det{\Omega} \neq 0 $ e $ \Omega^{-1} = - \frac{1}{\mu} \Gamma \Omega^T \Gamma $. Inoltre se $ \Omega_1, \Omega_2 $ sono $ \mu_1 $ e $ \mu_2 $-simplettiche allora $ \Omega_1^T $, $ \Omega_1^{-1} $ e $ \Omega_1 \Omega_2 $ sono rispettivamente $ \mu_1 $, $ \frac{1}{\mu_1} $ e $ \mu_1 \mu_2 $-simplettiche. Pertanto $ \Sp(n, \R) $ è un gruppo.
 \end{thm}
 \begin{proof}
     Se $ \Omega $ è $ \mu $-simplettica, prendendo il determinante dell'equazione \eqref{eqn:mat-Sp} si ottiene $ (\det{\Omega})^2 = \mu \neq 0 $ da cui $ \Omega $ è invertibile. Ci basta allora verificare che $ \Omega^{-1} \Omega = -\frac{1}{\mu} \Gamma \Omega^T \Gamma \Omega = - \frac{1}{\mu} \mu \Gamma^2 = \Id $. Per quanto riguarda le proprietà di gruppo si ha:
@@ -377,5 +379,10 @@ Il seguente risultato stabilisce il legame tra matrici hamiltoniane e matrici si
     \[
         e^{tA^T} \Gamma = \Gamma e^{-tA}.
     \]
-    Infatti essendo $ A \in \sp(n, \R) $ si ha $ A^T\Gamma = -(\Gamma A)^T = - \Gamma A $. Così \textcolor{red}{da finire}
+    cioè, usando la definizione
+    \[ \sum_{n=0}^{+\infty} \frac{t^n (A^T)^n \Gamma}{n!} = \sum_{n=0}^{+\infty} \frac{(-1)^n t^n \Gamma A^n}{n!}. \]
+    Tale uguaglianza è verificata termine a termine in quanto
+    \[ (A^T)^n = (\Gamma A \Gamma)^n = (-1)^{n-1} \Gamma A^n \Gamma \]
+    da cui
+    \[ (A^T)^n \Gamma = (-1)^n \Gamma A^n. \qedhere \]
 \end{proof}

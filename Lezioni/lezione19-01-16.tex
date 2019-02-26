@@ -133,9 +133,11 @@ Sfruttiamo ora la conoscenza del limite termodinamico dell'energia libera per ca
     Sia $ \Delta x \geq 0 $.
     \[ f_n'(x_0) \leq \frac{f_n(x_0+\Delta x)-f_n(x_0)}{\Delta x}. \]
     Prendendo il $ \limsup $ si ha
-    \[ \limsup_{n\to +\infty} f'_n(x_0) \leq \frac{f(x_0+\Delta x)-f(x_0)}{\Delta x} \textcolor{red}{\leq f'(x_0)}. \]
-    Analogamente si mostra che per $ \Delta x \leq 0 $ vale
-    \[ \liminf_{n\to +\infty} f_n'(x_0) \geq \frac{f(x_0+\Delta x)-f(x_0)}{\Delta x} \textcolor{red}{\geq f'(x_0)} \]
+    \[ \limsup_{n\to +\infty} f'_n(x_0) \leq \frac{f(x_0+\Delta x)-f(x_0)}{\Delta x} \]
+    che nel limite $ \Delta x \to 0 $ diventa
+    \[ \limsup_{n\to +\infty} f'_n(x_0) \leq f'(x_0). \]
+    Analogamente si mostra che vale
+    \[ \liminf_{n\to +\infty} f_n'(x_0) \geq f'(x_0) \]
     da cui la tesi.
 \end{proof}
 
@@ -145,15 +147,23 @@ Abbiamo quindi
 \begin{align}
 	\label{eq:limmagnmedia}
     \lim_{n \to +\infty}\mean{m_n}_{P_\beta} & = \frac{1}{\beta} \lim_{n \to +\infty} \dpd{}{h}\left(\frac{\log Z_n}{n}\right) = \frac{1}{\beta} \dpd{}{h} \left( \lim_{n \to +\infty} \frac{\log Z_n}{n} \right) \nonumber \\
-	                                         & = \frac{1}{\beta} \dpd{\bar{\alpha}}{h}(\beta, h) = \frac{1}{\beta} \dpd{\alpha}{h} (\overline{M}, \beta, h) = \tanh(\beta(\overline{M}+h)) = \overline{M}(\beta, h)
+	                                         & = \frac{1}{\beta} \dpd{\overline{\alpha}}{h}(\beta, h) = \frac{1}{\beta} \dod{}{h} \left( \alpha(\overline{M}(\beta,h), \beta, h)\right) \nonumber \\
+                                             & = \frac{1}{\beta} \left[ \dpd{\alpha}{M}(\overline{M}(\beta,h),\beta,h) \dpd{\overline{M}}{h}(\beta,h) + \dpd{\alpha}{h}(\overline{M}(\beta,h),\beta,h) \right] \nonumber \\
+                                             & = \tanh(\beta(\overline{M}(\beta,h)+h))  \nonumber \\
+                                             & = \overline{M}(\beta, h)
 \end{align}
-dove si è sostituita la condizione \eqref{eq:mbar} e si sono scambiati limite e derivata per la proposizione \ref{prop:convessascambio}. Nel caso $ h = 0 $ abbiamo inoltre
-\[ \pd{}{\beta} \left(\frac{\log Z_n}{n}\right) = \frac{1}{n Z_n} \pd{Z_n}{\beta} = \frac{1}{n Z_n} \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} \right) \frac{n m_n^2(\sigma)}{2} = \frac{1}{2} \mean{m_n^2}_{P_\beta} \]
+dove si è sostituita la condizione \eqref{eq:mbar} e si sono scambiati limite e derivata per la proposizione \ref{prop:convessascambio}. Se invece deriviamo rispetto a $ \beta $ otteniamo
+\begin{align*}
+    \dpd{}{\beta} \left(\frac{\log Z_n}{n}\right) &= \frac{1}{n Z_n} \dpd{Z_n}{\beta} = \frac{1}{n Z_n} \sum_{\sigma \in \Sigma} \exp\left( \frac{\beta n m_n^2(\sigma)}{2} + \beta h n m_n(\sigma) \right) \left( \frac{n m_n^2(\sigma)}{2} + hnm_n(\sigma) \right) \\ &= \frac{1}{2} \mean{m_n^2}_{P_\beta} + h \mean{m_n}_{P_\beta}
+\end{align*}
 da cui
 \begin{align*}
-	\lim_{n \to +\infty}\mean{m_n^2}_{P_\beta} & = 2 \lim_{n \to +\infty} \dpd{}{\beta} \left(\frac{\log Z_n}{n}\right) = 2 \dpd{}{\beta} \left( \lim_{n \to +\infty}\frac{\log Z_n}{n} \right) \\
-                                               & =	2 \dpd{\bar{\alpha}}{\beta}(\beta,0) = 2\dpd{\alpha}{\beta}(\overline{M},\beta,0) = 2\left( \overline{M}\tanh(\beta\overline{M}) - \frac{\overline{M}^2}{2} \right) = \overline{M}^2.
+	\frac{1}{2}\lim_{n \to +\infty}\mean{m_n^2}_{P_\beta} + h\lim_{n \to +\infty}\mean{m_n}_{P_\beta}& = \lim_{n \to +\infty} \dpd{}{\beta} \left(\frac{\log Z_n}{n}\right) = \dpd{}{\beta} \left( \lim_{n \to +\infty}\frac{\log Z_n}{n} \right) \\
+                                               & = \dpd{\overline{\alpha}}{\beta}(\beta,h) = \dod{}{\beta}\left(\alpha(\overline{M}(\beta,h),\beta,h)\right) \\
+                                               & = \dpd{\alpha}{M}(\overline{M}(\beta,h),\beta,h) \dpd{\overline{M}}{\beta}(\beta,h) + \dpd{\alpha}{\beta}(\overline{M}(\beta,h),\beta,h) \\
+                                               & = \left(\overline{M}(\beta,h) + h\right) \tanh\left(\beta(\overline{M}(\beta,h)+ h)\right) - \frac{1}{2}\overline{M}^2(\beta,h)\\
+                                               & = \frac{1}{2}\overline{M}^2(\beta,h) + h \overline{M}(\beta,h).
 \end{align*}
-Dalla \eqref{eq:limmagnmedia} segue che $ \mean{m_n}_{P_\beta} = 0 $ se $ h = 0 $ e $ \beta \leq 1 $.
-
+Usando la \ref{eq:limmagnmedia} segue che
+\[ \lim_{n \to +\infty} \mean{m_n^2}_{P_\beta} = \bar{M}^2(\beta,h). \]
 \textcolor{red}{Qui mancano un po' di discorsi conclusivi che però vengono ripresi nella lezione successiva.}
