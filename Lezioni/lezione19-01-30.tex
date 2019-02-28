@@ -5,22 +5,22 @@
 \begin{definition}[prodotto simplettico]
     Sia $ V $ uno spazio vettoriale su $ \R $ con $ \dim_\R V = 2n $. Una funzione $ \omega \colon V \times V \to \R $ si dice prodotto simplettico se è
     \begin{enumerate}[label=(\roman*)]
-        \item \emph{antisimmetrico}: $ \forall x, y \in V, \ \omega(x, y) = - \omega(y, x) $;
-        \item \emph{bilineare}: $ \forall x_1, x_2, y \in V, \forall \alpha_1, \alpha_2 \in \R, \ \omega(\alpha_1 x_1 + \alpha_2 x_2, y) = \alpha_1 \omega(x_1, y) + \alpha_2 \omega(x_2, y) $;
-        \item \emph{non degenere}: $ \forall y \in V, \ \omega(x, y) = 0 \Rightarrow x = 0 $.
+        \item \emph{antisimmetrico}: $ \forall \vec{x}, \vec{y} \in V, \ \omega(\vec{x}, \vec{y}) = - \omega(\vec{y}, \vec{x}) $;
+        \item \emph{bilineare}: $ \forall \vec{x}_1, \vec{x}_2, \vec{y} \in V, \forall \alpha_1, \alpha_2 \in \R, \ \omega(\alpha_1 \vec{x}_1 + \alpha_2 \vec{x}_2, \vec{y}) = \alpha_1 \omega(\vec{x}_1, \vec{y}) + \alpha_2 \omega(\vec{x}_2, \vec{y}) $;
+        \item \emph{non degenere}: $ \forall \vec{y} \in V, \ \omega(\vec{x}, \vec{y}) = 0 \Rightarrow \vec{x} = 0 $.
     \end{enumerate}
     Uno spazio vettoriale dotato di prodotto simplettico $ (V, \omega) $ è detto spazio vettoriale simplettico.
 \end{definition}
 
-Sia $ V $ uno spazio vettoriale simplettico e $ \{e_1, \ldots, e_{2n}\} $ una base. Possiamo definire la matrice $ W \in \gl(2n, \R) $ data da $ W_{ij} = \omega(e_i, e_j) $. Tale matrici risulta antisimmetrica $ W^{T} = -W $ e invertibile $ \det{W} \neq 0 $. Dati $ x = \sum_{i=1}^{2n} x_i e_i $ e $ y = \sum_{j=1}^{2n} y_j e_j $ per bilinearità il prodotto simplettico si scrive come
+Sia $ V $ uno spazio vettoriale simplettico e $ \{\vec{e}_1, \ldots, \vec{e}_{2n}\} $ una base. Possiamo definire la matrice $ W \in \gl(2n, \R) $ data da $ W_{ij} = \omega(\vec{e}_i, \vec{e}_j) $. Tale matrici risulta antisimmetrica $ W^{T} = -W $ e invertibile $ \det{W} \neq 0 $. Dati $ \vec{x} = \sum_{i=1}^{2n} x_i \vec{e}_i $ e $ \vec{y} = \sum_{j=1}^{2n} y_j \vec{e}_j $ per bilinearità il prodotto simplettico si scrive come
 \begin{equation} \label{eqn:prod-simplettoc-W}
-    \omega(x, y) = \sum_{i, j=1}^{2n} x_i y_j \omega(e_i, e_j) = \sum_{i, j=1}^{2n} x_i y_j W_{ij} = x^T W y
+    \omega(\vec{x}, \vec{y}) = \sum_{i, j=1}^{2n} x_i y_j \omega(\vec{e}_i, \vec{e}_j) = \sum_{i, j=1}^{2n} x_i y_j W_{ij} = \vec{x}^T W \vec{y}
 \end{equation}
 Viceversa data una matrice $ W \in \gl(2n, \R) $ invertibile e antisimmetrica, questa induce su $ V $ un prodotto simplettico $ \omega_W $ dato dalla formula \eqref{eqn:prod-simplettoc-W}. \\
 
-Se $ W = \Gamma $ allora si parla di \emph{prodotto simplettico standard}. Se $ V = \R^{2n} $, scrivendo $ x = (q, p) $ e $ y = (q', p') $ e la base canonica come $ \{e_{q_1}, \ldots, e_{q_n}, e_{p_1}, \ldots, e_{p_n}\} $ si ha
+Se $ W = \Gamma $ allora si parla di \emph{prodotto simplettico standard}. Se $ V = \R^{2n} $, scrivendo $ \vec{x} = (\vec{q}, \vec{p}) $ e $ \vec{y} = (\vec{q}', \vec{p}') $ e la base canonica come $ \{\vec{e}_{q_1}, \ldots, \vec{e}_{q_n}, \vec{e}_{p_1}, \ldots, \vec{e}_{p_n}\} $ si ha
 \begin{equation}
-    \omega_\Gamma(x, y) = x^T \Gamma y = \sum_{i=1}^{n} \left(q_i p'_i - p_i q'_i\right) =
+    \omega_\Gamma(\vec{x}, \vec{y}) = \vec{x}^T \Gamma \vec{y} = \sum_{i=1}^{n} \left(q_i p'_i - p_i q'_i\right) =
     \sum_{i=1}^{n}
     \det{
     \begin{pmatrix}
@@ -29,15 +29,15 @@ Se $ W = \Gamma $ allora si parla di \emph{prodotto simplettico standard}. Se $ 
     \end{pmatrix}
     }
 \end{equation}
-Tale relazione ha la seguente interpretazione geometrica: il prodotto scalare simplettico standard su $ \R^{2n} $ è la somma delle aree orientate delle proiezioni del parallelogramma di lati $ x $ e $ y $ sugli $ n $ piani $ \pi_i = \operatorname{span}\left(\{e_{q_i}, e_{p_i}\}\right) $.
+Tale relazione ha la seguente interpretazione geometrica: il prodotto scalare simplettico standard su $ \R^{2n} $ è la somma delle aree orientate delle proiezioni del parallelogramma di lati $ \vec{x} $ e $ \vec{y} $ sugli $ n $ piani $ \pi_i = \operatorname{span}\left(\{\vec{e}_{q_i}, \vec{e}_{p_i}\}\right) $.
 
 Osserviamo infine che per il prodotto simplettico standard valgono delle relazioni simili a quelle delle parentesi di Poisson fondamentali
 \begin{equation}
-    \omega_\Gamma(e_{q_i}, e_{q_j}) = \omega_\Gamma(e_{p_i}, e_{p_j}) = 0 \qquad \omega_\Gamma(e_{q_i}, e_{p_j}) = \delta_{ij}.
+    \omega_\Gamma(\vec{e}_{q_i}, \vec{e}_{q_j}) = \omega_\Gamma(\vec{e}_{p_i}, \vec{e}_{p_j}) = 0 \qquad \omega_\Gamma(\vec{e}_{q_i}, \vec{e}_{p_j}) = \delta_{ij}.
 \end{equation}
 
 \begin{definition}[base simplettica]
-    Sia $ (V, \omega) $ uno spazio vettoriale simplettico. Una base $ \{e_1, \ldots, e_{2n}\} $ di $ V $ si dice simplettica se $ W = \Gamma $.
+    Sia $ (V, \omega) $ uno spazio vettoriale simplettico. Una base $ \{\vec{e}_1, \ldots, \vec{e}_{2n}\} $ di $ V $ si dice simplettica se $ W = \Gamma $.
 \end{definition}
 
 \begin{thm}
@@ -50,7 +50,7 @@ Osserviamo infine che per il prodotto simplettico standard valgono delle relazio
 \begin{definition}[funzione simplettica]
     Siano $ (V_1, \omega_1) $ e $ (V_2, \omega_2) $ due spazi vettoriali simplettici. Una funzione lineare $ S \colon V_1 \to V_2 $ si dice simplettica se conserva il prodotto simplettico
     \[
-        \omega_2(S(v), S(u)) = \omega_1(u, v) \quad \forall u, v \in V_1.
+        \omega_2(S(\vec{v}), S(\vec{u})) = \omega_1(\vec{u}, \vec{v}) \quad \forall \vec{v}, \vec{v} \in V_1.
     \]
 \end{definition}
 
@@ -61,39 +61,39 @@ Osserviamo infine che per il prodotto simplettico standard valgono delle relazio
 \subsection{Campi vettoriali hamiltoniani}
 
 \begin{definition}[campo vettoriale hamiltoniano]
-    Un campo vettoriale $ X \colon \mathcal{O} \to \R^{2n} $ di classe $ \mathcal{C}^\infty $ si dice hamiltoniano se esiste una funzione hamiltoniana $ \ham \colon \mathcal{O} \to \R $ tale che $ \forall (x, t) \in \mathcal{O}, \ X(x, t) = \Gamma \nabla_x \ham(x, t) $.
+    Un campo vettoriale $ \vec{X} \colon \mathcal{O} \to \R^{2n} $ di classe $ \mathcal{C}^\infty $ si dice hamiltoniano se esiste una funzione hamiltoniana $ \ham \colon \mathcal{O} \to \R $ tale che $ \forall (\vec{x}, t) \in \mathcal{O}, \ \vec{X}(\vec{x}, t) = \Gamma \nabla_\vec{x} \ham(\vec{x}, t) $.
 \end{definition}
 
-Chiaramente l'hamiltoniana associata a $ X $ non è unica in quanto ad essa può essere aggiunta una funzione $ \chi $ con $ \nabla_x \chi = 0 $. Essendo $ \mathcal{O} $ connesso, tale relazione equivale a chiedere che $ \chi $ sia indipendente da $ x $: $ \chi(x, t) = \chi(t) $. L'hamiltoniana diventa unica se chiediamo che al campo vettoriale nullo sia associata l'hamiltoniana nulla. \\
+Chiaramente l'hamiltoniana associata a $ \vec{X} $ non è unica in quanto ad essa può essere aggiunta una funzione $ \chi $ con $ \nabla_\vec{x} \chi = 0 $. Essendo $ \mathcal{O} $ connesso, tale relazione equivale a chiedere che $ \chi $ sia indipendente da $ x $: $ \chi(\vec{x}, t) = \chi(t) $. L'hamiltoniana diventa unica se chiediamo che al campo vettoriale nullo sia associata l'hamiltoniana nulla. \\
 
 In seguito sarà utile il seguente risultato generale dell'analisi vettoriale.
 
 \begin{lemma}[Poincaré] \label{lem:poincare}
-    Sia $ A \subseteq \R^m $ un aperto semplicemente connesso e $ F \colon A \to \R^m $ una funzione di classe $ \mathcal{C}^1 $ tale che $ \forall i, j = 1, \ldots, m $
+    Sia $ A \subseteq \R^m $ un aperto semplicemente connesso e $ \vec{F} \colon A \to \R^m $ una funzione di classe $ \mathcal{C}^1 $ tale che $ \forall i, j = 1, \ldots, m $
     \[
         \pd{F_i}{x_j} = \pd{F_j}{x_i}.
     \]
-    Allora esiste una funzione $ f \colon A \to \R $ di classe $ \mathcal{C}^2 $ tale che $ F = - \grad{f} $.
+    Allora esiste una funzione $ f \colon A \to \R $ di classe $ \mathcal{C}^2 $ tale che $ \vec{F} = - \grad{f} $.
 \end{lemma}
 
 \begin{thm} \label{thm:campo-hamiltoniano}
     $ X \colon \mathcal{O} \to \R^{2n} $ è un campo vettoriale hamiltoniano se e solo
     \begin{equation}
-        J_x X (x, t) \coloneqq \left(\dpd{X_i}{x_j}(x, t)\right)_{ij}
+        J_\vec{x} \vec{X} (\vec{x}, t) \coloneqq \left(\dpd{X_i}{x_j}(\vec{x}, t)\right)_{ij}
     \end{equation}
-    è una matrice hamiltoniana $ \forall (x, t) \in \mathcal{O} $.
+    è una matrice hamiltoniana $ \forall (\vec{x}, t) \in \mathcal{O} $.
 \end{thm}
 \begin{proof}
-    Supponiamo che esista una hamiltoniana $ \ham $ tale che $ X = \Gamma \nabla_x \ham $. Allora
+    Supponiamo che esista una hamiltoniana $ \ham $ tale che $ \vec{X} = \Gamma \nabla_\vec{x} \ham $. Allora
     \[
         \pd{X_i}{x_j} = \sum_{k=1}^{2n} \Gamma_{ik} \md{\ham}{2}{x_k}{}{x_j}{} = \left( \Gamma \, \mathrm{Hess}(\ham) \right)_{ij}.
     \]
-    Essendo $ \ham $ regolare, la sua matrice hessiana è simmetrica e pertanto $ J_x X $ è hamiltoniana. \\
-    Viceversa, detto $ Y(x, t) \coloneqq \Gamma X(x, t) $ ed essendo $ J_x X $ hamiltoniana si ha, grazie al punto \ref{pt:GAsimm} del teorema \ref{thm:mat-sp}
+    Essendo $ \ham $ regolare, la sua matrice hessiana è simmetrica e pertanto $ J_\vec{x} \vec{X} $ è hamiltoniana. \\
+    Viceversa, detto $ \vec{Y}(\vec{x}, t) \coloneqq \Gamma \vec{X}(\vec{x}, t) $ ed essendo $ J_\vec{x} \vec{X} $ hamiltoniana si ha, grazie al punto \ref{pt:GAsimm} del teorema \ref{thm:mat-sp}
     \[
-        \pd{Y_i}{x_j} = (\Gamma J_x X)_{ij} = (\Gamma J_x X)_{ji} = \pd{Y_j}{x_i}.
+        \pd{Y_i}{x_j} = (\Gamma J_\vec{x} \vec{X})_{ij} = (\Gamma J_\vec{x} \vec{X})_{ji} = \pd{Y_j}{x_i}.
     \]
-    Essendo $ \mathcal{O} $ semplicemente connesso, per il Lemma \ref{lem:poincare} esiste $ \ham \colon \mathcal{O} \to \R $ tale che $ Y(x, t) = \nabla_x \ham(x, t) $ da cui $ X(x, t) = -\Gamma Y(x, t) = \Gamma \nabla_x \ham(x, t) $.
+    Essendo $ \mathcal{O} $ semplicemente connesso, per il Lemma \ref{lem:poincare} esiste $ \ham \colon \mathcal{O} \to \R $ tale che $ \vec{Y}(\vec{x}, t) = \nabla_\vec{x} \ham(\vec{x}, t) $ da cui $ \vec{X}(\vec{x}, t) = -\Gamma \vec{X}(\vec{x}, t) = \Gamma \nabla_\vec{x} \ham(\vec{x}, t) $.
 \end{proof}
 
 \begin{exercise}
@@ -107,15 +107,15 @@ In seguito sarà utile il seguente risultato generale dell'analisi vettoriale.
     Dire per quali valori di $ \alpha, \beta, \gamma \in \R $ il campo è hamiltoniano e trovare una hamiltoniana.
 \end{exercise}
 \begin{solution}
-    Sia $ X(q, p, t) = (p^\alpha q^\beta, -p^{\alpha+1}q^{\beta}) $ il campo in questione. Si ha
+    Sia $ \vec{X}(q, p, t) = (p^\alpha q^\beta, -p^{\alpha+1}q^{\beta}) $ il campo in questione. Si ha
     \[
-        J_x X (q, p, t) =
+        J_\vec{x} \vec{X} (q, p, t) =
         \begin{pmatrix}
             \beta q^{\beta-1} p^{\alpha} & \alpha q^{\beta} p^{\alpha-1} \\
             - \gamma q^{\gamma-1} p^{\alpha+1} & - (\alpha+1) q^{\gamma} p^{\alpha}
         \end{pmatrix}
     \]
-    Ora $ J_x X \in \sp(1, \R) \iff \tr{J_x X} = 0 $ pertanto deve essere
+    Ora $ J_\vec{x} \vec{X} \in \sp(1, \R) \iff \tr{J_\vec{x} \vec{X}} = 0 $ pertanto deve essere
     \[
         \beta q^{\beta-1} p^{\alpha} - (\alpha+1) q^{\gamma} p^{\alpha} = 0 \quad \Rightarrow \quad \left(\beta q^{\beta-1} - (\alpha+1) q^{\gamma}\right) p^{\alpha} = 0
     \]
