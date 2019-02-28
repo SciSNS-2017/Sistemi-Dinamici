@@ -262,7 +262,7 @@ Da cui si ottiene $ \beta $ in funzione di $ \overline{U} $, ma per i nostri sco
     \]
     da cui per $ \beta \to 0 $ essendo $ e^{-\beta\epsilon_i} \sim 1 - \beta\epsilon_i $ si ha
     \[
-        U_\beta \sim \frac{\sum_{i=1}^{n} \epsilon_i + \beta \sum_{i=1}^{n} \epsilon_i}{n -\beta \sum_{i=1}^{n} \epsilon_i} \sim \frac{1}{n} \left(\sum_{i=1}^{n}\epsilon_i + \beta \sum_{i=1}^{n} \epsilon_i\right)\left(1 + \frac{\beta}{n}\sum_{i=1}^{n} \epsilon_i\right) \sim \frac{1}{n} \sum_{i=1}^{n}\epsilon_i + O(\beta)
+        U_\beta \sim \frac{\sum_{i=1}^{n} \epsilon_i - \beta \sum_{i=1}^{n} \epsilon_i^2}{n -\beta \sum_{i=1}^{n} \epsilon_i} \sim \frac{1}{n} \left(\sum_{i=1}^{n}\epsilon_i - \beta \sum_{i=1}^{n} \epsilon_i^2\right)\left(1 + \frac{\beta}{n}\sum_{i=1}^{n} \epsilon_i\right) \sim \frac{1}{n} \sum_{i=1}^{n}\epsilon_i + O(\beta)
     \]
     mentre per $ \beta \to +\infty $ abbiamo che il termine dominante nelle somme è $ e^{-\beta\epsilon_1} $ essendo $ \epsilon_1 < \epsilon_i $ se $ i > 1 $ che raccogliamo sia a numeratore che a denominatore
     \[
