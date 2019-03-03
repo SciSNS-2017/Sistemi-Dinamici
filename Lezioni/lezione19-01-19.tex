@@ -1,0 +1,61 @@
+\section{Lezione del 09/01/2019 [Marmi]}
+
+\subsection{Entropia metrica e generatori}
+\begin{definition}
+    Siano $ \mathcal{F}_1 $ e $ \mathcal{F}_2 $ due sotto-$ \sigma $-algebre di $ (X, \mathcal{A}, \mu) $ spazio di misura. Diciamo che
+    \begin{itemize}
+        \item $ \mathcal{F}_1 \subseteq \mathcal{F}_2 \pmod{\mu} $ se $ \forall F_1 \in \mathcal{F}_1, \ \exists F_2 \in \mathcal{F_2} : \mu(F_1 \Delta F_2) = 0 $;
+        \item $ \mathcal{F_1} = \mathcal{F_2} \pmod{\mu} $ se $ \mathcal{F}_1 \subseteq \mathcal{F}_2 \pmod{\mu} $ e $ \mathcal{F}_2 \subseteq \mathcal{F}_1 \pmod{\mu} $.
+    \end{itemize}
+\end{definition}
+
+Sia ora $ (X, \mathcal{A}, \mu, f) $ un sistema dinamico misurabile e $ \alpha $ una partizione di $ X \pmod{0} $. Definiamo
+\begin{itemize}
+    \item $ \alpha_{0}^{+\infty} = \bigvee_{i=0}^{+\infty}f^{-i}\alpha $ come la $ \sigma $-algebra generata da $ \bigcup_{i=0}^{+\infty} f^{-i}\alpha $ (ovvero la più piccola $ \sigma $-algebra che contiene tale unione);
+    \item $ \alpha_{-\infty}^{+\infty} = \bigvee_{i=-\infty}^{+\infty}f^{-i}\alpha $ come la $ \sigma $-algebra generata da $ \bigcup_{i=-\infty}^{+\infty} f^{-i}\alpha $.
+\end{itemize}
+
+Diamo ora una caratterizzazione dell'entropia misurabile che permette di rimuovere l'estremo superiore quando si considera una classe particolare di partizioni.
+
+\begin{definition}[generatore]
+    Sia $ (X, \mathcal{A}, \mu, f) $ un sistema dinamico misurabile. Una partizione $ \alpha $ di $ X \pmod{0} $ è
+    \begin{itemize}
+        \item generatore se $ \alpha_{-\infty}^{+\infty} = \mathcal{A} \pmod{\mu} $;
+        \item generatore \emph{forte} se $ \alpha_{0}^{+\infty} = \mathcal{A} \pmod{\mu} $.
+    \end{itemize}
+\end{definition}
+
+\begin{exercise}
+    Consideriamo $ ([0,1], \mathcal{B}, \lambda, f) $ dove $ \mathcal{B} $ è la $ \sigma $-algebra dei boreliani, $ \lambda $ è la misura di Lebesgue e $ f(x) = 2x \pmod{1} $. Mostrare che $ \alpha = \{[0, 1/2), [1/2, 1]\} $ è generatore forte. \\
+    \emph{Hint}: gli intervalli diadici sono una base dei boreliani.
+\end{exercise}
+
+\begin{thm}[Kolmogorov-Sinai]
+     Sia $ (X, \mathcal{A}, \mu, f) $ un sistema dinamico misurabile. Se $ \alpha $ è una partizione di $ X \pmod{0} $ generatore allora
+    \[
+        h_{\mu}(f) = h_{\mathrm{\mu}}(f, \alpha).
+    \]
+\end{thm}
+
+\begin{exercise}
+    Sia $ \mathrm{BS}(p_1, \ldots, p_{n}) $ uno schema di Bernoulli. Mostrare che
+    \[
+        h_{\mu_p}(\sigma) = -\sum_{i=1}^{n} p_i\log{p_i}
+    \]
+\end{exercise}
+
+\subsection{Entropia e coniugazione/isomorfismi}
+I seguenti risultati assicurano che le definizioni di di entropia che abbiamo dati sono invarianti rispetto alla coniugazione o isomorfismo di sistemi dinamici.
+\begin{thm}
+    Siano $ (X, d_X, f) $ e $ (Y, d_Y, g) $ due sistemi dinamici topologici topologicamente coniugati. Allora $ h_{\mathrm{top}}(f) = h_{\mathrm{top}}(g) $.
+\end{thm}
+\begin{thm}
+    Siano $ (X, \mathcal{A}, \mu, f) $ e $ (Y, \mathcal{B}, \nu, g) $ due sistemi dinamici misurabili isomorfi. Allora $ h_\mu(f) = h_\nu(g) $.
+\end{thm}
+Il seguente teorema mostra che per gli schemi di Bernoulli vale anche l'implicazione inversa.
+\begin{thm}[Ornstein]
+    Due schemi di Bernoulli $ \mathrm{BS}(p_1, \ldots, p_n) $ e $ \mathrm{BS}(q_1,\ldots,q_n) $ sono isomorfi (come sistemi dinamici misurabili) se e solo se hanno la stessa entropia metrica.
+\end{thm}
+
+\subsection{Catene di Markov topologiche}
+Sia $ \Gamma \subseteq \{1, \ldots, N\}^{2} $ un grafo \emph{connesso} e \emph{diretto} sui vertici $ \{1, \ldots, N\} $ con al più una sola freccia da $ i \to j $.
